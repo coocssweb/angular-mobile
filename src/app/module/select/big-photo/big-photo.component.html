@@ -1,0 +1,13 @@
+<div class="big-photo">
+  <div class="photo-content">
+    <img *ngIf="photoRaw!=null" src="http://oex701atk.bkt.clouddn.com/{{photoRaw.imgKey}}?imageView2/2/w/800" alt="">
+  </div>
+  <div class="photo-advice">
+    <input type="text"/>
+  </div>
+  <div class="button-list">
+    <span [@statusChange]="photoRaw.status" *ngIf="photoRaw!=null && photoRaw.status==0" (click)="photoRawSelect()">选择</span>
+    <span [@statusChange]="photoRaw.status" *ngIf="photoRaw!=null && photoRaw.status==1" (click)="photoRawSelect()">取消选择</span>
+    <span (click)="closeWin()">关闭窗口</span>
+  </div>
+</div>

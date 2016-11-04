@@ -1,0 +1,20 @@
+.dy-toastr{
+  position:absolute;
+  z-index: 199;
+  width: 130px;
+  height: 60px;
+  top:50%;
+  left:50%;
+  margin-top:-30px;
+  margin-left:-65px;
+  text-align:center;
+  border-radius: 5px;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 1.2rem;
+  line-height:60px;
+  filter:alpha(opacity=80);
+  -moz-opacity:0.8;
+  opacity:0.8;
+}
+

@@ -1,0 +1,43 @@
+.big-photo{
+  position: fixed;
+  background-color: #000000;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  top:0;
+  left: 0;
+}
+.photo-content {
+  width: 100%;
+}
+.photo-advice{
+  width: 100%;
+  height: 36px;
+  margin-bottom: 1rem;
+}
+.photo-advice input{
+  height: 100%;
+  width: 100%;
+  padding:5px 15px ;
+  border: none;
+  color: #9f9f9f;
+  font-size: 1rem;
+}
+.photo-content img {
+  width: 100%;
+  height: auto;
+}
+.button-list{
+  height: 50px;
+}
+.button-list span{
+  width: calc(50% - 6rem);
+  display: block;
+  padding: 1rem 2rem;
+  color: #ffffff;
+  float: left;
+  font-size: 1rem;
+  margin: 0 1rem;
+  text-align: center;
+
+}

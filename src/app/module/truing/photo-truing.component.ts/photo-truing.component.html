@@ -1,0 +1,70 @@
+<nav>
+  <ul>
+    <li [class.active]="status==-1" (click)="status=-1" >全部({{ types.all }})</li>
+    <li [class.active]="status==0" (click)="status=0">未反馈({{types.feedback0}})</li>
+    <li [class.active]="status==1" (click)="status=1">已反馈({{types.feedback1}})</li>
+    <li [class.active]="status==2" (click)="status=2">已确认({{types.feedback2}})</li>
+  </ul>
+</nav>
+
+<div class="container clearfix">
+  <div class="item" *ngFor="let photoTruing of photoTruingList;"
+       [style.display]="(photoTruing.status==status || -1==status) ? 'block' : 'none'">
+    <img src="http://oex701atk.bkt.clouddn.com/{{photoTruing.imgKey}}?imageView2/2/w/300" (click)="amplify(photoTruing)" alt=""/>
+    <div class="item-bottom">
+      <span>原片#{{photoTruing.imgIndex}}</span>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="footer">
+  <!--
+  <div class="not-feedback">
+    8张照片未反馈
+  </div>
+  <div class="disabled">
+    提交V1版本
+  </div>
+  -->
+  <div class="feedback">
+    反馈意见已提交
+  </div>
+  <div class="enabled">
+    提交V1版本
+  </div>
+</div>
+
+
+<div class="cost-tips">
+  <div class="cost-tips-content">
+    <p>
+      您已经粗选了张照片，本订单标配选片只有张，数量超额会产生每张￥120.00的额外费用。
+    </p>
+  </div>
+  <div class="cost-tips-button">
+    <a href="#">知道了</a>
+  </div>
+</div>
+
+<div class="big-photo" *ngIf="photoTruing!=null">
+  <div class="photo-content" >
+    <div class="versions">
+      <ul>
+        <li>V1</li>
+        <li>V2</li>
+        <li>V3</li>
+      </ul>
+    </div>
+    <img (touchstart)="touch($event)"
+      src="http://oex701atk.bkt.clouddn.com/{{photoTruing.imgKey}}?imageView2/2/w/800" alt="">
+  </div>
+  <div class="photo-advice">
+    <textarea (focus)="inputComments();"></textarea>
+  </div>
+  <div class="button-list">
+    <span (click)="notGood()">提交意见</span>
+    <span (click)="good()">很满意</span>
+  </div>
+</div>
