@@ -1,0 +1,41 @@
+.md-menu {
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  min-width: 112px;
+  max-width: 280px;
+  max-height: calc(100vh + 48px);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 8px;
+  padding-bottom: 8px; }
+
+[md-menu-item] {
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  border: none;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 48px;
+  padding: 0 16px;
+  font-size: 16px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  text-align: start;
+  text-decoration: none; }
+  [md-menu-item][disabled] {
+    cursor: default; }
+
+button[md-menu-item] {
+  width: 100%; }
+
+.md-menu-click-catcher {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+
+/*# sourceMappingURL=menu.css.map */

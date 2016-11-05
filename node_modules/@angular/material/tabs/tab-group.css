@@ -1,0 +1,55 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.md-tab-header {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0; }
+
+.md-tab-label {
+  line-height: 48px;
+  height: 48px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  box-sizing: border-box;
+  color: currentColor;
+  opacity: 0.6;
+  min-width: 160px;
+  text-align: center; }
+  .md-tab-label:focus {
+    outline: none;
+    opacity: 1; }
+
+.md-tab-disabled {
+  cursor: default;
+  pointer-events: none; }
+
+.md-tab-body-wrapper {
+  position: relative;
+  overflow: hidden;
+  flex-grow: 1;
+  display: flex; }
+
+.md-tab-body {
+  display: none;
+  overflow: auto;
+  box-sizing: border-box;
+  flex-grow: 1;
+  flex-shrink: 1; }
+  .md-tab-body.md-tab-active {
+    display: block; }
+
+md-ink-bar {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  transition: 350ms ease-out; }
+
+/*# sourceMappingURL=tab-group.css.map */

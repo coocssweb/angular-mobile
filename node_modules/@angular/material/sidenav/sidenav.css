@@ -1,0 +1,111 @@
+md-sidenav-layout {
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  display: block;
+  overflow: hidden; }
+  md-sidenav-layout[fullscreen] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+    md-sidenav-layout[fullscreen].md-sidenav-opened {
+      overflow: hidden; }
+
+.md-sidenav-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  z-index: 2;
+  visibility: hidden; }
+  .md-sidenav-backdrop.md-sidenav-shown {
+    visibility: visible; }
+
+.md-sidenav-content {
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  display: block;
+  height: 100%;
+  overflow: auto; }
+
+md-sidenav {
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  min-width: 5%;
+  overflow-y: auto;
+  transform: translate3d(-100%, 0, 0); }
+  md-sidenav.md-sidenav-closed {
+    visibility: hidden; }
+  md-sidenav.md-sidenav-closing {
+    transform: translate3d(-100%, 0, 0);
+    will-change: transform; }
+  md-sidenav.md-sidenav-opening {
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+    will-change: transform; }
+  md-sidenav.md-sidenav-opened {
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    transform: translate3d(0, 0, 0); }
+  md-sidenav.md-sidenav-side {
+    z-index: 1; }
+  md-sidenav.md-sidenav-end {
+    right: 0;
+    transform: translate3d(100%, 0, 0); }
+    md-sidenav.md-sidenav-end.md-sidenav-closed {
+      visibility: hidden; }
+    md-sidenav.md-sidenav-end.md-sidenav-closing {
+      transform: translate3d(100%, 0, 0);
+      will-change: transform; }
+    md-sidenav.md-sidenav-end.md-sidenav-opening {
+      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+      visibility: visible;
+      transform: translate3d(0, 0, 0);
+      will-change: transform; }
+    md-sidenav.md-sidenav-end.md-sidenav-opened {
+      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+      transform: translate3d(0, 0, 0); }
+  [dir='rtl'] md-sidenav {
+    transform: translate3d(100%, 0, 0); }
+    [dir='rtl'] md-sidenav.md-sidenav-closed {
+      visibility: hidden; }
+    [dir='rtl'] md-sidenav.md-sidenav-closing {
+      transform: translate3d(100%, 0, 0);
+      will-change: transform; }
+    [dir='rtl'] md-sidenav.md-sidenav-opening {
+      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+      visibility: visible;
+      transform: translate3d(0, 0, 0);
+      will-change: transform; }
+    [dir='rtl'] md-sidenav.md-sidenav-opened {
+      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+      transform: translate3d(0, 0, 0); }
+    [dir='rtl'] md-sidenav.md-sidenav-end {
+      left: 0;
+      right: auto;
+      transform: translate3d(-100%, 0, 0); }
+      [dir='rtl'] md-sidenav.md-sidenav-end.md-sidenav-closed {
+        visibility: hidden; }
+      [dir='rtl'] md-sidenav.md-sidenav-end.md-sidenav-closing {
+        transform: translate3d(-100%, 0, 0);
+        will-change: transform; }
+      [dir='rtl'] md-sidenav.md-sidenav-end.md-sidenav-opening {
+        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+        visibility: visible;
+        transform: translate3d(0, 0, 0);
+        will-change: transform; }
+      [dir='rtl'] md-sidenav.md-sidenav-end.md-sidenav-opened {
+        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+        transform: translate3d(0, 0, 0); }
+
+/*# sourceMappingURL=sidenav.css.map */

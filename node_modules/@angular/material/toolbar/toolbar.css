@@ -1,0 +1,19 @@
+md-toolbar {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 64px;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  padding: 0 16px;
+  flex-direction: column; }
+  md-toolbar md-toolbar-row {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    height: 64px;
+    flex-direction: row;
+    align-items: center; }
+
+/*# sourceMappingURL=toolbar.css.map */

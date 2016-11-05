@@ -1,0 +1,88 @@
+:host {
+  display: flex;
+  height: 24px;
+  margin: 16px 0;
+  line-height: 24px;
+  white-space: nowrap;
+  user-select: none;
+  outline: none; }
+  :host.md-checked .md-slide-toggle-thumb-container {
+    transform: translate3d(100%, 0, 0); }
+  :host .md-ink-ripple {
+    border-radius: 50%;
+    opacity: 0;
+    height: 48px;
+    left: 50%;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity ease 280ms, background-color ease 280ms;
+    width: 48px; }
+  :host.md-slide-toggle-focused .md-ink-ripple {
+    opacity: 1; }
+  :host.md-slide-toggle-disabled .md-ink-ripple {
+    background-color: #000; }
+  :host.md-disabled .md-slide-toggle-label, :host.md-disabled .md-slide-toggle-container {
+    cursor: default; }
+
+.md-slide-toggle-content {
+  font-size: 14px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 500; }
+
+.md-slide-toggle-label {
+  display: flex;
+  flex: 1;
+  cursor: pointer; }
+
+.md-slide-toggle-container {
+  cursor: grab;
+  width: 36px;
+  height: 24px;
+  position: relative;
+  user-select: none;
+  margin-right: 8px; }
+
+.md-slide-toggle-thumb-container {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  z-index: 1;
+  width: 16px;
+  transform: translate3d(0, 0, 0);
+  transition: all 80ms linear;
+  transition-property: transform; }
+  .md-slide-toggle-thumb-container.md-dragging {
+    transition-duration: 0ms; }
+
+.md-slide-toggle-thumb {
+  position: absolute;
+  margin: 0;
+  left: 0;
+  top: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12); }
+
+.md-slide-toggle-bar {
+  position: absolute;
+  left: 1px;
+  top: 5px;
+  width: 34px;
+  height: 14px;
+  border-radius: 8px; }
+
+.md-slide-toggle-input {
+  bottom: 0;
+  left: 10px; }
+
+.md-slide-toggle-bar,
+.md-slide-toggle-thumb {
+  transition: all 80ms linear;
+  transition-property: background-color;
+  transition-delay: 50ms; }
+
+/*# sourceMappingURL=slide-toggle.css.map */

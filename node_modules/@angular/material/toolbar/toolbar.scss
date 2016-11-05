@@ -1,0 +1,36 @@
+@import '../core/style/variables';
+
+
+$md-toolbar-min-height: 64px !default;
+$md-toolbar-font-size: 20px !default;
+$md-toolbar-padding: 16px !default;
+
+
+md-toolbar {
+  display: flex;
+  box-sizing: border-box;
+
+  width: 100%;
+  min-height: $md-toolbar-min-height;
+
+  // Font Styling
+  font-size: $md-toolbar-font-size;
+  font-weight: 400;
+  font-family: $md-font-family;
+
+  padding: 0 $md-toolbar-padding;
+
+  flex-direction: column;
+
+  md-toolbar-row {
+    display: flex;
+    box-sizing: border-box;
+
+    width: 100%;
+    height: $md-toolbar-min-height;
+
+    // Flexbox Vertical Alignment
+    flex-direction: row;
+    align-items: center;
+  }
+}
