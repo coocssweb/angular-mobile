@@ -3,7 +3,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
-describe('App: StudioCusweb', () => {
+describe('App: Test2', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [

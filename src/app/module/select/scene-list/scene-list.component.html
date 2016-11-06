@@ -1,0 +1,14 @@
+<my-guidance [show]="guidanceToShow == 'true'" [text]="123" (onGotIt)="onGotIt($event)"></my-guidance>
+
+<nav>
+  <ul>
+    <li (click)="photo.getPhotoRaw(0);currentSi = 0 ;" [class.active]="currentSi == 0">全部({{totalRawNum}})</li>
+    <li *ngFor="let scene of scenes" [class.active]="currentSi==scene.id" (click)="photo.getPhotoRaw(scene.id); currentSi=scene.id">{{scene.sceneName}}({{scene.rawNum}})</li>
+  </ul>
+</nav>
+
+  <photo-raw minSelectNum="5" #photo></photo-raw>
+
+
+
+

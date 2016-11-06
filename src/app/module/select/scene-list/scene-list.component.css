@@ -1,0 +1,19 @@
+ul{
+  background-color: #f2f4f4;
+  padding: 1rem 1rem 1rem 0rem;
+  border-top: #cacccc 1px solid;
+  border-bottom: #cacccc 1px solid;
+  white-space:nowrap;
+  overflow-x:auto;
+}
+li{
+  display: inline-block;
+  padding-left: 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #909090;
+}
+li.active {
+  color: #000000;
+}
+
