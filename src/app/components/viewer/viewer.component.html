@@ -1,26 +1,7 @@
 <div class="viewer-box">
   <a href="javascript:;" class="btn-close" (click)="onClose()">关闭</a>
-  <a href="javascript:;" class="btn-click btn-prev" [class.disable]="currentIndex == 0" (click)="onPrev()">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
   <div class="viewer-content">
-    <table class="table" cellpadding="0" cellspacing="0">
-      <tr>
-        <td class="td">
-          <img class="viewer-big-image"
-               src="{{photoList[currentIndex].imgKey.replace('-300','-1600')}}"/>
-        </td>
-      </tr>
-    </table>
-
+      <img class="viewer-big-image" src="{{photoList[currentIndex].imgKey.replace('-300','-800')}}"/>
   </div>
-  <a href="javascript:;" class="btn-click btn-next" [class.disable]="currentIndex == photoList.length-1"
-     (click)="onNext()">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-  <div class="viewer-message">
-    <div class="layout viewer-info">
-      <label>客户建议：</label>{{photoList[currentIndex].remark}}
-    </div>
-  </div>
+  <a href="javascript:;" (click)="onChoose()" class="btn-choose">{{photoList[currentIndex].status == 1 ? '取消选择'  : '选择'}}</a>
 </div>

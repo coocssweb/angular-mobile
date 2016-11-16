@@ -18,13 +18,13 @@ export class ViewerComponent implements OnInit, OnDestroy{
   //当前图片
   @Input() currentIndex:number
 
-  /**
-   * 关闭事件
-   * @type {EventEmitter}
-   */
+  @Input() photo: any
+
+  //关闭事件
   @Output() close = new EventEmitter()
 
-  qiniuDomain: any = QINIU_DOMAIN
+  //选择事件
+  @Output() choose = new EventEmitter()
 
   /**
    * 初始化事件
@@ -61,7 +61,17 @@ export class ViewerComponent implements OnInit, OnDestroy{
     this.currentIndex += 1
   }
 
+  /**
+   * 关闭大图查看
+   */
   onClose() {
     this.close.emit()
+  }
+
+  /**
+   * 选择取消按钮
+   */
+  onChoose(){
+    this.choose.emit(this.photo)
   }
 }

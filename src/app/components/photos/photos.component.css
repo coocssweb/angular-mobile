@@ -55,6 +55,11 @@
   border: 1px solid #E0E0E0;
 }
 
+.choose{
+  background-color: #999999;
+  color: #FFFFFF;
+}
+
 .photo-info{
   padding: 10px;
   position: relative;

@@ -15,7 +15,7 @@ export class SceneService extends BaseService {
      * @returns {Promise<never|T>|Promise<never>|Observable<R>|Promise<R>|any}
      */
     getScenes(photoInfoId): Promise<Scene[]> {
-        return this.get('/photoInfo/'+photoInfoId+'/photoScenes/actions/statistics')
+        return this.get('/photoInfos/'+photoInfoId+'/photoScenes/actions/statistics')
     }
 
 }

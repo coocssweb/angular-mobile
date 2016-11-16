@@ -1,10 +1,11 @@
-import {Component, OnInit, AfterViewInit} from "@angular/core";
-import {Photo} from "./photo";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {Scene} from "../scene/scene";
 import {PhotoService} from "../../services/photos.service";
+import {SceneFormComponent} from "../scene/scene-form.component";
 import {QINIU_DOMAIN} from "../../constant/config";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Page} from "../../common/pagination/page";
+
 
 @Component({
   selector: 'photos',
@@ -12,7 +13,11 @@ import {Page} from "../../common/pagination/page";
   styleUrls: ['./photos.component.css'],
   providers: [PhotoService]
 })
+
 export class PhotosComponent implements OnInit {
+
+  @ViewChild(SceneFormComponent)
+  sceneFormComponent: SceneFormComponent
 
   //排序项
   sort = {
@@ -49,6 +54,8 @@ export class PhotosComponent implements OnInit {
   //是否显示提示
   isTip = false
 
+  photo: any = null
+
   photoCols = {
     col1: {
       height: 0,
@@ -80,15 +87,6 @@ export class PhotosComponent implements OnInit {
   }
 
 
-  afterContentLoad(){
-    if(document.readyState == "complete"){
-      this.photoList.map((item, index)=>{
-        let height = document.getElementById('photo-item-'+item.id).offsetHeight
-        console.log(height)
-      })
-    }
-  }
-
   /**
    * 获取图片列表
    */
@@ -112,6 +110,8 @@ export class PhotosComponent implements OnInit {
         }, this)
         this.photoList = this.photoList.concat(list)
         this.loadImages(0)
+      }else{
+        this.isLoadingData = false
       }
     })
   }
@@ -125,13 +125,16 @@ export class PhotosComponent implements OnInit {
       let height = image.height
       let width = image.width
 
-      if(_self.photoCols.col1.height < _self.photoCols.col2.height){
-        _self.photoCols.col1.list.push(_self.photoList[index])
+      let photo = _self.photoList[index]
+      photo.listIndex = index
+
+      if(_self.photoCols.col1.height <= _self.photoCols.col2.height){
+        _self.photoCols.col1.list.push(photo)
 
         _self.photoCols.col1.height += height / width
 
       }else{
-        _self.photoCols.col2.list.push(_self.photoList[index])
+        _self.photoCols.col2.list.push(photo)
 
         _self.photoCols.col2.height += height / width
       }
@@ -164,6 +167,18 @@ export class PhotosComponent implements OnInit {
     this.currentSceneId = scene.id
     //置空原片列表
     this.photoList = []
+
+    this.photoCols = {
+      col1: {
+        height: 0,
+        list: []
+      },
+      col2: {
+        height: 0,
+        list: []
+      }
+    }
+
     //获取当前场景原片列表
     this.getPhotos()
   }
@@ -172,9 +187,10 @@ export class PhotosComponent implements OnInit {
    * 查看当前大图
    * @param index
    */
-  onPreview(index) {
+  onPreview(index, photo) {
     this.isPreview = true
     this.previewIndex = index
+    this.photo = photo
   }
 
   /**
@@ -189,6 +205,16 @@ export class PhotosComponent implements OnInit {
     this.isTip = false
   }
 
+  //原片选中
+  onChoose(photo){
+    let status = photo.status == 1 ? 0 : 1
+
+    this.photoService.check(this.photoInfoId, photo.id, status).then((result)=>{
+      //重新获取场景信息
+      this.sceneFormComponent.getScenes()
+      photo.status = status
+    })
+  }
 
 
 }

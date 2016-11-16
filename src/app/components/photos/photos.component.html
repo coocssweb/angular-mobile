@@ -6,14 +6,14 @@
   <div class="flow-list-col">
     <div class="photo-item" *ngFor="let photo of photoCols.col1.list;let i=index">
     <div class="photo-content">
-      <div class="photo-box" (click)="onPreview(i)">
+      <div class="photo-box" (click)="onPreview(photo.listIndex, photo)">
         <img  src="{{photo.imgKey}}"
               class="photo-image"/>
         <div *ngIf="photo.isLoadingPreview" class="loading-img"><img src="../../../loading.gif"/> </div>
       </div>
       <div class="photo-info clearfix">
         <span class="photo-name">原片{{photo.imgIndex}}</span>
-        <a href="javascript:;" class="btn-choose">选择</a>
+        <a href="javascript:;" class="btn-choose" [class.choose]="photo.status==1" (click)="onChoose(photo)">{{photo.status == 1 ? '取消选择':'选择'}}</a>
       </div>
     </div>
   </div>
@@ -21,14 +21,14 @@
   <div class="flow-list-col">
     <div class="photo-item" *ngFor="let photo of photoCols.col2.list;let i=index">
       <div class="photo-content">
-        <div class="photo-box" (click)="onPreview(i)">
+        <div class="photo-box" (click)="onPreview(photo.listIndex, photo)">
           <img  src="{{photo.imgKey}}"
                 class="photo-image"/>
           <div *ngIf="photo.isLoadingPreview" class="loading-img"><img src="../../../loading.gif"/> </div>
         </div>
         <div class="photo-info clearfix">
           <span class="photo-name">原片{{photo.imgIndex}}</span>
-          <a href="javascript:;" class="btn-choose">选择</a>
+          <a href="javascript:;" class="btn-choose" [class.choose]="photo.status==1"   (click)="onChoose(photo)">{{photo.status == 1 ? '取消选择':'选择'}}</a>
         </div>
       </div>
     </div>
@@ -40,13 +40,15 @@
 
 <div class="toolbar">
   <div class="toolbar-inner layout">
-    <p class="toolbar-text"><span class="icon-ok"></span>您已初选30张</p>
+    <p class="toolbar-text"><span class="icon-ok"></span>您已初选{{sceneFormComponent.checkedNum}}张</p>
     <a href="javascript:;" class="btn-next">进入精选</a>
   </div>
 </div>
 
 <viewer *ngIf="isPreview"
         (close)="onClosePreview()"
+        (choose)="onChoose($event)"
+        [photo]="photo"
         [currentIndex]="previewIndex"
         [photoList]="photoList"></viewer>
 

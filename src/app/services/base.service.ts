@@ -83,17 +83,16 @@ export class BaseService{
             })
     }
 
-    put(url): Promise<any>{
+    put(url, body): Promise<any>{
         let headers = new Headers();
         headers.append('X-Requested-With', 'XMLHttpRequest')
         headers.append('Content-Type', 'application/json; charset=UTF-8')
         headers.append('Accept', 'application/json')
 
-        return this.http.put( DOMAIN + url, {headers: headers})
+        return this.http.put( DOMAIN + url, body, {headers: headers})
             .toPromise()
             .then((res: Response)=> {
-                let body = res.json()
-                return body || {}
+                return res
             })
             .catch((error: any)=> {
                 let errMsg = (error.message) ? error.message :

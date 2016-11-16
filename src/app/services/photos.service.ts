@@ -27,30 +27,16 @@ export class PhotoService extends BaseService {
     return this.post(url, body)
   }
 
-
-  getMessage(photoInfoId): Promise<any> {
-    return this.get('/photoInfos/' + photoInfoId + '/actions/rawInfo')
+  check(photoInfoId, id, status): Promise<any>{
+    let body = {
+      id: id,
+      status: status
+    }
+    return this.put('/photoInfos/'+photoInfoId+'/photoRaws/actions/check', body)
   }
 
-  /**
-   * 保存数据
-   * @param params
-   * @returns
-   */
-  save(photoInfoId, params): Promise<Photo> {
 
-    let body = JSON.stringify(params)
-    return this.post('/photoInfos/' + photoInfoId + '/photoRaws', body)
-  }
 
-  /**
-   * 删除信息
-   * @param ids
-   * @returns
-   */
-  remove(photoInfoId, ids) {
-    return this.delete('/photoInfos/' + photoInfoId + '/photoRaws/', ids)
-  }
 
   /**
    * 完成选片，提交
@@ -58,6 +44,6 @@ export class PhotoService extends BaseService {
    * @returns {Promise<any>}
    */
   finish(photoInfoId): Promise<any> {
-    return this.put('/photoInfos/' + photoInfoId + '/actions/finishUploadRaw')
+    return this.put('/photoInfos/' + photoInfoId + '/actions/finishUploadRaw', null)
   }
 }
