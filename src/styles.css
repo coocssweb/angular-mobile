@@ -1,0 +1,90 @@
+html, body{
+  height: 100%;
+  overflow: auto;
+}
+
+.layout {
+  max-width: 768px;
+  margin: 0px auto;
+  background-color: #FFFFFF;
+}
+
+body, h1, h2, h3, p, div, ol, ul, li, input, button, image, blockquote {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-color: #F0F0F0;
+  font-family: "helvetica neue",arial,sans-serif;
+  font-size: 14px;
+  color: #444;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, ul {
+  display: block;
+}
+
+input, textarea, keygen, select, button {
+  margin: 0px;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  outline: none;
+}
+blockquote{
+  padding: 10px 15px;
+  background-color: whitesmoke;
+  border-left: 4px solid #999999;
+}
+input[type=text] {
+  font-size: 16px;
+}
+
+ol, ul {
+  list-style: none
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+a:hover {
+  text-decoration:none;
+}
+
+button, textarea, img {
+  border: none;
+  background: transparent;
+}
+
+ol, ul {
+  list-style: none
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0
+}
+
+.fl {
+  float: left !important;
+}
+
+.fr {
+  float: right !important;
+}
+
+.clearfix:after {
+  content: ' ';
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}

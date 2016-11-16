@@ -1,0 +1,46 @@
+.mask{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 999;
+}
+.dialog{
+  position: absolute;
+  max-width: 768px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.message-content{
+  color: #FFFFFF;
+  font-size: 17px;
+  line-height: 30px;
+}
+
+.btn-confirm{
+  display: block;
+  width: 150px;
+  text-align: center;
+  height: 46px;
+  line-height: 46px;
+  padding: 0px;
+  color: #FFFFFF;
+  text-decoration: none;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px dashed #FFFFFF;
+  border-radius: 3px;
+  margin-top: 40px;
+  font-size: 16px;
+}
+
+.btn-confirm:active{
+  background-color: rgba(255, 255, 255, 0.3);
+}

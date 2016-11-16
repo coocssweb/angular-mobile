@@ -1,0 +1,38 @@
+.mask{
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 100%;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: 999;
+}
+
+.dialog{
+  width: 600px;
+  margin: 200px auto 0px auto;
+  -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.dialog-title{
+  padding: 5px 0px;
+}
+
+.dialog-content{
+  padding: 20px 0px;
+  font-size: 20px;
+}
+
+
+.dialog-bottom{
+  text-align: center;
+}
+
+.btn-cancel{
+  margin-left: 15px;
+}

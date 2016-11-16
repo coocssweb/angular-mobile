@@ -1,0 +1,9 @@
+<div [ngSwitch]="style">
+  <div *ngSwitchCase="'loadmore'" class="row">
+    <a *ngIf="!loadingData" id="loadMoreBtn" class="hidden" href="javascript:;" [hidden]="!(page.hasNextPage)" (click)="onLoadMore()">加载更多...</a>
+  </div>
+  <div *ngSwitchCase="'simple'" class="row">
+    <a href="javascript:;" (click)="onLoadMore()">1,2,3</a>
+  </div>
+</div>
+

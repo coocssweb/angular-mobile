@@ -1,0 +1,32 @@
+.tab-item{
+    float: left;
+}
+.tab-link{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(254, 254, 254)), to(rgb(237, 237, 237)));
+    background-image: -webkit-linear-gradient(top, rgb(254, 254, 254), rgb(237, 237, 237));
+    background-image: -moz-linear-gradient(top, rgb(254, 254, 254), rgb(237, 237, 237));
+    background-image: -o-linear-gradient(top, rgb(254, 254, 254), rgb(237, 237, 237));
+    background-image: -ms-linear-gradient(top, rgb(254, 254, 254), rgb(237, 237, 237));
+    background-image: linear-gradient(top, rgb(254, 254, 254), rgb(237, 237, 237));
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    padding: 0px 50px;
+    color: #252525;
+    text-decoration: none;
+    border-right: 1px solid #CFCFCF;
+    border-bottom: 1px solid #CFCFCF;
+}
+
+.tab-active{
+    border-bottom: 0px;
+    background: none;
+    background-color: #FFFFFF;
+    font-weight: bold;
+    color: #000000;
+}
+
+.disabled{
+    color: #CCCCCC;
+    cursor: not-allowed;
+}

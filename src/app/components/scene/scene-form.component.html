@@ -1,0 +1,9 @@
+<div class="scene-outer clearfix">
+    <ul class="scene-list clearfix">
+        <li class="scene-item" *ngFor="let scene of sceneList" (click)="onSelectScene(scene)">
+            <a href="javascript:;" [class.current-scene]="scene.id === selectedScene.id">{{scene.sceneName}} ({{scene.rawNum?scene.rawNum:0}})</a>
+            <span class="item-split"></span>
+        </li>
+    </ul>
+</div>
+

@@ -1,0 +1,15 @@
+.main-layout{
+  height: 100%;
+  overflow: auto;
+}
+.header{
+  height: 80px;
+}
+.logo{
+  padding-top: 25px;
+  margin-left: 20px;
+}
+
+.logo-image{
+  height: 35px;
+}

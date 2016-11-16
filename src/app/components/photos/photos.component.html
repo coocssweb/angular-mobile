@@ -1,0 +1,59 @@
+<scene-form [photoInfoId]="photoInfoId"
+            (onTabSceneCb)="onTabSceneCb($event)"
+>
+</scene-form>
+<div class="flow-list clearfix">
+  <div class="flow-list-col">
+    <div class="photo-item" *ngFor="let photo of photoCols.col1.list;let i=index">
+    <div class="photo-content">
+      <div class="photo-box" (click)="onPreview(i)">
+        <img  src="{{photo.imgKey}}"
+              class="photo-image"/>
+        <div *ngIf="photo.isLoadingPreview" class="loading-img"><img src="../../../loading.gif"/> </div>
+      </div>
+      <div class="photo-info clearfix">
+        <span class="photo-name">原片{{photo.imgIndex}}</span>
+        <a href="javascript:;" class="btn-choose">选择</a>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="flow-list-col">
+    <div class="photo-item" *ngFor="let photo of photoCols.col2.list;let i=index">
+      <div class="photo-content">
+        <div class="photo-box" (click)="onPreview(i)">
+          <img  src="{{photo.imgKey}}"
+                class="photo-image"/>
+          <div *ngIf="photo.isLoadingPreview" class="loading-img"><img src="../../../loading.gif"/> </div>
+        </div>
+        <div class="photo-info clearfix">
+          <span class="photo-name">原片{{photo.imgIndex}}</span>
+          <a href="javascript:;" class="btn-choose">选择</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="none-data" *ngIf="photoList.length==0&&!isLoadingData">没有找到任何数据</div>
+<div *ngIf="isLoadingData" class="loading-data" ><img src="../../../loading.gif"/> </div>
+<pagination [page]="page" [style]="'loadmore'" [loadingData]="isLoadingData" (loadMore)="getPhotos()"></pagination>
+
+<div class="toolbar">
+  <div class="toolbar-inner layout">
+    <p class="toolbar-text"><span class="icon-ok"></span>您已初选30张</p>
+    <a href="javascript:;" class="btn-next">进入精选</a>
+  </div>
+</div>
+
+<viewer *ngIf="isPreview"
+        (close)="onClosePreview()"
+        [currentIndex]="previewIndex"
+        [photoList]="photoList"></viewer>
+
+<tip
+  *ngIf="isTip"
+  (close)="onCloseTip()"
+  btnText = '我知道了'>
+  本订单标配可选片24张, 第一步建议您初选48张左右, 然后进行细选!
+</tip>
+
