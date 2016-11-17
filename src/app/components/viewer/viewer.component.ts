@@ -26,6 +26,17 @@ export class ViewerComponent implements OnInit, OnDestroy{
   //选择事件
   @Output() choose = new EventEmitter()
 
+  //当前触屏位置
+  touchPosStart= {
+    x: 0,
+    y: 0
+  }
+
+  touchPosMove = {
+    x: 0,
+    y: 0
+  }
+
   /**
    * 初始化事件
    */
@@ -73,5 +84,41 @@ export class ViewerComponent implements OnInit, OnDestroy{
    */
   onChoose(){
     this.choose.emit(this.photo)
+  }
+
+  onTouchStart(e){
+
+
+    this.touchPosStart = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY
+    }
+
+  }
+
+  onTouchEnd(e){
+
+    if(this.touchPosStart.x - this.touchPosMove.x < 50 ){
+      this.onPrev()
+    }else if(this.touchPosStart.x - this.touchPosMove.x > 50){
+      this.onNext()
+    }
+
+    this.touchPosStart = {
+      x: 0,
+      y: 0
+    }
+
+    this.touchPosMove = {
+      x: 0,
+      y: 0
+    }
+  }
+
+  onTouchMove(e){
+    this.touchPosMove = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY
+    }
   }
 }
