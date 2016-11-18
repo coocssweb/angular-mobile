@@ -26,6 +26,12 @@ export class TruingsComponent implements OnInit {
   //是否正在加载数据
   isLoadingData = false
 
+  //是否查看大图
+  isPreview: boolean = false
+
+  //当前大图Index
+  previewIndex: number = 1
+
   //图片列表
   truingList: any [] = []
 
@@ -61,14 +67,51 @@ export class TruingsComponent implements OnInit {
     });
 
     this.getPhotos()
+
+    this.getTruingInfo()
   }
 
 
+  /**
+   * 获取精修片列表
+   */
   getTruingInfo(){
     this.truingService.getTruingInfo(this.photoInfoId).then((infos: any)=>{
 
     })
   }
+
+  onPreview(index,truing){
+    this.isPreview = true
+    this.previewIndex = index
+    this.truing = truing
+  }
+
+  onClosePreview(){
+    this.isPreview = false
+  }
+
+  /**
+   * 反馈建议
+   */
+  onRemark(remarkObj){
+    this.truingService.remark(this.photoInfoId, remarkObj.id, remarkObj.message).then((result)=>{
+      this.truingList[remarkObj.index].status = 1
+      this.truingList[remarkObj.index].truings[0].remark = remarkObj.message
+      remarkObj.done()
+    })
+  }
+
+  /**
+   * 接受
+   */
+  onAccept(valueObj){
+    this.truingService.accept(this.photoInfoId, valueObj.id).then((result)=>{
+      this.truingList[valueObj.index].status = 2
+      valueObj.done()
+    })
+  }
+
 
   /**
    * 获取图片列表

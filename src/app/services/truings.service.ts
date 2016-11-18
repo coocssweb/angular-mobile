@@ -42,9 +42,10 @@ export class TruingService extends BaseService {
    * @returns {Promise<any>}
      */
   remark(photoInfoId, id, remark): Promise<any>{
-    let url = '/photoInfos/'+photoInfoId+'/photoTruings/'+id+'/actions/remark'
+    let url = '/photoInfos/'+photoInfoId+'/photoTruings/'+id+'/actions/confirm'
     let body = {
-      remark: remark
+      remark: remark,
+      status: 1
     }
     return this.put(url, body)
   }
@@ -56,11 +57,10 @@ export class TruingService extends BaseService {
    * @param status
    * @returns {Promise<any>}
    */
-  check(photoInfoId, id, status, remark): Promise<any>{
-    let url = '/photoInfos/{photoInfoId}/photoTruings/{id}/actions/confirm'
+  accept(photoInfoId, id): Promise<any>{
+    let url = '/photoInfos/'+photoInfoId+'/photoTruings/'+id+'/actions/confirm'
     let body = {
-      status: status,
-      remark: remark
+      status: 2
     }
     return this.put(url, body)
   }

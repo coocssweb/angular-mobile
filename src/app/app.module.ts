@@ -15,6 +15,7 @@ import {MessageComponent} from "./common/message/message.component";
 import {ViewerComponent} from "./components/viewer/viewer.component";
 import {TipComponent} from "./common/tip/tip.component";
 import {TruingsComponent} from './components/truings/truings.component'
+import {FeedbackComponent} from './components/feedback/feedback.component'
 import {HttpModule, JsonpModule} from "@angular/http";
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {HttpModule, JsonpModule} from "@angular/http";
     MessageComponent,
     ViewerComponent,
     TipComponent,
-    TruingsComponent
+    TruingsComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,

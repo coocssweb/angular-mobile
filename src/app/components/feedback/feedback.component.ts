@@ -1,0 +1,165 @@
+/**
+ *
+ * @description :: 大图查看器
+ */
+import {Component, Input, Output, EventEmitter, OnInit, OnDestroy} from "@angular/core";
+import {QINIU_DOMAIN} from "../../constant/config";
+
+@Component({
+  selector: '<feedback></feedback>',
+  templateUrl: 'feedback.component.html',
+  styleUrls: ['feedback.component.css']
+})
+export class FeedbackComponent implements OnInit, OnDestroy{
+
+  //图片列表
+  @Input() truingList:any
+
+  //当前图片
+  @Input() currentIndex:number
+  //关闭事件
+  @Output() close = new EventEmitter()
+
+  @Output() remark =  new EventEmitter()
+
+  @Output() accept = new EventEmitter()
+
+  isTouchStart = false
+
+  isTouchMove = false
+
+  message: any = null
+
+  //当前触屏位置
+  touchPosStart= {
+    x: 0,
+    y: 0
+  }
+
+  touchPosMove = {
+    x: 0,
+    y: 0
+  }
+
+  /**
+   * 初始化事件
+   */
+  ngOnInit():void {
+    let dom = (<HTMLElement>document.getElementById('html'))
+    dom.style.overflow = 'hidden'
+    dom.style.height = '100%'
+  }
+
+  ngOnDestroy() {
+    let dom = (<HTMLElement>document.getElementById('html'))
+    dom.style.overflow = 'auto'
+    dom.style.height = ''
+  }
+
+  /**
+   * 满意
+   */
+  onAccept(){
+    this.accept.emit({
+      id: this.truingList[this.currentIndex].truings[0].id,
+      index: this.currentIndex,
+      done: this.acceptSuccess.bind(this)
+    })
+  }
+
+  acceptSuccess(){
+
+  }
+
+  /**
+   * 反馈
+   */
+  onRemark(){
+    if(!this.message){
+      return
+    }
+    this.remark.emit({
+      id: this.truingList[this.currentIndex].truings[0].id,
+      message: this.message,
+      index: this.currentIndex,
+      done: this.remarkSuccess.bind(this)
+    })
+  }
+
+  remarkSuccess(){
+    this.message = ''
+  }
+
+  /**
+   * 上一张图片
+   */
+  onPrev() {
+    if (this.currentIndex == 0) {
+      return
+    }
+    this.message = ''
+    this.currentIndex -= 1
+  }
+
+  /**
+   * 下一张图片
+   */
+  onNext() {
+    if (this.currentIndex == this.truingList.length - 1) {
+      return
+    }
+    this.message = ''
+    this.currentIndex += 1
+  }
+
+  /**
+   * 关闭大图查看
+   */
+  onClose() {
+    this.close.emit()
+  }
+
+
+  onTouchStart(e){
+    this.isTouchStart = true
+
+    this.touchPosStart = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY
+    }
+  }
+
+  onTouchEnd(e){
+    if(!this.isTouchStart || !this.isTouchMove){
+      this.isTouchStart = false
+      this.isTouchMove = false
+      return
+    }
+
+    if(this.touchPosStart.x - this.touchPosMove.x < 50 ){
+      this.onPrev()
+    }else if(this.touchPosStart.x - this.touchPosMove.x > 50){
+      this.onNext()
+    }
+
+    this.isTouchStart = false
+    this.isTouchMove = false
+    this.touchPosStart = {
+      x: 0,
+      y: 0
+    }
+
+    this.touchPosMove = {
+      x: 0,
+      y: 0
+    }
+  }
+
+  onTouchMove(e){
+    this.isTouchMove = true
+    this.touchPosMove = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY
+    }
+  }
+}
