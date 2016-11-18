@@ -5,7 +5,7 @@
 
 export class Page {
   constructor(public pageNo: number = 1,
-              public pageSize: number = 15,
+              public pageSize: number = 20,
               public totalCount: number = -1,
               public totalPages: number = 0,
               public hasNextPage: boolean = false,

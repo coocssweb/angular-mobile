@@ -1,8 +1,9 @@
-
+.content{
+  margin-bottom: 60px;
+  margin-top: 15px;
+}
 .flow-list{
   padding-right: 15px;
-  margin-bottom: 45px;
-  margin-top: 15px;
 }
 
 .flow-list-col{

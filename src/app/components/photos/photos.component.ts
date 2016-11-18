@@ -216,5 +216,16 @@ export class PhotosComponent implements OnInit {
     })
   }
 
+  onFinish(){
+    if(this.sceneFormComponent.checkedNum < 24){
+      return
+    }
+
+    //选片完成
+    this.photoService.finish(this.photoInfoId).then((result)=>{
+
+    })
+  }
+
 
 }

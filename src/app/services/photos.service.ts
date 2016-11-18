@@ -15,7 +15,7 @@ export class PhotoService extends BaseService {
    */
   getPhotos(photoInfoId, sceneId, page, sortBy, sortOrder): Promise<any> {
     let url = '/photoInfos/' + photoInfoId + '/photoRaws/pagination'
-    let body = {pageNo: page.pageNo, totalCount: page.totalCount, pageSize: 15};
+    let body = {pageNo: page.pageNo, totalCount: page.totalCount, pageSize: 20};
     if (sceneId) {
       body['_filter_eq_photoSceneId'] = sceneId
     }
@@ -44,6 +44,6 @@ export class PhotoService extends BaseService {
    * @returns {Promise<any>}
    */
   finish(photoInfoId): Promise<any> {
-    return this.put('/photoInfos/' + photoInfoId + '/actions/finishUploadRaw', null)
+    return this.put('/photoInfos/' + photoInfoId + '/actions/finishCheckRaw', null)
   }
 }

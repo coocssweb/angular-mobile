@@ -26,6 +26,9 @@ export class ViewerComponent implements OnInit, OnDestroy{
   //选择事件
   @Output() choose = new EventEmitter()
 
+  isTouchStart = false
+
+  isTouchMove = false
   //当前触屏位置
   touchPosStart= {
     x: 0,
@@ -87,16 +90,20 @@ export class ViewerComponent implements OnInit, OnDestroy{
   }
 
   onTouchStart(e){
-
+    this.isTouchStart = true
 
     this.touchPosStart = {
       x: e.touches[0].clientX,
       y: e.touches[0].clientY
     }
-
   }
 
   onTouchEnd(e){
+    if(!this.isTouchStart || !this.isTouchMove){
+      this.isTouchStart = false
+      this.isTouchMove = false
+      return
+    }
 
     if(this.touchPosStart.x - this.touchPosMove.x < 50 ){
       this.onPrev()
@@ -104,6 +111,8 @@ export class ViewerComponent implements OnInit, OnDestroy{
       this.onNext()
     }
 
+    this.isTouchStart = false
+    this.isTouchMove = false
     this.touchPosStart = {
       x: 0,
       y: 0
@@ -116,6 +125,7 @@ export class ViewerComponent implements OnInit, OnDestroy{
   }
 
   onTouchMove(e){
+    this.isTouchMove = true
     this.touchPosMove = {
       x: e.touches[0].clientX,
       y: e.touches[0].clientY
