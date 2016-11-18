@@ -11,10 +11,10 @@ import {ConfirmComponent} from "./common/confirm/confirm.component";
 import {TabsComponent} from "./common/tabs/tabs.component";
 import {TabItemComponent} from "./common/tabs/tabItem.component";
 import {PaginationComponent} from "./common/pagination/pagination.component";
-import {CheckedComponent} from "./components/checked/checked.component";
 import {MessageComponent} from "./common/message/message.component";
 import {ViewerComponent} from "./components/viewer/viewer.component";
 import {TipComponent} from "./common/tip/tip.component";
+import {TruingsComponent} from './components/truings/truings.component'
 import {HttpModule, JsonpModule} from "@angular/http";
 @NgModule({
   declarations: [
@@ -27,10 +27,10 @@ import {HttpModule, JsonpModule} from "@angular/http";
     TabsComponent,
     TabItemComponent,
     PaginationComponent,
-    CheckedComponent,
     MessageComponent,
     ViewerComponent,
-    TipComponent
+    TipComponent,
+    TruingsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +38,8 @@ import {HttpModule, JsonpModule} from "@angular/http";
     HttpModule,
     JsonpModule,
     RouterModule.forRoot([
-      {path: 'raw/:photoinfoid', component: PhotosComponent}
+      {path: 'raw/:photoinfoid', component: PhotosComponent},
+      {path: 'truing/:photoinfoid', component: TruingsComponent}
     ]),
     RouterModule.forChild([])
   ],

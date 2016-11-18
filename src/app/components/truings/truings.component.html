@@ -1,0 +1,49 @@
+<div class="content">
+  <div class="flow-list clearfix">
+    <div class="flow-list-col">
+      <div class="photo-item" *ngFor="let photo of truingCols.col1.list;let i=index">
+        <div class="photo-content">
+          <div class="photo-box" (click)="onPreview(photo.listIndex, photo)">
+            <div class="choose-mask" *ngIf="photo.status==1">
+              <img src="../../../images/icon-choosed.png" class="choose-mask-image" />
+            </div>
+            <img  src="{{photo.imgKey}}"
+                  class="photo-image"/>
+            <div *ngIf="photo.isLoadingPreview" class="loading-img"><img src="../../../loading.gif"/> </div>
+          </div>
+          <div class="photo-info clearfix">
+            <span class="photo-name">原片{{photo.imgIndex}}</span>
+            <span class="photo-status" [class.icon-clock]="true" [class.icon-ok] ="false"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flow-list-col">
+      <div class="photo-item" *ngFor="let photo of truingCols.col2.list;let i=index">
+        <div class="photo-content">
+          <div class="photo-box" (click)="onPreview(photo.listIndex, photo)">
+            <div class="choose-mask" *ngIf="photo.status==1">
+              <img src="../../../images/icon-choosed.png" class="choose-mask-image" />
+            </div>
+            <img  src="{{photo.imgKey}}"
+                  class="photo-image"/>
+            <div *ngIf="photo.isLoadingPreview" class="loading-img"><img src="../../../loading.gif"/> </div>
+          </div>
+          <div class="photo-info clearfix">
+            <span class="photo-name">原片{{photo.imgIndex}}</span>
+            <span class="photo-status" [class.icon-clock]="true" [class.icon-ok] ="false"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="none-data" *ngIf="truingList.length==0&&!isLoadingData">没有找到任何数据</div>
+  <div *ngIf="isLoadingData" class="loading-data" ><img src="../../../loading.gif"/> </div>
+  <pagination [page]="page" [style]="'loadmore'" [loadingData]="isLoadingData" (loadMore)="getPhotos()"></pagination>
+</div>
+<div class="toolbar">
+  <div class="toolbar-inner layout">
+    <p class="toolbar-text"><span class="icon-wait"></span>您还有32张未反馈</p>
+    <a href="javascript:;" (click)="onFinish()" class="btn-next" >进入精选</a>
+  </div>
+</div>

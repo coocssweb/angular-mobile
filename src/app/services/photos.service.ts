@@ -27,6 +27,13 @@ export class PhotoService extends BaseService {
     return this.post(url, body)
   }
 
+  /**
+   * 选中图片
+   * @param photoInfoId
+   * @param id
+   * @param status
+   * @returns {Promise<any>}
+     */
   check(photoInfoId, id, status): Promise<any>{
     let body = {
       id: id,
@@ -34,9 +41,6 @@ export class PhotoService extends BaseService {
     }
     return this.put('/photoInfos/'+photoInfoId+'/photoRaws/actions/check', body)
   }
-
-
-
 
   /**
    * 完成选片，提交
