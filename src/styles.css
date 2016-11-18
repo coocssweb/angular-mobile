@@ -1,11 +1,11 @@
 html, body{
   min-height: 100%;
+  background-color: #FFFFFF;
 }
 
 .layout {
   max-width: 768px;
   margin: 0px auto;
-  background-color: #FFFFFF;
 }
 
 body, h1, h2, h3, p, div, ol, ul, li, input, button, image, blockquote {
@@ -14,7 +14,6 @@ body, h1, h2, h3, p, div, ol, ul, li, input, button, image, blockquote {
 }
 
 body {
-  background-color: #F0F0F0;
   font-family: "helvetica neue",arial,sans-serif;
   font-size: 14px;
   color: #444;

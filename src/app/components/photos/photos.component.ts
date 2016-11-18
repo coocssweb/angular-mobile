@@ -217,7 +217,7 @@ export class PhotosComponent implements OnInit {
   }
 
   onFinish(){
-    if(this.sceneFormComponent.checkedNum < 24){
+    if(this.sceneFormComponent.checkedNum < 48){
       return
     }
 

@@ -8,6 +8,9 @@
     <div class="photo-item" *ngFor="let photo of photoCols.col1.list;let i=index">
     <div class="photo-content">
       <div class="photo-box" (click)="onPreview(photo.listIndex, photo)">
+        <div class="choose-mask" *ngIf="photo.status==1">
+          <img src="../../../images/icon-choosed.png" class="choose-mask-image" />
+        </div>
         <img  src="{{photo.imgKey}}"
               class="photo-image"/>
         <div *ngIf="photo.isLoadingPreview" class="loading-img"><img src="../../../loading.gif"/> </div>
@@ -23,6 +26,9 @@
     <div class="photo-item" *ngFor="let photo of photoCols.col2.list;let i=index">
       <div class="photo-content">
         <div class="photo-box" (click)="onPreview(photo.listIndex, photo)">
+          <div class="choose-mask" *ngIf="photo.status==1">
+            <img src="../../../images/icon-choosed.png" class="choose-mask-image" />
+          </div>
           <img  src="{{photo.imgKey}}"
                 class="photo-image"/>
           <div *ngIf="photo.isLoadingPreview" class="loading-img"><img src="../../../loading.gif"/> </div>
@@ -42,7 +48,7 @@
 <div class="toolbar">
   <div class="toolbar-inner layout">
     <p class="toolbar-text"><span class="icon-ok"></span>您已初选{{sceneFormComponent.checkedNum}}张</p>
-    <a href="javascript:;" (click)="onFinish()" class="btn-next">进入精选</a>
+    <a href="javascript:;" (click)="onFinish()" class="btn-next" [class.btn-next-active]="sceneFormComponent.checkedNum>47">进入精选</a>
   </div>
 </div>
 

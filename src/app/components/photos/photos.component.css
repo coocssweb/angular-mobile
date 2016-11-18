@@ -51,19 +51,32 @@
   position: absolute;
   right: 10px;
   top:5px;
-  padding: 5px 15px;
+  padding: 5px 3px;
   border-radius: 3px;
   border: 1px solid #E0E0E0;
 }
 
 .choose{
-  background-color: #999999;
+  background-color: #585858;
   color: #FFFFFF;
 }
 
 .photo-info{
   padding: 10px;
   position: relative;
+}
+
+.choose-mask{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.5);
+}
+.choose-mask-image{
+  width: 15px;
+  position: absolute;
+  right: 10px;
+  top: -1px;
 }
 
 .loading-img{
@@ -85,8 +98,8 @@
 
 .toolbar{
   background-color: #FFFFFF;
-  height: 60px;
-  line-height: 60px;
+  height: 50px;
+  line-height: 50px;
   position: fixed;
   width: 100%;
   bottom: 0px;
@@ -99,20 +112,35 @@
 }
 
 .toolbar-text{
-  padding-left: 26px;
+  padding-left: 50px;
   font-size: 14px;
+  position: relative;
+}
+
+.icon-ok{
+  background-image: url(../../../images/icon-ok-black.png);
+  width: 15px;
+  height: 14px;
+  background-size: cover;
+  position: absolute;
+  top: 17px;
+  left: 25px;
 }
 
 .btn-next{
   position: absolute;
-  height: 60px;
-  line-height: 60px;
+  height: 50px;
+  line-height: 50px;
   color: #FFFFFF;
-  background-color: #000000;
+  background-color: #CCCCCC;
   top: 0px;
   right: 0px;
   padding: 0px 30px;
   font-size: 18px;
+}
+
+.btn-next-active{
+  background-color: #59ac94;
 }
 
 
