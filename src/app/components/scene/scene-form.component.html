@@ -1,5 +1,5 @@
-<div class="scene-outer clearfix">
-    <ul class="scene-list clearfix">
+<div class="scene-outer clearfix" id="scene-outer">
+    <ul class="scene-list clearfix" id="scene-list" [ngStyle]="diffX"  (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)" (touchmove)="onTouchMove($event)">
         <li class="scene-item" *ngFor="let scene of sceneList" (click)="onSelectScene(scene)">
             <a href="javascript:;" [class.current-scene]="scene.id === selectedScene.id">{{scene.sceneName}} ({{scene.rawNum?scene.rawNum:0}})</a>
             <span class="item-split"></span>

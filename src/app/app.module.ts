@@ -19,6 +19,8 @@ import {SuccessComponent} from './common/success/success.component'
 import {TruingsComponent} from './components/truings/truings.component'
 import {FeedbackComponent} from './components/feedback/feedback.component'
 import {HttpModule, JsonpModule} from "@angular/http"
+import {HashLocationStrategy, LocationStrategy} from "@angular/common"
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +54,10 @@ import {HttpModule, JsonpModule} from "@angular/http"
   exports: [
     RouterModule
   ],
-  providers: [],
+  providers: [{
+    provide: LocationStrategy, // 导航路径的策略设置
+    useClass: HashLocationStrategy // 使用'#'方式的策略
+  }],
   bootstrap: [AppComponent]
 })
 

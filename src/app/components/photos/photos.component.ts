@@ -163,7 +163,7 @@ export class PhotosComponent implements OnInit {
     if (this.currentScene && scene.id === this.currentScene.id) {
       return
     }
-
+    this.page = new  Page()
     //设置当前原片场景
     this.currentScene = scene
 

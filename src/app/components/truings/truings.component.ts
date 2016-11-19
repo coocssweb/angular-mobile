@@ -21,7 +21,11 @@ export class TruingsComponent implements OnInit {
     key: ''
   }
 
+  //当前photoInfo
   photoInfoId = null
+
+  //当前状态
+  currentStatus = -1
 
   //是否正在加载数据
   isLoadingData = false
@@ -35,10 +39,13 @@ export class TruingsComponent implements OnInit {
   //图片列表
   truingList: any [] = []
 
-  truing: any = null
-
+  //加载更多组件
   page: Page = new Page()
+
+  //显示操作成功
   isShowSuccess = false
+
+  //统计信息
   statistics: any = {
     totalCount: 0,
     confirmCount: 0,
@@ -46,6 +53,7 @@ export class TruingsComponent implements OnInit {
     unConfirmCount: 0
   }
 
+  //精修片显示
   truingCols = {
     col1: {
       height: 0,
@@ -91,12 +99,19 @@ export class TruingsComponent implements OnInit {
     })
   }
 
-  onPreview(index,truing){
+  /**
+   * 预览大图
+   * @param index
+   * @param truing
+   */
+  onPreview(index){
     this.isPreview = true
     this.previewIndex = index
-    this.truing = truing
   }
 
+  /**
+   * 关闭预览图
+   */
   onClosePreview(){
     this.isPreview = false
   }
@@ -133,8 +148,7 @@ export class TruingsComponent implements OnInit {
         this.statistics.confirmCount++
       }
 
-
-
+      //回调函数
       valueObj.done()
     })
   }
@@ -148,7 +162,7 @@ export class TruingsComponent implements OnInit {
     this.isLoadingData = true
 
     //请求加载图片列表
-    this.truingService.getTruings(this.photoInfoId, this.page, this.sort.key, this.sort.order).then((photos: any) => {
+    this.truingService.getTruings(this.photoInfoId, this.page, this.sort.key, this.sort.order, this.currentStatus).then((photos: any) => {
 
       this.page = photos;
       //设置返回数据
@@ -172,6 +186,30 @@ export class TruingsComponent implements OnInit {
         this.isLoadingData = false
       }
     })
+  }
+
+  /**
+   * 却换状态
+   */
+
+  onTabStatus(status){
+    if(this.currentStatus === status){
+      return
+    }
+    this.truingList = []
+    this.truingCols = {
+      col1: {
+        height: 0,
+        list: []
+      },
+      col2: {
+        height: 0,
+        list: []
+      }
+    }
+    this.currentStatus = status
+    this.page = new Page()
+    this.getPhotos()
   }
 
   /**

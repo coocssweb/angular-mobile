@@ -1,19 +1,19 @@
 <div class="scene-outer clearfix">
   <ul class="scene-list clearfix">
     <li class="scene-item">
-      <a href="javascript:;">全部 ({{statistics.totalCount}})</a>
+      <a href="javascript:;" (click)="onTabStatus(-1)" [class.current-scene]="currentStatus===-1">全部 ({{statistics.totalCount}})</a>
       <span class="item-split"></span>
     </li>
     <li class="scene-item">
-      <a href="javascript:;">已反馈 ({{statistics.modifyCount}})</a>
+      <a href="javascript:;" (click)="onTabStatus(1)" [class.current-scene]="currentStatus===1">已反馈 ({{statistics.modifyCount}})</a>
       <span class="item-split"></span>
     </li>
     <li class="scene-item">
-      <a href="javascript:;">未反馈 ({{statistics.unConfirmCount}})</a>
+      <a href="javascript:;" (click)="onTabStatus(0)" [class.current-scene]="currentStatus===0">未反馈 ({{statistics.unConfirmCount}})</a>
       <span class="item-split"></span>
     </li>
     <li class="scene-item">
-      <a href="javascript:;">已确认 ({{statistics.confirmCount}})</a>
+      <a href="javascript:;" (click)="onTabStatus(2)" [class.current-scene]="currentStatus===2">已确认 ({{statistics.confirmCount}})</a>
     </li>
   </ul>
 </div>

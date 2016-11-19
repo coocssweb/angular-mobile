@@ -29,6 +29,25 @@ export class SceneFormComponent implements OnInit {
 
   checkedNum = 0
 
+  isTouchStart = false
+
+  isTouchMove = false
+
+  diffX = {
+    diff:  0,
+    left: '0px'
+  }
+
+  //当前触屏位置
+  touchPosStart= {
+    x: 0,
+    y: 0
+  }
+
+  touchPosMove = {
+    x: 0,
+    y: 0
+  }
 
   /**
    * 构造函数
@@ -71,5 +90,56 @@ export class SceneFormComponent implements OnInit {
     this.selectedScene = scene
     this.onTabSceneCb.emit(scene)
   }
+
+
+  onTouchStart(e){
+    this.isTouchStart = true
+
+    this.touchPosStart = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY
+    }
+  }
+
+  onTouchEnd(e){
+    this.isTouchStart = false
+    this.isTouchMove = false
+
+    this.diffX.diff = this.touchPosMove.x - this.touchPosStart.x
+
+    this.touchPosStart = {
+      x: 0,
+      y: 0
+    }
+
+    this.touchPosMove = {
+      x: 0,
+      y: 0
+    }
+  }
+
+  onTouchMove(e){
+    if(!this.isTouchStart){
+      return
+    }
+    this.isTouchMove = true
+    this.touchPosMove = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY
+    }
+
+    let diffX = this.diffX.diff + this.touchPosMove.x - this.touchPosStart.x
+    if(diffX > 0){
+      return
+    }
+
+    if(diffX < document.getElementById('scene-outer').offsetWidth - document.getElementById('scene-list').offsetWidth){
+      return
+    }
+
+
+    this.diffX.left =  diffX + "px"
+  }
+
 
 }

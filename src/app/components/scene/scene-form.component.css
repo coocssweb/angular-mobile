@@ -2,10 +2,15 @@
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
   background-color: #f2f4f4;
+  position: relative;
+  height: 45px;
+  overflow: hidden;
 }
 .scene-list{
   white-space:nowrap;
-  overflow: hidden;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 .scene-item{
   display: inline-block;

@@ -23,9 +23,13 @@ export class TruingService extends BaseService {
    * 获取精修片列表
    * @returns
    */
-  getTruings(photoInfoId, page, sortBy, sortOrder): Promise<any> {
+  getTruings(photoInfoId, page, sortBy, sortOrder, status): Promise<any> {
     let url = '/photoInfos/'+photoInfoId+'/photoTruings/pagination'
     let body = {pageNo: page.pageNo, totalCount: page.totalCount, pageSize: 20}
+
+    if(status>-1){
+      body['_filter_eq_status'] = status
+    }
 
     if (sortBy) {
       body[sortBy] = sortOrder

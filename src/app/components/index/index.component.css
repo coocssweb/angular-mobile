@@ -5,11 +5,43 @@
 .header{
   height: 80px;
 }
+
+.nav{
+  position: absolute;
+  left: 20px;
+  top: 35px;
+
+}
+
+.nav-link{
+  display: block;
+  width: 15px;
+  height: 14px;
+  background-image: url(../../../images/nav.png);
+  background-size: cover;
+}
+
 .logo{
   padding-top: 25px;
-  margin-left: 20px;
+  margin-left: 110px;
 }
 
 .logo-image{
   height: 35px;
+}
+
+
+.dropdown{
+  position: absolute;
+  top: 35px;
+  right: 20px;
+}
+
+.drapdown-link{
+  width: 18px;
+  height: 10px;
+  display: block;
+  background-image: url(../../../images/dropdown.png);
+  background-size: cover;
+
 }
