@@ -4,6 +4,7 @@
 }
 .header{
   height: 80px;
+  position: relative;
 }
 
 .nav{
