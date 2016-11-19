@@ -75,11 +75,8 @@
   text-decoration: none;
   width: 50%;
   text-align: center;
-  color: #FFFFFF;
-  float: left;
-}
-.btn-submit{
   color: #999999;
+  float: left;
 }
 
 .active{
@@ -93,10 +90,15 @@
   color: #fff;
   z-index: 10;
   width: 90%;
+  text-align: center;
   padding: 30px;
   border-radius: 10px;
   line-height: 20px;
   box-sizing: border-box;
   background-color: rgba(0,0,0,0.5);
   transform: translate(-50%, -50%);
+}
+
+.self-mask{
+  background-color: #000000;
 }

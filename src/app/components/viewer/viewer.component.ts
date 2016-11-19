@@ -18,8 +18,6 @@ export class ViewerComponent implements OnInit, OnDestroy{
   //当前图片
   @Input() currentIndex:number
 
-  @Input() photo: any
-
   //关闭事件
   @Output() close = new EventEmitter()
 
@@ -29,6 +27,8 @@ export class ViewerComponent implements OnInit, OnDestroy{
   isTouchStart = false
 
   isTouchMove = false
+
+  isLoadingImage = true
   //当前触屏位置
   touchPosStart= {
     x: 0,
@@ -62,6 +62,8 @@ export class ViewerComponent implements OnInit, OnDestroy{
     if (this.currentIndex == 0) {
       return
     }
+
+    this.isLoadingImage =  true
     this.currentIndex -= 1
   }
 
@@ -72,6 +74,8 @@ export class ViewerComponent implements OnInit, OnDestroy{
     if (this.currentIndex == this.photoList.length - 1) {
       return
     }
+
+    this.isLoadingImage = true
     this.currentIndex += 1
   }
 
@@ -86,7 +90,7 @@ export class ViewerComponent implements OnInit, OnDestroy{
    * 选择取消按钮
    */
   onChoose(){
-    this.choose.emit(this.photo)
+    this.choose.emit(this.photoList[this.currentIndex])
   }
 
   onTouchStart(e){
@@ -130,5 +134,14 @@ export class ViewerComponent implements OnInit, OnDestroy{
       x: e.touches[0].clientX,
       y: e.touches[0].clientY
     }
+  }
+
+  loadImage(imageSrc){
+    let image = new Image()
+    let _self = this
+    image.onload=function() {
+      _self.isLoadingImage = false
+    }
+    image.src = imageSrc
   }
 }

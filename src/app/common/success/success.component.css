@@ -1,0 +1,40 @@
+.mask{
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0);
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 1000;
+}
+.dialog{
+  position: absolute;
+  max-width: 768px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.success-box{
+  padding: 20px 30px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.icon-success{
+  float: left;
+}
+
+.success-word{
+  float: left;
+  height: 48px;
+  line-height: 48px;
+  font-size: 20px;
+  color: #ffffff;
+  margin-left: 20px;
+}

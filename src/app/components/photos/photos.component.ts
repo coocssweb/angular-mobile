@@ -3,7 +3,7 @@ import {Scene} from "../scene/scene";
 import {PhotoService} from "../../services/photos.service";
 import {SceneFormComponent} from "../scene/scene-form.component";
 import {QINIU_DOMAIN} from "../../constant/config";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Page} from "../../common/pagination/page";
 
 
@@ -52,7 +52,10 @@ export class PhotosComponent implements OnInit {
   currentSceneId = null
 
   //是否显示提示
-  isTip = false
+  isShowGuide = true
+
+  //是否显示成功提示
+  isShowSuccess = false
 
   photo: any = null
 
@@ -72,7 +75,7 @@ export class PhotosComponent implements OnInit {
    * @param photoService
    */
   constructor(private photoService: PhotoService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute, private router: Router) {
   }
 
   /**
@@ -196,13 +199,24 @@ export class PhotosComponent implements OnInit {
   /**
    * 关闭当前大图
    */
-
   onClosePreview() {
     this.isPreview = false
   }
 
+  /**
+   * 关闭提示框
+   */
   onCloseTip(){
-    this.isTip = false
+    this.isShowGuide = false
+  }
+
+  /**
+   * 关闭成功提示
+   * @param photo
+   */
+
+  onCloseSuccess(){
+    this.isShowSuccess = false
   }
 
   //原片选中
@@ -213,17 +227,22 @@ export class PhotosComponent implements OnInit {
       //重新获取场景信息
       this.sceneFormComponent.getScenes()
       photo.status = status
+      //显示成功提示
+      this.isShowSuccess = true
     })
   }
 
+  /**
+   * 进入精修片
+   */
   onFinish(){
-    if(this.sceneFormComponent.checkedNum < 48){
+    if(this.sceneFormComponent.checkedNum < this.sceneFormComponent.requireNum){
       return
     }
 
     //选片完成
     this.photoService.finish(this.photoInfoId).then((result)=>{
-
+      this.router.navigate(['/truing', this.photoInfoId])
     })
   }
 

@@ -1,6 +1,6 @@
-html, body{
+html, body {
   min-height: 100%;
-  background-color: #FFFFFF;
+  background-color: #fff;
 }
 
 .layout {
@@ -14,7 +14,7 @@ body, h1, h2, h3, p, div, ol, ul, li, input, button, image, blockquote {
 }
 
 body {
-  font-family: "helvetica neue",arial,sans-serif;
+  font-family: "helvetica neue", arial, sans-serif;
   font-size: 14px;
   color: #444;
 }
@@ -35,11 +35,13 @@ input, textarea, keygen, select, button {
   text-align: start;
   outline: none;
 }
-blockquote{
+
+blockquote {
   padding: 10px 15px;
   background-color: whitesmoke;
   border-left: 4px solid #999999;
 }
+
 input[type=text] {
   font-size: 16px;
 }
@@ -54,7 +56,7 @@ a {
 }
 
 a:hover {
-  text-decoration:none;
+  text-decoration: none;
 }
 
 button, textarea, img {
@@ -87,20 +89,81 @@ table {
   clear: both;
 }
 
-.main-mask{
+.main-mask {
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0px;
   left: 0px;
-  background-color: rgba(60,168,173,0.85);
   text-align: center;
-  color: #FFFFFF;
+  z-index: 1001;
 }
-.loading-text{
+
+.loading-text {
   position: absolute;
   left: 50%;
   top: 50%;
-  margin-left: -30px;
-  font-size: 16px;
+  margin-left: -15px;
+  background-image: url(images/colorwheel-thin.svg);
+  display: block;
+  height: 30px;
+  width: 30px;
+  -webkit-animation: rotate linear 0.5s infinite;
+  -moz-animation: rotate linear 0.5s infinite;
+  -ms-animation: rotate linear 0.5s infinite;
+  -o-animation: rotate linear 0.5s infinite;
+  animation: rotate linear 0.5s infinite;
+}
+
+@keyframes rotate {
+  0% {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg)
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg)
+  }
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg)
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg)
+  }
+}
+
+@-o-keyframes rotate {
+  0% {
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg)
+  }
+  100% {
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg)
+  }
+}
+
+@-ms-keyframes rotate {
+  0% {
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg)
+  }
+  100% {
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
 }

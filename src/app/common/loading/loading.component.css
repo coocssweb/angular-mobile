@@ -1,0 +1,23 @@
+.self_loading-outer{
+  text-align: center;
+  padding: 10px 0px;
+}
+.self_loading-box{
+  display: inline-block;
+}
+.self_loading-image{
+  float: left;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: rotate linear 0.5s infinite;
+  -moz-animation: rotate linear 0.5s infinite;
+  -ms-animation: rotate linear 0.5s infinite;
+  -o-animation: rotate linear 0.5s infinite;
+  animation: rotate linear 0.5s infinite;
+}
+.self_loading-text{
+  float: left;
+  margin-left: 10px;
+  height: 20px;
+  line-height: 20px;
+}

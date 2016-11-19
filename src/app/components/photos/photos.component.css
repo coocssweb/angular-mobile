@@ -51,7 +51,7 @@
   position: absolute;
   right: 10px;
   top:5px;
-  padding: 5px 3px;
+  padding: 5px 10px;
   border-radius: 3px;
   border: 1px solid #E0E0E0;
 }
@@ -59,6 +59,7 @@
 .choose{
   background-color: #585858;
   color: #FFFFFF;
+  padding: 5px 3px;
 }
 
 .photo-info{

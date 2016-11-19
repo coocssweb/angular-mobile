@@ -38,6 +38,13 @@ export class TruingsComponent implements OnInit {
   truing: any = null
 
   page: Page = new Page()
+  isShowSuccess = false
+  statistics: any = {
+    totalCount: 0,
+    confirmCount: 0,
+    modifyCount: 0,
+    unConfirmCount: 0
+  }
 
   truingCols = {
     col1: {
@@ -54,8 +61,7 @@ export class TruingsComponent implements OnInit {
    * 构造函数
    * @param photoService
    */
-  constructor(private truingService: TruingService,
-              private route: ActivatedRoute) {
+  constructor(private truingService: TruingService, private route: ActivatedRoute) {
   }
 
   /**
@@ -71,13 +77,17 @@ export class TruingsComponent implements OnInit {
     this.getTruingInfo()
   }
 
-
   /**
    * 获取精修片列表
    */
   getTruingInfo(){
-    this.truingService.getTruingInfo(this.photoInfoId).then((infos: any)=>{
-
+    this.truingService.getTruingInfo(this.photoInfoId).then((info: any)=>{
+      this.statistics = {
+        totalCount: info.confirmPassNum + info.confirmModifyNum + info.unconfirmNum,
+        confirmCount: info.confirmPassNum,
+        modifyCount: info.confirmModifyNum,
+        unConfirmCount: info.unconfirmNum
+      }
     })
   }
 
@@ -96,6 +106,12 @@ export class TruingsComponent implements OnInit {
    */
   onRemark(remarkObj){
     this.truingService.remark(this.photoInfoId, remarkObj.id, remarkObj.message).then((result)=>{
+      this.isShowSuccess = true
+      if(!this.truingList[remarkObj.index].status){
+        this.statistics.unConfirmCount--
+        this.statistics.modifyCount++
+      }
+
       this.truingList[remarkObj.index].status = 1
       this.truingList[remarkObj.index].truings[0].remark = remarkObj.message
       remarkObj.done()
@@ -108,6 +124,17 @@ export class TruingsComponent implements OnInit {
   onAccept(valueObj){
     this.truingService.accept(this.photoInfoId, valueObj.id).then((result)=>{
       this.truingList[valueObj.index].status = 2
+      this.isShowSuccess = true
+      if(!this.truingList[valueObj.index].status){
+        this.statistics.unConfirmCount--
+        this.statistics.confirmCount++
+      }else if(this.truingList[valueObj.index].status == 1){
+        this.statistics.modifyCount --
+        this.statistics.confirmCount++
+      }
+
+
+
       valueObj.done()
     })
   }
@@ -179,4 +206,19 @@ export class TruingsComponent implements OnInit {
     image.src = this.truingList[index].imgKey
   }
 
+  /**
+   *  提交
+   */
+  onFinish(){
+    this.truingService.finish(this.photoInfoId).then((result)=>{
+      this.isShowSuccess = true
+    })
+  }
+
+  /**
+   * 关闭成功提示
+   */
+  onCloseSuccess(){
+    this.isShowSuccess = false
+  }
 }

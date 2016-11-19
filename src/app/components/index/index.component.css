@@ -1,6 +1,6 @@
 .main-layout{
   height: 100%;
-  overflow: auto;
+  background-color: #FFFFFF;
 }
 .header{
   height: 80px;

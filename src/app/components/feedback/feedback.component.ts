@@ -30,6 +30,8 @@ export class FeedbackComponent implements OnInit, OnDestroy{
 
   message: any = null
 
+  isLoadingImage = true
+
   //当前触屏位置
   touchPosStart= {
     x: 0,
@@ -60,6 +62,10 @@ export class FeedbackComponent implements OnInit, OnDestroy{
    * 满意
    */
   onAccept(){
+    if(this.truingList[this.currentIndex].status == 2 ){
+      return
+    }
+
     this.accept.emit({
       id: this.truingList[this.currentIndex].truings[0].id,
       index: this.currentIndex,
@@ -78,6 +84,7 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     if(!this.message){
       return
     }
+
     this.remark.emit({
       id: this.truingList[this.currentIndex].truings[0].id,
       message: this.message,
@@ -97,6 +104,7 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     if (this.currentIndex == 0) {
       return
     }
+    this.isLoadingImage = true
     this.message = ''
     this.currentIndex -= 1
   }
@@ -108,6 +116,8 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     if (this.currentIndex == this.truingList.length - 1) {
       return
     }
+
+    this.isLoadingImage = true
     this.message = ''
     this.currentIndex += 1
   }
@@ -161,5 +171,14 @@ export class FeedbackComponent implements OnInit, OnDestroy{
       x: e.touches[0].clientX,
       y: e.touches[0].clientY
     }
+  }
+
+  loadImage(imageSrc){
+    let image = new Image()
+    let _self = this
+    image.onload=function() {
+      _self.isLoadingImage = false
+    }
+    image.src = imageSrc
   }
 }

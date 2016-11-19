@@ -25,6 +25,8 @@ export class SceneFormComponent implements OnInit {
     id: 0
   }
 
+  requireNum = 0
+
   checkedNum = 0
 
 
@@ -51,7 +53,7 @@ export class SceneFormComponent implements OnInit {
       .then((scenes:any) => {
         let totalRaw = 0
         let totalChecked = 0
-
+        this.requireNum = scenes.truingImgNum * 2
         scenes.photoSceneCounts.map((item)=> {
           totalRaw += item.rawNum ? item.rawNum : 0
           totalChecked += item.checkedNum ? item.checkedNum : 0
