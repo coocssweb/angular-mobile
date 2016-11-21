@@ -1,7 +1,7 @@
 .content{
-  margin-bottom: 60px;
   margin-top: 15px;
 }
+
 .flow-list{
   padding-right: 15px;
 }
@@ -10,7 +10,6 @@
   float: left;
   width: 50%;
 }
-
 
 .photo-item{
   margin-bottom: 15px;
@@ -30,7 +29,6 @@
   position: relative;
   font-size: 0px;
 }
-
 
 .photo-image{
   width: 100%;
@@ -73,6 +71,7 @@
   height: 100%;
   background-color: rgba(0,0,0, 0.5);
 }
+
 .choose-mask-image{
   width: 15px;
   position: absolute;
@@ -89,8 +88,6 @@
   width: 100%;
   text-align: center;
 }
-
-
 
 .loading-data{
   text-align: center;
@@ -144,4 +141,91 @@
   background-color: #59ac94;
 }
 
+.pc-photo-list{
+  width: 1000px;
+  margin-top: 25px;
+}
 
+.pc-photo-item{
+  width: 223px;
+  margin-right: 25px;
+  border: 1px solid #e5e5e5;
+  float: left;
+  margin-bottom: 25px;
+}
+
+.pc-photo-box{
+  height: 150px;
+  overflow: hidden;
+}
+
+.pc-photo-image{
+  width: 100%;
+}
+
+.pc-photo-info{
+  padding: 20px 10px;
+  position: relative;
+}
+
+.pc-btn-choose{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-block;
+  padding: 7px 15px;
+  color: #000000;
+  border: 1px solid #e5e5e5;
+}
+.pc-btn-choose:hover{
+  color: #59ac94;
+  border-color: #59ac94;
+}
+.pc-choose{
+  background-color: #59ac94;
+  color: #FFFFFF;
+  border:1px solid #59ac94;
+}
+.pc-choose:hover{
+  color: #FFFFFF;
+  background-color: #4dbb9b;
+}
+@media screen and (min-width: 769px) {
+  .content{
+    display: none;
+  }
+  .margin-bottom{
+    margin-bottom: 70px;
+  }
+  .toolbar{
+    background-color: #5a5a5a;
+    color: #FFFFFF;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+  }
+  .toolbar-text{
+    font-size: 20px;
+    display: inline-block;
+    position: relative;
+  }
+  .icon-ok{
+    display: none;
+  }
+
+  .btn-next{
+    position: absolute;
+    right: -180px;
+    top: 12px;
+    border-radius: 5px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .pc-content{
+    display: none;
+  }
+  .margin-bottom{
+    margin-bottom: 60px;
+  }
+}

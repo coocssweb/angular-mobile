@@ -52,7 +52,7 @@ export class PhotosComponent implements OnInit {
   currentSceneId = null
 
   //是否显示提示
-  isShowGuide = true
+  isShowGuide = false
 
   //是否显示成功提示
   isShowSuccess = false

@@ -44,5 +44,32 @@
   display: block;
   background-image: url(../../../images/dropdown.png);
   background-size: cover;
+}
 
+.pc-header{
+  height: 50px;
+  background-color: #1e1e1e;
+}
+
+.pc-header-inner{
+  position: relative;
+  height: 50px;
+}
+
+.pc-logo{
+  position: absolute;
+  top: 10px;
+  height: 30px;
+}
+
+@media screen and (min-width: 769px) {
+  .header{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .pc-header{
+    display: none;
+  }
 }

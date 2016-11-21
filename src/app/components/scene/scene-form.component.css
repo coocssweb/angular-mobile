@@ -3,7 +3,6 @@
   border-bottom: 1px solid #e5e5e5;
   background-color: #f2f4f4;
   position: relative;
-  height: 45px;
   overflow: hidden;
 }
 .scene-list{
@@ -40,3 +39,22 @@
   color: #000000;
 }
 
+.scene-inner{
+  max-width: 768px;
+  margin: 0px auto;
+  height: 43px;
+  position: relative;
+}
+
+@media screen and (min-width: 769px) {
+  .scene-inner{
+    max-width: 980px;
+  }
+  .scene-item a{
+    padding-left: 0px;
+    padding-right: 40px;
+  }
+  .item-split{
+    display: none;
+  }
+}

@@ -8,6 +8,13 @@ html, body {
   margin: 0px auto;
 }
 
+.pc-layout{
+  max-width: 980px;
+  margin: 0px auto;
+  overflow: hidden;
+}
+
+
 body, h1, h2, h3, p, div, ol, ul, li, input, button, image, blockquote {
   margin: 0px;
   padding: 0px;

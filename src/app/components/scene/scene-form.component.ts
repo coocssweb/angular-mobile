@@ -133,7 +133,7 @@ export class SceneFormComponent implements OnInit {
       return
     }
 
-    if(diffX < document.getElementById('scene-outer').offsetWidth - document.getElementById('scene-list').offsetWidth){
+    if(diffX < document.getElementById('scene-inner').offsetWidth - document.getElementById('scene-list').offsetWidth){
       return
     }
 
