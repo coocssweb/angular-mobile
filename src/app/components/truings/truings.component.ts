@@ -45,6 +45,9 @@ export class TruingsComponent implements OnInit {
   //显示操作成功
   isShowSuccess = false
 
+  //是否显示PC端提示新秀
+  isShowPcGuide = true
+
   //统计信息
   statistics: any = {
     totalCount: 0,
@@ -258,5 +261,12 @@ export class TruingsComponent implements OnInit {
    */
   onCloseSuccess(){
     this.isShowSuccess = false
+  }
+
+  /**
+   * 关闭PC端提示信息
+   */
+  onClosePcTip(){
+    this.isShowPcGuide = false
   }
 }

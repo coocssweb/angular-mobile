@@ -1,22 +1,50 @@
-<div class="scene-outer clearfix">
-  <ul class="scene-list clearfix">
-    <li class="scene-item">
-      <a href="javascript:;" (click)="onTabStatus(-1)" [class.current-scene]="currentStatus===-1">全部 ({{statistics.totalCount}})</a>
-      <span class="item-split"></span>
-    </li>
-    <li class="scene-item">
-      <a href="javascript:;" (click)="onTabStatus(1)" [class.current-scene]="currentStatus===1">已反馈 ({{statistics.modifyCount}})</a>
-      <span class="item-split"></span>
-    </li>
-    <li class="scene-item">
-      <a href="javascript:;" (click)="onTabStatus(0)" [class.current-scene]="currentStatus===0">未反馈 ({{statistics.unConfirmCount}})</a>
-      <span class="item-split"></span>
-    </li>
-    <li class="scene-item">
-      <a href="javascript:;" (click)="onTabStatus(2)" [class.current-scene]="currentStatus===2">已确认 ({{statistics.confirmCount}})</a>
-    </li>
-  </ul>
+<div *ngIf="isShowPcGuide" class="pc-guide pc-layout">
+  已确认的精修片,点击左下角的下载按钮既可以下载了 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
 </div>
+
+<div class="scene-outer clearfix">
+  <div class="scene-inner clearfix" id="scene-inner">
+    <ul class="scene-list clearfix">
+      <li class="scene-item">
+        <a href="javascript:;" (click)="onTabStatus(-1)" [class.current-scene]="currentStatus===-1">全部 ({{statistics.totalCount}})</a>
+        <span class="item-split"></span>
+      </li>
+      <li class="scene-item">
+        <a href="javascript:;" (click)="onTabStatus(1)" [class.current-scene]="currentStatus===1">已反馈 ({{statistics.modifyCount}})</a>
+        <span class="item-split"></span>
+      </li>
+      <li class="scene-item">
+        <a href="javascript:;" (click)="onTabStatus(0)" [class.current-scene]="currentStatus===0">未反馈 ({{statistics.unConfirmCount}})</a>
+        <span class="item-split"></span>
+      </li>
+      <li class="scene-item">
+        <a href="javascript:;" (click)="onTabStatus(2)" [class.current-scene]="currentStatus===2">已确认 ({{statistics.confirmCount}})</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="pc-content pc-layout">
+  <div class="pc-photo-list clearfix">
+    <div class="pc-photo-item" *ngFor="let photo of truingList;let i=index">
+      <div class="pc-photo-content">
+        <div class="pc-photo-box" (click)="onPreview(photo.listIndex, photo)">
+          <div class="pc-choose-mask" *ngIf="photo.status==1">
+          </div>
+          <img  src="{{photo.imgKey}}"
+                class="pc-photo-image"/>
+        </div>
+        <div class="pc-photo-info clearfix">
+          <span class="pc-photo-name">原片{{photo.imgIndex}}</span>
+          <a href="javascript:;" class="pc-btn-choose" [class.pc-choose]="photo.status==1" (click)="onChoose(photo)">{{photo.status == 1 ? '取消选择':'选择'}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <div class="content">
   <div class="flow-list clearfix">
@@ -55,10 +83,15 @@
   <loading *ngIf="isLoadingData"></loading>
   <pagination [page]="page" [style]="'loadmore'" [loadingData]="isLoadingData" (loadMore)="getPhotos()"></pagination>
 </div>
+
+<div class="margin-bottom"></div>
+
 <div class="toolbar">
   <div class="toolbar-inner layout">
-    <p class="toolbar-text"><span class="icon-wait"></span>您还有{{statistics.unConfirmCount}}张未反馈</p>
-    <a href="javascript:;" (click)="onFinish()" class="btn-next" [class.btn-next-active]="statistics.unConfirmCount===0" >确认提交</a>
+    <p class="toolbar-text">
+      <span class="icon-wait"></span>您还有{{statistics.unConfirmCount}}张未反馈
+      <a href="javascript:;" (click)="onFinish()" class="btn-next" [class.btn-next-active]="statistics.unConfirmCount===0" >确认提交</a>
+    </p>
   </div>
 </div>
 
