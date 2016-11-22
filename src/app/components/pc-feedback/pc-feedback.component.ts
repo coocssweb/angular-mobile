@@ -23,6 +23,8 @@ export class PcFeedbackComponent implements OnInit, OnDestroy{
 
   @Output() accept = new EventEmitter()
 
+  isShowDrop =  false
+
   message: any = null
 
   isLoadingImage = true
@@ -59,16 +61,13 @@ export class PcFeedbackComponent implements OnInit, OnDestroy{
     if(this.truingList[this.currentIndex].status == 2 ){
       return
     }
-
     this.accept.emit({
       id: this.truingList[this.currentIndex].truings[0].id,
       index: this.currentIndex,
       done: this.acceptSuccess.bind(this)
     })
   }
-
   acceptSuccess(){
-
   }
 
   /**
@@ -110,12 +109,10 @@ export class PcFeedbackComponent implements OnInit, OnDestroy{
     if (this.currentIndex == this.truingList.length - 1) {
       return
     }
-
     this.isLoadingImage = true
     this.message = ''
     this.currentIndex += 1
   }
-
 
   loadImage(imageSrc){
     let image = new Image()
@@ -124,5 +121,13 @@ export class PcFeedbackComponent implements OnInit, OnDestroy{
       _self.isLoadingImage = false
     }
     image.src = imageSrc
+  }
+
+  onToggleDrop(){
+    this.isShowDrop = !this.isShowDrop
+  }
+
+  onSelectVersion(index){
+    this.isShowDrop = false
   }
 }

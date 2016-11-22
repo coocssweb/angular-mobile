@@ -28,10 +28,6 @@
     background-size: cover;
 }
 
-.btn-close:hover{
-}
-
-
 .btn-page{
   height: 80px;
   width: 40px;
@@ -132,6 +128,41 @@
   transform: translate(-50%, -50%);
 }
 
+.drop-box{
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  float: right;
+  position: relative;
+}
 
-.self-mask{
+.drop-items{
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  background-color: #000000;
+  box-shadow: 0px -1px 3px rgba(255, 255, 255, 0.8);
+}
+
+.drop-item{
+  display: block;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 14px;
+  border-bottom: 1px solid #333;
+}
+
+.drop-item:hover, .drop-item-active{
+  background-color: #222;
+}
+
+.drop-display{
+  color: #FFFFFF;
+  font-size: 14px;
+  text-align: center;
+  display: block;
+}
+
+.drop-display:hover{
+  background-color: #222;
 }
