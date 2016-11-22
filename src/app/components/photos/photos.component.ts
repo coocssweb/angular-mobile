@@ -52,7 +52,11 @@ export class PhotosComponent implements OnInit {
   currentSceneId = null
 
   //是否显示提示
-  isShowGuide = false
+  isShowGuide = true
+
+  isShowPcGuide = true
+
+  isPc = false
 
   //是否显示成功提示
   isShowSuccess = false
@@ -82,6 +86,10 @@ export class PhotosComponent implements OnInit {
    * 初始化事件
    */
   ngOnInit(): void {
+    if(document.getElementById('html').offsetWidth > 769){
+      this.isShowGuide = false
+    }
+
     this.route.params.forEach((params: Params) => {
       this.photoInfoId = +params['photoinfoid']
     });
@@ -208,6 +216,10 @@ export class PhotosComponent implements OnInit {
    */
   onCloseTip(){
     this.isShowGuide = false
+  }
+
+  onClosePcTip(){
+    this.isShowPcGuide = false
   }
 
   /**

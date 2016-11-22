@@ -1,3 +1,7 @@
+<div *ngIf="isShowPcGuide" class="pc-guide pc-layout">
+  本订单标配可选片{{sceneFormComponent.requireNum}}张,第一步建议您先粗选{{sceneFormComponent.requireNum*2}}张左右,然后进行细选 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
+</div>
+
 <scene-form [photoInfoId]="photoInfoId"
             (onTabSceneCb)="onTabSceneCb($event)"
 >
@@ -79,7 +83,7 @@
         [photoList]="photoList"></viewer>
 
 <tip
-  *ngIf="isShowGuide"
+  *ngIf="isShowGuide && isPc"
   (close)="onCloseTip()"
   btnText = '我知道了'>
   本订单标配可选片{{sceneFormComponent.requireNum}}张, 第一步建议您初选{{sceneFormComponent.requireNum*2}}张左右, 然后进行细选!

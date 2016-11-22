@@ -9,7 +9,7 @@ html, body {
 }
 
 .pc-layout{
-  max-width: 980px;
+  max-width: 1080px;
   margin: 0px auto;
   overflow: hidden;
 }
@@ -177,4 +177,11 @@ table {
 .none-data{
   text-align: center;
   margin-top: 40px;
+}
+
+
+@media screen and (min-width: 769px) {
+  body {
+    background-color: #f7f7f7;
+  }
 }

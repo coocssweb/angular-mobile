@@ -142,16 +142,16 @@
 }
 
 .pc-photo-list{
-  width: 1000px;
-  margin-top: 25px;
+  width: 1100px;
+  margin-top: 20px;
 }
 
 .pc-photo-item{
-  width: 223px;
-  margin-right: 25px;
+  width: 253px;
+  margin-right: 20px;
   border: 1px solid #e5e5e5;
   float: left;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .pc-photo-box{
@@ -164,13 +164,13 @@
 }
 
 .pc-photo-info{
-  padding: 20px 10px;
+  padding: 15px 10px;
   position: relative;
 }
 
 .pc-btn-choose{
   position: absolute;
-  top: 10px;
+  top: 8px;
   right: 10px;
   display: inline-block;
   padding: 7px 15px;
@@ -190,6 +190,24 @@
   color: #FFFFFF;
   background-color: #4dbb9b;
 }
+
+.pc-guide{
+  background-color: #ffb892;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  color: #FFFFFF;
+  font-size: 16px;
+  margin-top: 10px;
+  border-radius: 2px;
+}
+
+.btn-close-guide{
+  margin-left: 50px;
+  text-decoration: underline;
+  color: #FFFFFF;
+}
+
 @media screen and (min-width: 769px) {
   .content{
     display: none;
@@ -205,9 +223,10 @@
     text-align: center;
   }
   .toolbar-text{
-    font-size: 20px;
+    font-size: 16px;
     display: inline-block;
     position: relative;
+    padding-left: 0px;
   }
   .icon-ok{
     display: none;
@@ -215,9 +234,16 @@
 
   .btn-next{
     position: absolute;
-    right: -180px;
-    top: 12px;
-    border-radius: 5px;
+    right: -130px;
+    top: 18px;
+    border-radius: 3px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+    padding: 0px 20px;
+  }
+  .mobile-guide{
+    display: none;
   }
 }
 
@@ -227,5 +253,8 @@
   }
   .margin-bottom{
     margin-bottom: 60px;
+  }
+  .pc-guide{
+    display: none;
   }
 }

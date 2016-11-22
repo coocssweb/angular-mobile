@@ -47,12 +47,19 @@
 }
 
 @media screen and (min-width: 769px) {
+  .scene-outer{
+    background-color: #f7f7f7;
+    border-bottom: none;
+    border-top: none;
+  }
   .scene-inner{
-    max-width: 980px;
+    max-width: 1080px;
+    border-bottom: 1px solid #e5e5e5;
   }
   .scene-item a{
     padding-left: 0px;
     padding-right: 40px;
+    font-sizeP: 14px;
   }
   .item-split{
     display: none;
