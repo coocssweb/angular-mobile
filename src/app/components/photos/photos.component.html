@@ -10,7 +10,7 @@
   <div class="pc-photo-list clearfix">
     <div class="pc-photo-item" *ngFor="let photo of photoList;let i=index">
       <div class="pc-photo-content">
-        <div class="pc-photo-box" (click)="onPreview(photo.listIndex, photo)">
+        <div class="pc-photo-box" (click)="onPcPreview(photo.listIndex)">
           <div class="pc-choose-mask" *ngIf="photo.status==1">
           </div>
           <img  src="{{photo.imgKey}}"
@@ -81,6 +81,16 @@
         (choose)="onChoose($event)"
         [currentIndex]="previewIndex"
         [photoList]="photoList"></viewer>
+
+
+<pcviewer  *ngIf="isPcPreview"
+           (close)="onClosePcPreview()"
+           (choose)="onChoose($event)"
+           [currentIndex]="previewIndex"
+           [photoList]="photoList"
+
+></pcviewer>
+
 
 <tip
   *ngIf="isShowGuide && isPc"

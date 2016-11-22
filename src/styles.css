@@ -176,12 +176,12 @@ table {
 }
 .none-data{
   text-align: center;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 
 @media screen and (min-width: 769px) {
-  body {
+  body,html {
     background-color: #f7f7f7;
   }
 }

@@ -10,7 +10,6 @@
   width: 50%;
 }
 
-
 .photo-item{
   margin-bottom: 15px;
   width: 100%;
@@ -29,7 +28,6 @@
   position: relative;
   font-size: 0px;
 }
-
 
 .photo-image{
   width: 100%;
@@ -159,8 +157,6 @@
   background-color: #59ac94;
 }
 
-
-
 .scene-outer{
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
@@ -204,7 +200,6 @@
 .scene-item a.current-scene{
   color: #000000;
 }
-
 
 .pc-photo-list{
   width: 1100px;
@@ -273,8 +268,9 @@
   color: #FFFFFF;
 }
 
-
-
+.pc-photo-status{
+  top: 15px;
+}
 
 @media screen and (min-width: 769px) {
   .scene-outer{
@@ -302,6 +298,7 @@
 
   .margin-bottom{
     margin-bottom: 70px;
+    height: 1px;
   }
   .toolbar{
     background-color: #5a5a5a;
@@ -330,10 +327,7 @@
     font-size: 16px;
     padding: 0px 20px;
   }
-
 }
-
-
 
 @media screen and (max-width: 768px) {
   .pc-content{

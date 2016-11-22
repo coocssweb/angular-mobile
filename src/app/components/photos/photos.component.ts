@@ -26,20 +26,19 @@ export class PhotosComponent implements OnInit {
     key: ''
   }
 
-
   //是否正在加载数据
   isLoadingData = false
 
-
   //图片列表
   photoList: any [] = []
-
 
   //当前场景
   currentScene: Scene
 
   //是否查看大图
   isPreview: boolean = false
+
+  isPcPreview: boolean = false
 
   //当前大图Index
   previewIndex: number
@@ -60,8 +59,6 @@ export class PhotosComponent implements OnInit {
 
   //是否显示成功提示
   isShowSuccess = false
-
-  photo: any = null
 
   photoCols = {
     col1: {
@@ -201,7 +198,6 @@ export class PhotosComponent implements OnInit {
   onPreview(index, photo) {
     this.isPreview = true
     this.previewIndex = index
-    this.photo = photo
   }
 
   /**
@@ -209,6 +205,24 @@ export class PhotosComponent implements OnInit {
    */
   onClosePreview() {
     this.isPreview = false
+  }
+
+
+  /**
+   * Pc端预览大图
+   * @param index
+   * @param photo
+     */
+  onPcPreview(index){
+    this.isPcPreview = true
+    this.previewIndex = index
+  }
+
+  /**
+   * 关闭Pc端预览图片
+   */
+  onClosePcPreview(){
+    this.isPcPreview = false
   }
 
   /**

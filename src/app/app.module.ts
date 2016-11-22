@@ -13,6 +13,7 @@ import {TabItemComponent} from "./common/tabs/tabItem.component"
 import {PaginationComponent} from "./common/pagination/pagination.component"
 import {MessageComponent} from "./common/message/message.component"
 import {ViewerComponent} from "./components/viewer/viewer.component"
+import {PCViewerComponent} from './components/pc-viewer/pc-viewer.component'
 import {TipComponent} from "./common/tip/tip.component"
 import {LoadingComponent} from './common/loading/loading.component'
 import {SuccessComponent} from './common/success/success.component'
@@ -38,7 +39,8 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common"
     LoadingComponent,
     SuccessComponent,
     TruingsComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    PCViewerComponent
   ],
   imports: [
     BrowserModule,

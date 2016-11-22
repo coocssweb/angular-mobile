@@ -269,4 +269,7 @@ export class TruingsComponent implements OnInit {
   onClosePcTip(){
     this.isShowPcGuide = false
   }
+
+
+
 }
