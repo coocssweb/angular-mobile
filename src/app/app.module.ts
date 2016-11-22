@@ -19,6 +19,7 @@ import {LoadingComponent} from './common/loading/loading.component'
 import {SuccessComponent} from './common/success/success.component'
 import {TruingsComponent} from './components/truings/truings.component'
 import {FeedbackComponent} from './components/feedback/feedback.component'
+import {PcFeedbackComponent} from './components/pc-feedback/pc-feedback.component'
 import {HttpModule, JsonpModule} from "@angular/http"
 import {HashLocationStrategy, LocationStrategy} from "@angular/common"
 
@@ -40,6 +41,7 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common"
     SuccessComponent,
     TruingsComponent,
     FeedbackComponent,
+    PcFeedbackComponent,
     PCViewerComponent
   ],
   imports: [

@@ -15,7 +15,7 @@
   left: 50%;
   top: 50%;
   margin-left: -500px;
-  margin-top: -375px;
+  margin-top: -400px;
   background-color: #000000;
 }
 
@@ -69,20 +69,68 @@
   transform: translate(-50%, -50%);
 }
 
-.btn-choose{
+
+.footer{
   position: absolute;
   left: 0px;
-  bottom: -60px;
-  height: 60px;
-  line-height: 60px;
+  bottom: -100px;
   width: 100%;
-  text-align: center;
   color: #FFFFFF;
   font-size: 18px;
-  z-index: 100;
+  z-index: 110;
   background-color: rgba(0,0,0, 0.5);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
+.feedback-toolbar{
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.textarea{
+  display: block;
+  border: none;
+  background-color: #FFFFFF;
+  width: 100%;
+  resize: none;
+  box-sizing: border-box;
+  font-size: 16px;
+  height: 80px;
+  line-height: 20px;
+  overflow: hidden;
+  padding: 5px 10px;
+  border: 1px solid #000000;
+}
+
+.btn-submit,.btn-accept{
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  text-decoration: none;
+  width: 150px;
+  text-align: center;
+  color: #999999;
+  float: right;
+  font-size: 14px;
+}
+
+.active{
+  color: #FFFFFF;
+}
+
+.message{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  z-index: 10;
+  width: 90%;
+  text-align: center;
+  padding: 30px;
+  border-radius: 10px;
+  line-height: 20px;
+  box-sizing: border-box;
+  background-color: rgba(0,0,0,0.5);
+  transform: translate(-50%, -50%);
+}
+
 
 .self-mask{
   background-color: rgba(255, 255, 255, 0.9);

@@ -31,7 +31,9 @@ export class TruingsComponent implements OnInit {
   isLoadingData = false
 
   //是否查看大图
-  isPreview: boolean = false
+  isPreview = false
+
+  isPcPreview = false
 
   //当前大图Index
   previewIndex: number = 1
@@ -117,6 +119,20 @@ export class TruingsComponent implements OnInit {
    */
   onClosePreview(){
     this.isPreview = false
+  }
+
+
+  /**
+   * PC端预览大图
+   * @param index
+     */
+  onPcPreview(index){
+    this.isPcPreview =  true
+    this.previewIndex = index
+  }
+
+  onClosePcPreview(){
+    this.isPcPreview = false
   }
 
   /**

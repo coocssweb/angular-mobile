@@ -29,7 +29,7 @@
   <div class="pc-photo-list clearfix">
     <div class="pc-photo-item" *ngFor="let photo of truingList;let i=index">
       <div class="pc-photo-content">
-        <div class="pc-photo-box" (click)="onPreview(photo.listIndex, photo)">
+        <div class="pc-photo-box" (click)="onPcPreview(photo.listIndex)">
           <div class="pc-choose-mask" *ngIf="photo.status==1">
           </div>
           <img  src="{{photo.imgKey}}"
@@ -53,7 +53,7 @@
     <div class="flow-list-col">
       <div class="photo-item" *ngFor="let photo of truingCols.col1.list;let i=index">
         <div class="photo-content">
-          <div class="photo-box" (click)="onPreview(photo.listIndex, photo)">
+          <div class="photo-box" (click)="onPreview(photo.listIndex)">
             <img  src="{{photo.imgKey}}"
                   class="photo-image"/>]
           </div>
@@ -102,6 +102,14 @@
         (accept)="onAccept($event)"
         [currentIndex]="previewIndex"
         [truingList]="truingList"></feedback>
+
+<pcfeedback *ngIf="isPcPreview"
+          (close)="onClosePcPreview()"
+          (remark)="onRemark($event)"
+          (accept)="onAccept($event)"
+          [currentIndex]="previewIndex"
+          [truingList]="truingList"></pcfeedback>
+
 
 <success *ngIf="isShowSuccess" (close)="onCloseSuccess()">
   操作成功
