@@ -71,7 +71,8 @@
   <div class="toolbar-inner layout">
     <p class="toolbar-text">
       <span class="icon-ok"></span>您已初选{{sceneFormComponent.checkedNum}}张
-      <a href="javascript:;" (click)="onFinish()" class="btn-next" [class.btn-next-active]="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum*2">进入精选</a>
+      <a href="javascript:;" *ngIf="currentStatus===0" (click)="onNext()" class="btn-next" [class.btn-next-active]="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum*2">进入精选</a>
+      <a href="javascript:;" *ngIf="currentStatus==='1'" (click)="onFinish()" class="btn-next btn-next-active">确认提交</a>
     </p>
   </div>
 </div>
@@ -93,7 +94,7 @@
 
 
 <tip
-  *ngIf="isShowGuide && isPc"
+  *ngIf="isShowGuide"
   (close)="onCloseTip()"
   btnText = '我知道了'>
   本订单标配可选片{{sceneFormComponent.requireNum}}张, 第一步建议您初选{{sceneFormComponent.requireNum*2}}张左右, 然后进行细选!

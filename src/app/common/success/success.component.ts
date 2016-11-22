@@ -20,9 +20,9 @@ export class SuccessComponent implements OnInit, OnDestroy{
    * 初始化事件
    */
   ngOnInit(): void {
-    let dom = (<HTMLElement>document.getElementById('html'))
-    dom.style.overflow = 'hidden'
-    dom.style.height='100%'
+    // let dom = (<HTMLElement>document.getElementById('html'))
+    // dom.style.overflow = 'hidden'
+    // dom.style.height='100%'
 
     let _self = this
     setTimeout(function () {
@@ -34,9 +34,9 @@ export class SuccessComponent implements OnInit, OnDestroy{
    * 组件摧毁
    */
   ngOnDestroy(){
-    let dom = (<HTMLElement>document.getElementById('html'))
-    dom.style.overflow = 'auto'
-    dom.style.height=''
+    // let dom = (<HTMLElement>document.getElementById('html'))
+    // dom.style.overflow = 'auto'
+    // dom.style.height=''
   }
 
 

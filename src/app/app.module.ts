@@ -51,6 +51,7 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common"
     JsonpModule,
     RouterModule.forRoot([
       {path: 'raw/:photoinfoid', component: PhotosComponent},
+      {path: 'raw/:photoinfoid/:status', component: PhotosComponent},
       {path: 'truing/:photoinfoid', component: TruingsComponent}
     ]),
     RouterModule.forChild([])

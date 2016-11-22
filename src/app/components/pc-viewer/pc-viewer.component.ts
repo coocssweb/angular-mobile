@@ -24,21 +24,7 @@ export class PCViewerComponent implements OnInit, OnDestroy{
   //选择事件
   @Output() choose = new EventEmitter()
 
-  isTouchStart = false
-
-  isTouchMove = false
-
   isLoadingImage = true
-  //当前触屏位置
-  touchPosStart= {
-    x: 0,
-    y: 0
-  }
-
-  touchPosMove = {
-    x: 0,
-    y: 0
-  }
 
   /**
    * 初始化事件
@@ -93,8 +79,10 @@ export class PCViewerComponent implements OnInit, OnDestroy{
     this.choose.emit(this.photoList[this.currentIndex])
   }
 
-
-
+  /**
+   * 加载图片
+   * @param imageSrc
+   */
   loadImage(imageSrc){
     let image = new Image()
     let _self = this

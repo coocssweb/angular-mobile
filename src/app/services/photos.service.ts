@@ -13,11 +13,15 @@ export class PhotoService extends BaseService {
    * 获取图片列表
    * @returns
    */
-  getPhotos(photoInfoId, sceneId, page, sortBy, sortOrder): Promise<any> {
+  getPhotos(photoInfoId, sceneId, status, page, sortBy, sortOrder): Promise<any> {
     let url = '/photoInfos/' + photoInfoId + '/photoRaws/pagination'
     let body = {pageNo: page.pageNo, totalCount: page.totalCount, pageSize: 20};
     if (sceneId) {
       body['_filter_eq_photoSceneId'] = sceneId
+    }
+
+    if(status){
+      body['_filter_eq_status'] = status
     }
 
     if (sortBy) {

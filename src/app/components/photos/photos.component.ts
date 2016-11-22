@@ -15,16 +15,16 @@ import {Page} from "../../common/pagination/page";
 })
 
 export class PhotosComponent implements OnInit {
-
   @ViewChild(SceneFormComponent)
   sceneFormComponent: SceneFormComponent
-
   //排序项
   sort = {
     item: '',
     order: 'asc',
     key: ''
   }
+
+  currentStatus:number = 0
 
   //是否正在加载数据
   isLoadingData = false
@@ -53,9 +53,8 @@ export class PhotosComponent implements OnInit {
   //是否显示提示
   isShowGuide = true
 
+  //是否显示PC端提示信息
   isShowPcGuide = true
-
-  isPc = false
 
   //是否显示成功提示
   isShowSuccess = false
@@ -89,6 +88,7 @@ export class PhotosComponent implements OnInit {
 
     this.route.params.forEach((params: Params) => {
       this.photoInfoId = +params['photoinfoid']
+      this.currentStatus = +params['status']? params['status'] : 0
     });
 
     this.getPhotos()
@@ -103,7 +103,7 @@ export class PhotosComponent implements OnInit {
     this.isLoadingData = true
 
     //请求加载图片列表
-    this.photoService.getPhotos(this.photoInfoId, this.currentSceneId, this.page, this.sort.key, this.sort.order).then((photos: any) => {
+    this.photoService.getPhotos(this.photoInfoId, this.currentSceneId, this.currentStatus, this.page, this.sort.key, this.sort.order).then((photos: any) => {
 
       this.page = photos;
       //设置返回数据
@@ -124,30 +124,21 @@ export class PhotosComponent implements OnInit {
     })
   }
 
-
-
   loadImages(index){
     let image = new Image()
     let _self = this
     image.onload=function(){
       let height = image.height
       let width = image.width
-
       let photo = _self.photoList[index]
       photo.listIndex = index
-
       if(_self.photoCols.col1.height <= _self.photoCols.col2.height){
         _self.photoCols.col1.list.push(photo)
-
         _self.photoCols.col1.height += height / width
-
       }else{
         _self.photoCols.col2.list.push(photo)
-
         _self.photoCols.col2.height += height / width
       }
-
-
       if(index< _self.photoList.length - 1){
         _self.loadImages(index+1)
       }else{
@@ -259,18 +250,23 @@ export class PhotosComponent implements OnInit {
   }
 
   /**
-   * 进入精修片
+   * 进入精选
+   */
+  onNext(){
+    this.router.navigate(['/raw/'+this.photoInfoId+"/", 1])
+  }
+
+  /**
+   * 确认提交
    */
   onFinish(){
     if(this.sceneFormComponent.checkedNum < this.sceneFormComponent.requireNum){
       return
     }
-
     //选片完成
     this.photoService.finish(this.photoInfoId).then((result)=>{
       this.router.navigate(['/truing', this.photoInfoId])
     })
   }
-
 
 }
