@@ -8,7 +8,7 @@ http://localhost:4200/
 
 # 测试路径
 
-http://localhost:4200/raw/6
+http://localhost:4200/#/raw/6
 
 # 路由配置
 
