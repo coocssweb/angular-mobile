@@ -13,6 +13,8 @@ export class SceneFormComponent implements OnInit {
 
   @Input() photoInfoId:string
 
+  @Input() show: boolean
+
   //切换场景回调
   @Output() onTabSceneCb = new EventEmitter()
 

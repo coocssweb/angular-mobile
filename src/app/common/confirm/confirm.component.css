@@ -9,7 +9,7 @@
 }
 
 .dialog{
-  width: 400px;
+  width: 450px;
   margin: 200px auto 0px auto;
   -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
   -moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
@@ -20,19 +20,48 @@
 }
 
 .dialog-title{
-  padding: 5px 0px;
+  padding: 5px 20px;
+  background-color: #10AF88;
+  color: #FFFFFF;
+  height: 40px;
+  line-height: 40px;
 }
 
 .dialog-content{
-  padding: 20px 0px;
+  padding: 40px 20px;
   font-size: 20px;
+  background-color: #FFFFFF;
 }
 
 
 .dialog-bottom{
   text-align: center;
+  background-color: #FFFFFF;
+  height: 40px;
+  line-height: 40px;
+}
+
+.btn{
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  padding: 0px 30px;
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+}
+
+.btn-primary{
+  border-color: #10AF88;
+  color: #10AF88;
 }
 
 .btn-cancel{
   margin-left: 15px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .dialog{
+    width: 80%;
+  }
 }

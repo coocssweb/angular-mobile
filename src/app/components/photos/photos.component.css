@@ -78,6 +78,14 @@
   color: #FFFFFF;
 }
 
+.btn-back{
+  font-size: 18px;
+  color: #FFFFFF;
+}
+.btn-back:hover{
+  text-decoration: underline;
+}
+
 @media screen and (min-width: 769px) {
   .content{
     display: none;
@@ -105,7 +113,7 @@
 
   .btn-next{
     position: absolute;
-    right: -130px;
+    right: -180px;
     top: 18px;
     border-radius: 3px;
     height: 35px;
@@ -124,5 +132,9 @@
   }
   .pc-guide{
     display: none;
+  }
+  .btn-back{
+    font-size: 18px;
+    color: #000000;
   }
 }

@@ -41,6 +41,10 @@ export class PhotosComponent implements OnInit {
   //是否正在查看PC大图
   isPcPreview: boolean = false
 
+  isShowConfirm: boolean = false
+
+  photoIndex = -1
+
   //当前大图Index
   previewIndex: number
 
@@ -245,24 +249,21 @@ export class PhotosComponent implements OnInit {
 
   //原片选中
   onChoose(index){
-
-    let photo = this.photoList[index]
-
-    let status = photo.status == 1 ? 0 : 1
-
-    this.photoService.check(this.photoInfoId, photo.id, status).then((result)=>{
-      //重新获取场景信息
-      this.sceneFormComponent.getScenes()
-      photo.status = status
-      //显示成功提示
-      this.isShowSuccess = true
-    })
+    this.photoIndex = index
+    if(this.currentStatus ==='1'){
+      this.isShowConfirm = true
+    } else {
+      this.deleteConfirm()
+    }
   }
 
   /**
    * 进入精选
    */
   onNext(){
+    if(this.sceneFormComponent.checkedNum<this.sceneFormComponent.requireNum*2){
+      return
+    }
     this.router.navigate(['/raw/'+this.photoInfoId+"/", 1])
   }
 
@@ -277,6 +278,52 @@ export class PhotosComponent implements OnInit {
     this.photoService.finish(this.photoInfoId).then((result)=>{
       this.router.navigate(['/truing', this.photoInfoId])
     })
+  }
+
+  onBack(){
+    this.router.navigate(['/raw', this.photoInfoId])
+  }
+
+  deleteConfirm(){
+
+    let index = this.photoIndex
+
+    let photo = this.photoList[index]
+
+    let status = photo.status == 1 ? 0 : 1
+
+    this.photoService.check(this.photoInfoId, photo.id, status).then((result)=>{
+      //重新获取场景信息
+      this.sceneFormComponent.getScenes()
+      photo.status = status
+      //显示成功提示
+      this.isShowSuccess = true
+
+      if(this.currentStatus == '1'){
+        this.photoList.splice(index, 1)
+
+        this.photoCols = {
+          col1: {
+            height: 0,
+            list: []
+          },
+          col2: {
+            height: 0,
+            list: []
+          }
+        }
+
+        this.loadImages(0)
+      }
+
+
+
+      this.isShowConfirm = false
+    })
+  }
+
+  deleteCancel(){
+    this.isShowConfirm = false
   }
 
 }

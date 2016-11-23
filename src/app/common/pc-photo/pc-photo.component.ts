@@ -15,6 +15,8 @@ export class PcPhotoComponent {
 
   @Input() type: string
 
+  @Input() status: string
+
   @Output() preview = new EventEmitter()
 
   @Output() choose =  new EventEmitter()

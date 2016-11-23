@@ -1,7 +1,7 @@
 <div class="photo-item" *ngFor="let photo of list;let i=index">
   <div class="photo-content">
     <div class="photo-box" (click)="onPreview(photo.listIndex, photo)">
-      <div class="choose-mask" *ngIf="photo.status==1">
+      <div class="choose-mask" *ngIf="photo.status==1 && status=='0'">
         <img src="../../../images/icon-choosed.png" class="choose-mask-image" />
       </div>
       <img  src="{{photo.imgKey}}"
@@ -9,7 +9,7 @@
     </div>
     <div class="photo-info clearfix" *ngIf="type==='raw'">
       <span class="photo-name">原片{{photo.imgIndex}}</span>
-      <a href="javascript:;" class="btn-choose" [class.choose]="photo.status==1"   (click)="onChoose(photo.listIndex)">{{photo.status == 1 ? '取消选择':'选择'}}</a>
+      <a href="javascript:;" class="btn-choose" [class.choose]="photo.status==1"   (click)="onChoose(photo.listIndex)">{{  status=='0'?  (photo.status == 1 ? '取消选择':'选择') : '删除' }}</a>
     </div>
 
     <div class="photo-info clearfix" *ngIf="type==='truing'">

@@ -2,14 +2,14 @@
   本订单标配可选片{{sceneFormComponent.requireNum}}张,第一步建议您先粗选{{sceneFormComponent.requireNum*2}}张左右,然后进行细选 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
 </div>
 
-<scene-form [photoInfoId]="photoInfoId"
-            (onTabSceneCb)="onTabSceneCb($event)"
->
+<scene-form [show]="currentStatus!=='0'" [photoInfoId]="photoInfoId"
+            (onTabSceneCb)="onTabSceneCb($event)">
 </scene-form>
 <div class="pc-content pc-layout">
   <pcphoto
     [list]="photoList"
     [type]="'raw'"
+    [status]="currentStatus"
     (choose)="onChoose($event)"
     (preview)="onPcPreview($event)"
   ></pcphoto>
@@ -21,6 +21,7 @@
       <photo
         [list]="photoCols.col1.list"
         [type]="'raw'"
+        [status]="currentStatus"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -29,6 +30,7 @@
       <photo
         [list]="photoCols.col2.list"
         [type]="'raw'"
+        [status]="currentStatus"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -43,15 +45,26 @@
 
 <div class="margin-bottom"></div>
 
-<div class="toolbar">
+<div class="toolbar" *ngIf="currentStatus==='0'">
   <div class="toolbar-inner layout">
     <p class="toolbar-text">
-      <span class="icon-ok"></span>您已初选{{sceneFormComponent.checkedNum}}张
-      <a href="javascript:;" *ngIf="currentStatus==='0'" (click)="onNext()" class="btn-next" [class.btn-next-active]="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum*2">进入精选</a>
-      <a href="javascript:;" *ngIf="currentStatus==='1'" (click)="onFinish()" class="btn-next btn-next-active">确认提交</a>
+      <span class="icon-ok" *ngIf="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum*2"></span>您已初选{{sceneFormComponent.checkedNum}}张
+      <a href="javascript:;" (click)="onNext()" class="btn-next" [class.btn-next-active]="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum*2">进入精选</a>
     </p>
   </div>
 </div>
+
+<div class="toolbar" *ngIf="currentStatus==='1'">
+  <div class="toolbar-inner layout">
+    <p class="toolbar-text">
+      <a href="javascript:;" (click)="onBack()" class="btn-back"> < 返回重选</a>
+      <a href="javascript:;" (click)="onFinish()" class="btn-next btn-next-active">确认提交 ( {{sceneFormComponent.checkedNum}} )</a>
+    </p>
+  </div>
+</div>
+
+
+
 
 <viewer *ngIf="isPreview"
         (close)="onClosePreview()"
@@ -77,4 +90,13 @@
 <success *ngIf="isShowSuccess" (close)="onCloseSuccess()">
   操作成功
 </success>
+
+<confirm
+  *ngIf="isShowConfirm"
+  [title]="'确认删除?'"
+  (confirm)="deleteConfirm($event)"
+  (cancel)="deleteCancel($event)"
+>
+  确认删除选片吗？
+</confirm>
 

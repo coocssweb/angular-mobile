@@ -15,6 +15,8 @@ export class PhotoComponent {
 
   @Input() type: string
 
+  @Input() status: string
+
   @Output() preview = new EventEmitter()
 
   @Output() choose =  new EventEmitter()
