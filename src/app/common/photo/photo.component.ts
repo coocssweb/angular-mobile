@@ -13,6 +13,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core'
 export class PhotoComponent {
   @Input() list: Array<any>
 
+  @Input() type: string
+
   @Output() preview = new EventEmitter()
 
   @Output() choose =  new EventEmitter()

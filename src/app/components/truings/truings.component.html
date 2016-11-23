@@ -24,26 +24,14 @@
   </div>
 </div>
 
-
 <div class="pc-content pc-layout">
-  <div class="pc-photo-list clearfix">
-    <div class="pc-photo-item" *ngFor="let photo of truingList;let i=index">
-      <div class="pc-photo-content">
-        <div class="pc-photo-box" (click)="onPcPreview(photo.listIndex)">
-          <div class="pc-choose-mask" *ngIf="photo.status==1">
-          </div>
-          <img  src="{{photo.imgKey}}"
-                class="pc-photo-image"/>
-        </div>
-        <div class="pc-photo-info clearfix">
-          <span class="photo-name">原片{{photo.imgIndex}}</span>
-          <span *ngIf="photo.status != 2" class="photo-status pc-photo-status" [class.icon-clock]="photo.status == 0" [class.icon-ok] ="photo.status > 0"></span>
-          <a *ngIf="photo.status == 2" href="javascript:;" class="pc-btn-choose" (click)="onChoose(photo)">下载</a>
-        </div>
+  <pcphoto
+    [list]="truingList"
+    [type]="'truing'"
+    (choose)="onChoose($event)"
+    (preview)="onPcPreview($event)"
+  ></pcphoto>
 
-      </div>
-    </div>
-  </div>
 </div>
 
 
@@ -51,32 +39,21 @@
 <div class="content">
   <div class="flow-list clearfix">
     <div class="flow-list-col">
-      <div class="photo-item" *ngFor="let photo of truingCols.col1.list;let i=index">
-        <div class="photo-content">
-          <div class="photo-box" (click)="onPreview(photo.listIndex)">
-            <img  src="{{photo.imgKey}}"
-                  class="photo-image"/>]
-          </div>
-          <div class="photo-info clearfix">
-            <span class="photo-name">原片{{photo.imgIndex}}</span>
-            <span class="photo-status" [class.icon-clock]="photo.status == 0" [class.icon-ok] ="photo.status > 0"></span>
-          </div>
-        </div>
-      </div>
+      <photo
+        [list]="truingCols.col1.list"
+        [type]="'truing'"
+        (choose)="onChoose($event)"
+        (preview)="onPreview($event)"
+      ></photo>
     </div>
     <div class="flow-list-col">
-      <div class="photo-item" *ngFor="let photo of truingCols.col2.list;let i=index">
-        <div class="photo-content">
-          <div class="photo-box" (click)="onPreview(photo.listIndex, photo)">
-            <img  src="{{photo.imgKey}}"
-                  class="photo-image"/>
-          </div>
-          <div class="photo-info clearfix">
-            <span class="photo-name">原片{{photo.imgIndex}}</span>
-            <span class="photo-status" [class.icon-clock]="photo.status == 0" [class.icon-ok] ="photo.status > 0"></span>
-          </div>
-        </div>
-      </div>
+      <photo
+        [list]="truingCols.col2.list"
+        [type]="'truing'"
+        (choose)="onChoose($event)"
+        (preview)="onPreview($event)"
+      ></photo>
+
     </div>
   </div>
 </div>

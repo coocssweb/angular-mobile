@@ -66,3 +66,21 @@
   right: 10px;
   top: -1px;
 }
+
+
+.photo-status{
+  width: 15px;
+  height: 15px;
+  background-size: cover;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.icon-clock{
+  background-image: url(../../../images/icon-clock.png);
+}
+
+.icon-ok{
+  background-image: url(../../../images/icon-ok-green.png);
+}

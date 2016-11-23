@@ -10,101 +10,6 @@
   width: 50%;
 }
 
-.photo-item{
-  margin-bottom: 15px;
-  width: 100%;
-  box-sizing: border-box;
-  padding-left: 15px;
-}
-
-.photo-content{
-  background-color: #ffffff;
-  border: 1px solid #eeeeee;
-  border-radius: 3px;
-}
-
-.photo-box{
-  width: 100%;
-  position: relative;
-  font-size: 0px;
-}
-
-.photo-image{
-  width: 100%;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-}
-
-.photo-name{
-  display: inline-block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: #999;
-}
-
-.btn-choose{
-  display: inline-block;
-  position: absolute;
-  right: 10px;
-  top:5px;
-  padding: 5px 3px;
-  border-radius: 3px;
-  border: 1px solid #E0E0E0;
-}
-
-.choose{
-  background-color: #585858;
-  color: #FFFFFF;
-}
-
-.photo-info{
-  padding: 10px;
-  position: relative;
-}
-
-.photo-status{
-  width: 15px;
-  height: 15px;
-  background-size: cover;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-.icon-clock{
-  background-image: url(../../../images/icon-clock.png);
-}
-
-.icon-ok{
-  background-image: url(../../../images/icon-ok-green.png);
-}
-
-.choose-mask{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0, 0.5);
-}
-.choose-mask-image{
-  width: 15px;
-  position: absolute;
-  right: 10px;
-  top: -1px;
-}
-
-.loading-img{
-  position: absolute;
-  top: 0px;
-  background-color: #fff;
-  height: 120px;
-  line-height: 120px;
-  width: 100%;
-  text-align: center;
-}
-
-
-
 .loading-data{
   text-align: center;
   margin-top: 10px;
@@ -201,56 +106,6 @@
   color: #000000;
 }
 
-.pc-photo-list{
-  width: 1100px;
-  margin-top: 20px;
-}
-
-.pc-photo-item{
-  width: 253px;
-  margin-right: 20px;
-  border: 1px solid #e5e5e5;
-  float: left;
-  margin-bottom: 20px;
-}
-
-.pc-photo-box{
-  height: 150px;
-  overflow: hidden;
-}
-
-.pc-photo-image{
-  width: 100%;
-}
-
-.pc-photo-info{
-  padding: 15px 10px;
-  position: relative;
-}
-
-.pc-btn-choose{
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  display: inline-block;
-  padding: 7px 15px;
-  color: #000000;
-  border: 1px solid #E0E0E0;
-}
-.pc-btn-choose:hover{
-  color: #59ac94;
-  border-color: #59ac94;
-}
-.pc-choose{
-  background-color: #59ac94;
-  color: #FFFFFF;
-  border:1px solid #59ac94;
-}
-.pc-choose:hover{
-  color: #FFFFFF;
-  background-color: #4dbb9b;
-}
-
 .pc-guide{
   background-color: #ffb892;
   height: 60px;
@@ -268,13 +123,9 @@
   color: #FFFFFF;
 }
 
-.pc-photo-status{
-  top: 15px;
-}
-
 @media screen and (min-width: 769px) {
   .scene-outer{
-    background-color: #f7f7f7;
+    background-color: #f0f0f0;
     border-bottom: none;
     border-top: none;
   }

@@ -76,7 +76,7 @@ export class PCViewerComponent implements OnInit, OnDestroy{
    * 选择取消按钮
    */
   onChoose(){
-    this.choose.emit(this.list[this.currentIndex])
+    this.choose.emit(this.currentIndex)
   }
 
   /**

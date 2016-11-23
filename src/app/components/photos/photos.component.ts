@@ -24,7 +24,7 @@ export class PhotosComponent implements OnInit {
     key: ''
   }
   //当前状态 初选/精选
-  currentStatus:number = 0
+  currentStatus:string = '0'
 
   //是否正在加载数据
   isLoadingData = false
@@ -91,8 +91,12 @@ export class PhotosComponent implements OnInit {
 
     this.route.params.forEach((params: Params) => {
       this.photoInfoId = +params['photoinfoid']
-      this.currentStatus = +params['status']? params['status'] : 0
+      this.currentStatus = +params['status']? params['status'] : '0'
     });
+
+    if(this.currentStatus === '1'){
+      this.isShowGuide = false
+    }
 
     this.getPhotos()
   }

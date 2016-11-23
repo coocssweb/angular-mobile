@@ -9,6 +9,7 @@
 <div class="pc-content pc-layout">
   <pcphoto
     [list]="photoList"
+    [type]="'raw'"
     (choose)="onChoose($event)"
     (preview)="onPcPreview($event)"
   ></pcphoto>
@@ -19,6 +20,7 @@
     <div class="flow-list-col">
       <photo
         [list]="photoCols.col1.list"
+        [type]="'raw'"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -26,6 +28,7 @@
     <div class="flow-list-col">
       <photo
         [list]="photoCols.col2.list"
+        [type]="'raw'"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -44,7 +47,7 @@
   <div class="toolbar-inner layout">
     <p class="toolbar-text">
       <span class="icon-ok"></span>您已初选{{sceneFormComponent.checkedNum}}张
-      <a href="javascript:;" *ngIf="currentStatus===0" (click)="onNext()" class="btn-next" [class.btn-next-active]="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum*2">进入精选</a>
+      <a href="javascript:;" *ngIf="currentStatus==='0'" (click)="onNext()" class="btn-next" [class.btn-next-active]="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum*2">进入精选</a>
       <a href="javascript:;" *ngIf="currentStatus==='1'" (click)="onFinish()" class="btn-next btn-next-active">确认提交</a>
     </p>
   </div>
