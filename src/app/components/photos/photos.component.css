@@ -79,20 +79,6 @@
   top: -1px;
 }
 
-.loading-img{
-  position: absolute;
-  top: 0px;
-  background-color: #fff;
-  height: 120px;
-  line-height: 120px;
-  width: 100%;
-  text-align: center;
-}
-
-.loading-data{
-  text-align: center;
-  margin-top: 10px;
-}
 
 .toolbar{
   background-color: #FFFFFF;
@@ -149,23 +135,30 @@
 .pc-photo-item{
   width: 253px;
   margin-right: 20px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #E0E0E0;
+  background-color: #FFFFFF;
   float: left;
   margin-bottom: 20px;
 }
 
 .pc-photo-box{
-  height: 150px;
+  height: 375px;
   overflow: hidden;
+  position: relative;
 }
 
 .pc-photo-image{
   width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 .pc-photo-info{
   padding: 15px 10px;
   position: relative;
+  background-color: #f0f0f0;
+  border-top: 1px solid #E0E0E0;
 }
 
 .pc-btn-choose{

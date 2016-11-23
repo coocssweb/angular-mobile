@@ -181,6 +181,6 @@ table {
 
 @media screen and (min-width: 769px) {
   body,html {
-    background-color: #f7f7f7;
+    background: #f0f0f0 url(./images/pc/bg-body.gif) repeat;
   }
 }
