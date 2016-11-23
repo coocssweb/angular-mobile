@@ -39,6 +39,9 @@ export class PcFeedbackComponent implements OnInit, OnDestroy{
     dom.style.overflow = 'hidden'
     dom.style.height = '100%'
     this.currentVersion =  this.truingList[this.currentIndex].truings.length - 1
+
+    let truing = this.truingList[this.currentIndex].truings[this.currentVersion]
+
     this.message = this.truingList[this.currentIndex].truings[this.currentVersion].remark
   }
 
