@@ -129,7 +129,7 @@
 }
 
 .drop-box{
-  width: 120px;
+  width: 150px;
   height: 40px;
   line-height: 40px;
   float: right;
@@ -137,6 +137,7 @@
 }
 
 .drop-items{
+
   position: absolute;
   bottom: 40px;
   width: 100%;

@@ -29,6 +29,8 @@ export class PcFeedbackComponent implements OnInit, OnDestroy{
 
   isLoadingImage = true
 
+  currentVersion = 0
+
   /**
    * 初始化事件
    */
@@ -36,8 +38,8 @@ export class PcFeedbackComponent implements OnInit, OnDestroy{
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'hidden'
     dom.style.height = '100%'
-
-    this.message = this.truingList[this.currentIndex].truings[0].remark
+    this.currentVersion =  this.truingList[this.currentIndex].truings.length - 1
+    this.message = this.truingList[this.currentIndex].truings[this.currentVersion].remark
   }
 
   ngOnDestroy() {
@@ -100,6 +102,10 @@ export class PcFeedbackComponent implements OnInit, OnDestroy{
     this.isLoadingImage = true
     this.message = ''
     this.currentIndex -= 1
+
+    this.currentVersion =  this.truingList[this.currentIndex].truings.length - 1
+    this.message = this.truingList[this.currentIndex].truings[this.currentVersion].remark
+
   }
 
   /**
@@ -112,6 +118,9 @@ export class PcFeedbackComponent implements OnInit, OnDestroy{
     this.isLoadingImage = true
     this.message = ''
     this.currentIndex += 1
+
+    this.currentVersion =  this.truingList[this.currentIndex].truings.length - 1
+    this.message = this.truingList[this.currentIndex].truings[this.currentVersion].remark
   }
 
   loadImage(imageSrc){
@@ -129,5 +138,6 @@ export class PcFeedbackComponent implements OnInit, OnDestroy{
 
   onSelectVersion(index){
     this.isShowDrop = false
+    this.currentVersion = index
   }
 }
