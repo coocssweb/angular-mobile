@@ -1,0 +1,16 @@
+<div class="pc-photo-list clearfix">
+  <div class="pc-photo-item" *ngFor="let photo of list;let i=index">
+    <div class="pc-photo-content">
+      <div class="pc-photo-box" (click)="onPreview(photo.listIndex)">
+        <div class="pc-choose-mask" *ngIf="photo.status==1">
+        </div>
+        <img  src="{{photo.imgKey}}"
+              class="pc-photo-image"/>
+      </div>
+      <div class="pc-photo-info clearfix">
+        <span class="pc-photo-name">原片{{photo.imgIndex}}</span>
+        <a href="javascript:;" class="pc-btn-choose" [class.pc-choose]="photo.status==1" (click)="onChoose(index)">{{photo.status == 1 ? '取消选择':'选择'}}</a>
+      </div>
+    </div>
+  </div>
+</div>

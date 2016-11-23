@@ -7,66 +7,39 @@
 >
 </scene-form>
 <div class="pc-content pc-layout">
-  <div class="pc-photo-list clearfix">
-    <div class="pc-photo-item" *ngFor="let photo of photoList;let i=index">
-      <div class="pc-photo-content">
-        <div class="pc-photo-box" (click)="onPcPreview(photo.listIndex)">
-          <div class="pc-choose-mask" *ngIf="photo.status==1">
-          </div>
-          <img  src="{{photo.imgKey}}"
-                class="pc-photo-image"/>
-        </div>
-        <div class="pc-photo-info clearfix">
-          <span class="pc-photo-name">原片{{photo.imgIndex}}</span>
-          <a href="javascript:;" class="pc-btn-choose" [class.pc-choose]="photo.status==1" (click)="onChoose(photo)">{{photo.status == 1 ? '取消选择':'选择'}}</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <pcphoto
+    [list]="photoList"
+    (choose)="onChoose($event)"
+    (preview)="onPcPreview($event)"
+  ></pcphoto>
 </div>
 
 <div class="content layout">
   <div class="flow-list clearfix">
     <div class="flow-list-col">
-      <div class="photo-item" *ngFor="let photo of photoCols.col1.list;let i=index">
-      <div class="photo-content">
-        <div class="photo-box" (click)="onPreview(photo.listIndex, photo)">
-          <div class="choose-mask" *ngIf="photo.status==1">
-            <img src="../../../images/icon-choosed.png" class="choose-mask-image" />
-          </div>
-          <img  src="{{photo.imgKey}}"
-                class="photo-image"/>
-        </div>
-        <div class="photo-info clearfix">
-          <span class="photo-name">原片{{photo.imgIndex}}</span>
-          <a href="javascript:;" class="btn-choose" [class.choose]="photo.status==1" (click)="onChoose(photo)">{{photo.status == 1 ? '取消选择':'选择'}}</a>
-        </div>
-      </div>
-    </div>
+      <photo
+        [list]="photoCols.col1.list"
+        (choose)="onChoose($event)"
+        (preview)="onPreview($event)"
+      ></photo>
     </div>
     <div class="flow-list-col">
-      <div class="photo-item" *ngFor="let photo of photoCols.col2.list;let i=index">
-        <div class="photo-content">
-          <div class="photo-box" (click)="onPreview(photo.listIndex, photo)">
-            <div class="choose-mask" *ngIf="photo.status==1">
-              <img src="../../../images/icon-choosed.png" class="choose-mask-image" />
-            </div>
-            <img  src="{{photo.imgKey}}"
-                  class="photo-image"/>
-          </div>
-          <div class="photo-info clearfix">
-            <span class="photo-name">原片{{photo.imgIndex}}</span>
-            <a href="javascript:;" class="btn-choose" [class.choose]="photo.status==1"   (click)="onChoose(photo)">{{photo.status == 1 ? '取消选择':'选择'}}</a>
-          </div>
-        </div>
-      </div>
+      <photo
+        [list]="photoCols.col2.list"
+        (choose)="onChoose($event)"
+        (preview)="onPreview($event)"
+      ></photo>
     </div>
   </div>
 </div>
 <div class="none-data" *ngIf="photoList.length==0&&!isLoadingData">没有找到任何数据</div>
+
 <loading *ngIf="isLoadingData"></loading>
+
 <pagination [page]="page" [style]="'loadmore'" [loadingData]="isLoadingData" (loadMore)="getPhotos()"></pagination>
+
 <div class="margin-bottom"></div>
+
 <div class="toolbar">
   <div class="toolbar-inner layout">
     <p class="toolbar-text">
@@ -88,9 +61,7 @@
            (close)="onClosePcPreview()"
            (choose)="onChoose($event)"
            [currentIndex]="previewIndex"
-           [photoList]="photoList"
-
-></pcviewer>
+           [list]="photoList"></pcviewer>
 
 
 <tip

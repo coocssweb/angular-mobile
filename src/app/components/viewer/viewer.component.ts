@@ -90,7 +90,7 @@ export class ViewerComponent implements OnInit, OnDestroy{
    * 选择取消按钮
    */
   onChoose(){
-    this.choose.emit(this.photoList[this.currentIndex])
+    this.choose.emit(this.photoList[this.currentIndex].listIndex)
   }
 
   onTouchStart(e){

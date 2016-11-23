@@ -20,6 +20,8 @@ import {SuccessComponent} from './common/success/success.component'
 import {TruingsComponent} from './components/truings/truings.component'
 import {FeedbackComponent} from './components/feedback/feedback.component'
 import {PcFeedbackComponent} from './components/pc-feedback/pc-feedback.component'
+import {PcPhotoComponent} from './common/pc-photo/pc-photo.component'
+import {PhotoComponent} from './common/photo/photo.component'
 import {HttpModule, JsonpModule} from "@angular/http"
 import {HashLocationStrategy, LocationStrategy} from "@angular/common"
 
@@ -42,6 +44,8 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common"
     TruingsComponent,
     FeedbackComponent,
     PcFeedbackComponent,
+    PcPhotoComponent,
+    PhotoComponent,
     PCViewerComponent
   ],
   imports: [

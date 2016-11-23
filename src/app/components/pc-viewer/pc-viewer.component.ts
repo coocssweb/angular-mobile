@@ -13,7 +13,7 @@ import {QINIU_DOMAIN} from "../../constant/config";
 export class PCViewerComponent implements OnInit, OnDestroy{
 
   //图片列表
-  @Input() photoList:any
+  @Input() list:any
 
   //当前图片
   @Input() currentIndex:number
@@ -57,7 +57,7 @@ export class PCViewerComponent implements OnInit, OnDestroy{
    * 下一张图片
    */
   onNext() {
-    if (this.currentIndex == this.photoList.length - 1) {
+    if (this.currentIndex == this.list.length - 1) {
       return
     }
 
@@ -76,7 +76,7 @@ export class PCViewerComponent implements OnInit, OnDestroy{
    * 选择取消按钮
    */
   onChoose(){
-    this.choose.emit(this.photoList[this.currentIndex])
+    this.choose.emit(this.list[this.currentIndex])
   }
 
   /**

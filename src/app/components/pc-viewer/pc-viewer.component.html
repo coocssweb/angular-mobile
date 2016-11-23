@@ -1,11 +1,11 @@
 <div class="viewer-box">
   <a href="javascript:;" *ngIf="currentIndex !== 0" class="btn-page btn-prev" (click)="onPrev($event)"></a>
-  <a href="javascript:;" *ngIf="currentIndex !== truingList.length-1" class="btn-page btn-next" (click)="onNext($event)"></a>
+  <a href="javascript:;" *ngIf="currentIndex !== list.length-1" class="btn-page btn-next" (click)="onNext($event)"></a>
   <div class="viewer-content">
     <a href="javascript:;" class="btn-close" (click)="onClose()"></a>
-    <img class="viewer-big-image" (load)="loadImage(photoList[currentIndex].imgKey.replace('-300','-800'))"
-         src="{{photoList[currentIndex].imgKey.replace('-300','-800')}}"/>
-    <a href="javascript:;" (click)="onChoose()" class="btn-choose">{{photoList[currentIndex].status == 1 ? '取消选择'  : '选择'}}</a>
+    <img class="viewer-big-image" (load)="loadImage(list[currentIndex].imgKey.replace('-300','-800'))"
+         src="{{list[currentIndex].imgKey.replace('-300','-800')}}"/>
+    <a href="javascript:;" (click)="onChoose()" class="btn-choose">{{list[currentIndex].status == 1 ? '取消选择'  : '选择'}}</a>
   </div>
 
 </div>

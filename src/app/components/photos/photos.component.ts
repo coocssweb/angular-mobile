@@ -23,7 +23,7 @@ export class PhotosComponent implements OnInit {
     order: 'asc',
     key: ''
   }
-
+  //当前状态 初选/精选
   currentStatus:number = 0
 
   //是否正在加载数据
@@ -38,16 +38,19 @@ export class PhotosComponent implements OnInit {
   //是否查看大图
   isPreview: boolean = false
 
+  //是否正在查看PC大图
   isPcPreview: boolean = false
 
   //当前大图Index
   previewIndex: number
 
-
+  //订单号
   photoInfoId: number
 
+  //分页信息
   page: Page = new Page()
 
+  //当前场景ID
   currentSceneId = null
 
   //是否显示提示
@@ -237,7 +240,10 @@ export class PhotosComponent implements OnInit {
   }
 
   //原片选中
-  onChoose(photo){
+  onChoose(index){
+
+    let photo = this.photoList[index]
+
     let status = photo.status == 1 ? 0 : 1
 
     this.photoService.check(this.photoInfoId, photo.id, status).then((result)=>{
