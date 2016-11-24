@@ -15,6 +15,9 @@ export class PCViewerComponent implements OnInit, OnDestroy{
   //图片列表
   @Input() list:any
 
+
+  @Input() status: any
+
   //当前图片
   @Input() currentIndex:number
 

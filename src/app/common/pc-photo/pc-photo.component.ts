@@ -17,6 +17,8 @@ export class PcPhotoComponent {
 
   @Input() status: string
 
+  @Input() isShowDelete: boolean
+
   @Output() preview = new EventEmitter()
 
   @Output() choose =  new EventEmitter()

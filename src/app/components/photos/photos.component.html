@@ -10,6 +10,7 @@
     [list]="photoList"
     [type]="'raw'"
     [status]="currentStatus"
+    [isShowDelete] = "sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '0'"
     (choose)="onChoose($event)"
     (preview)="onPcPreview($event)"
   ></pcphoto>
@@ -22,6 +23,7 @@
         [list]="photoCols.col1.list"
         [type]="'raw'"
         [status]="currentStatus"
+        [isShowDelete] = "sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '0'"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -31,6 +33,7 @@
         [list]="photoCols.col2.list"
         [type]="'raw'"
         [status]="currentStatus"
+        [isShowDelete] = "sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '0'"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -67,6 +70,7 @@
 
 
 <viewer *ngIf="isPreview"
+        [status]="currentStatus"
         (close)="onClosePreview()"
         (choose)="onChoose($event)"
         [currentIndex]="previewIndex"
@@ -74,6 +78,7 @@
 
 
 <pcviewer  *ngIf="isPcPreview"
+           [status]="currentStatus"
            (close)="onClosePcPreview()"
            (choose)="onChoose($event)"
            [currentIndex]="previewIndex"
@@ -87,6 +92,14 @@
   本订单标配可选片{{sceneFormComponent.requireNum}}张, 第一步建议您初选{{sceneFormComponent.requireNum*2}}张左右, 然后进行细选!
 </tip>
 
+<tip
+  *ngIf="isShowTip"
+  (close)="onCloseTip()"
+  btnText = '我知道了'>
+  你正好选择{{sceneFormComponent.requireNum}}张原片
+</tip>
+
+
 <success *ngIf="isShowSuccess" (close)="onCloseSuccess()">
   操作成功
 </success>
@@ -95,8 +108,7 @@
   *ngIf="isShowConfirm"
   [title]="'确认删除?'"
   (confirm)="deleteConfirm($event)"
-  (cancel)="deleteCancel($event)"
->
+  (cancel)="deleteCancel($event)">
   确认删除选片吗？
 </confirm>
 

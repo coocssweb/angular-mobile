@@ -60,6 +60,8 @@ export class PhotosComponent implements OnInit {
   //是否显示提示
   isShowGuide = true
 
+  isShowTip = true
+
   //是否显示PC端提示信息
   isShowPcGuide = true
 
@@ -232,6 +234,7 @@ export class PhotosComponent implements OnInit {
    */
   onCloseTip(){
     this.isShowGuide = false
+    this.isShowTip = false
   }
 
   onClosePcTip(){
@@ -299,9 +302,19 @@ export class PhotosComponent implements OnInit {
       //显示成功提示
       this.isShowSuccess = true
 
+
+      //进入精选删除逻辑
       if(this.currentStatus == '1'){
+        //删除最后一张图片,强制关闭大图查看器
+        if(index === this.photoList.length - 1){
+          this.isPcPreview = false
+          this.isPreview = false
+        }
+
+        //从照片列表内一处内容
         this.photoList.splice(index, 1)
 
+        //清除瀑布布局的内容
         this.photoCols = {
           col1: {
             height: 0,
@@ -313,11 +326,17 @@ export class PhotosComponent implements OnInit {
           }
         }
 
+        //重新计算瀑布布局
         this.loadImages(0)
+
+        //判断是否显示  提示剩余数量刚好等于 要求数量
+        if(this.sceneFormComponent.checkedNum -1 === this.sceneFormComponent.requireNum ){
+          this.isShowTip = true
+        }
+
       }
 
-
-
+      //关闭删除确认框
       this.isShowConfirm = false
     })
   }
