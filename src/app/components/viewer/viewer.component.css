@@ -10,15 +10,15 @@
 
 .btn-close{
     position: absolute;
-    right: 0px;
-    top: 0px;
-    padding: 5px 20px;
+    right: 10px;
+    top: 10px;
+    height: 30px;
+    width: 30px;
+    background-image: url('../../../images/icon-close.png');
+    background-size: cover;
     color: #FFFFFF;
     text-decoration: none;
     z-index: 3;
-    border: 1px solid #333333;
-    border-radius: 3px;
-    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .btn-close:hover{

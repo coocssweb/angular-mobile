@@ -1,5 +1,5 @@
 <div class="viewer-box">
-  <a href="javascript:;" class="btn-close" (click)="onClose()">关闭</a>
+  <a href="javascript:;" class="btn-close" (click)="onClose()"></a>
   <div class="viewer-content" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)" (touchmove)="onTouchMove($event)">
       <img class="viewer-big-image" (load)="loadImage(photoList[currentIndex].imgKey.replace('-300','-800'))"
            src="{{photoList[currentIndex].imgKey.replace('-300','-800')}}"/>

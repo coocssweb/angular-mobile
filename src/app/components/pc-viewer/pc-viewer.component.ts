@@ -36,12 +36,24 @@ export class PCViewerComponent implements OnInit, OnDestroy{
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'hidden'
     dom.style.height = '100%'
+
+    let _self = this
+
+    document.addEventListener('keydown',function (e) {
+        if(e.keyCode === 37 || e.keyCode === 38) {
+          _self.onPrev()
+        }else if(e.keyCode === 39 || e.keyCode === 40){
+          _self.onNext()
+        }
+    }, false)
+
   }
 
   ngOnDestroy() {
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'auto'
     dom.style.height = ''
+    document.removeEventListener('keydown')
   }
 
   /**

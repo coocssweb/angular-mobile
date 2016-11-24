@@ -9,7 +9,7 @@
     </div>
     <div class="photo-info clearfix" *ngIf="type==='raw'">
       <span class="photo-name">原片{{photo.imgIndex}}</span>
-      <a href="javascript:;"  *ngIf="isShowDelete" class="btn-choose" [class.choose]="photo.status==1"   (click)="onChoose(photo.listIndex)">{{  status=='0'?  (photo.status == 1 ? '取消选择':'选择') : '删除' }}</a>
+      <a href="javascript:;"  *ngIf="isShowDelete" class="btn-choose" [class.choose]="photo.status==1"   (click)="onChoose(photo.listIndex)">{{  status==''?  (photo.status == 1 ? '取消选择':'选择') : '删除' }}</a>
     </div>
 
     <div class="photo-info clearfix" *ngIf="type==='truing'">

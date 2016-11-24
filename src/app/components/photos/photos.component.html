@@ -23,7 +23,7 @@
         [list]="photoCols.col1.list"
         [type]="'raw'"
         [status]="currentStatus"
-        [isShowDelete] = "sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '0'"
+        [isShowDelete] = "sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === ''"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -33,7 +33,7 @@
         [list]="photoCols.col2.list"
         [type]="'raw'"
         [status]="currentStatus"
-        [isShowDelete] = "sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '0'"
+        [isShowDelete] = "sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === ''"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -48,11 +48,11 @@
 
 <div class="margin-bottom"></div>
 
-<div class="toolbar" *ngIf="currentStatus==='0'">
+<div class="toolbar" *ngIf="currentStatus===''">
   <div class="toolbar-inner layout">
     <p class="toolbar-text">
-      <span class="icon-ok" *ngIf="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum*2"></span>您已初选{{sceneFormComponent.checkedNum}}张
-      <a href="javascript:;" (click)="onNext()" class="btn-next" [class.btn-next-active]="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum*2">进入精选</a>
+      <span class="icon-ok" *ngIf="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum"></span>您已初选{{sceneFormComponent.checkedNum}}张
+      <a href="javascript:;" (click)="onNext()" class="btn-next" [class.btn-next-active]="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum">进入精选</a>
     </p>
   </div>
 </div>
