@@ -43,12 +43,23 @@ export class PcFeedbackComponent implements OnInit, OnDestroy{
     let truing = this.truingList[this.currentIndex].truings[this.currentVersion]
 
     this.message = this.truingList[this.currentIndex].truings[this.currentVersion].remark
+
+    let _self = this
+
+    document.addEventListener('keydown',function (e) {
+      if(e.keyCode === 37 || e.keyCode === 38) {
+        _self.onPrev()
+      }else if(e.keyCode === 39 || e.keyCode === 40){
+        _self.onNext()
+      }
+    }, false)
   }
 
   ngOnDestroy() {
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'auto'
     dom.style.height = ''
+    document.removeEventListener('keydown')
   }
 
 
