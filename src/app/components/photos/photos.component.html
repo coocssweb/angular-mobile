@@ -18,7 +18,7 @@
 
 <div class="content layout">
   <div class="flow-list clearfix" >
-    <div class="flow-list-col" id="flow-list-1">
+    <div class="flow-list-col">
       <photo
         [list]="photoCols.col1.list"
         [type]="'raw'"
@@ -28,7 +28,7 @@
         (preview)="onPreview($event)"
       ></photo>
     </div>
-    <div class="flow-list-col" id="flow-list-2">
+    <div class="flow-list-col">
       <photo
         [list]="photoCols.col2.list"
         [type]="'raw'"
@@ -71,6 +71,7 @@
 
 <viewer *ngIf="isPreview"
         [status]="currentStatus"
+        [isShowDelete] = "(sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
         (close)="onClosePreview()"
         (choose)="onChoose($event)"
         [currentIndex]="previewIndex"
@@ -79,6 +80,7 @@
 
 <pcviewer  *ngIf="isPcPreview"
            [status]="currentStatus"
+           [isShowDelete] = "(sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
            (close)="onClosePcPreview()"
            (choose)="onChoose($event)"
            [currentIndex]="previewIndex"
@@ -125,4 +127,26 @@
     确认选片后无法修改<br/>你确认提交吗？
   </div>
 </confirm>
+
+<confirm
+  *ngIf="isShowOverChoose"
+  [title]="'确认选片'"
+  [btnConfirm]="'我确认'"
+  [btnCancel]="'再考虑一下'"
+  (confirm)="confirmOverChoose($event)"
+  (cancel)="cancelOverChoose($event)">
+  <div class="count-content">
+    您已选片{{sceneFormComponent.checkedNum}}张，订单精修片数量为{{sceneFormComponent.requireNum}}张
+    <br/>额外费用大约
+    <br><span class="money">￥240.00</span>
+    <br />客服专员会联系您以确认准确费用
+  </div>
+</confirm>
+
+<tip
+  *ngIf="isShowOkChoose"
+  (close)="onCloseOkChoose()"
+  btnText = '我知道了'>
+  您正好选择了<span class="count">{{sceneFormComponent.requireNum}}</span>张，请点击网页底部的确认选片进行确认。
+</tip>
 

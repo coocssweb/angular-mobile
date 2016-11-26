@@ -21,6 +21,8 @@ export class PCViewerComponent implements OnInit, OnDestroy{
   //当前图片
   @Input() currentIndex:number
 
+  @Input() isShowDelete: boolean
+
   //关闭事件
   @Output() close = new EventEmitter()
 

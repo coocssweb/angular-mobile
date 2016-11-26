@@ -17,6 +17,8 @@ export class ViewerComponent implements OnInit, OnDestroy{
 
   @Input() status: any
 
+  @Input() isShowDelete: boolean
+
   //当前图片
   @Input() currentIndex:number
 

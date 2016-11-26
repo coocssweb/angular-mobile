@@ -4,7 +4,7 @@
       <img class="viewer-big-image" (load)="loadImage(photoList[currentIndex].imgKey.replace('-300','-800'))"
            src="{{photoList[currentIndex].imgKey.replace('-300','-800')}}"/>
   </div>
-  <a href="javascript:;" (click)="onChoose()" class="btn-choose">{{status === '' ? ( photoList[currentIndex].status == 1 ? '取消选择'  : '选择' ) : '删除'}}</a>
+  <a href="javascript:;" (click)="onChoose()" *ngIf="isShowDelete" class="btn-choose">{{status === '' ? ( photoList[currentIndex].status == 1 ? '取消选择'  : '选择' ) : '删除'}}</a>
 </div>
 
 <div class="main-mask self-mask" *ngIf="isLoadingImage">

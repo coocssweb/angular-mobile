@@ -45,6 +45,10 @@ export class PhotosComponent implements OnInit {
 
   isShowConfirmFinish: boolean = false
 
+  isShowOverChoose: boolean = false
+
+  isShowOkChoose: boolean = false
+
   photoIndex = -1
 
   //当前大图Index
@@ -102,15 +106,6 @@ export class PhotosComponent implements OnInit {
     if(document.getElementById('html').offsetWidth > 769){
       this.isShowGuide = false
     }
-
-    if(document.getElementById('html').offsetWidth < 769){
-      if(this.currentStatus === '1'){
-        window.onscroll = function (e) {
-          console.log(e)
-        }
-      }
-    }
-
 
 
     if(this.currentStatus === '1'){
@@ -281,8 +276,11 @@ export class PhotosComponent implements OnInit {
   onNext(){
     if(this.sceneFormComponent.checkedNum<this.sceneFormComponent.requireNum){
       return
+    }else if(this.sceneFormComponent.checkedNum>this.sceneFormComponent.requireNum){
+      this.isShowOverChoose = true
+    }else{
+      this.isShowOkChoose = true
     }
-    this.router.navigate(['/raw/'+this.photoInfoId+"/", 1])
   }
 
   /**
@@ -358,6 +356,19 @@ export class PhotosComponent implements OnInit {
 
   deleteCancel(){
     this.isShowConfirm = false
+  }
+
+  confirmOverChoose(){
+    this.isShowOverChoose = false
+    this.router.navigate(['/raw/'+this.photoInfoId+"/", 1])
+  }
+
+  cancelOverChoose(){
+    this.isShowOverChoose = false
+  }
+  onCloseOkChoose(){
+    this.isShowOkChoose = false
+    this.router.navigate(['/raw/'+this.photoInfoId+"/", 1])
   }
 
 }
