@@ -119,7 +119,9 @@ export class PhotosComponent implements OnInit {
     }
 
     this.getPhotos()
-    this.rawInfo = this.photoService.getRawInfo(this.photoInfoId)
+    this.photoService.getRawInfo(this.photoInfoId).then((result)=>{
+      this.rawInfo = result
+    })
   }
 
 
