@@ -34,6 +34,8 @@ export class FeedbackComponent implements OnInit, OnDestroy{
 
   currentVersion = 0
 
+  isShowDrop = false
+
   //当前触屏位置
   touchPosStart= {
     x: 0,
@@ -52,13 +54,23 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'hidden'
     dom.style.height = '100%'
+    this.currentVersion =  this.truingList[this.currentIndex].truings.length - 1
     this.message = this.truingList[this.currentIndex].truings[this.currentVersion].remark
+
+    let _self = this
+    document.addEventListener('click',function (e: any) {
+
+      if(e.target.className !='drop-display'){
+        _self.isShowDrop = false
+      }
+    }, false)
   }
 
   ngOnDestroy() {
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'auto'
     dom.style.height = ''
+    document.removeEventListener('click')
   }
 
   /**
@@ -70,7 +82,7 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     }
 
     this.accept.emit({
-      id: this.truingList[this.currentIndex].truings[0].id,
+      id: this.truingList[this.currentIndex].id,
       index: this.currentIndex,
       done: this.acceptSuccess.bind(this)
     })
@@ -89,7 +101,7 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     }
 
     this.remark.emit({
-      id: this.truingList[this.currentIndex].truings[0].id,
+      id: this.truingList[this.currentIndex].id,
       message: this.message,
       index: this.currentIndex,
       done: this.remarkSuccess.bind(this)
@@ -110,6 +122,10 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     this.isLoadingImage = true
     this.message = ''
     this.currentIndex -= 1
+
+    this.currentVersion =  this.truingList[this.currentIndex].truings.length - 1
+    this.message = this.truingList[this.currentIndex].truings[this.currentVersion].remark
+
   }
 
   /**
@@ -123,6 +139,10 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     this.isLoadingImage = true
     this.message = ''
     this.currentIndex += 1
+
+    this.currentVersion =  this.truingList[this.currentIndex].truings.length - 1
+    this.message = this.truingList[this.currentIndex].truings[this.currentVersion].remark
+
   }
 
   /**
@@ -183,5 +203,15 @@ export class FeedbackComponent implements OnInit, OnDestroy{
       _self.isLoadingImage = false
     }
     image.src = imageSrc
+  }
+
+  onToggleDrop(e){
+    e.preventDefault()
+    this.isShowDrop = !this.isShowDrop
+  }
+
+  onSelectVersion(index){
+    this.isShowDrop = false
+    this.currentVersion = index
   }
 }

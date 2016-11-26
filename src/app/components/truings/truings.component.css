@@ -188,6 +188,11 @@
     font-size: 16px;
     padding: 0px 20px;
   }
+  .icon-ok{
+    position: absolute;
+    left: -20px;
+    top: 30px;
+  }
 }
 
 @media screen and (max-width: 768px) {
