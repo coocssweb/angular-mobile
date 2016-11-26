@@ -17,8 +17,8 @@
 </div>
 
 <div class="content layout">
-  <div class="flow-list clearfix">
-    <div class="flow-list-col">
+  <div class="flow-list clearfix" >
+    <div class="flow-list-col" id="flow-list-1">
       <photo
         [list]="photoCols.col1.list"
         [type]="'raw'"
@@ -28,7 +28,7 @@
         (preview)="onPreview($event)"
       ></photo>
     </div>
-    <div class="flow-list-col">
+    <div class="flow-list-col" id="flow-list-2">
       <photo
         [list]="photoCols.col2.list"
         [type]="'raw'"

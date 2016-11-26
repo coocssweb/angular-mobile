@@ -30,6 +30,7 @@ export class PaginationComponent implements OnInit {
   }
 
   addScrollListener() {
+    let _self = this
     window.onscroll = function () {
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       let windowHeight = window.innerHeight

@@ -45,6 +45,8 @@ export class PhotosComponent implements OnInit {
 
   photoIndex = -1
 
+  colIndex = 0
+
   //当前大图Index
   previewIndex: number
 
@@ -79,6 +81,7 @@ export class PhotosComponent implements OnInit {
     }
   }
 
+
   /**
    * 构造函数
    * @param photoService
@@ -91,20 +94,31 @@ export class PhotosComponent implements OnInit {
    * 初始化事件
    */
   ngOnInit(): void {
+    this.route.params.forEach((params: Params) => {
+      this.photoInfoId = +params['photoinfoid']
+      this.currentStatus = +params['status']? params['status'] : ''
+    })
+
     if(document.getElementById('html').offsetWidth > 769){
       this.isShowGuide = false
     }
 
-    this.route.params.forEach((params: Params) => {
-      this.photoInfoId = +params['photoinfoid']
-      this.currentStatus = +params['status']? params['status'] : ''
-    });
+    if(document.getElementById('html').offsetWidth < 769){
+      if(this.currentStatus === '1'){
+        window.onscroll = function (e) {
+          console.log(e)
+        }
+      }
+    }
+
+
 
     if(this.currentStatus === '1'){
       this.isShowGuide = false
     }
 
     this.getPhotos()
+
   }
 
 
@@ -252,6 +266,7 @@ export class PhotosComponent implements OnInit {
 
   //原片选中
   onChoose(index){
+
     this.photoIndex = index
     if(this.currentStatus ==='1'){
       this.isShowConfirm = true
@@ -314,20 +329,12 @@ export class PhotosComponent implements OnInit {
         //从照片列表内一处内容
         this.photoList.splice(index, 1)
 
-        //清除瀑布布局的内容
-        this.photoCols = {
-          col1: {
-            height: 0,
-            list: []
-          },
-          col2: {
-            height: 0,
-            list: []
-          }
-        }
 
-        //重新计算瀑布布局
-        this.loadImages(0)
+
+        let aimDom = document.getElementById('photo-item-'+photo.id).parentNode
+        let aimParentDom = aimDom.parentNode
+
+        aimParentDom.removeChild( aimDom )
 
         //判断是否显示  提示剩余数量刚好等于 要求数量
         if(this.sceneFormComponent.checkedNum -1 === this.sceneFormComponent.requireNum ){
