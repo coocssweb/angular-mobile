@@ -183,4 +183,7 @@ table {
   body,html {
     background: #f0f0f0 url(./images/pc/bg-body.gif) repeat;
   }
+  .layout{
+    max-width: 1080px;
+  }
 }
