@@ -2,7 +2,7 @@
   本订单标配可选片{{sceneFormComponent.requireNum}}张,第一步建议您先粗选{{sceneFormComponent.requireNum*2}}张左右,然后进行细选 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
 </div>
 
-<scene-form [show]="currentStatus!=='0'" [photoInfoId]="photoInfoId"
+<scene-form [show]="currentStatus!==''" [photoInfoId]="photoInfoId"
             (onTabSceneCb)="onTabSceneCb($event)">
 </scene-form>
 <div class="pc-content pc-layout">
