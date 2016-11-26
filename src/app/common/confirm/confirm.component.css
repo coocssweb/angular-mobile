@@ -13,13 +13,14 @@
   position: absolute;
   left: 50%;
   top: 50%;
+  background-color: #FFFFFF;
   transform: translate(-50%, -50%);
   -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
   -moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
   box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .dialog-title{
@@ -30,12 +31,20 @@
   line-height: 40px;
 }
 
+.dialog-body{
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
 .dialog-content{
   padding: 40px 20px;
   font-size: 20px;
   background-color: #FFFFFF;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
-
 
 .dialog-bottom{
   text-align: center;
@@ -43,6 +52,9 @@
   height: 45px;
   line-height: 45px;
   border-top: 1px solid #efefef;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .btn{
@@ -68,5 +80,33 @@
 @media screen and (max-width: 768px) {
   .dialog{
     width: 80%;
+  }
+
+  .dialog-title{
+    display: none;
+  }
+
+  .dialog-bottom{
+    font-size: 0px;
+  }
+
+  .btn{
+    width: 50%;
+    box-sizing: border-box;
+    border:none;
+    margin-left: 0px;
+    padding: 0px;
+    font-size: 14px;
+    color: #59ac94;
+    margin-top: 8px;
+  }
+
+  .btn-confirm{
+    float: right;
+  }
+
+  .btn-cancel{
+    float: right;
+    border-right: 1px solid #efefef;
   }
 }

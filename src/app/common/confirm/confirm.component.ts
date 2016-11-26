@@ -14,6 +14,10 @@ export class ConfirmComponent implements OnInit, OnDestroy{
 
   //confirm框标题
   @Input() title: string
+  //确认按钮
+  @Input() btnConfirm: string
+  //取消按钮
+  @Input() btnCancel: string
 
   //confirm框确认事件回调
   @Output() confirm = new EventEmitter()

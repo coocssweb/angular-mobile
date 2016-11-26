@@ -10,7 +10,7 @@
     [list]="photoList"
     [type]="'raw'"
     [status]="currentStatus"
-    [isShowDelete] = "sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '0'"
+    [isShowDelete] = "(sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
     (choose)="onChoose($event)"
     (preview)="onPcPreview($event)"
   ></pcphoto>
@@ -23,7 +23,7 @@
         [list]="photoCols.col1.list"
         [type]="'raw'"
         [status]="currentStatus"
-        [isShowDelete] = "sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === ''"
+        [isShowDelete] = "(sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -33,7 +33,7 @@
         [list]="photoCols.col2.list"
         [type]="'raw'"
         [status]="currentStatus"
-        [isShowDelete] = "sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === ''"
+        [isShowDelete] = "(sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -57,7 +57,7 @@
   </div>
 </div>
 
-<div class="toolbar" *ngIf="currentStatus==='1'">
+<div class="toolbar" *ngIf="currentStatus==='1' && sceneFormComponent.cusRawStatus !==2 ">
   <div class="toolbar-inner layout">
     <p class="toolbar-text">
       <a href="javascript:;" (click)="onBack()" class="btn-back"> < 返回重选</a>
@@ -107,8 +107,22 @@
 <confirm
   *ngIf="isShowConfirm"
   [title]="'确认删除?'"
+  [btnConfirm]="'我确认'"
+  [btnCancel]="'再考虑一下'"
   (confirm)="deleteConfirm($event)"
   (cancel)="deleteCancel($event)">
   确认删除选片吗？
+</confirm>
+
+<confirm
+  *ngIf="isShowConfirmFinish"
+  [title]="'确认选片'"
+  [btnConfirm]="'我确认'"
+  [btnCancel]="'再考虑一下'"
+  (confirm)="confirmFinish($event)"
+  (cancel)="cancelFinish($event)">
+  <div class="finish-content">
+    确认选片后无法修改<br/>你确认提交吗？
+  </div>
 </confirm>
 

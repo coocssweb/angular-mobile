@@ -138,3 +138,9 @@
     color: #000000;
   }
 }
+
+.finish-content{
+  text-align: center;
+  font-size: 16px;
+  line-height: 25px;
+}

@@ -43,9 +43,9 @@ export class PhotosComponent implements OnInit {
 
   isShowConfirm: boolean = false
 
-  photoIndex = -1
+  isShowConfirmFinish: boolean = false
 
-  colIndex = 0
+  photoIndex = -1
 
   //当前大图Index
   previewIndex: number
@@ -292,9 +292,17 @@ export class PhotosComponent implements OnInit {
     if(this.sceneFormComponent.checkedNum < this.sceneFormComponent.requireNum){
       return
     }
-    //选片完成
+    this.isShowConfirmFinish = true
+  }
+
+  cancelFinish(){
+    this.isShowConfirmFinish = false
+  }
+
+  confirmFinish(){
     this.photoService.finish(this.photoInfoId).then((result)=>{
-      this.router.navigate(['/truing', this.photoInfoId])
+      this.isShowConfirmFinish = false
+      this.sceneFormComponent.getScenes()
     })
   }
 
