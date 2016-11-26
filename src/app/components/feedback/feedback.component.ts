@@ -32,6 +32,8 @@ export class FeedbackComponent implements OnInit, OnDestroy{
 
   isLoadingImage = true
 
+  currentVersion = 0
+
   //当前触屏位置
   touchPosStart= {
     x: 0,
@@ -50,6 +52,7 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'hidden'
     dom.style.height = '100%'
+    this.message = this.truingList[this.currentIndex].truings[this.currentVersion].remark
   }
 
   ngOnDestroy() {

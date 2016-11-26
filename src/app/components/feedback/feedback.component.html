@@ -1,11 +1,11 @@
 <div class="viewer-box">
-  <a href="javascript:;" class="btn-close" (click)="onClose()">关闭</a>
-  <div class="message layout" *ngIf="truingList[currentIndex].truings[0].remark">
-    {{truingList[currentIndex].truings[0].remark}}
+  <a href="javascript:;" class="btn-close" (click)="onClose()"></a>
+  <div class="message layout" *ngIf="truingList[this.currentIndex].truings[this.currentVersion].remark">
+    {{truingList[this.currentIndex].truings[this.currentVersion].remark}}
   </div>
   <div class="viewer-content" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)" (touchmove)="onTouchMove($event)">
       <img class="viewer-big-image" (load)="loadImage(truingList[currentIndex].imgKey.replace('-300','-800'))"
-           src="{{truingList[currentIndex].imgKey.replace('-300','-800')}}"/>
+           src="{{truingList[this.currentIndex].truings[this.currentVersion].imgKey.replace('-300','-800')}}"/>
   </div>
   <div class="footer">
     <div class="footer-inner layout">

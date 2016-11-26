@@ -46,6 +46,16 @@
   left: 25px;
 }
 
+.icon-ok{
+  background-image: url(../../../images/icon-ok-black.png);
+  width: 15px;
+  height: 14px;
+  background-size: cover;
+  position: absolute;
+  top: 17px;
+  left: 25px;
+}
+
 .btn-next{
   position: absolute;
   height: 50px;
