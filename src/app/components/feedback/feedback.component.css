@@ -4,25 +4,25 @@
     height: 100%;
     left: 0px;
     top: 0px;
-    background-color: rgba(0, 0, 0, 1);
+    background-color: #000000;
     z-index: 1000;
 }
 
 .btn-close{
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    padding: 5px 20px;
-    color: #FFFFFF;
-    text-decoration: none;
-    z-index: 3;
-    border: 1px solid #333333;
-    border-radius: 3px;
-    background-color: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  height: 30px;
+  width: 30px;
+  background-image: url('../../../images/icon-close.png');
+  background-size: cover;
+  color: #FFFFFF;
+  text-decoration: none;
+  z-index: 3;
 }
 
 .btn-close:hover{
-    background-color: #333333;
+  background-color: #333333;
 }
 
 .viewer-content{
@@ -100,4 +100,61 @@
 }
 
 .self-mask{
+}
+
+
+.drop-box{
+  width: 120px;
+  height: 35px;
+  line-height: 35px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid #5f5f5f;
+  box-shadow: 0px 0px 3px rgba(100, 100, 100, 0.5);
+  background-color: rgba(0 ,0, 0, 1);
+  border-radius: 3px;
+  z-index: 3;
+}
+
+.drop-items{
+  position: absolute;
+  top: 36px;
+  width: 100%;
+  background-color: #000000;
+  box-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8);
+  border-radius: 3px;
+}
+
+.drop-item{
+  display: block;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 14px;
+  border-bottom: 1px solid #333;
+}
+
+.drop-item:hover, .drop-item-active{
+}
+
+.drop-display{
+  color: #FFFFFF;
+  font-size: 14px;
+  text-align: center;
+  display: block;
+  padding-right: 20px;
+}
+
+.drop-display:hover{
+}
+
+.icon-dropdown{
+  display: block;
+  width: 15px;
+  height: 10px;
+  background-image: url(../../../images/icon-dropdown.png);
+  background-size: cover;
+  position: absolute;
+  right: 10px;
+  top: 12px;
 }
