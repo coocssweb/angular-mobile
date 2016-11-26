@@ -54,4 +54,13 @@ export class PhotoService extends BaseService {
   finish(photoInfoId): Promise<any> {
     return this.put('/photoInfos/' + photoInfoId + '/actions/finishCheckRaw', null)
   }
+
+  /**
+   * 原片选择初始化信息
+   * @param photoInfoId
+   * @returns {Promise<any>}
+   */
+  getRawInfo(photoInfoId): Promise<any> {
+    return this.get('/photoInfos/' + photoInfoId + '/actions/rawInfo')
+  }
 }

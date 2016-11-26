@@ -74,6 +74,7 @@ export class PhotosComponent implements OnInit {
   //是否显示成功提示
   isShowSuccess = false
 
+  //瀑布布局
   photoCols = {
     col1: {
       height: 0,
@@ -84,6 +85,11 @@ export class PhotosComponent implements OnInit {
       list: []
     }
   }
+
+  rawInfo: any = {
+    truingPrice: 0
+  }
+
 
 
   /**
@@ -113,7 +119,7 @@ export class PhotosComponent implements OnInit {
     }
 
     this.getPhotos()
-
+    this.rawInfo = this.photoService.getRawInfo(this.photoInfoId)
   }
 
 

@@ -207,4 +207,32 @@
   }
 }
 
+.no-init{
+  padding-top: 100px;
+  text-align: center;
+  line-height: 35px;
+  font-size: 20px;
+}
 
+.no-init img{
+  display: inline-block;
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.toolbar-wait{
+  background-color: #59ac94;
+  color: #FFFFFF;
+  padding-left: 35px;
+}
+
+.toolbar-wait .icon-ok{
+  left: 10px;
+  top: 20px;
+  background-image: url(../../../images/icon-ok-white.png);
+}
+
+.scene-finish{
+  width: 100%;
+  text-align: center;
+}

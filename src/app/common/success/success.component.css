@@ -21,20 +21,18 @@
 
 .success-box{
   padding: 20px 30px;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.9);
   border-radius: 5px;
   display: inline-block;
 }
 
 .icon-success{
-  float: left;
 }
 
 .success-word{
-  float: left;
-  height: 48px;
-  line-height: 48px;
-  font-size: 20px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
   color: #ffffff;
-  margin-left: 20px;
+  margin-top: 5px;
 }

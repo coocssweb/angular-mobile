@@ -2,9 +2,25 @@
   本订单标配可选片{{sceneFormComponent.requireNum}}张,第一步建议您先粗选{{sceneFormComponent.requireNum*2}}张左右,然后进行细选 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
 </div>
 
-<scene-form [show]="currentStatus!==''" [photoInfoId]="photoInfoId"
+<scene-form
+            [show]="currentStatus!==''" [photoInfoId]="photoInfoId"
             (onTabSceneCb)="onTabSceneCb($event)">
 </scene-form>
+
+<div class="scene-outer clearfix" *ngIf="sceneFormComponent.cusRawStatus === 2">
+  <div class="scene-inner clearfix" id="scene-inner">
+    <ul class="scene-list clearfix">
+      <li class="scene-item">
+        <a routerLink="/raw/{{photoInfoId}}" [class.current-scene]="currentStatus===''">原片 ({{sceneFormComponent.totalCount}})</a>
+        <span class="item-split"></span>
+      </li>
+      <li class="scene-item">
+        <a routerLink="/raw/{{photoInfoId}}/1" [class.current-scene]="currentStatus==='1'">已选 ({{sceneFormComponent.checkedNum}})</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
 <div class="pc-content pc-layout">
   <pcphoto
     [list]="photoList"
@@ -48,7 +64,7 @@
 
 <div class="margin-bottom"></div>
 
-<div class="toolbar" *ngIf="currentStatus===''">
+<div class="toolbar" *ngIf="currentStatus==='' && sceneFormComponent.cusRawStatus !== 2">
   <div class="toolbar-inner layout">
     <p class="toolbar-text">
       <span class="icon-ok" *ngIf="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum"></span>您已初选{{sceneFormComponent.checkedNum}}张
@@ -66,7 +82,14 @@
   </div>
 </div>
 
-
+<div class="toolbar" *ngIf="sceneFormComponent.cusRawStatus ===2 ">
+  <div class="toolbar-inner toolbar-day layout">
+    <p class="wait-day">
+      <span class="icon-day"></span>
+      预计需要{{rawInfo.period}}天后完成
+    </p>
+  </div>
+</div>
 
 
 <viewer *ngIf="isPreview"
@@ -88,7 +111,7 @@
 
 
 <tip
-  *ngIf="isShowGuide"
+  *ngIf="isShowGuide && sceneFormComponent.cusRawStatus !== 2"
   (close)="onCloseTip()"
   btnText = '我知道了'>
   本订单标配可选片{{sceneFormComponent.requireNum}}张, 第一步建议您初选{{sceneFormComponent.requireNum*2}}张左右, 然后进行细选!
@@ -138,7 +161,7 @@
   <div class="count-content">
     您已选片{{sceneFormComponent.checkedNum}}张，订单精修片数量为{{sceneFormComponent.requireNum}}张
     <br/>额外费用大约
-    <br><span class="money">￥240.00</span>
+    <br><span class="money">￥{{rawInfo.truingPrice * (sceneFormComponent.checkedNum - sceneFormComponent.requireNum)}}</span>
     <br />客服专员会联系您以确认准确费用
   </div>
 </confirm>

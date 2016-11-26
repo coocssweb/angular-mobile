@@ -70,6 +70,8 @@ export class TruingsComponent implements OnInit {
     }
   }
 
+  totalCount = -2
+
   /**
    * 构造函数
    * @param photoService
@@ -99,7 +101,8 @@ export class TruingsComponent implements OnInit {
         totalCount: info.confirmPassNum + info.confirmModifyNum + info.unconfirmNum,
         confirmCount: info.confirmPassNum,
         modifyCount: info.confirmModifyNum,
-        unConfirmCount: info.unconfirmNum
+        unConfirmCount: info.unconfirmNum,
+        cusTruingStatus: info.cusTruingStatus
       }
     })
   }
@@ -182,7 +185,9 @@ export class TruingsComponent implements OnInit {
 
     //请求加载图片列表
     this.truingService.getTruings(this.photoInfoId, this.page, this.sort.key, this.sort.order, this.currentStatus).then((photos: any) => {
-
+      if(this.currentStatus === -1){
+        this.totalCount = photos.totalCount
+      }
       this.page = photos;
       //设置返回数据
       let results = photos.results ? photos.results : []

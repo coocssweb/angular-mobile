@@ -8,18 +8,18 @@
 
     <div class="footer">
       <div class="footer-inner">
-        <div class="feedback-area" *ngIf="currentVersion===truingList[currentIndex].truings.length -1">
+        <div class="feedback-area" *ngIf="currentVersion===truingList[currentIndex].truings.length -1 &&  cusTruingStatus!==2&&cusTruingStatus!==3">
           <textarea class="textarea" [(ngModel)]="message" placeholder="请填写修改意见，或者满意并确认"></textarea>
         </div>
         <div class="feedback-toolbar clearfix">
           <a href="javascript:;"
-             *ngIf="currentVersion===truingList[currentIndex].truings.length -1"
+             *ngIf="currentVersion===truingList[currentIndex].truings.length -1 &&  cusTruingStatus!==2&&cusTruingStatus!==3"
              (click)="onAccept()"
              [class.active]="truingList[currentIndex].truings[currentVersion].status != 2"
              class="btn-accept">很满意</a>
 
           <a href="javascript:;"
-             *ngIf="currentVersion===truingList[currentIndex].truings.length -1"
+             *ngIf="currentVersion===truingList[currentIndex].truings.length -1 &&  cusTruingStatus!==2&&cusTruingStatus!==3"
              (click)="onRemark()"
              class="btn-submit"
              [class.active]="message">提交修改建议</a>

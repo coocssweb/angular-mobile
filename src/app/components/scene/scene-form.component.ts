@@ -31,7 +31,9 @@ export class SceneFormComponent implements OnInit {
 
   checkedNum = 0
 
-  cusRawStatus = 0
+  totalCount = 0
+
+  cusRawStatus = 2
 
   isTouchStart = false
 
@@ -82,6 +84,7 @@ export class SceneFormComponent implements OnInit {
           totalChecked += item.checkedNum ? item.checkedNum : 0
         })
         this.checkedNum = totalChecked
+        this.totalCount = totalRaw
         let totalScene = new Scene(0, '全部', totalRaw, totalChecked)
         this.sceneList = scenes.photoSceneCounts
         this.sceneList = [totalScene].concat(this.sceneList)

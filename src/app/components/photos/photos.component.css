@@ -35,6 +35,28 @@
   position: relative;
 }
 
+
+.toolbar-day{
+  background-color: #59ac94;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.wait-day{
+  display: inline-block;
+  position: relative;
+}
+
+.icon-day{
+  background-image: url(../../../images/icon-day.png);
+  width: 15px;
+  height: 15px;
+  background-size: cover;
+  position: absolute;
+  top: 17px;
+  left: -20px;
+}
+
 .icon-ok{
   background-image: url(../../../images/icon-ok-black.png);
   width: 15px;
@@ -158,4 +180,53 @@
 
 .count{
   color: #ff8a00;
+}
+
+
+.scene-outer{
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #f2f4f4;
+}
+.scene-inner{
+  max-width: 768px;
+  margin: 0px auto;
+  height: 43px;
+  position: relative;
+}
+
+.scene-list{
+  white-space:nowrap;
+  overflow: hidden;
+}
+.scene-item{
+  display: inline-block;
+  font-size: 15px;
+  position: relative;
+  width: 50%;
+}
+.scene-item a{
+  color: #888888;
+  text-decoration: none;
+  font-size: 14px;
+  height: 45px;
+  line-height: 45px;
+  display: inline-block;
+  padding: 0px 14px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.item-split{
+  width: 1px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  right: 0px;
+  top: 12px;
+  background-color: #d2d2d2;
+}
+.scene-item a.current-scene{
+  color: #000000;
 }

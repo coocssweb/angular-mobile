@@ -1,94 +1,116 @@
-<div *ngIf="isShowPcGuide" class="pc-guide pc-layout">
+<div *ngIf="isShowPcGuide && totalCount>0" class="pc-guide pc-layout">
   已确认的精修片,点击左下角的下载按钮既可以下载了 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
 </div>
-
-<div class="scene-outer clearfix">
-  <div class="scene-inner clearfix" id="scene-inner">
-    <ul class="scene-list clearfix">
-      <li class="scene-item">
-        <a href="javascript:;" (click)="onTabStatus(-1)" [class.current-scene]="currentStatus===-1">全部 ({{statistics.totalCount}})</a>
-        <span class="item-split"></span>
-      </li>
-      <li class="scene-item">
-        <a href="javascript:;" (click)="onTabStatus(1)" [class.current-scene]="currentStatus===1">已反馈 ({{statistics.modifyCount}})</a>
-        <span class="item-split"></span>
-      </li>
-      <li class="scene-item">
-        <a href="javascript:;" (click)="onTabStatus(0)" [class.current-scene]="currentStatus===0">未反馈 ({{statistics.unConfirmCount}})</a>
-        <span class="item-split"></span>
-      </li>
-      <li class="scene-item">
-        <a href="javascript:;" (click)="onTabStatus(2)" [class.current-scene]="currentStatus===2">已确认 ({{statistics.confirmCount}})</a>
-      </li>
-    </ul>
-  </div>
-</div>
-
-<div class="pc-content pc-layout">
-  <pcphoto
-    [list]="truingList"
-    [type]="'truing'"
-    (choose)="onChoose($event)"
-    (preview)="onPcPreview($event)"
-  ></pcphoto>
-
-</div>
-
-
-
-<div class="content">
-  <div class="flow-list clearfix">
-    <div class="flow-list-col">
-      <photo
-        [list]="truingCols.col1.list"
-        [type]="'truing'"
-        (choose)="onChoose($event)"
-        (preview)="onPreview($event)"
-      ></photo>
-    </div>
-    <div class="flow-list-col">
-      <photo
-        [list]="truingCols.col2.list"
-        [type]="'truing'"
-        (choose)="onChoose($event)"
-        (preview)="onPreview($event)"
-      ></photo>
-
+<div *ngIf="totalCount>=0">
+  <div *ngIf="statistics.cusTruingStatus !==3" class="scene-outer clearfix">
+    <div class="scene-inner clearfix" id="scene-inner">
+      <ul class="scene-list clearfix">
+        <li class="scene-item">
+          <a href="javascript:;" (click)="onTabStatus(-1)" [class.current-scene]="currentStatus===-1">全部 ({{statistics.totalCount}})</a>
+          <span class="item-split"></span>
+        </li>
+        <li class="scene-item">
+          <a href="javascript:;" (click)="onTabStatus(1)" [class.current-scene]="currentStatus===1">已反馈 ({{statistics.modifyCount}})</a>
+          <span class="item-split"></span>
+        </li>
+        <li class="scene-item">
+          <a href="javascript:;" (click)="onTabStatus(0)" [class.current-scene]="currentStatus===0">未反馈 ({{statistics.unConfirmCount}})</a>
+          <span class="item-split"></span>
+        </li>
+        <li class="scene-item">
+          <a href="javascript:;" (click)="onTabStatus(2)" [class.current-scene]="currentStatus===2">已确认 ({{statistics.confirmCount}})</a>
+        </li>
+      </ul>
     </div>
   </div>
+  <div *ngIf="statistics.cusTruingStatus ===3" class="scene-outer clearfix">
+    <div class="scene-inner clearfix" id="scene-inner">
+      <ul class="scene-list clearfix">
+        <li class="scene-item scene-finish">
+          <a href="javascript:;" class="current-scene">精修确认（{{statistics.confirmCount}}）</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pc-content pc-layout">
+    <pcphoto
+      [list]="truingList"
+      [type]="'truing'"
+      (choose)="onChoose($event)"
+      (preview)="onPcPreview($event)"
+    ></pcphoto>
+
+  </div>
+  <div class="content">
+    <div class="flow-list clearfix">
+      <div class="flow-list-col">
+        <photo
+          [list]="truingCols.col1.list"
+          [type]="'truing'"
+          (choose)="onChoose($event)"
+          (preview)="onPreview($event)"
+        ></photo>
+      </div>
+      <div class="flow-list-col">
+        <photo
+          [list]="truingCols.col2.list"
+          [type]="'truing'"
+          (choose)="onChoose($event)"
+          (preview)="onPreview($event)"
+        ></photo>
+
+      </div>
+    </div>
+  </div>
+  <div class="none-data" *ngIf="truingList.length==0&&!isLoadingData">没有找到任何数据</div>
+  <loading *ngIf="isLoadingData"></loading>
+  <pagination [page]="page" [style]="'loadmore'" [loadingData]="isLoadingData" (loadMore)="getPhotos()"></pagination>
+  <div class="margin-bottom"></div>
+  <div *ngIf="statistics.cusTruingStatus!==3 && statistics.cusTruingStatus!==2" class="toolbar">
+    <div class="toolbar-inner layout">
+      <p class="toolbar-text">
+        <span *ngIf="statistics.unConfirmCount > 0">
+          <span class="icon-wait"></span>您还有{{statistics.unConfirmCount}}张未反馈
+        </span>
+        <span *ngIf="statistics.unConfirmCount === 0">
+          <span class="icon-ok"></span>已确认全部精修
+        </span>
+        <a href="javascript:;" (click)="onFinish()" class="btn-next" [class.btn-next-active]="statistics.unConfirmCount===0" >
+          提交V{{statistics.truingVersionNum ? (statistics.truingVersionNum+ 1) : 1 }}版本
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="statistics.cusTruingStatus===2" class="toolbar">
+    <div class="toolbar-inner layout toolbar-wait">
+      <p class="wait-text">
+        <span class="icon-ok"></span>意见已反馈给设计师，请耐心等待...
+      </p>
+    </div>
+  </div>
+
+
 </div>
 
-<div class="none-data" *ngIf="truingList.length==0&&!isLoadingData">没有找到任何数据</div>
-<loading *ngIf="isLoadingData"></loading>
-<pagination [page]="page" [style]="'loadmore'" [loadingData]="isLoadingData" (loadMore)="getPhotos()"></pagination>
-
-<div class="margin-bottom"></div>
-
-<div class="toolbar">
-  <div class="toolbar-inner layout">
-    <p class="toolbar-text">
-      <span *ngIf="statistics.unConfirmCount > 0">
-        <span class="icon-wait"></span>您还有{{statistics.unConfirmCount}}张未反馈
-      </span>
-      <span *ngIf="statistics.unConfirmCount === 0">
-        <span class="icon-ok"></span>已确认全部精修
-      </span>
-      <a href="javascript:;" (click)="onFinish()" class="btn-next" [class.btn-next-active]="statistics.unConfirmCount===0" >
-        提交V{{statistics.truingVersionNum ? (statistics.truingVersionNum+ 1) : 1 }}版本
-      </a>
-    </p>
-  </div>
+<div *ngIf="totalCount==-1" class="no-init">
+  <img src="../../../images/icon-day-big.png" class="icon-day" />
+  <p>设计师正在后期处理中...</p>
+  <p>预计50天后可以完成了</p>
 </div>
 
 <feedback *ngIf="isPreview"
         (close)="onClosePreview()"
         (remark)="onRemark($event)"
+        [cusTruingStatus] = "statistics.cusTruingStatus"
         (accept)="onAccept($event)"
         [currentIndex]="previewIndex"
         [truingList]="truingList"></feedback>
 
 <pcfeedback *ngIf="isPcPreview"
           (close)="onClosePcPreview()"
+          [cusTruingStatus] = "statistics.cusTruingStatus"
           (remark)="onRemark($event)"
           (accept)="onAccept($event)"
           [currentIndex]="previewIndex"

@@ -16,7 +16,7 @@
       <img class="viewer-big-image" (load)="loadImage(truingList[currentIndex].imgKey.replace('-300','-800'))"
            src="{{truingList[this.currentIndex].truings[this.currentVersion].imgKey.replace('-300','-800')}}"/>
   </div>
-  <div class="footer">
+  <div class="footer" *ngIf="cusTruingStatus!==2&&cusTruingStatus!==3">
     <div class="footer-inner layout">
     <div class="feedback-area">
       <textarea class="textarea" [(ngModel)]="message"  placeholder="请填写修改意见，或者满意并确认"></textarea>

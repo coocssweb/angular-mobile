@@ -13,7 +13,7 @@ import {QINIU_DOMAIN} from "../../constant/config";
 export class PcFeedbackComponent implements OnInit, OnDestroy{
   //图片列表
   @Input() truingList:any
-
+  @Input() cusTruingStatus: any
   //当前图片
   @Input() currentIndex:number
   //关闭事件
