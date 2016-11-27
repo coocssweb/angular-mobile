@@ -160,7 +160,6 @@ export class TruingsComponent implements OnInit {
    */
   onAccept(valueObj){
     this.truingService.accept(this.photoInfoId, valueObj.id).then((result)=>{
-      this.truingList[valueObj.index].status = 2
       this.isShowSuccess = true
       if(!this.truingList[valueObj.index].status){
         this.statistics.unConfirmCount--
@@ -170,6 +169,7 @@ export class TruingsComponent implements OnInit {
         this.statistics.confirmCount++
       }
 
+      this.truingList[valueObj.index].status = 2
       //回调函数
       valueObj.done()
     })
@@ -274,6 +274,7 @@ export class TruingsComponent implements OnInit {
   onFinish(){
     this.truingService.finish(this.photoInfoId).then((result)=>{
       this.isShowSuccess = true
+      this.getTruingInfo()
     })
   }
 

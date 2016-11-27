@@ -73,11 +73,17 @@
         <span *ngIf="statistics.unConfirmCount > 0">
           <span class="icon-wait"></span>您还有{{statistics.unConfirmCount}}张未反馈
         </span>
-        <span *ngIf="statistics.unConfirmCount === 0">
+        <span *ngIf="statistics.unConfirmCount === 0 && statistics.modifyCount ===0">
           <span class="icon-ok"></span>已确认全部精修
         </span>
-        <a href="javascript:;" (click)="onFinish()" class="btn-next" [class.btn-next-active]="statistics.unConfirmCount===0" >
+        <span *ngIf="statistics.unConfirmCount === 0 && statistics.modifyCount > 0">
+          <span class="icon-ok"></span>已确认所有反馈
+        </span>
+        <a href="javascript:;" *ngIf="statistics.totalCount>statistics.confirmCount" (click)="onFinish()" class="btn-next" [class.btn-next-active]="statistics.unConfirmCount===0" >
           提交V{{statistics.truingVersionNum ? (statistics.truingVersionNum+ 1) : 1 }}版本
+        </a>
+        <a href="javascript:;" *ngIf="statistics.totalCount>statistics.confirmCount" (click)="onFinish()" class="btn-next" [class.btn-next-active]="statistics.unConfirmCount===0" >
+          确认精修
         </a>
       </p>
     </div>

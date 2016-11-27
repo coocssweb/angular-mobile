@@ -233,3 +233,24 @@
 .scene-item a.current-scene{
   color: #000000;
 }
+
+
+.over-tip{
+  font-size: 14px !important;
+}
+.over-tip p{
+  line-height: 20px;
+}
+
+.over-tip-2{
+  margin-top: 20px;
+}
+
+.inner-btn{
+  display: inline-block;
+  padding: 3px 5px;
+  border-radius: 3px;
+  background-color: #4dbb9b;
+  color: #FFFFFF;
+  margin: 0px 3px;
+}

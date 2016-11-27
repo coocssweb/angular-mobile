@@ -47,7 +47,9 @@ export class PhotosComponent implements OnInit {
 
   isShowOverChoose: boolean = false
 
-  isShowOkChoose: boolean = false
+  isShowOkTip: boolean = false
+
+  isShowOverTip: boolean = false
 
   photoIndex = -1
 
@@ -285,9 +287,9 @@ export class PhotosComponent implements OnInit {
     if(this.sceneFormComponent.checkedNum<this.sceneFormComponent.requireNum){
       return
     }else if(this.sceneFormComponent.checkedNum === this.sceneFormComponent.requireNum){
-      this.isShowOkChoose = true
+      this.isShowOkTip = true
     }else{
-      this.router.navigate(['/raw/'+this.photoInfoId+"/", 1])
+      this.isShowOverTip = true
     }
   }
 
@@ -374,7 +376,8 @@ export class PhotosComponent implements OnInit {
     this.isShowOverChoose = false
   }
   onCloseOkChoose(){
-    this.isShowOkChoose = false
+    this.isShowOkTip = false
+    this.isShowOverTip = false
     this.router.navigate(['/raw/'+this.photoInfoId+"/", 1])
   }
 
