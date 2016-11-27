@@ -17,6 +17,8 @@ export class PhotoComponent {
 
   @Input() status: string
 
+  @Input() rawStatus: number
+
   @Input() isShowDelete: boolean
 
   @Output() preview = new EventEmitter()
