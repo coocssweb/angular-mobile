@@ -156,7 +156,7 @@
   [title]="'确认选片'"
   [btnConfirm]="'我确认'"
   [btnCancel]="'再考虑一下'"
-  (confirm)="confirmOverChoose($event)"
+  (confirm)="confirmFinish($event)"
   (cancel)="cancelOverChoose($event)">
   <div class="count-content">
     您已选片{{sceneFormComponent.checkedNum}}张，订单精修片数量为{{sceneFormComponent.requireNum}}张

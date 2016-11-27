@@ -284,10 +284,10 @@ export class PhotosComponent implements OnInit {
   onNext(){
     if(this.sceneFormComponent.checkedNum<this.sceneFormComponent.requireNum){
       return
-    }else if(this.sceneFormComponent.checkedNum>this.sceneFormComponent.requireNum){
-      this.isShowOverChoose = true
-    }else{
+    }else if(this.sceneFormComponent.checkedNum === this.sceneFormComponent.requireNum){
       this.isShowOkChoose = true
+    }else{
+      this.router.navigate(['/raw/'+this.photoInfoId+"/", 1])
     }
   }
 
@@ -297,8 +297,11 @@ export class PhotosComponent implements OnInit {
   onFinish(){
     if(this.sceneFormComponent.checkedNum < this.sceneFormComponent.requireNum){
       return
+    }else if(this.sceneFormComponent.checkedNum>this.sceneFormComponent.requireNum){
+      this.isShowOverChoose = true
+    }else{
+      this.isShowConfirmFinish = true
     }
-    this.isShowConfirmFinish = true
   }
 
   cancelFinish(){
@@ -308,6 +311,7 @@ export class PhotosComponent implements OnInit {
   confirmFinish(){
     this.photoService.finish(this.photoInfoId).then((result)=>{
       this.isShowConfirmFinish = false
+      this.isShowOverChoose = false
       this.sceneFormComponent.getScenes()
     })
   }
@@ -364,11 +368,6 @@ export class PhotosComponent implements OnInit {
 
   deleteCancel(){
     this.isShowConfirm = false
-  }
-
-  confirmOverChoose(){
-    this.isShowOverChoose = false
-    this.router.navigate(['/raw/'+this.photoInfoId+"/", 1])
   }
 
   cancelOverChoose(){
