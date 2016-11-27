@@ -55,7 +55,8 @@ export class TruingsComponent implements OnInit {
     totalCount: 0,
     confirmCount: 0,
     modifyCount: 0,
-    unConfirmCount: 0
+    unConfirmCount: 0,
+    truingVersionNum: 0
   }
 
   //精修片显示
@@ -102,7 +103,8 @@ export class TruingsComponent implements OnInit {
         confirmCount: info.confirmPassNum,
         modifyCount: info.confirmModifyNum,
         unConfirmCount: info.unconfirmNum,
-        cusTruingStatus: info.cusTruingStatus
+        cusTruingStatus: info.cusTruingStatus,
+        truingVersionNum: info.truingVersionNum
       }
     })
   }

@@ -14,7 +14,7 @@
 
     <div class="photo-info clearfix" *ngIf="type==='truing'">
       <span class="photo-name">原片{{photo.imgIndex}}</span>
-      <span class="photo-status" [class.icon-clock]="photo.status == 0" [class.icon-ok] ="photo.status > 0"></span>
+      <span class="photo-status" [class.icon-clock]="photo.status == 0" [class.icon-feedback] ="photo.status == 1" [class.icon-ok] ="photo.status == 2"></span>
     </div>
 
   </div>

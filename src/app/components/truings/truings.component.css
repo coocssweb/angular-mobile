@@ -193,6 +193,9 @@
     left: -20px;
     top: 30px;
   }
+  .toolbar-wait .icon-ok{
+    top: 30px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -227,12 +230,17 @@
 }
 
 .toolbar-wait .icon-ok{
-  left: 10px;
-  top: 20px;
+  left: -20px;
+  top: 18px;
   background-image: url(../../../images/icon-ok-white.png);
 }
 
 .scene-finish{
   width: 100%;
   text-align: center;
+}
+
+.wait-text{
+  position: relative;
+  display: inline-block;
 }

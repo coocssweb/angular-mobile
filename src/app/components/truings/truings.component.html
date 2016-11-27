@@ -1,7 +1,7 @@
-<div *ngIf="isShowPcGuide && totalCount>0" class="pc-guide pc-layout">
+<div *ngIf="isShowPcGuide && totalCount>0 && statistics.cusTruingStatus !==3" class="pc-guide pc-layout">
   已确认的精修片,点击左下角的下载按钮既可以下载了 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
 </div>
-<div *ngIf="totalCount>=0">
+<div *ngIf="statistics.cusTruingStatus!=0">
   <div *ngIf="statistics.cusTruingStatus !==3" class="scene-outer clearfix">
     <div class="scene-inner clearfix" id="scene-inner">
       <ul class="scene-list clearfix">
@@ -100,7 +100,7 @@
 
 </div>
 
-<div *ngIf="totalCount==-1" class="no-init">
+<div *ngIf="statistics.cusTruingStatus==0" class="no-init">
   <img src="../../../images/icon-day-big.png" class="icon-day" />
   <p>设计师正在后期处理中...</p>
   <p>预计50天后可以完成了</p>
