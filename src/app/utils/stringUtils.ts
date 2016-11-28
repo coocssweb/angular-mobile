@@ -38,7 +38,6 @@ export default {
   },
 
   getUrlQuery(url: string, name: string){
-    debugger
     var reg = new RegExp("(^|&|\\?)" + name + "=([^&]*)(&|$)", "i");
     var r = url.substr(1).match(reg);
     if (r != null) {

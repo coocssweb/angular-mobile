@@ -1,13 +1,14 @@
-import {Headers, RequestOptions} from '@angular/http'
-import {Response, Http} from '@angular/http'
-import {DOMAIN} from '../constant/config'
-import 'rxjs/add/operator/toPromise'
+import {Headers, Response, Http} from "@angular/http";
+import {DOMAIN} from "../constant/config";
+import "rxjs/add/operator/toPromise";
+import {Injectable} from "@angular/core";
 
+@Injectable()
 export class BaseService {
 
-  private http:Http;
+  private http: Http;
 
-  constructor( http: Http) {
+  constructor(http: Http) {
     this.http = http;
   }
 
@@ -94,7 +95,7 @@ export class BaseService {
    * @param body
    * @returns {Promise<T>|Promise<TResult|T>|Observable<R>|Promise<R>|any}
    */
-  put(url, body): Promise<any> {
+  put(url, body?): Promise<any> {
     let options = this.getRequestOptions()
     return this.http.put(DOMAIN + url, body, options)
       .toPromise()
@@ -106,11 +107,11 @@ export class BaseService {
 
   private handleError(error: Response | any) {
     var ua = navigator.userAgent.toLowerCase();
-    var isWeixin = ua.indexOf("micromessenger") >=0;
+    var isWeixin = ua.indexOf("micromessenger") >= 0;
     if (error.status == 403 || (error.status == 419 && isWeixin)) {
       window.location.href = "#/forbidden"
     }
-    if(error.status ==419 && !isWeixin) {
+    if (error.status == 419 && !isWeixin) {
       window.location.href = "#/login/qrCode"
     }
     let errMsg = (error.message) ? error.message :

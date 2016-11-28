@@ -8,6 +8,7 @@ import {AuthService} from "../../services/auth.service";
 import {DOMAIN} from "../../constant/config";
 import {Router} from "@angular/router";
 import {LoggerService} from "../../services/logger.service";
+import {CacheService} from "../../services/cache.service";
 
 @Component({
   selector: 'login',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private checkIntervalId
 
   constructor(private authService: AuthService,
+              private cacheService: CacheService,
               private logger: LoggerService,
               private router: Router) {
 
@@ -28,23 +30,28 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     let location = window.location.href
-    let groupId = StringUtils.getUrlQuery(location, "gid");
     let photoInfoId = StringUtils.getUrlQuery(location, "pid");
-    let viewType = StringUtils.getUrlQuery(location, "type");
-    this.logger.debug(`groupId:${groupId} photoInfoId:${photoInfoId} viewType:${viewType}`)
-    if (!groupId || !photoInfoId || (viewType != "raw" && viewType != "truing")) {
+    if (!photoInfoId) {
+      photoInfoId = this.cacheService.getPhotoInfoId()
+    }
+    let targetPath = this.cacheService.getPrevUrl()
+    let viewType = StringUtils.getUrlQuery(location, "type")
+    if (viewType && photoInfoId) {
+      targetPath = `/${viewType}/${photoInfoId}`
+    }
+    this.logger.debug(`photoInfoId:${photoInfoId} viewType:${viewType} targetPath:${targetPath}`)
+    if (!photoInfoId || !targetPath) {
       alert("登录页面访问参数错误，请使用合法的登录地址访问")
     } else {
-      this.qrCodeUrl = `${DOMAIN}/login/qrCode?gid=${groupId}`
+      this.qrCodeUrl = `${DOMAIN}/login/qrCode?pid=${photoInfoId}`
       this.checkIntervalId = setInterval(() => {
         this.authService.authLogin().then(resp => {
           if (resp.result) {
             clearInterval(this.checkIntervalId)
-            if ("raw" == viewType) {
-              this.router.navigate(['/raw', photoInfoId]);
-            } else if ("truing" == viewType) {
-              this.router.navigate(['/truing', photoInfoId]);
+            if (!targetPath.startsWith("#")) {
+              targetPath = `#${targetPath}`
             }
+            window.location.href = targetPath
           }
         })
       }, 500);
