@@ -1,15 +1,15 @@
-/**
- * 二维码登录页面 访问路径要为：
- * @description :: 二维码登录页面
- */
 import {Component, OnInit, OnDestroy} from "@angular/core";
-import StringUtils from "../../utils/stringUtils"
+import StringUtils from "../../utils/stringUtils";
 import {AuthService} from "../../services/auth.service";
 import {DOMAIN} from "../../constant/config";
 import {Router} from "@angular/router";
 import {LoggerService} from "../../services/logger.service";
 import {CacheService} from "../../services/cache.service";
 
+/**
+ * 二维码登录页面 访问路径要为：/login/qrCode?pid=5&type=raw
+ * @description :: 二维码登录页面
+ */
 @Component({
   selector: 'login',
   templateUrl: 'login.component.html',
@@ -59,6 +59,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.stopInterval()
+  }
+
+  stopInterval() {
     if (this.checkIntervalId) {
       clearInterval(this.checkIntervalId)
     }
