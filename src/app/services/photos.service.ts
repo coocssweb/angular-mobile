@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {BaseService} from "./base.service";
-import {Photo} from "../components/photos/photo";
 
 @Injectable()
 export class PhotoService extends BaseService {

@@ -1,30 +1,35 @@
 import {Headers, RequestOptions} from '@angular/http'
 import {Response, Http} from '@angular/http'
-import { DOMAIN } from '../constant/config'
+import {DOMAIN} from '../constant/config'
 import 'rxjs/add/operator/toPromise'
 
 export class BaseService {
-  private http:Http
+  private http: Http
 
-  constructor(http:Http) {
+  constructor(http: Http) {
     this.http = http
   }
 
-  /**
-   * get请求
-   * @param url
-   * @returns {Promise<T>|Promise<TResult|T>|Observable<R>|Promise<R>|any}
-     */
-  get(url):Promise<any> {
+  private getRequestOptions(): any {
     let headers = new Headers()
 
     headers.append('X-Requested-With', 'XMLHttpRequest')
     headers.append('Content-Type', 'application/json; charset=UTF-8')
     headers.append('Accept', 'application/json')
 
-    return this.http.get(DOMAIN + url, {headers: headers})
+    return {headers: headers, withCredentials: true}
+  }
+
+  /**
+   * get请求
+   * @param url
+   * @returns {Promise<T>|Promise<TResult|T>|Observable<R>|Promise<R>|any}
+   */
+  get(url): Promise<any> {
+    let options = this.getRequestOptions()
+    return this.http.get(DOMAIN + url, options)
       .toPromise()
-      .then((res:any)=> {
+      .then((res: any) => {
 
         if (!res._body) {
           return {}
@@ -42,16 +47,12 @@ export class BaseService {
    * @param url
    * @param body
    * @returns {Promise<T>|Promise<TResult|T>|Observable<R>|Promise<R>|any}
-     */
-  post(url, body):Promise<any> {
-    let headers = new Headers();
-    headers.append('X-Requested-With', 'XMLHttpRequest')
-    headers.append('Content-Type', 'application/json; charset=UTF-8')
-    headers.append('Accept', 'application/json')
-
-    return this.http.post(DOMAIN + url, body, {headers: headers})
+   */
+  post(url, body): Promise<any> {
+    let options = this.getRequestOptions()
+    return this.http.post(DOMAIN + url, body, options)
       .toPromise()
-      .then((res:Response)=> {
+      .then((res: Response) => {
         let body = res.json()
         return body || {}
       })
@@ -63,28 +64,24 @@ export class BaseService {
    * @param url
    * @param ids
    * @returns {Promise<*|{}>|Promise<T>|Promise<*|{}|T>|any<T>|Promise<R>|any}
-     */
-  delete(url, ids):Promise<any> {
-    let headers = new Headers();
-    headers.append('X-Requested-With', 'XMLHttpRequest')
-    headers.append('Content-Type', 'application/json; charset=UTF-8')
-    headers.append('Accept', 'application/json')
-
+   */
+  delete(url, ids): Promise<any> {
+    let options = this.getRequestOptions()
     let deleteUrl = DOMAIN + url
     if (ids) {
       deleteUrl += ids
     }
 
-    return this.http.delete(deleteUrl, {headers: headers})
+    return this.http.delete(deleteUrl, options)
       .toPromise()
-      .then((res:Response)=> {
+      .then((res: Response) => {
 
         if (res.status.toString().startsWith('2')) {
           return {}
         }
 
       })
-      .catch((error:any)=> {
+      .catch((error: any) => {
         let body = error.json()
         return body || {}
       }).catch(this.handleError)
@@ -95,23 +92,19 @@ export class BaseService {
    * @param url
    * @param body
    * @returns {Promise<T>|Promise<TResult|T>|Observable<R>|Promise<R>|any}
-     */
-  put(url, body):Promise<any> {
-    let headers = new Headers();
-    headers.append('X-Requested-With', 'XMLHttpRequest')
-    headers.append('Content-Type', 'application/json; charset=UTF-8')
-    headers.append('Accept', 'application/json')
-
-    return this.http.put(DOMAIN + url, body, {headers: headers})
+   */
+  put(url, body): Promise<any> {
+    let options = this.getRequestOptions()
+    return this.http.put(DOMAIN + url, body, options)
       .toPromise()
-      .then((res:Response)=> {
+      .then((res: Response) => {
         return res
       })
       .catch(this.handleError)
   }
 
-  private handleError (error: Response | any) {
-    if(error.status==403 || error.status ==419){
+  private handleError(error: Response | any) {
+    if (error.status == 403 || error.status == 419) {
       window.location.href = "#/forbidden"
     }
     let errMsg = (error.message) ? error.message :
@@ -119,6 +112,5 @@ export class BaseService {
     console.error(errMsg)
     return Promise.reject(errMsg);
   }
-
 }
 
