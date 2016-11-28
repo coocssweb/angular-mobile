@@ -110,11 +110,13 @@ export class PhotosComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
       this.photoInfoId = +params['photoinfoid'];
-      //缓存photoInfoId 和请求路径
-      this.cacheService.setPhotoInfoId(this.photoInfoId);
-      this.cacheService.setPrevUrl( this.route.url.map(s => s.join('')));
       this.currentStatus = +params['status']? params['status'] : ''
     })
+
+    //缓存photoInfoId 和请求路径
+    this.cacheService.setPhotoInfoId(this.photoInfoId);
+    this.cacheService.setPrevUrl("/raw/" + this.photoInfoId);
+
 
     if(document.getElementById('html').offsetWidth > 769){
       this.isShowGuide = false

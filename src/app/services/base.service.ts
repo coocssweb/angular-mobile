@@ -111,8 +111,6 @@ export class BaseService {
       window.location.href = "#/forbidden"
     }
     if(error.status ==419 && !isWeixin) {
-      console.log(sessionStorage.getItem("PHOTO_INFO_ID"));
-      console.log(sessionStorage.getItem("PREV_URL"));
       window.location.href = "#/login/qrCode"
     }
     let errMsg = (error.message) ? error.message :

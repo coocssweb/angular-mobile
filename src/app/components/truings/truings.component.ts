@@ -89,10 +89,10 @@ export class TruingsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
       this.photoInfoId = +params['photoinfoid']
-      //缓存photoInfoId 和请求路径
-      this.cacheService.setPhotoInfoId(this.photoInfoId);
-      this.cacheService.setPrevUrl(this.route.outlet);
     });
+    //缓存photoInfoId 和请求路径
+    this.cacheService.setPhotoInfoId(this.photoInfoId);
+    this.cacheService.setPrevUrl("/truing/" + this.photoInfoId);
 
     this.getPhotos()
 
