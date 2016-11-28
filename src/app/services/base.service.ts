@@ -1,9 +1,7 @@
 import {Headers, Response, Http} from "@angular/http";
 import {DOMAIN} from "../constant/config";
 import "rxjs/add/operator/toPromise";
-import {Injectable} from "@angular/core";
 
-@Injectable()
 export class BaseService {
 
   private http: Http;
