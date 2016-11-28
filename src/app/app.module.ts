@@ -24,6 +24,7 @@ import {PcPhotoComponent} from './common/pc-photo/pc-photo.component'
 import {PhotoComponent} from './common/photo/photo.component'
 import {HttpModule, JsonpModule} from "@angular/http"
 import {HashLocationStrategy, LocationStrategy} from "@angular/common"
+import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common"
     PcFeedbackComponent,
     PcPhotoComponent,
     PhotoComponent,
-    PCViewerComponent
+    PCViewerComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common"
     RouterModule.forRoot([
       {path: 'raw/:photoinfoid', component: PhotosComponent},
       {path: 'raw/:photoinfoid/:status', component: PhotosComponent},
-      {path: 'truing/:photoinfoid', component: TruingsComponent}
+      {path: 'truing/:photoinfoid', component: TruingsComponent},
+      {path:'forbidden',component: ForbiddenComponent}
     ]),
     RouterModule.forChild([])
   ],

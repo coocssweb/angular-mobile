@@ -33,12 +33,7 @@ export class BaseService {
         let body = res.json()
         return body || {}
       })
-      .catch((error:any)=> {
-        let errMsg = (error.message) ? error.message :
-          error.status ? `${error.status} - ${error.statusText}` : 'Server error'
-        console.error(errMsg)
-        return Promise.reject(errMsg);
-      })
+      .catch(this.handleError)
   }
 
 
@@ -60,12 +55,7 @@ export class BaseService {
         let body = res.json()
         return body || {}
       })
-      .catch((error:any)=> {
-        let errMsg = (error.message) ? error.message :
-          error.status ? `${error.status} - ${error.statusText}` : 'Server error'
-        console.error(errMsg)
-        return Promise.reject(errMsg)
-      })
+      .catch(this.handleError)
   }
 
   /**
@@ -97,7 +87,7 @@ export class BaseService {
       .catch((error:any)=> {
         let body = error.json()
         return body || {}
-      })
+      }).catch(this.handleError)
   }
 
   /**
@@ -117,12 +107,18 @@ export class BaseService {
       .then((res:Response)=> {
         return res
       })
-      .catch((error:any)=> {
-        let errMsg = (error.message) ? error.message :
-          error.status ? `${error.status} - ${error.statusText}` : 'Server error'
-        console.error(errMsg)
-        return Promise.reject(errMsg);
-      })
+      .catch(this.handleError)
   }
+
+  private handleError (error: Response | any) {
+    if(error.status==403 || error.status ==419){
+      window.location.href = "#/forbidden"
+    }
+    let errMsg = (error.message) ? error.message :
+      error.status ? `${error.status} - ${error.statusText}` : 'Server error'
+    console.error(errMsg)
+    return Promise.reject(errMsg);
+  }
+
 }
 
