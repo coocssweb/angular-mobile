@@ -24,6 +24,8 @@ import {PcPhotoComponent} from './common/pc-photo/pc-photo.component'
 import {PhotoComponent} from './common/photo/photo.component'
 import {HttpModule, JsonpModule} from "@angular/http"
 import {HashLocationStrategy, LocationStrategy} from "@angular/common"
+import {LoginComponent} from "./components/login/login.component";
+import {LoggerService} from "./services/logger.service";
 import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
 
 @NgModule({
@@ -48,6 +50,7 @@ import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
     PcPhotoComponent,
     PhotoComponent,
     PCViewerComponent,
+    LoginComponent,
     ForbiddenComponent
   ],
   imports: [
@@ -56,10 +59,11 @@ import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
     HttpModule,
     JsonpModule,
     RouterModule.forRoot([
+      {path: 'login/qrCode', component: LoginComponent},
       {path: 'raw/:photoinfoid', component: PhotosComponent},
       {path: 'raw/:photoinfoid/:status', component: PhotosComponent},
       {path: 'truing/:photoinfoid', component: TruingsComponent},
-      {path:'forbidden',component: ForbiddenComponent}
+      {path: 'forbidden', component: ForbiddenComponent}
     ]),
     RouterModule.forChild([])
   ],
@@ -69,7 +73,7 @@ import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
   providers: [{
     provide: LocationStrategy, // 导航路径的策略设置
     useClass: HashLocationStrategy // 使用'#'方式的策略
-  }],
+  }, LoggerService],
   bootstrap: [AppComponent]
 })
 

@@ -1,3 +1,4 @@
+import {unescape} from "querystring";
 export default {
   stampToString(stamp) {
 
@@ -36,9 +37,13 @@ export default {
     return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second
   },
 
-  getUrlQuery(name: string){
-    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
-    if(r!=null) return r[2]; return null;
+  getUrlQuery(url: string, name: string){
+    debugger
+    var reg = new RegExp("(^|&|\\?)" + name + "=([^&]*)(&|$)", "i");
+    var r = url.substr(1).match(reg);
+    if (r != null) {
+      return r[2];
+    }
+    return null;
   }
 }
