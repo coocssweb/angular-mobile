@@ -27,6 +27,7 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common"
 import {LoginComponent} from "./components/login/login.component";
 import {LoggerService} from "./services/logger.service";
 import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
+import {CacheService} from "./services/cache.service";
 
 @NgModule({
   declarations: [
@@ -73,7 +74,7 @@ import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
   providers: [{
     provide: LocationStrategy, // 导航路径的策略设置
     useClass: HashLocationStrategy // 使用'#'方式的策略
-  }, LoggerService],
+  },CacheService, LoggerService],
   bootstrap: [AppComponent]
 })
 

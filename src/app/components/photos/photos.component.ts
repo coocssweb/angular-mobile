@@ -5,6 +5,7 @@ import {SceneFormComponent} from "../scene/scene-form.component";
 import {QINIU_DOMAIN} from "../../constant/config";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Page} from "../../common/pagination/page";
+import {CacheService} from "../../services/cache.service";
 
 
 @Component({
@@ -99,6 +100,7 @@ export class PhotosComponent implements OnInit {
    * @param photoService
    */
   constructor(private photoService: PhotoService,
+              private cacheService:CacheService,
               private route: ActivatedRoute, private router: Router) {
   }
 
@@ -107,7 +109,10 @@ export class PhotosComponent implements OnInit {
    */
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
-      this.photoInfoId = +params['photoinfoid']
+      this.photoInfoId = +params['photoinfoid'];
+      //缓存photoInfoId 和请求路径
+      this.cacheService.setPhotoInfoId(this.photoInfoId);
+      this.cacheService.setPrevUrl( this.route.url.map(s => s.join('')));
       this.currentStatus = +params['status']? params['status'] : ''
     })
 

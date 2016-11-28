@@ -3,6 +3,7 @@ import {TruingService} from "../../services/truings.service";
 import {QINIU_DOMAIN} from "../../constant/config";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Page} from "../../common/pagination/page";
+import {CacheService} from "../../services/cache.service";
 
 
 @Component({
@@ -77,7 +78,9 @@ export class TruingsComponent implements OnInit {
    * 构造函数
    * @param photoService
    */
-  constructor(private truingService: TruingService, private route: ActivatedRoute) {
+  constructor(private truingService: TruingService,
+              private cacheService: CacheService,
+              private route: ActivatedRoute) {
   }
 
   /**
@@ -86,6 +89,9 @@ export class TruingsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
       this.photoInfoId = +params['photoinfoid']
+      //缓存photoInfoId 和请求路径
+      this.cacheService.setPhotoInfoId(this.photoInfoId);
+      this.cacheService.setPrevUrl(this.route.outlet);
     });
 
     this.getPhotos()

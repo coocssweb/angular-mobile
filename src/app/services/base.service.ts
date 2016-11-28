@@ -4,10 +4,11 @@ import {DOMAIN} from '../constant/config'
 import 'rxjs/add/operator/toPromise'
 
 export class BaseService {
-  private http: Http
 
-  constructor(http: Http) {
-    this.http = http
+  private http:Http;
+
+  constructor( http: Http) {
+    this.http = http;
   }
 
   private getRequestOptions(): any {
@@ -104,8 +105,15 @@ export class BaseService {
   }
 
   private handleError(error: Response | any) {
-    if (error.status == 403 || error.status == 419) {
+    var ua = navigator.userAgent.toLowerCase();
+    var isWeixin = ua.indexOf("micromessenger") >=0;
+    if (error.status == 403 || (error.status == 419 && isWeixin)) {
       window.location.href = "#/forbidden"
+    }
+    if(error.status ==419 && !isWeixin) {
+      console.log(sessionStorage.getItem("PHOTO_INFO_ID"));
+      console.log(sessionStorage.getItem("PREV_URL"));
+      window.location.href = "#/login/qrCode"
     }
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error'

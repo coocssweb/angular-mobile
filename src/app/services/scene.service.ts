@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core'
 import {Http} from '@angular/http'
 import {BaseService} from './base.service'
 import {Scene} from '../components/scene/scene'
+import {CacheService} from "./cache.service";
 
 @Injectable()
 export class SceneService extends BaseService {
 
-    constructor(http: Http) {
-        super(http)
-    }
+  constructor(http: Http) {
+    super(http)
+  }
 
     /**
      * 获取原片场景列表
