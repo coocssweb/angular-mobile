@@ -7,7 +7,7 @@
             (onTabSceneCb)="onTabSceneCb($event)">
 </scene-form>
 
-<div class="scene-outer clearfix" *ngIf="sceneFormComponent.cusRawStatus === 2">
+<div class="scene-outer clearfix" *ngIf="rawInfo.cusRawStatus === 2">
   <div class="scene-inner clearfix" id="scene-inner">
     <ul class="scene-list clearfix">
       <li class="scene-item">
@@ -26,7 +26,7 @@
     [list]="photoList"
     [type]="'raw'"
     [status]="currentStatus"
-    [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
+    [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '') && rawInfo.cusRawStatus !== 2"
     (choose)="onChoose($event)"
     (preview)="onPcPreview($event)"
   ></pcphoto>
@@ -39,8 +39,8 @@
         [list]="photoCols.col1.list"
         [type]="'raw'"
         [status]="currentStatus"
-        [rawStatus]="sceneFormComponent.cusRawStatus"
-        [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
+        [rawStatus]="rawInfo.cusRawStatus"
+        [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '')&&rawInfo.cusRawStatus !== 2"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -50,8 +50,8 @@
         [list]="photoCols.col2.list"
         [type]="'raw'"
         [status]="currentStatus"
-        [rawStatus]="sceneFormComponent.cusRawStatus"
-        [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
+        [rawStatus]="rawInfo.cusRawStatus"
+        [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '')&&rawInfo.cusRawStatus !== 2"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -66,7 +66,7 @@
 
 <div class="margin-bottom"></div>
 
-<div class="toolbar" *ngIf="currentStatus==='' && sceneFormComponent.cusRawStatus !== 2">
+<div class="toolbar" *ngIf="currentStatus==='' && rawInfo.cusRawStatus !== 2">
   <div class="toolbar-inner layout">
     <p class="toolbar-text">
       <span class="icon-ok" *ngIf="sceneFormComponent.checkedNum>=rawInfo.truingImgNum"></span>您已初选{{sceneFormComponent.checkedNum}}张
@@ -75,7 +75,7 @@
   </div>
 </div>
 
-<div class="toolbar" *ngIf="currentStatus==='1' && sceneFormComponent.cusRawStatus !==2 ">
+<div class="toolbar" *ngIf="currentStatus==='1' && rawInfo.cusRawStatus !==2 ">
   <div class="toolbar-inner layout">
     <p class="toolbar-text">
       <a href="javascript:;" (click)="onBack()" class="btn-back"> < 返回重选</a>
@@ -84,7 +84,7 @@
   </div>
 </div>
 
-<div class="toolbar" *ngIf="sceneFormComponent.cusRawStatus ===2 ">
+<div class="toolbar" *ngIf="rawInfo.cusRawStatus ===2 ">
   <div class="toolbar-inner toolbar-day layout">
     <p class="wait-day">
       <span class="icon-day"></span>
@@ -96,7 +96,7 @@
 
 <viewer *ngIf="isPreview"
         [status]="currentStatus"
-        [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
+        [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '') && rawInfo.cusRawStatus !== 2"
         (close)="onClosePreview()"
         (choose)="onChoose($event)"
         [currentIndex]="previewIndex"
@@ -105,7 +105,7 @@
 
 <pcviewer  *ngIf="isPcPreview"
            [status]="currentStatus"
-           [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
+           [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '') && rawInfo.cusRawStatus !== 2"
            (close)="onClosePcPreview()"
            (choose)="onChoose($event)"
            [currentIndex]="previewIndex"
@@ -113,7 +113,7 @@
 
 
 <tip
-  *ngIf="isShowGuide && sceneFormComponent.cusRawStatus !== 2"
+  *ngIf="isShowGuide && rawInfo.cusRawStatus !== 2"
   (close)="onCloseTip()"
   btnText = '我知道了'>
   本订单标配可选片{{rawInfo.truingImgNum}}张, 第一步建议您初选{{rawInfo.truingImgNum*2}}张左右, 然后进行细选!
