@@ -44,13 +44,17 @@ export class ViewerComponent implements OnInit, OnDestroy{
     y: 0
   }
 
+  imageUrl = ''
+
   /**
    * 初始化事件
    */
   ngOnInit():void {
+    this.imageUrl = this.photoList[this.currentIndex].imgKey
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'hidden'
     dom.style.height = '100%'
+
   }
 
   ngOnDestroy() {
@@ -69,6 +73,8 @@ export class ViewerComponent implements OnInit, OnDestroy{
 
     this.isLoadingImage =  true
     this.currentIndex -= 1
+
+    this.imageUrl = this.photoList[this.currentIndex].imgKey
   }
 
   /**
@@ -81,6 +87,8 @@ export class ViewerComponent implements OnInit, OnDestroy{
 
     this.isLoadingImage = true
     this.currentIndex += 1
+
+    this.imageUrl = this.photoList[this.currentIndex].imgKey
   }
 
   /**
@@ -98,6 +106,11 @@ export class ViewerComponent implements OnInit, OnDestroy{
   }
 
   onTouchStart(e){
+
+    if(this.isLoadingImage){
+      return
+    }
+
     this.isTouchStart = true
 
     this.touchPosStart = {
@@ -107,6 +120,10 @@ export class ViewerComponent implements OnInit, OnDestroy{
   }
 
   onTouchEnd(e){
+    if(this.isLoadingImage){
+      return
+    }
+
     if(!this.isTouchStart || !this.isTouchMove){
       this.isTouchStart = false
       this.isTouchMove = false
@@ -133,6 +150,9 @@ export class ViewerComponent implements OnInit, OnDestroy{
   }
 
   onTouchMove(e){
+    if(this.isLoadingImage){
+      return
+    }
     this.isTouchMove = true
     this.touchPosMove = {
       x: e.touches[0].clientX,
@@ -140,12 +160,13 @@ export class ViewerComponent implements OnInit, OnDestroy{
     }
   }
 
-  loadImage(imageSrc){
+  loadImage(imageUrl){
     let image = new Image()
     let _self = this
     image.onload=function() {
       _self.isLoadingImage = false
+      _self.imageUrl = imageUrl
     }
-    image.src = imageSrc
+    image.src = imageUrl
   }
 }
