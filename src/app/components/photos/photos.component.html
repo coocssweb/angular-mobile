@@ -1,9 +1,9 @@
 <div *ngIf="isShowPcGuide" class="pc-guide pc-layout">
-  本订单标配可选片{{sceneFormComponent.requireNum}}张,第一步建议您先粗选{{sceneFormComponent.requireNum*2}}张左右,然后进行细选 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
+  本订单标配可选片{{rawInfo.truingImgNum}}张,第一步建议您先粗选{{rawInfo.truingImgNum*2}}张左右,然后进行细选 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
 </div>
 
 <scene-form
-            [show]="currentStatus!==''" [photoInfoId]="photoInfoId"
+            [show]="currentStatus!=='' && rawInfo.cusRawStatus!=2" [photoInfoId]="photoInfoId"
             (onTabSceneCb)="onTabSceneCb($event)">
 </scene-form>
 
@@ -26,7 +26,7 @@
     [list]="photoList"
     [type]="'raw'"
     [status]="currentStatus"
-    [isShowDelete] = "(sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
+    [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
     (choose)="onChoose($event)"
     (preview)="onPcPreview($event)"
   ></pcphoto>
@@ -40,7 +40,7 @@
         [type]="'raw'"
         [status]="currentStatus"
         [rawStatus]="sceneFormComponent.cusRawStatus"
-        [isShowDelete] = "(sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
+        [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -51,7 +51,7 @@
         [type]="'raw'"
         [status]="currentStatus"
         [rawStatus]="sceneFormComponent.cusRawStatus"
-        [isShowDelete] = "(sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
+        [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
         (choose)="onChoose($event)"
         (preview)="onPreview($event)"
       ></photo>
@@ -69,8 +69,8 @@
 <div class="toolbar" *ngIf="currentStatus==='' && sceneFormComponent.cusRawStatus !== 2">
   <div class="toolbar-inner layout">
     <p class="toolbar-text">
-      <span class="icon-ok" *ngIf="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum"></span>您已初选{{sceneFormComponent.checkedNum}}张
-      <a href="javascript:;" (click)="onNext()" class="btn-next" [class.btn-next-active]="sceneFormComponent.checkedNum>=sceneFormComponent.requireNum">进入精选</a>
+      <span class="icon-ok" *ngIf="sceneFormComponent.checkedNum>=rawInfo.truingImgNum"></span>您已初选{{sceneFormComponent.checkedNum}}张
+      <a href="javascript:;" (click)="onNext()" class="btn-next" [class.btn-next-active]="sceneFormComponent.checkedNum>=rawInfo.truingImgNum">进入精选</a>
     </p>
   </div>
 </div>
@@ -96,7 +96,7 @@
 
 <viewer *ngIf="isPreview"
         [status]="currentStatus"
-        [isShowDelete] = "(sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
+        [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
         (close)="onClosePreview()"
         (choose)="onChoose($event)"
         [currentIndex]="previewIndex"
@@ -105,7 +105,7 @@
 
 <pcviewer  *ngIf="isPcPreview"
            [status]="currentStatus"
-           [isShowDelete] = "(sceneFormComponent.checkedNum !== sceneFormComponent.requireNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
+           [isShowDelete] = "(sceneFormComponent.checkedNum !== rawInfo.truingImgNum || currentStatus === '')&&sceneFormComponent.cusRawStatus !== 2"
            (close)="onClosePcPreview()"
            (choose)="onChoose($event)"
            [currentIndex]="previewIndex"
@@ -116,14 +116,14 @@
   *ngIf="isShowGuide && sceneFormComponent.cusRawStatus !== 2"
   (close)="onCloseTip()"
   btnText = '我知道了'>
-  本订单标配可选片{{sceneFormComponent.requireNum}}张, 第一步建议您初选{{sceneFormComponent.requireNum*2}}张左右, 然后进行细选!
+  本订单标配可选片{{rawInfo.truingImgNum}}张, 第一步建议您初选{{rawInfo.truingImgNum*2}}张左右, 然后进行细选!
 </tip>
 
 <tip
   *ngIf="isShowTip"
   (close)="onCloseTip()"
   btnText = '我知道了'>
-  您正好选择了<span class="count">{{sceneFormComponent.requireNum}}</span>张，请点击网页底部的确认选片进行确认。
+  您正好选择了<span class="count">{{rawInfo.truingImgNum}}</span>张，请点击网页底部的确认选片进行确认。
 </tip>
 
 
@@ -161,9 +161,9 @@
   (confirm)="confirmFinish($event)"
   (cancel)="cancelOverChoose($event)">
   <div class="count-content">
-    您已选片{{sceneFormComponent.checkedNum}}张，订单精修片数量为{{sceneFormComponent.requireNum}}张
+    您已选片{{sceneFormComponent.checkedNum}}张，订单精修片数量为{{rawInfo.truingImgNum}}张
     <br/>额外费用大约
-    <br><span class="money">￥{{rawInfo.truingPrice * (sceneFormComponent.checkedNum - sceneFormComponent.requireNum)}}</span>
+    <br><span class="money">￥{{rawInfo.truingPrice * (sceneFormComponent.checkedNum - rawInfo.truingImgNum)}}</span>
     <br />客服专员会联系您以确认准确费用
   </div>
 </confirm>
@@ -172,7 +172,7 @@
   *ngIf="isShowOkTip"
   (close)="onCloseOkChoose()"
   btnText = '我知道了'>
-  您正好选择了<span class="count">{{sceneFormComponent.requireNum}}</span>张，请点击网页底部的确认选片进行确认。
+  您正好选择了<span class="count">{{rawInfo.truingImgNum}}</span>张，请点击网页底部的确认选片进行确认。
 </tip>
 
 
@@ -181,7 +181,7 @@
   (close)="onCloseOkChoose()"
   btnText = '我知道了'>
   <div class="over-tip">
-    <p>本订单精修片数量只有12张，超过的每张产生￥{{rawInfo.truingPrice}}额外费用。</p>
+    <p>本订单精修片数量为{{rawInfo.truingImgNum}}张，超出后每张将产生￥{{rawInfo.truingPrice}}额外费用。</p>
     <p class="over-tip-2">
     您已经粗选了<span class="count">{{sceneFormComponent.checkedNum}}</span>张照片，请点击<span class="inner-btn">删除</span>去除不需要的照片。
     </p>

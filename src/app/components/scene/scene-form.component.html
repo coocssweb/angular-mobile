@@ -1,4 +1,4 @@
-<div *ngIf="!show && cusRawStatus!=2" class="scene-outer" id="scene-outer">
+<div *ngIf="!show" class="scene-outer" id="scene-outer">
     <div class="scene-inner clearfix" id="scene-inner">
       <ul class="scene-list clearfix" id="scene-list" [ngStyle]="diffX"  (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)" (touchmove)="onTouchMove($event)">
           <li class="scene-item" *ngFor="let scene of sceneList" (click)="onSelectScene(scene)">

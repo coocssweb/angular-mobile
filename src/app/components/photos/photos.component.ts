@@ -90,6 +90,9 @@ export class PhotosComponent implements OnInit {
   }
 
   rawInfo: any = {
+    busRawStatus: 1,
+    cusRawStatus: 1,
+    truingImgNum: 0,
     truingPrice: 0
   }
 
@@ -291,9 +294,9 @@ export class PhotosComponent implements OnInit {
    * 进入精选
    */
   onNext(){
-    if(this.sceneFormComponent.checkedNum<this.sceneFormComponent.requireNum){
+    if(this.sceneFormComponent.checkedNum<this.rawInfo.truingImgNum){
       return
-    }else if(this.sceneFormComponent.checkedNum === this.sceneFormComponent.requireNum){
+    }else if(this.sceneFormComponent.checkedNum === this.rawInfo.truingImgNum){
       this.isShowOkTip = true
     }else{
       this.isShowOverTip = true
@@ -304,9 +307,9 @@ export class PhotosComponent implements OnInit {
    * 确认提交
    */
   onFinish(){
-    if(this.sceneFormComponent.checkedNum < this.sceneFormComponent.requireNum){
+    if(this.sceneFormComponent.checkedNum < this.rawInfo.truingImgNum){
       return
-    }else if(this.sceneFormComponent.checkedNum>this.sceneFormComponent.requireNum){
+    }else if(this.sceneFormComponent.checkedNum>this.rawInfo.truingImgNum){
       this.isShowOverChoose = true
     }else{
       this.isShowConfirmFinish = true
@@ -364,7 +367,7 @@ export class PhotosComponent implements OnInit {
         aimParentDom.removeChild( aimDom )
 
         //判断是否显示  提示剩余数量刚好等于 要求数量
-        if(this.sceneFormComponent.checkedNum -1 === this.sceneFormComponent.requireNum ){
+        if(this.sceneFormComponent.checkedNum -1 === this.rawInfo.truingImgNum ){
           this.isShowTip = true
         }
 

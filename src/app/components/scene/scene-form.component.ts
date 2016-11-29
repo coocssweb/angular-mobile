@@ -1,51 +1,45 @@
-import {Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
-import {Scene} from './scene'
-import {SceneService} from '../../services/scene.service.ts'
-import StringUtils from '../../utils/stringUtils'
+import {Component, OnInit, Output, Input, EventEmitter} from "@angular/core";
+import {Scene} from "./scene";
+import {SceneService} from "../../services/scene.service";
 
 @Component({
-  selector: '<scene-form></scene-form>',
+  selector: 'scene-form',
   templateUrl: 'scene-form.component.html',
   styleUrls: ['./scene-form.component.css'],
   providers: [SceneService]
 })
 export class SceneFormComponent implements OnInit {
 
-  @Input() photoInfoId:string
+  @Input() photoInfoId: string
 
   @Input() show: boolean
 
   //切换场景回调
   @Output() onTabSceneCb = new EventEmitter()
 
-
   //项目列表
-  sceneList:Scene[] = []
+  sceneList: Scene[] = []
 
   //当前选择项
   selectedScene = {
     id: 0
   }
 
-  requireNum = 0
-
   checkedNum = 0
 
   totalCount = 0
-
-  cusRawStatus = 2
 
   isTouchStart = false
 
   isTouchMove = false
 
   diffX = {
-    diff:  0,
+    diff: 0,
     left: '0px'
   }
 
   //当前触屏位置
-  touchPosStart= {
+  touchPosStart = {
     x: 0,
     y: 0
   }
@@ -59,13 +53,13 @@ export class SceneFormComponent implements OnInit {
    * 构造函数
    * @param sceneService
    */
-  constructor(private sceneService:SceneService) {
+  constructor(private sceneService: SceneService) {
   }
 
   /**
    * 初始化事件
    */
-  ngOnInit():void {
+  ngOnInit(): void {
     this.getScenes()
   }
 
@@ -73,22 +67,20 @@ export class SceneFormComponent implements OnInit {
   /**
    * 获取场景
    */
-  getScenes():void {
+  getScenes(): void {
     this.sceneService.getScenes(this.photoInfoId)
-      .then((scenes:any) => {
+      .then((photoSceneCounts: any[]) => {
         let totalRaw = 0
         let totalChecked = 0
-        this.requireNum = scenes.truingImgNum
-        scenes.photoSceneCounts.map((item)=> {
+        photoSceneCounts.map((item) => {
           totalRaw += item.rawNum ? item.rawNum : 0
           totalChecked += item.checkedNum ? item.checkedNum : 0
         })
         this.checkedNum = totalChecked
         this.totalCount = totalRaw
         let totalScene = new Scene(0, '全部', totalRaw, totalChecked)
-        this.sceneList = scenes.photoSceneCounts
+        this.sceneList = photoSceneCounts
         this.sceneList = [totalScene].concat(this.sceneList)
-        this.cusRawStatus = scenes.cusRawStatus
       })
   }
 
@@ -100,7 +92,7 @@ export class SceneFormComponent implements OnInit {
   }
 
 
-  onTouchStart(e){
+  onTouchStart(e) {
     this.isTouchStart = true
 
     this.touchPosStart = {
@@ -109,7 +101,7 @@ export class SceneFormComponent implements OnInit {
     }
   }
 
-  onTouchEnd(e){
+  onTouchEnd(e) {
     this.isTouchStart = false
     this.isTouchMove = false
 
@@ -126,8 +118,8 @@ export class SceneFormComponent implements OnInit {
     }
   }
 
-  onTouchMove(e){
-    if(!this.isTouchStart){
+  onTouchMove(e) {
+    if (!this.isTouchStart) {
       return
     }
     this.isTouchMove = true
@@ -137,16 +129,16 @@ export class SceneFormComponent implements OnInit {
     }
 
     let diffX = this.diffX.diff + this.touchPosMove.x - this.touchPosStart.x
-    if(diffX > 0){
+    if (diffX > 0) {
       return
     }
 
-    if(diffX < document.getElementById('scene-inner').offsetWidth - document.getElementById('scene-list').offsetWidth){
+    if (diffX < document.getElementById('scene-inner').offsetWidth - document.getElementById('scene-list').offsetWidth) {
       return
     }
 
 
-    this.diffX.left =  diffX + "px"
+    this.diffX.left = diffX + "px"
   }
 
 
