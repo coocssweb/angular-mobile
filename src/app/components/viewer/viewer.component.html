@@ -1,7 +1,11 @@
 <div class="viewer-box">
   <a href="javascript:;" class="btn-close" (click)="onClose()"></a>
-  <div class="viewer-content" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)" (touchmove)="onTouchMove($event)">
-      <img class="viewer-big-image" (load)="loadImage(photoList[currentIndex].imgKey.replace('-300','-800'))"
+  <div class="viewer-content" >
+      <img class="viewer-big-image"
+           [ngStyle]=" isScale?imgStyle:{}"
+           (dblclick)="onScale()"
+           (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)" (touchmove)="onTouchMove($event)"
+           (load)="loadImage(photoList[currentIndex].imgKey.replace('-300','-800'))"
            src="{{imageUrl}}"/>
   </div>
   <a href="javascript:;" (click)="onChoose()" *ngIf="isShowDelete" class="btn-choose">{{status === '' ? ( photoList[currentIndex].status == 1 ? '取消选择'  : '选择' ) : '删除'}}</a>

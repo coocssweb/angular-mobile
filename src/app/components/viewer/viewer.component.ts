@@ -28,6 +28,8 @@ export class ViewerComponent implements OnInit, OnDestroy{
   //选择事件
   @Output() choose = new EventEmitter()
 
+  isScale = false
+
   isTouchStart = false
 
   isTouchMove = false
@@ -46,6 +48,16 @@ export class ViewerComponent implements OnInit, OnDestroy{
 
   imageUrl = ''
 
+  imgStyle = {
+    'max-width': 'none',
+    'max-height': 'none',
+    'transform': 'inherit'
+  }
+
+  imgSize = {
+    width: 0,
+    height: 0
+  }
   /**
    * 初始化事件
    */
@@ -73,7 +85,7 @@ export class ViewerComponent implements OnInit, OnDestroy{
 
     this.isLoadingImage =  true
     this.currentIndex -= 1
-
+    this.isScale = false
     this.imageUrl = this.photoList[this.currentIndex].imgKey
   }
 
@@ -87,7 +99,7 @@ export class ViewerComponent implements OnInit, OnDestroy{
 
     this.isLoadingImage = true
     this.currentIndex += 1
-
+    this.isScale = false
     this.imageUrl = this.photoList[this.currentIndex].imgKey
   }
 
@@ -130,7 +142,10 @@ export class ViewerComponent implements OnInit, OnDestroy{
       return
     }
 
-    if(this.touchPosStart.x - this.touchPosMove.x < 50 ){
+
+
+
+    if(this.touchPosStart.x - this.touchPosMove.x < -50 ){
       this.onPrev()
     }else if(this.touchPosStart.x - this.touchPosMove.x > 50){
       this.onNext()
@@ -166,7 +181,16 @@ export class ViewerComponent implements OnInit, OnDestroy{
     image.onload=function() {
       _self.isLoadingImage = false
       _self.imageUrl = imageUrl
+      _self.imgSize.width = image.width
+      _self.imgSize.height = image.height
     }
     image.src = imageUrl
+  }
+
+
+  onScale(){
+    // this.isScale = true
+    // this.imgStyle['margin-left'] = -this.imgSize.width/2 + 'px'
+    // this.imgStyle['margin-top'] = -this.imgSize.height/2 + 'px'
   }
 }
