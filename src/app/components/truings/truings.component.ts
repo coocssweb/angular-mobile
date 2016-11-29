@@ -43,7 +43,7 @@ export class TruingsComponent implements OnInit {
   truingList: any [] = []
 
   //加载更多组件
-  page: Page = new Page()
+  page: Page = new Page( 1, 20, -1, 0, false, false, 0, 0 )
 
   //显示操作成功
   isShowSuccess = false
@@ -240,7 +240,7 @@ export class TruingsComponent implements OnInit {
       }
     }
     this.currentStatus = status
-    this.page = new Page()
+    this.page = new Page( 1, 20, -1, 0, false, false, 0, 0 )
     this.getPhotos()
   }
 

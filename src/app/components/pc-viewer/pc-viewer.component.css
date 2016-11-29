@@ -26,6 +26,7 @@
     width: 40px;
     background-image: url(../../../images/pc/btn-close.png);
     background-size: cover;
+    z-index: 3;
 }
 
 .btn-close:hover{

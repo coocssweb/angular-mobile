@@ -254,3 +254,17 @@
   color: #FFFFFF;
   margin: 0px 3px;
 }
+
+
+.no-init{
+  padding-top: 100px;
+  text-align: center;
+  line-height: 35px;
+  font-size: 20px;
+}
+
+.no-init img{
+  display: inline-block;
+  width: 80px;
+  margin-bottom: 20px;
+}

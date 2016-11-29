@@ -1,11 +1,12 @@
-<div *ngIf="isShowPcGuide" class="pc-guide pc-layout">
+<div *ngIf="isShowPcGuide && rawInfo.cusRawStatus !==-1 && rawInfo.cusRawStatus !==2" class="pc-guide pc-layout">
   本订单标配可选片{{rawInfo.truingImgNum}}张,第一步建议您先粗选{{rawInfo.truingImgNum*2}}张左右,然后进行细选 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
 </div>
 
 <scene-form
-            [show]="currentStatus!=='' && rawInfo.cusRawStatus!=2" [photoInfoId]="photoInfoId"
+            [show]="currentStatus=='' && rawInfo.cusRawStatus!==2 && rawInfo.cusRawStatus !==-1 && rawInfo.cusRawStatus !== 0" [photoInfoId]="photoInfoId"
             (onTabSceneCb)="onTabSceneCb($event)">
 </scene-form>
+<div *ngIf="rawInfo.cusRawStatus!=0">
 
 <div class="scene-outer clearfix" *ngIf="rawInfo.cusRawStatus === 2">
   <div class="scene-inner clearfix" id="scene-inner">
@@ -75,6 +76,8 @@
   </div>
 </div>
 
+
+
 <div class="toolbar" *ngIf="currentStatus==='1' && rawInfo.cusRawStatus !==2 ">
   <div class="toolbar-inner layout">
     <p class="toolbar-text">
@@ -92,7 +95,13 @@
     </p>
   </div>
 </div>
+</div>
 
+
+<div class="no-init" *ngIf="rawInfo.cusRawStatus === 0">
+  <img src="../../../images/icon-day-big.png" />
+  <p>等待商家上传原片...</p>
+</div>
 
 <viewer *ngIf="isPreview"
         [status]="currentStatus"
