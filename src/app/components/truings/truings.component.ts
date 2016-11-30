@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {TruingService} from "../../services/truings.service";
 import {QINIU_DOMAIN} from "../../constant/config";
 import {ActivatedRoute, Params} from "@angular/router";

@@ -104,8 +104,8 @@ export class BaseService {
   }
 
   private handleError(error: Response | any) {
-    var ua = navigator.userAgent.toLowerCase();
-    var isWeixin = ua.indexOf("micromessenger") >= 0;
+    let ua = navigator.userAgent.toLowerCase();
+    let isWeixin = ua.indexOf("micromessenger") >= 0;
     if (error.status == 403 || (error.status == 419 && isWeixin)) {
       window.location.href = "#/forbidden"
     }
