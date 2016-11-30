@@ -58,6 +58,10 @@ export class ViewerComponent implements OnInit, OnDestroy{
     width: 0,
     height: 0
   }
+
+  isRender = false
+
+  hasLoad = false
   /**
    * 初始化事件
    */
@@ -87,6 +91,7 @@ export class ViewerComponent implements OnInit, OnDestroy{
     this.currentIndex -= 1
     this.isScale = false
     this.imageUrl = this.photoList[this.currentIndex].imgKey
+    this.hasLoad = false
   }
 
   /**
@@ -101,6 +106,7 @@ export class ViewerComponent implements OnInit, OnDestroy{
     this.currentIndex += 1
     this.isScale = false
     this.imageUrl = this.photoList[this.currentIndex].imgKey
+    this.hasLoad = false
   }
 
   /**
@@ -176,21 +182,30 @@ export class ViewerComponent implements OnInit, OnDestroy{
   }
 
   loadImage(imageUrl){
-    let image = new Image()
-    let _self = this
-    image.onload=function() {
-      _self.isLoadingImage = false
-      _self.imageUrl = imageUrl
-      _self.imgSize.width = image.width
-      _self.imgSize.height = image.height
+    if(this.hasLoad){
+      return
     }
+
+    let image = new Image()
+    image.onload=function() {
+      this.isLoadingImage = false
+      this.imageUrl = imageUrl
+      this.imgSize.width = image.width
+      this.imgSize.height = image.height
+      this.hasLoad = true
+      document.getElementById('render').click()
+    }.bind(this)
     image.src = imageUrl
   }
 
 
   onScale(){
-    // this.isScale = true
-    // this.imgStyle['margin-left'] = -this.imgSize.width/2 + 'px'
-    // this.imgStyle['margin-top'] = -this.imgSize.height/2 + 'px'
+    this.isScale = true
+    this.imgStyle['margin-left'] = ''
+    this.imgStyle['margin-right'] = ''
+  }
+
+  render(){
+    this.isRender = !this.isRender
   }
 }
