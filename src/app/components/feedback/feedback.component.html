@@ -13,8 +13,8 @@
     <a href="javascript:;" (click)="onToggleDrop($event)" class="drop-display">查看V{{currentVersion+1}}版本<span class="icon-dropdown"></span></a>
   </div>
   <div class="viewer-content" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)" (touchmove)="onTouchMove($event)">
-      <img class="viewer-big-image" (load)="loadImage(truingList[currentIndex].imgKey.replace('-300','-800'))"
-           src="{{truingList[this.currentIndex].truings[this.currentVersion].imgKey.replace('-300','-800')}}"/>
+      <img class="viewer-big-image" (load)="loadImage(truingList[currentIndex].truings[currentVersion].imgKey.replace('-300','-800'))"
+           src="{{imageUrl}}"/>
   </div>
   <div class="footer" *ngIf="cusTruingStatus!==2&&cusTruingStatus!==3">
     <div class="footer-inner layout">
@@ -32,3 +32,7 @@
 <div class="main-mask self-mask" *ngIf="isLoadingImage">
   <span class="loading-text"></span>
 </div>
+
+
+
+<a href="javascript:;" id="render" class="render" (click)="render($event)">dom</a>
