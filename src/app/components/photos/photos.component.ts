@@ -61,7 +61,7 @@ export class PhotosComponent implements OnInit {
   photoInfoId: number
 
   //分页信息
-  page: Page = new Page( 1, 20, -1, 0, false, false, 0, 0 )
+  page: Page = new Page()
 
   //当前场景ID
   currentSceneId = null
@@ -201,7 +201,7 @@ export class PhotosComponent implements OnInit {
     if (this.currentScene && scene.id === this.currentScene.id) {
       return
     }
-    this.page = new Page( 1, 20, -1, 0, false, false, 0, 0 )
+    this.page = new Page()
     //设置当前原片场景
     this.currentScene = scene
 
