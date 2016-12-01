@@ -1,12 +1,11 @@
 /**
  * 加载中组件
  */
-
-import { Component } from '@angular/core';
+import {Component} from "@angular/core";
 
 
 @Component({
-    selector: '<loading></loading>',
+    selector: 'loading',
     templateUrl: 'loading.component.html',
     styleUrls: ['loading.component.css']
 })

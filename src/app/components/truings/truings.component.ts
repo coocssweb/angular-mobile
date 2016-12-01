@@ -214,9 +214,8 @@ export class TruingsComponent implements OnInit {
         }, this)
         this.truingList = this.truingList.concat(list)
         this.loadImages(0)
-      }else{
-        this.isLoadingData = false
       }
+      this.isLoadingData = false
     })
   }
 

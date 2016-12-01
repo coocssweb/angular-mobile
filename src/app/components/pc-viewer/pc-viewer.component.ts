@@ -3,9 +3,10 @@
  * @description :: 大图查看器
  */
 import {Component, Input, Output, EventEmitter, OnInit, OnDestroy} from "@angular/core";
+import {LoggerService} from "../../services/logger.service";
 
 @Component({
-  selector: '<pcviewer></pcviewer>',
+  selector: 'pcviewer',
   templateUrl: 'pc-viewer.component.html',
   styleUrls: ['./pc-viewer.component.css']
 })
@@ -29,6 +30,10 @@ export class PCViewerComponent implements OnInit, OnDestroy{
   @Output() choose = new EventEmitter()
 
   isLoadingImage = true
+
+  constructor(private logger: LoggerService) {
+
+  }
 
   /**
    * 初始化事件
@@ -100,9 +105,11 @@ export class PCViewerComponent implements OnInit, OnDestroy{
    * @param imageSrc
    */
   loadImage(imageSrc){
+    this.logger.debug("开始加载大图 imageUrl:" + imageSrc)
     let image = new Image()
     let _self = this
     image.onload=function() {
+      _self.logger.debug("大图加载完成 imageUrl:" + imageSrc)
       _self.isLoadingImage = false
     }
     image.src = imageSrc

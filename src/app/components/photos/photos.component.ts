@@ -160,9 +160,8 @@ export class PhotosComponent implements OnInit {
         }, this)
         this.photoList = this.photoList.concat(list)
         this.loadImages(0)
-      }else{
-        this.isLoadingData = false
       }
+      this.isLoadingData = false
     })
   }
 

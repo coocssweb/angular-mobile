@@ -10,8 +10,10 @@ export class PaginationComponent implements OnInit {
 
   @Input() page: Page
 
+  // 分页样式 loadmore:移动端分页  simple:pc端简单分页
   @Input() style: string = 'loadmore'
 
+  // 是否正在加载数据
   @Input() loadingData: boolean = false
 
   //confirm框确认事件回调

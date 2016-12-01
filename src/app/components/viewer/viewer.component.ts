@@ -3,7 +3,7 @@
  * @description :: 大图查看器
  */
 import {Component, Input, Output, EventEmitter, OnInit, OnDestroy} from "@angular/core";
-import {QINIU_DOMAIN} from "../../constant/config";
+import {LoggerService} from "../../services/logger.service";
 
 @Component({
   selector: '<viewer></viewer>',
@@ -62,6 +62,11 @@ export class ViewerComponent implements OnInit, OnDestroy{
   isRender = false
 
   hasLoad = false
+
+  constructor(private logger: LoggerService) {
+
+  }
+
   /**
    * 初始化事件
    */
@@ -185,7 +190,7 @@ export class ViewerComponent implements OnInit, OnDestroy{
     if(this.hasLoad){
       return
     }
-
+    this.logger.debug("开始加载大图 imageUrl:" + imageUrl)
     let image = new Image()
     image.onload=function() {
       this.isLoadingImage = false
@@ -193,6 +198,7 @@ export class ViewerComponent implements OnInit, OnDestroy{
       this.imgSize.width = image.width
       this.imgSize.height = image.height
       this.hasLoad = true
+      this.logger.debug("大图加载完成 imageUrl:" + imageUrl)
       document.getElementById('render').click()
     }.bind(this)
     image.src = imageUrl
