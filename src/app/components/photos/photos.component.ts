@@ -132,7 +132,7 @@ export class PhotosComponent implements OnInit {
 
     this.getPhotos()
     this.photoService.getRawInfo(this.photoInfoId).then((result)=>{
-      this.rawInfo = result
+      Object.assign(this.rawInfo, result)
     })
   }
 
@@ -325,6 +325,7 @@ export class PhotosComponent implements OnInit {
     this.photoService.finish(this.photoInfoId).then((result)=>{
       this.isShowConfirmFinish = false
       this.isShowOverChoose = false
+      Object.assign(this.rawInfo, result)
       this.sceneFormComponent.getScenes()
     })
   }

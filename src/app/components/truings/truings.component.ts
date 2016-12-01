@@ -279,8 +279,10 @@ export class TruingsComponent implements OnInit {
    *  提交
    */
   onFinish(){
-    this.truingService.finish(this.photoInfoId).then((result)=>{
+    this.truingService.finish(this.photoInfoId).then((info)=>{
       this.isShowSuccess = true
+      this.statistics.cusTruingStatus = info.cusTruingStatus,
+      this.statistics.truingVersionNum = info.truingVersionNum
       this.getTruingInfo()
     })
   }
