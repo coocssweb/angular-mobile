@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  serverDomain: "http://b-test.idaoying.com",
+  serverDomain: "http://c-test.idaoying.com",
   qiniuDomain: "http://oex701atk.bkt.clouddn.com"
 }

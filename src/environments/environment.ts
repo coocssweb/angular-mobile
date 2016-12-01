@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  serverDomain: "http://127.0.0.1:8080",
+  serverDomain: "http://127.0.0.1:8090",
   qiniuDomain: "http://oex701atk.bkt.clouddn.com"
 };
