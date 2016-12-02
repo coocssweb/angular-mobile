@@ -76,12 +76,21 @@ export class ViewerComponent implements OnInit, OnDestroy{
     dom.style.overflow = 'hidden'
     dom.style.height = '100%'
 
+    let domBody = (<HTMLElement>document.getElementById('body'))
+    domBody.style.overflow = 'hidden'
+    domBody.style.height = '100%'
+
   }
 
   ngOnDestroy() {
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'auto'
     dom.style.height = ''
+    
+    let domBody = (<HTMLElement>document.getElementById('body'))
+    domBody.style.overflow = 'auto'
+    domBody.style.height = ''
+
   }
 
   /**
