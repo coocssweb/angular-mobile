@@ -231,7 +231,7 @@
 
 .toolbar-wait .icon-ok{
   left: -20px;
-  top: 28px;
+  top: 18px;
   background-image: url(../../../images/icon-ok-white.png);
 }
 
@@ -243,4 +243,8 @@
 .wait-text{
   position: relative;
   display: inline-block;
+}
+
+.render{
+  display: none;
 }

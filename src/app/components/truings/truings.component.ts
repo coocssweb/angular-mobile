@@ -266,7 +266,7 @@ export class TruingsComponent implements OnInit {
 
       let photo = this.truingList[index]
       photo.listIndex = index
-      
+
       if(this.truingCols.col1.height + col1.height <= this.truingCols.col2.height + col2.height){
         col1.list.push(photo)
         col1.height += height / width
