@@ -6,7 +6,7 @@ import {Component, Input, Output, EventEmitter, OnInit, OnDestroy} from "@angula
 import {LoggerService} from "../../services/logger.service";
 
 @Component({
-  selector: '<viewer></viewer>',
+  selector: 'viewer',
   templateUrl: 'viewer.component.html',
   styleUrls: ['./viewer.component.css']
 })
