@@ -96,7 +96,7 @@ export class PhotosComponent implements OnInit {
     truingPrice: 0
   }
 
-
+  isRender = false
 
   /**
    * 构造函数
@@ -120,11 +120,9 @@ export class PhotosComponent implements OnInit {
     this.cacheService.setPhotoInfoId(this.photoInfoId);
     this.cacheService.setPrevUrl("/raw/" + this.photoInfoId);
 
-
     if(document.getElementById('html').offsetWidth > 769){
       this.isShowGuide = false
     }
-
 
     if(this.currentStatus === '1'){
       this.isShowGuide = false
@@ -159,37 +157,59 @@ export class PhotosComponent implements OnInit {
           list.push(results[index])
         }, this)
         this.photoList = this.photoList.concat(list)
-        this.loadImages(0)
+
+        let col1 = {
+          list: [],
+          height: 0
+        }
+
+        let col2 = {
+          list: [],
+          height: 0
+        }
+        this.loadImages(0, col1, col2)
       }
-      this.isLoadingData = false
+
     })
   }
 
-  loadImages(index){
+  loadImages(index, col1, col2){
     let image = new Image()
-    let _self = this
+
     image.onload=function(){
       let height = image.height
       let width = image.width
-      let photo = _self.photoList[index]
+      let photo = this.photoList[index]
       photo.listIndex = index
-      if(_self.photoCols.col1.height <= _self.photoCols.col2.height){
-        _self.photoCols.col1.list.push(photo)
-        _self.photoCols.col1.height += height / width
+      if(this.photoCols.col1.height + col1.height <= this.photoCols.col2.height + col2.height){
+        col1.list.push(photo)
+        col1.height += height / width
       }else{
-        _self.photoCols.col2.list.push(photo)
-        _self.photoCols.col2.height += height / width
+        col2.list.push(photo)
+        col2.height += height / width
       }
-      if(index< _self.photoList.length - 1){
-        _self.loadImages(index+1)
+      if(index< this.photoList.length - 1){
+        this.loadImages(index+1, col1, col2)
       }else{
-        _self.isLoadingData = false
+
+        this.photoCols.col1.list = this.photoCols.col1.list.concat(col1.list)
+        this.photoCols.col2.list = this.photoCols.col2.list.concat(col2.list)
+
+        this.photoCols.col1.height += col1.height
+        this.photoCols.col2.height += col2.height
+        this.isLoadingData = false
+        document.getElementById('render').click()
+
       }
-    }
+    }.bind(this)
+
     image.src = this.photoList[index].imgKey
   }
 
 
+  render(){
+    this.isRender = !this.isRender
+  }
 
   /**
    * 切换原片场景

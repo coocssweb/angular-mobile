@@ -86,7 +86,7 @@ export class ViewerComponent implements OnInit, OnDestroy{
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'auto'
     dom.style.height = ''
-    
+
     let domBody = (<HTMLElement>document.getElementById('body'))
     domBody.style.overflow = 'auto'
     domBody.style.height = ''
