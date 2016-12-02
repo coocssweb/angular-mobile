@@ -74,6 +74,11 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'hidden'
     dom.style.height = '100%'
+
+    let domBody = (<HTMLElement>document.getElementById('body'))
+    domBody.style.overflow = 'hidden'
+    domBody.style.height = '100%'
+
     this.currentVersion =  this.truingList[this.currentIndex].truings.length - 1
     this.message = this.truingList[this.currentIndex].truings[this.currentVersion].remark
 
@@ -90,6 +95,11 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'auto'
     dom.style.height = ''
+
+    let domBody = (<HTMLElement>document.getElementById('body'))
+    domBody.style.overflow = 'auto'
+    domBody.style.height = ''
+
     document.removeEventListener('click')
   }
 

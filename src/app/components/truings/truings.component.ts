@@ -74,6 +74,9 @@ export class TruingsComponent implements OnInit {
 
   totalCount = -2
 
+
+  isRender = false
+
   /**
    * 构造函数
    * @param photoService
@@ -213,9 +216,17 @@ export class TruingsComponent implements OnInit {
           list.push(results[index])
         }, this)
         this.truingList = this.truingList.concat(list)
-        this.loadImages(0)
+        let col1 = {
+          list: [],
+          height: 0
+        }
+
+        let col2 = {
+          list: [],
+          height: 0
+        }
+        this.loadImages(0, col1, col2)
       }
-      this.isLoadingData = false
     })
   }
 
@@ -247,32 +258,42 @@ export class TruingsComponent implements OnInit {
    * 加载图片
    * @param index
      */
-  loadImages(index){
+  loadImages(index, col1, col2){
     let image = new Image()
-    let _self = this
     image.onload=function(){
       let height = image.height
       let width = image.width
 
-      let photo = _self.truingList[index]
+      let photo = this.truingList[index]
       photo.listIndex = index
-
-      if(_self.truingCols.col1.height <= _self.truingCols.col2.height){
-        _self.truingCols.col1.list.push(photo)
-        _self.truingCols.col1.height += height / width
+      
+      if(this.truingCols.col1.height + col1.height <= this.truingCols.col2.height + col2.height){
+        col1.list.push(photo)
+        col1.height += height / width
 
       } else {
-        _self.truingCols.col2.list.push(photo)
-        _self.truingCols.col2.height += height / width
+        col2.list.push(photo)
+        col2.height += height / width
       }
 
-      if(index< _self.truingList.length - 1){
-        _self.loadImages(index+1)
+      if(index< this.truingList.length - 1){
+        this.loadImages(index+1, col1, col2)
       }else{
-        _self.isLoadingData = false
+        this.truingCols.col1.list = this.truingCols.col1.list.concat(col1.list)
+        this.truingCols.col2.list = this.truingCols.col2.list.concat(col2.list)
+        this.truingCols.col1.height += col1.height
+        this.truingCols.col2.height += col2.height
+        this.isLoadingData = false
+        document.getElementById('render').click()
+
+        this.isLoadingData = false
       }
-    }
+    }.bind(this)
     image.src = this.truingList[index].imgKey
+  }
+
+  render(){
+    this.isRender = !this.isRender
   }
 
   /**
