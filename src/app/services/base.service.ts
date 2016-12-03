@@ -77,7 +77,8 @@ export class BaseService {
       .then((res: Response) => {
 
         if (res.status.toString().startsWith('2')) {
-          return {}
+          let body = res.json()
+          return body || {}
         }
 
       })
@@ -98,14 +99,15 @@ export class BaseService {
     return this.http.put(DOMAIN + url, body, options)
       .toPromise()
       .then((res: Response) => {
-        return res
+        let body = res.json()
+        return body || {}
       })
       .catch(this.handleError)
   }
 
   private handleError(error: Response | any) {
-    var ua = navigator.userAgent.toLowerCase();
-    var isWeixin = ua.indexOf("micromessenger") >= 0;
+    let ua = navigator.userAgent.toLowerCase();
+    let isWeixin = ua.indexOf("micromessenger") >= 0;
     if (error.status == 403 || (error.status == 419 && isWeixin)) {
       window.location.href = "#/forbidden"
     }

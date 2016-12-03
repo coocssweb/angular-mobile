@@ -158,3 +158,6 @@
   right: 10px;
   top: 12px;
 }
+.render{
+  display: none;
+}

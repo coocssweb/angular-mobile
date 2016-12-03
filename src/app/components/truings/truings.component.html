@@ -79,9 +79,9 @@
         <span *ngIf="statistics.unConfirmCount === 0 && statistics.modifyCount > 0">
           <span class="icon-ok"></span>已确认所有反馈
         </span>
-        <a href="javascript:;" *ngIf="statistics.totalCount>statistics.confirmCount" (click)="onFinish()" class="btn-next" [class.btn-next-active]="statistics.unConfirmCount===0" >
+        <!--<a href="javascript:;" *ngIf="statistics.totalCount>statistics.confirmCount" (click)="onFinish()" class="btn-next" [class.btn-next-active]="statistics.unConfirmCount===0" >
           提交V{{statistics.truingVersionNum ? (statistics.truingVersionNum+ 1) : 1 }}版本
-        </a>
+        </a>-->
         <a href="javascript:;" *ngIf="statistics.totalCount>statistics.confirmCount" (click)="onFinish()" class="btn-next" [class.btn-next-active]="statistics.unConfirmCount===0" >
           确认精修
         </a>
@@ -92,7 +92,7 @@
   <div *ngIf="statistics.cusTruingStatus===2" class="toolbar">
     <div class="toolbar-inner layout toolbar-wait">
       <p class="wait-text">
-        <span class="icon-ok"></span>意见已反馈给设计师，请耐心等待...
+        <span class="icon-ok"></span>您的意见已反馈给设计师，请等待片刻...
       </p>
     </div>
   </div>
@@ -102,8 +102,8 @@
 
 <div *ngIf="statistics.cusTruingStatus==0" class="no-init">
   <img src="../../../images/icon-day-big.png" class="icon-day" />
-  <p>设计师正在后期处理中...</p>
-  <p>预计50天后可以完成了</p>
+  <p>正在后期处理中...</p>
+  <p>预计50天后可以完成</p>
 </div>
 
 <feedback *ngIf="isPreview"
@@ -126,3 +126,5 @@
 <success *ngIf="isShowSuccess" (close)="onCloseSuccess()">
   操作成功
 </success>
+
+<a href="javascript:;" id="render" class="render" (click)="render($event)">dom</a>

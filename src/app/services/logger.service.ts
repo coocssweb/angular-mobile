@@ -7,11 +7,11 @@ import {Injectable} from "@angular/core";
 export class LoggerService {
 
   debug(msg) {
-    console.info(msg)
+    console.log(msg)
   }
 
   info(msg) {
-    console.info(msg)
+    console.log(msg)
   }
 
   error(msg) {

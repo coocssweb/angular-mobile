@@ -3,7 +3,6 @@
  * @description :: 大图查看器
  */
 import {Component, Input, Output, EventEmitter, OnInit, OnDestroy} from "@angular/core";
-import {QINIU_DOMAIN} from "../../constant/config";
 
 @Component({
   selector: '<pcfeedback></pcfeedback>',

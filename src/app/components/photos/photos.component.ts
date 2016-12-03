@@ -90,10 +90,13 @@ export class PhotosComponent implements OnInit {
   }
 
   rawInfo: any = {
+    busRawStatus: 1,
+    cusRawStatus: 2,
+    truingImgNum: 0,
     truingPrice: 0
   }
 
-
+  isRender = false
 
   /**
    * 构造函数
@@ -117,11 +120,9 @@ export class PhotosComponent implements OnInit {
     this.cacheService.setPhotoInfoId(this.photoInfoId);
     this.cacheService.setPrevUrl("/raw/" + this.photoInfoId);
 
-
     if(document.getElementById('html').offsetWidth > 769){
       this.isShowGuide = false
     }
-
 
     if(this.currentStatus === '1'){
       this.isShowGuide = false
@@ -129,7 +130,7 @@ export class PhotosComponent implements OnInit {
 
     this.getPhotos()
     this.photoService.getRawInfo(this.photoInfoId).then((result)=>{
-      this.rawInfo = result
+      Object.assign(this.rawInfo, result)
     })
   }
 
@@ -156,38 +157,59 @@ export class PhotosComponent implements OnInit {
           list.push(results[index])
         }, this)
         this.photoList = this.photoList.concat(list)
-        this.loadImages(0)
-      }else{
-        this.isLoadingData = false
+
+        let col1 = {
+          list: [],
+          height: 0
+        }
+
+        let col2 = {
+          list: [],
+          height: 0
+        }
+        this.loadImages(0, col1, col2)
       }
+
     })
   }
 
-  loadImages(index){
+  loadImages(index, col1, col2){
     let image = new Image()
-    let _self = this
+
     image.onload=function(){
       let height = image.height
       let width = image.width
-      let photo = _self.photoList[index]
+      let photo = this.photoList[index]
       photo.listIndex = index
-      if(_self.photoCols.col1.height <= _self.photoCols.col2.height){
-        _self.photoCols.col1.list.push(photo)
-        _self.photoCols.col1.height += height / width
+      if(this.photoCols.col1.height + col1.height <= this.photoCols.col2.height + col2.height){
+        col1.list.push(photo)
+        col1.height += height / width
       }else{
-        _self.photoCols.col2.list.push(photo)
-        _self.photoCols.col2.height += height / width
+        col2.list.push(photo)
+        col2.height += height / width
       }
-      if(index< _self.photoList.length - 1){
-        _self.loadImages(index+1)
+      if(index< this.photoList.length - 1){
+        this.loadImages(index+1, col1, col2)
       }else{
-        _self.isLoadingData = false
+
+        this.photoCols.col1.list = this.photoCols.col1.list.concat(col1.list)
+        this.photoCols.col2.list = this.photoCols.col2.list.concat(col2.list)
+
+        this.photoCols.col1.height += col1.height
+        this.photoCols.col2.height += col2.height
+        this.isLoadingData = false
+        document.getElementById('render').click()
+
       }
-    }
+    }.bind(this)
+
     image.src = this.photoList[index].imgKey
   }
 
 
+  render(){
+    this.isRender = !this.isRender
+  }
 
   /**
    * 切换原片场景
@@ -198,7 +220,9 @@ export class PhotosComponent implements OnInit {
     if (this.currentScene && scene.id === this.currentScene.id) {
       return
     }
+
     this.page = new  Page()
+
     //设置当前原片场景
     this.currentScene = scene
 
@@ -291,9 +315,9 @@ export class PhotosComponent implements OnInit {
    * 进入精选
    */
   onNext(){
-    if(this.sceneFormComponent.checkedNum<this.sceneFormComponent.requireNum){
+    if(this.sceneFormComponent.checkedNum<this.rawInfo.truingImgNum){
       return
-    }else if(this.sceneFormComponent.checkedNum === this.sceneFormComponent.requireNum){
+    }else if(this.sceneFormComponent.checkedNum === this.rawInfo.truingImgNum){
       this.isShowOkTip = true
     }else{
       this.isShowOverTip = true
@@ -304,9 +328,9 @@ export class PhotosComponent implements OnInit {
    * 确认提交
    */
   onFinish(){
-    if(this.sceneFormComponent.checkedNum < this.sceneFormComponent.requireNum){
+    if(this.sceneFormComponent.checkedNum < this.rawInfo.truingImgNum){
       return
-    }else if(this.sceneFormComponent.checkedNum>this.sceneFormComponent.requireNum){
+    }else if(this.sceneFormComponent.checkedNum>this.rawInfo.truingImgNum){
       this.isShowOverChoose = true
     }else{
       this.isShowConfirmFinish = true
@@ -321,6 +345,7 @@ export class PhotosComponent implements OnInit {
     this.photoService.finish(this.photoInfoId).then((result)=>{
       this.isShowConfirmFinish = false
       this.isShowOverChoose = false
+      Object.assign(this.rawInfo, result)
       this.sceneFormComponent.getScenes()
     })
   }
@@ -364,7 +389,7 @@ export class PhotosComponent implements OnInit {
         aimParentDom.removeChild( aimDom )
 
         //判断是否显示  提示剩余数量刚好等于 要求数量
-        if(this.sceneFormComponent.checkedNum -1 === this.sceneFormComponent.requireNum ){
+        if(this.sceneFormComponent.checkedNum -1 === this.rawInfo.truingImgNum ){
           this.isShowTip = true
         }
 

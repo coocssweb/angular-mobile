@@ -3,7 +3,6 @@
  * @description :: 大图查看器
  */
 import {Component, Input, Output, EventEmitter, OnInit, OnDestroy} from "@angular/core";
-import {QINIU_DOMAIN} from "../../constant/config";
 
 @Component({
   selector: '<feedback></feedback>',
@@ -47,13 +46,39 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     y: 0
   }
 
+
+  imageUrl = ''
+
+  imgStyle = {
+    'max-width': 'none',
+    'max-height': 'none',
+    'transform': 'inherit'
+  }
+
+  imgSize = {
+    width: 0,
+    height: 0
+  }
+
+  isRender = false
+
+  hasLoad = false
+
   /**
    * 初始化事件
    */
   ngOnInit():void {
+
+    this.imageUrl = this.truingList[this.currentIndex].truings[this.currentVersion].imgKey
+
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'hidden'
     dom.style.height = '100%'
+
+    let domBody = (<HTMLElement>document.getElementById('body'))
+    domBody.style.overflow = 'hidden'
+    domBody.style.height = '100%'
+
     this.currentVersion =  this.truingList[this.currentIndex].truings.length - 1
     this.message = this.truingList[this.currentIndex].truings[this.currentVersion].remark
 
@@ -70,6 +95,11 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'auto'
     dom.style.height = ''
+
+    let domBody = (<HTMLElement>document.getElementById('body'))
+    domBody.style.overflow = 'auto'
+    domBody.style.height = ''
+
     document.removeEventListener('click')
   }
 
@@ -124,6 +154,10 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     this.currentIndex -= 1
 
     this.currentVersion =  this.truingList[this.currentIndex].truings.length - 1
+
+    this.imageUrl = this.truingList[this.currentIndex].truings[this.currentVersion].imgKey
+    this.hasLoad = false
+
     this.message = this.truingList[this.currentIndex].truings[this.currentVersion].remark
 
   }
@@ -141,6 +175,10 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     this.currentIndex += 1
 
     this.currentVersion =  this.truingList[this.currentIndex].truings.length - 1
+
+    this.imageUrl = this.truingList[this.currentIndex].truings[this.currentVersion].imgKey
+    this.hasLoad = false
+
     this.message = this.truingList[this.currentIndex].truings[this.currentVersion].remark
 
   }
@@ -196,13 +234,17 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     }
   }
 
-  loadImage(imageSrc){
+  loadImage(imageUrl){
     let image = new Image()
-    let _self = this
     image.onload=function() {
-      _self.isLoadingImage = false
-    }
-    image.src = imageSrc
+      this.isLoadingImage = false
+      this.imageUrl = imageUrl
+      this.imgSize.width = image.width
+      this.imgSize.height = image.height
+      this.hasLoad = true
+      document.getElementById('render').click()
+    }.bind(this)
+    image.src = imageUrl
   }
 
   onToggleDrop(e){
@@ -213,5 +255,9 @@ export class FeedbackComponent implements OnInit, OnDestroy{
   onSelectVersion(index){
     this.isShowDrop = false
     this.currentVersion = index
+  }
+
+  render(){
+    this.isRender = !this.isRender
   }
 }

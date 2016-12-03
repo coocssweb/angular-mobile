@@ -10,8 +10,10 @@ export class PaginationComponent implements OnInit {
 
   @Input() page: Page
 
+  // 分页样式 loadmore:移动端分页  simple:pc端简单分页
   @Input() style: string = 'loadmore'
 
+  // 是否正在加载数据
   @Input() loadingData: boolean = false
 
   //confirm框确认事件回调
@@ -34,7 +36,7 @@ export class PaginationComponent implements OnInit {
     window.onscroll = function () {
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       let windowHeight = window.innerHeight
-      if (scrollTop + windowHeight == document.body.clientHeight && this.page.hasNextPage && !this.loadingData) {
+      if (scrollTop + windowHeight >= document.body.clientHeight && this.page.hasNextPage && !this.loadingData) {
         //不能直接调用onLoadMore方法，直接调用页面无效果
         document.getElementById('loadMoreBtn').click()
       }

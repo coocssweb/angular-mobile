@@ -3,10 +3,10 @@
  * @description :: 大图查看器
  */
 import {Component, Input, Output, EventEmitter, OnInit, OnDestroy} from "@angular/core";
-import {QINIU_DOMAIN} from "../../constant/config";
+import {LoggerService} from "../../services/logger.service";
 
 @Component({
-  selector: '<viewer></viewer>',
+  selector: 'viewer',
   templateUrl: 'viewer.component.html',
   styleUrls: ['./viewer.component.css']
 })
@@ -28,6 +28,8 @@ export class ViewerComponent implements OnInit, OnDestroy{
   //选择事件
   @Output() choose = new EventEmitter()
 
+  isScale = false
+
   isTouchStart = false
 
   isTouchMove = false
@@ -44,19 +46,51 @@ export class ViewerComponent implements OnInit, OnDestroy{
     y: 0
   }
 
+  imageUrl = ''
+
+  imgStyle = {
+    'max-width': 'none',
+    'max-height': 'none',
+    'transform': 'inherit'
+  }
+
+  imgSize = {
+    width: 0,
+    height: 0
+  }
+
+  isRender = false
+
+  hasLoad = false
+
+  constructor(private logger: LoggerService) {
+
+  }
+
   /**
    * 初始化事件
    */
   ngOnInit():void {
+    this.imageUrl = this.photoList[this.currentIndex].imgKey
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'hidden'
     dom.style.height = '100%'
+
+    let domBody = (<HTMLElement>document.getElementById('body'))
+    domBody.style.overflow = 'hidden'
+    domBody.style.height = '100%'
+
   }
 
   ngOnDestroy() {
     let dom = (<HTMLElement>document.getElementById('html'))
     dom.style.overflow = 'auto'
     dom.style.height = ''
+
+    let domBody = (<HTMLElement>document.getElementById('body'))
+    domBody.style.overflow = 'auto'
+    domBody.style.height = ''
+
   }
 
   /**
@@ -69,6 +103,9 @@ export class ViewerComponent implements OnInit, OnDestroy{
 
     this.isLoadingImage =  true
     this.currentIndex -= 1
+    this.isScale = false
+    this.imageUrl = this.photoList[this.currentIndex].imgKey
+    this.hasLoad = false
   }
 
   /**
@@ -81,6 +118,9 @@ export class ViewerComponent implements OnInit, OnDestroy{
 
     this.isLoadingImage = true
     this.currentIndex += 1
+    this.isScale = false
+    this.imageUrl = this.photoList[this.currentIndex].imgKey
+    this.hasLoad = false
   }
 
   /**
@@ -98,6 +138,11 @@ export class ViewerComponent implements OnInit, OnDestroy{
   }
 
   onTouchStart(e){
+
+    if(this.isLoadingImage){
+      return
+    }
+
     this.isTouchStart = true
 
     this.touchPosStart = {
@@ -107,13 +152,20 @@ export class ViewerComponent implements OnInit, OnDestroy{
   }
 
   onTouchEnd(e){
+    if(this.isLoadingImage){
+      return
+    }
+
     if(!this.isTouchStart || !this.isTouchMove){
       this.isTouchStart = false
       this.isTouchMove = false
       return
     }
 
-    if(this.touchPosStart.x - this.touchPosMove.x < 50 ){
+
+
+
+    if(this.touchPosStart.x - this.touchPosMove.x < -50 ){
       this.onPrev()
     }else if(this.touchPosStart.x - this.touchPosMove.x > 50){
       this.onNext()
@@ -133,6 +185,9 @@ export class ViewerComponent implements OnInit, OnDestroy{
   }
 
   onTouchMove(e){
+    if(this.isLoadingImage){
+      return
+    }
     this.isTouchMove = true
     this.touchPosMove = {
       x: e.touches[0].clientX,
@@ -140,12 +195,32 @@ export class ViewerComponent implements OnInit, OnDestroy{
     }
   }
 
-  loadImage(imageSrc){
-    let image = new Image()
-    let _self = this
-    image.onload=function() {
-      _self.isLoadingImage = false
+  loadImage(imageUrl){
+    if(this.hasLoad){
+      return
     }
-    image.src = imageSrc
+    this.logger.debug("开始加载大图 imageUrl:" + imageUrl)
+    let image = new Image()
+    image.onload=function() {
+      this.isLoadingImage = false
+      this.imageUrl = imageUrl
+      this.imgSize.width = image.width
+      this.imgSize.height = image.height
+      this.hasLoad = true
+      this.logger.debug("大图加载完成 imageUrl:" + imageUrl)
+      document.getElementById('render').click()
+    }.bind(this)
+    image.src = imageUrl
+  }
+
+
+  onScale(){
+    this.isScale = true
+    this.imgStyle['margin-left'] = ''
+    this.imgStyle['margin-right'] = ''
+  }
+
+  render(){
+    this.isRender = !this.isRender
   }
 }

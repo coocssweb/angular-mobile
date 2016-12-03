@@ -244,3 +244,7 @@
   position: relative;
   display: inline-block;
 }
+
+.render{
+  display: none;
+}
