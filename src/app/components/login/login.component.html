@@ -7,7 +7,7 @@
             <div class="text-center">
               <div>微信扫描，安全登录</div>
               <span class="span-box login-wechat-qr">
-                <img [src]="qrCodeUrl" id="img_QrCode" (error)="stopInterval()">
+                <img [src]="qrCodeUrl" id="img_QrCode" (error)="showErrImg()">
               </span>
               <div class="">
                 使用微信扫描二维码安全快速登录
