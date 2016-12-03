@@ -280,6 +280,11 @@ export class TruingsComponent implements OnInit {
    *  提交
    */
   onFinish(){
+    //还有未反馈的不允许提交
+    if( this.statistics.unConfirmCount>0 ){
+      return ;
+    }
+
     this.truingService.finish(this.photoInfoId).then((result)=>{
       this.isShowSuccess = true
       this.getTruingInfo()
