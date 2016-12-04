@@ -167,19 +167,19 @@ export class PhotosComponent implements OnInit {
           list: [],
           height: 0
         }
-        this.loadImages(0, col1, col2)
+        this.loadImages(list, 0, col1, col2)
       }
 
     })
   }
 
-  loadImages(index, col1, col2){
+  loadImages(photoList: any[], index, col1, col2){
     let image = new Image()
 
     image.onload=function(){
       let height = image.height
       let width = image.width
-      let photo = this.photoList[index]
+      let photo = photoList[index]
       photo.listIndex = index
       if(this.photoCols.col1.height + col1.height <= this.photoCols.col2.height + col2.height){
         col1.list.push(photo)
@@ -188,8 +188,8 @@ export class PhotosComponent implements OnInit {
         col2.list.push(photo)
         col2.height += height / width
       }
-      if(index< this.photoList.length - 1){
-        this.loadImages(index+1, col1, col2)
+      if(index < photoList.length - 1){
+        this.loadImages(photoList, index+1, col1, col2)
       }else{
 
         this.photoCols.col1.list = this.photoCols.col1.list.concat(col1.list)

@@ -41,4 +41,8 @@ export class PhotoComponent {
     this.choose.emit(index)
   }
 
+  trackByPhotos(index: number, photo: any) {
+    return photo.id
+  }
+
 }
