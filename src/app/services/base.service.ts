@@ -77,8 +77,9 @@ export class BaseService {
       .then((res: Response) => {
 
         if (res.status.toString().startsWith('2')) {
-          let body = res.json()
-          return body || {}
+          // let body = res.json()
+          // return body || {}
+          return {}
         }
 
       })
@@ -99,8 +100,12 @@ export class BaseService {
     return this.http.put(DOMAIN + url, body, options)
       .toPromise()
       .then((res: Response) => {
-        let body = res.json()
-        return body || {}
+        if(res["_body"]==""){
+          return res
+        }else {
+          let body = res.json()
+          return body || {}
+        }
       })
       .catch(this.handleError)
   }

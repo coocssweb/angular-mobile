@@ -74,7 +74,7 @@ export class PcFeedbackComponent implements OnInit, OnDestroy{
       return
     }
     this.accept.emit({
-      id: this.truingList[this.currentIndex].truings[0].id,
+      id: this.truingList[this.currentIndex].id,
       index: this.currentIndex,
       done: this.acceptSuccess.bind(this)
     })
@@ -91,7 +91,7 @@ export class PcFeedbackComponent implements OnInit, OnDestroy{
     }
 
     this.remark.emit({
-      id: this.truingList[this.currentIndex].truings[0].id,
+      id: this.truingList[this.currentIndex].id,
       message: this.message,
       index: this.currentIndex,
       done: this.remarkSuccess.bind(this)

@@ -284,7 +284,6 @@ export class TruingsComponent implements OnInit {
         document.getElementById('render').click()
       }
     }.bind(this)
-    console.log("idx:" + index)
     image.src = truingList[index].imgKey
   }
 
