@@ -2,11 +2,10 @@
  * tab
  * @description :: 通用Tab组件
  */
-
-import { Component, Input, Output, EventEmitter } from '@angular/core'
+import {Component, Input, Output, EventEmitter} from "@angular/core";
 
 @Component({
-  selector: '<pcphoto></pcphoto>',
+  selector: 'pcphoto',
   templateUrl: 'pc-photo.component.html',
   styleUrls: ['./pc-photo.component.css']
 })
@@ -38,6 +37,10 @@ export class PcPhotoComponent {
      */
   onChoose(index){
     this.choose.emit(index)
+  }
+
+  trackByPhotos(index: number, photo: any) {
+    return photo.id
   }
 
 }

@@ -225,7 +225,7 @@ export class TruingsComponent implements OnInit {
           list: [],
           height: 0
         }
-        this.loadImages(0, col1, col2)
+        this.loadImages(list, 0, col1, col2)
       }
     })
   }
@@ -258,13 +258,13 @@ export class TruingsComponent implements OnInit {
    * 加载图片
    * @param index
      */
-  loadImages(index, col1, col2){
+  loadImages(truingList: any[], index, col1, col2){
     let image = new Image()
     image.onload=function(){
       let height = image.height
       let width = image.width
 
-      let photo = this.truingList[index]
+      let photo = truingList[index]
       photo.listIndex = index
 
       if(this.truingCols.col1.height + col1.height <= this.truingCols.col2.height + col2.height){
@@ -276,7 +276,7 @@ export class TruingsComponent implements OnInit {
         col2.height += height / width
       }
 
-      if(index< this.truingList.length - 1){
+      if(index< truingList.length - 1){
         this.loadImages(index+1, col1, col2)
       }else{
         this.truingCols.col1.list = this.truingCols.col1.list.concat(col1.list)
@@ -289,7 +289,7 @@ export class TruingsComponent implements OnInit {
         this.isLoadingData = false
       }
     }.bind(this)
-    image.src = this.truingList[index].imgKey
+    image.src = truingList[index].imgKey
   }
 
   render(){
