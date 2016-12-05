@@ -153,11 +153,19 @@ export class TruingsComponent implements OnInit {
       if (!this.truingList[remarkObj.index].status) {
         this.truingInfo.unconfirmNum--
         this.truingInfo.confirmModifyNum++
+      } else if (this.truingList[remarkObj.index].status == 2) {
+        this.truingInfo.confirmPassNum--
+        this.truingInfo.confirmModifyNum++
       }
-
       this.truingList[remarkObj.index].status = 1
-      this.truingList[remarkObj.index].truings[0].remark = remarkObj.message
-      remarkObj.done()
+      this.isPreview = false
+      this.isPcPreview = false
+      if (this.currentStatus > -1 && this.currentStatus != this.truingList[remarkObj.index].status) {
+        this.truingList.splice(remarkObj.index, remarkObj.index + 1)
+      } else {
+        this.truingList[remarkObj.index].truings[0].remark = remarkObj.message
+        remarkObj.done()
+      }
     })
   }
 
@@ -174,10 +182,15 @@ export class TruingsComponent implements OnInit {
         this.truingInfo.confirmModifyNum--
         this.truingInfo.confirmPassNum++
       }
-
       this.truingList[valueObj.index].status = 2
-      //回调函数
-      valueObj.done()
+      this.isPreview = false
+      this.isPcPreview = false
+      if (this.currentStatus > -1 && this.currentStatus != this.truingList[valueObj.index].status) {
+        this.truingList.splice(valueObj.index, valueObj.index + 1)
+      } else {
+        //回调函数
+        valueObj.done()
+      }
     })
   }
 
@@ -296,7 +309,7 @@ export class TruingsComponent implements OnInit {
    */
   onFinish() {
     //还有未反馈的不允许提交
-    if( this.truingInfo.unConfirmCount>0 ) {
+    if (this.truingInfo.unconfirmNum > 0) {
       return;
     }
     this.truingService.finish(this.photoInfoId).then((info) => {

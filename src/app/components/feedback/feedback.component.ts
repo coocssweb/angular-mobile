@@ -5,7 +5,7 @@
 import {Component, Input, Output, EventEmitter, OnInit, OnDestroy} from "@angular/core";
 
 @Component({
-  selector: '<feedback></feedback>',
+  selector: 'feedback',
   templateUrl: 'feedback.component.html',
   styleUrls: ['feedback.component.css']
 })

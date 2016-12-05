@@ -5,7 +5,7 @@
 import {Component, Input, Output, EventEmitter, OnInit, OnDestroy} from "@angular/core";
 
 @Component({
-  selector: '<pcfeedback></pcfeedback>',
+  selector: 'pcfeedback',
   templateUrl: 'pc-feedback.component.html',
   styleUrls: ['./pc-feedback.component.css']
 })
