@@ -33,6 +33,8 @@ export class PhotosComponent implements OnInit {
   //图片列表
   photoList: any [] = []
 
+  tempList: any[] = []
+
   //当前场景
   currentScene: Scene
 
@@ -157,7 +159,7 @@ export class PhotosComponent implements OnInit {
           list.push(results[index])
         }, this)
         this.photoList = this.photoList.concat(list)
-
+        this.tempList = list
         let col1 = {
           list: [],
           height: 0
@@ -168,6 +170,8 @@ export class PhotosComponent implements OnInit {
           height: 0
         }
         this.loadImages(0, col1, col2)
+      }else{
+        this.isLoadingData = false
       }
 
     })
@@ -179,8 +183,8 @@ export class PhotosComponent implements OnInit {
     image.onload=function(){
       let height = image.height
       let width = image.width
-      let photo = this.photoList[index]
-      photo.listIndex = index
+      let photo = this.tempList[index]
+      photo.listIndex = this.photoList.length - this.tempList.length + index
       if(this.photoCols.col1.height + col1.height <= this.photoCols.col2.height + col2.height){
         col1.list.push(photo)
         col1.height += height / width
@@ -188,7 +192,7 @@ export class PhotosComponent implements OnInit {
         col2.list.push(photo)
         col2.height += height / width
       }
-      if(index< this.photoList.length - 1){
+      if(index< this.tempList.length - 1){
         this.loadImages(index+1, col1, col2)
       }else{
 
@@ -203,7 +207,7 @@ export class PhotosComponent implements OnInit {
       }
     }.bind(this)
 
-    image.src = this.photoList[index].imgKey
+    image.src = this.tempList[index].imgKey
   }
 
 

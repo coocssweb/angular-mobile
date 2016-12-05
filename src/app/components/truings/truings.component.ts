@@ -41,6 +41,7 @@ export class TruingsComponent implements OnInit {
 
   //图片列表
   truingList: any [] = []
+  tempList: any []  = []
 
   //加载更多组件
   page: Page = new Page()
@@ -216,6 +217,7 @@ export class TruingsComponent implements OnInit {
           list.push(results[index])
         }, this)
         this.truingList = this.truingList.concat(list)
+        this.tempList = list
         let col1 = {
           list: [],
           height: 0
@@ -226,6 +228,8 @@ export class TruingsComponent implements OnInit {
           height: 0
         }
         this.loadImages(0, col1, col2)
+      }else{
+        this.isLoadingData = false
       }
     })
   }
@@ -264,7 +268,7 @@ export class TruingsComponent implements OnInit {
       let height = image.height
       let width = image.width
 
-      let photo = this.truingList[index]
+      let photo = this.tempList[index]
       photo.listIndex = index
 
       if(this.truingCols.col1.height + col1.height <= this.truingCols.col2.height + col2.height){
@@ -276,7 +280,7 @@ export class TruingsComponent implements OnInit {
         col2.height += height / width
       }
 
-      if(index< this.truingList.length - 1){
+      if(index< this.tempList.length - 1){
         this.loadImages(index+1, col1, col2)
       }else{
         this.truingCols.col1.list = this.truingCols.col1.list.concat(col1.list)

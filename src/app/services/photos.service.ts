@@ -14,7 +14,7 @@ export class PhotoService extends BaseService {
    */
   getPhotos(photoInfoId, sceneId, status, page, sortBy, sortOrder): Promise<any> {
     let url = '/photoInfos/' + photoInfoId + '/photoRaws/pagination?_sort_IMG_INDEX=asc'
-    let body = {pageNo: page.pageNo, totalCount: page.totalCount, pageSize: 20};
+    let body = {pageNo: page.pageNo, totalCount: page.totalCount, pageSize: 10};
     if (sceneId) {
       body['_filter_eq_photoSceneId'] = sceneId
     }
