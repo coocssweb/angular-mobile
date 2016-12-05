@@ -77,6 +77,8 @@ export class BaseService {
       .then((res: Response) => {
 
         if (res.status.toString().startsWith('2')) {
+          // let body = res.json()
+          // return body || {}
           return {}
         }
 
@@ -98,7 +100,12 @@ export class BaseService {
     return this.http.put(DOMAIN + url, body, options)
       .toPromise()
       .then((res: Response) => {
-        return res
+        if(res["_body"]==""){
+          return res
+        }else {
+          let body = res.json()
+          return body || {}
+        }
       })
       .catch(this.handleError)
   }
@@ -108,13 +115,14 @@ export class BaseService {
     let isWeixin = ua.indexOf("micromessenger") >= 0;
     if (error.status == 403 || (error.status == 419 && isWeixin)) {
       window.location.href = "#/forbidden"
+      return Promise.resolve("Sorry,You don't have permission.");
     }
     if (error.status == 419 && !isWeixin) {
       window.location.href = "#/login/qrCode"
+      return Promise.resolve("Please sweep the qr code.");
     }
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error'
-    console.error(errMsg)
     return Promise.reject(errMsg);
   }
 }

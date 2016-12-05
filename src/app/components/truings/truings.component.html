@@ -1,33 +1,37 @@
-<div *ngIf="isShowPcGuide && totalCount>0 && statistics.cusTruingStatus !==3" class="pc-guide pc-layout">
+<div *ngIf="isShowPcGuide && totalCount>0 && truingInfo.cusTruingStatus !==3" class="pc-guide pc-layout">
   已确认的精修片,点击左下角的下载按钮既可以下载了 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
 </div>
-<div *ngIf="statistics.cusTruingStatus!=0">
-  <div *ngIf="statistics.cusTruingStatus !==3" class="scene-outer clearfix">
+<div *ngIf="truingInfo.cusTruingStatus!=0">
+  <div *ngIf="truingInfo.cusTruingStatus !==3" class="scene-outer clearfix">
     <div class="scene-inner clearfix" id="scene-inner">
       <ul class="scene-list clearfix">
         <li class="scene-item">
-          <a href="javascript:;" (click)="onTabStatus(-1)" [class.current-scene]="currentStatus===-1">全部 ({{statistics.totalCount}})</a>
+          <a href="javascript:;" (click)="onTabStatus(-1)" [class.current-scene]="currentStatus===-1">全部
+            ({{truingInfo.totalCount}})</a>
           <span class="item-split"></span>
         </li>
         <li class="scene-item">
-          <a href="javascript:;" (click)="onTabStatus(1)" [class.current-scene]="currentStatus===1">已反馈 ({{statistics.modifyCount}})</a>
+          <a href="javascript:;" (click)="onTabStatus(1)" [class.current-scene]="currentStatus===1">已反馈
+            ({{truingInfo.confirmModifyNum}})</a>
           <span class="item-split"></span>
         </li>
         <li class="scene-item">
-          <a href="javascript:;" (click)="onTabStatus(0)" [class.current-scene]="currentStatus===0">未反馈 ({{statistics.unConfirmCount}})</a>
+          <a href="javascript:;" (click)="onTabStatus(0)" [class.current-scene]="currentStatus===0">未反馈
+            ({{truingInfo.unconfirmNum}})</a>
           <span class="item-split"></span>
         </li>
         <li class="scene-item">
-          <a href="javascript:;" (click)="onTabStatus(2)" [class.current-scene]="currentStatus===2">已确认 ({{statistics.confirmCount}})</a>
+          <a href="javascript:;" (click)="onTabStatus(2)" [class.current-scene]="currentStatus===2">已确认
+            ({{truingInfo.confirmPassNum}})</a>
         </li>
       </ul>
     </div>
   </div>
-  <div *ngIf="statistics.cusTruingStatus ===3" class="scene-outer clearfix">
+  <div *ngIf="truingInfo.cusTruingStatus ===3" class="scene-outer clearfix">
     <div class="scene-inner clearfix" id="scene-inner">
       <ul class="scene-list clearfix">
         <li class="scene-item scene-finish">
-          <a href="javascript:;" class="current-scene">精修确认（{{statistics.confirmCount}}）</a>
+          <a href="javascript:;" class="current-scene">精修确认（{{truingInfo.confirmPassNum}}）</a>
         </li>
       </ul>
     </div>
@@ -67,29 +71,29 @@
   <loading *ngIf="isLoadingData"></loading>
   <pagination [page]="page" [style]="'loadmore'" [loadingData]="isLoadingData" (loadMore)="getPhotos()"></pagination>
   <div class="margin-bottom"></div>
-  <div *ngIf="statistics.cusTruingStatus!==3 && statistics.cusTruingStatus!==2" class="toolbar">
+  <div *ngIf="truingInfo.cusTruingStatus!==3 && truingInfo.cusTruingStatus!==2" class="toolbar">
     <div class="toolbar-inner layout">
       <p class="toolbar-text">
-        <span *ngIf="statistics.unConfirmCount > 0">
-          <span class="icon-wait"></span>您还有{{statistics.unConfirmCount}}张未反馈
+        <span *ngIf="truingInfo.unconfirmNum > 0">
+          <span class="icon-wait"></span>您还有{{truingInfo.unconfirmNum}}张未反馈
         </span>
-        <span *ngIf="statistics.unConfirmCount === 0 && statistics.modifyCount ===0">
+        <span *ngIf="truingInfo.unconfirmNum === 0 && truingInfo.confirmModifyNum ===0">
           <span class="icon-ok"></span>已确认全部精修
         </span>
-        <span *ngIf="statistics.unConfirmCount === 0 && statistics.modifyCount > 0">
-          <span class="icon-ok"></span>已确认所有反馈
+        <span *ngIf="truingInfo.unconfirmNum === 0 && truingInfo.confirmModifyNum > 0">
+          <span class="icon-ok"></span>所有照片已反馈
         </span>
-        <!--<a href="javascript:;" *ngIf="statistics.totalCount>statistics.confirmCount" (click)="onFinish()" class="btn-next" [class.btn-next-active]="statistics.unConfirmCount===0" >
-          提交V{{statistics.truingVersionNum ? (statistics.truingVersionNum+ 1) : 1 }}版本
-        </a>-->
-        <a href="javascript:;" *ngIf="statistics.totalCount>statistics.confirmCount" (click)="onFinish()" class="btn-next" [class.btn-next-active]="statistics.unConfirmCount===0" >
+        <a href="javascript:;" *ngIf="truingInfo.totalCount>truingInfo.confirmPassNum" (click)="onFinish()" class="btn-next" [class.btn-next-active]="truingInfo.unconfirmNum===0" >
+          提交V{{truingInfo.truingVersionNum ? (truingInfo.truingVersionNum+ 1) : 1 }}版本
+        </a>
+        <a href="javascript:;" *ngIf="truingInfo.totalCount==truingInfo.confirmPassNum" (click)="onFinish()" class="btn-next" [class.btn-next-active]="truingInfo.unconfirmNum===0" >
           确认精修
         </a>
       </p>
     </div>
   </div>
 
-  <div *ngIf="statistics.cusTruingStatus===2" class="toolbar">
+  <div *ngIf="truingInfo.cusTruingStatus===2" class="toolbar">
     <div class="toolbar-inner layout toolbar-wait">
       <p class="wait-text">
         <span class="icon-ok"></span>您的意见已反馈给设计师，请等待片刻...
@@ -100,23 +104,23 @@
 
 </div>
 
-<div *ngIf="statistics.cusTruingStatus==0" class="no-init">
+<div *ngIf="truingInfo.cusTruingStatus==0" class="no-init">
   <img src="../../../images/icon-day-big.png" class="icon-day" />
   <p>正在后期处理中...</p>
-  <p>预计50天后可以完成</p>
+  <p>预计{{truingInfo.period}}天后可以完成</p>
 </div>
 
 <feedback *ngIf="isPreview"
         (close)="onClosePreview()"
         (remark)="onRemark($event)"
-        [cusTruingStatus] = "statistics.cusTruingStatus"
+        [cusTruingStatus] = "truingInfo.cusTruingStatus"
         (accept)="onAccept($event)"
         [currentIndex]="previewIndex"
         [truingList]="truingList"></feedback>
 
 <pcfeedback *ngIf="isPcPreview"
           (close)="onClosePcPreview()"
-          [cusTruingStatus] = "statistics.cusTruingStatus"
+          [cusTruingStatus] = "truingInfo.cusTruingStatus"
           (remark)="onRemark($event)"
           (accept)="onAccept($event)"
           [currentIndex]="previewIndex"

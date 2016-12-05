@@ -13,7 +13,7 @@ import {CacheService} from "../../services/cache.service";
 @Component({
   selector: 'login',
   templateUrl: 'login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['login.component.css'],
   providers: [AuthService]
 })
 export class LoginComponent implements OnInit, OnDestroy {
@@ -59,6 +59,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.stopInterval()
+  }
+
+  showErrImg() {
+    this.qrCodeUrl = "/images/qrcode_err.jpg"
     this.stopInterval()
   }
 

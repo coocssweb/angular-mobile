@@ -52,13 +52,14 @@ export class TruingsComponent implements OnInit {
   //是否显示PC端提示新秀
   isShowPcGuide = true
 
-  //统计信息
-  statistics: any = {
+  //精修初始化信息
+  truingInfo: any = {
     totalCount: 0,
-    confirmCount: 0,
-    modifyCount: 0,
-    unConfirmCount: 0,
-    truingVersionNum: 0
+    confirmPassNum: 0,
+    confirmModifyNum: 0,
+    unconfirmNum: 0,
+    truingVersionNum: 0,
+    period: 50
   }
 
   //精修片显示
@@ -106,16 +107,10 @@ export class TruingsComponent implements OnInit {
   /**
    * 获取精修片列表
    */
-  getTruingInfo(){
-    this.truingService.getTruingInfo(this.photoInfoId).then((info: any)=>{
-      this.statistics = {
-        totalCount: info.confirmPassNum + info.confirmModifyNum + info.unconfirmNum,
-        confirmCount: info.confirmPassNum,
-        modifyCount: info.confirmModifyNum,
-        unConfirmCount: info.unconfirmNum,
-        cusTruingStatus: info.cusTruingStatus,
-        truingVersionNum: info.truingVersionNum
-      }
+  getTruingInfo() {
+    this.truingService.getTruingInfo(this.photoInfoId).then((info: any) => {
+      this.truingInfo = info
+      this.truingInfo.totalCount = info.confirmPassNum + info.confirmModifyNum + info.unconfirmNum
     })
   }
 
@@ -124,7 +119,7 @@ export class TruingsComponent implements OnInit {
    * @param index
    * @param truing
    */
-  onPreview(index){
+  onPreview(index) {
     this.isPreview = true
     this.previewIndex = index
   }
@@ -132,7 +127,7 @@ export class TruingsComponent implements OnInit {
   /**
    * 关闭预览图
    */
-  onClosePreview(){
+  onClosePreview() {
     this.isPreview = false
   }
 
@@ -140,50 +135,63 @@ export class TruingsComponent implements OnInit {
   /**
    * PC端预览大图
    * @param index
-     */
-  onPcPreview(index){
-    this.isPcPreview =  true
+   */
+  onPcPreview(index) {
+    this.isPcPreview = true
     this.previewIndex = index
   }
 
-  onClosePcPreview(){
+  onClosePcPreview() {
     this.isPcPreview = false
   }
 
   /**
    * 反馈建议
    */
-  onRemark(remarkObj){
-    this.truingService.remark(this.photoInfoId, remarkObj.id, remarkObj.message).then((result)=>{
+  onRemark(remarkObj) {
+    this.truingService.remark(this.photoInfoId, remarkObj.id, remarkObj.message).then((result) => {
       this.isShowSuccess = true
-      if(!this.truingList[remarkObj.index].status){
-        this.statistics.unConfirmCount--
-        this.statistics.modifyCount++
+      if (!this.truingList[remarkObj.index].status) {
+        this.truingInfo.unconfirmNum--
+        this.truingInfo.confirmModifyNum++
+      } else if (this.truingList[remarkObj.index].status == 2) {
+        this.truingInfo.confirmPassNum--
+        this.truingInfo.confirmModifyNum++
       }
-
       this.truingList[remarkObj.index].status = 1
-      this.truingList[remarkObj.index].truings[0].remark = remarkObj.message
-      remarkObj.done()
+      this.isPreview = false
+      this.isPcPreview = false
+      if (this.currentStatus > -1 && this.currentStatus != this.truingList[remarkObj.index].status) {
+        this.truingList.splice(remarkObj.index, remarkObj.index + 1)
+      } else {
+        this.truingList[remarkObj.index].truings[0].remark = remarkObj.message
+        remarkObj.done()
+      }
     })
   }
 
   /**
    * 接受
    */
-  onAccept(valueObj){
-    this.truingService.accept(this.photoInfoId, valueObj.id).then((result)=>{
+  onAccept(valueObj) {
+    this.truingService.accept(this.photoInfoId, valueObj.id).then((result) => {
       this.isShowSuccess = true
-      if(!this.truingList[valueObj.index].status){
-        this.statistics.unConfirmCount--
-        this.statistics.confirmCount++
-      }else if(this.truingList[valueObj.index].status == 1){
-        this.statistics.modifyCount --
-        this.statistics.confirmCount++
+      if (!this.truingList[valueObj.index].status) {
+        this.truingInfo.unconfirmNum--
+        this.truingInfo.confirmPassNum++
+      } else if (this.truingList[valueObj.index].status == 1) {
+        this.truingInfo.confirmModifyNum--
+        this.truingInfo.confirmPassNum++
       }
-
       this.truingList[valueObj.index].status = 2
-      //回调函数
-      valueObj.done()
+      this.isPreview = false
+      this.isPcPreview = false
+      if (this.currentStatus > -1 && this.currentStatus != this.truingList[valueObj.index].status) {
+        this.truingList.splice(valueObj.index, valueObj.index + 1)
+      } else {
+        //回调函数
+        valueObj.done()
+      }
     })
   }
 
@@ -197,7 +205,7 @@ export class TruingsComponent implements OnInit {
 
     //请求加载图片列表
     this.truingService.getTruings(this.photoInfoId, this.page, this.sort.key, this.sort.order, this.currentStatus).then((photos: any) => {
-      if(this.currentStatus === -1){
+      if (this.currentStatus === -1) {
         this.totalCount = photos.totalCount
       }
       this.page = photos;
@@ -207,10 +215,10 @@ export class TruingsComponent implements OnInit {
       let list = []
 
       if (results && results.length) {
-        results.map((item, index)=> {
+        results.map((item, index) => {
           results[index].imgKey = QINIU_DOMAIN + '/' + item.imgKey + '-300'
 
-          results[index].truings.map((truingItem, truingIndex)=>{
+          results[index].truings.map((truingItem, truingIndex) => {
             results[index].truings[truingIndex].imgKey = QINIU_DOMAIN + '/' + truingItem.imgKey + '-300'
           })
 
@@ -227,8 +235,8 @@ export class TruingsComponent implements OnInit {
           list: [],
           height: 0
         }
-        this.loadImages(0, col1, col2)
-      }else{
+        this.loadImages(list, 0, col1, col2)
+      } else {
         this.isLoadingData = false
       }
     })
@@ -238,8 +246,8 @@ export class TruingsComponent implements OnInit {
    * 却换状态
    */
 
-  onTabStatus(status){
-    if(this.currentStatus === status){
+  onTabStatus(status) {
+    if (this.currentStatus === status) {
       return
     }
     this.truingList = []
@@ -261,17 +269,18 @@ export class TruingsComponent implements OnInit {
   /**
    * 加载图片
    * @param index
-     */
-  loadImages(index, col1, col2){
+   */
+  loadImages(truingList: any[], index, col1, col2) {
     let image = new Image()
-    image.onload=function(){
+    image.onload = function () {
       let height = image.height
       let width = image.width
 
       let photo = this.tempList[index]
-      photo.listIndex = index
 
-      if(this.truingCols.col1.height + col1.height <= this.truingCols.col2.height + col2.height){
+      photo.listIndex = this.truingList.length - this.tempList.length + index
+
+      if (this.truingCols.col1.height + col1.height <= this.truingCols.col2.height + col2.height) {
         col1.list.push(photo)
         col1.height += height / width
 
@@ -280,34 +289,36 @@ export class TruingsComponent implements OnInit {
         col2.height += height / width
       }
 
-      if(index< this.tempList.length - 1){
-        this.loadImages(index+1, col1, col2)
-      }else{
+
+      if (index < truingList.length - 1) {
+        this.loadImages(truingList, index + 1, col1, col2)
+      } else {
         this.truingCols.col1.list = this.truingCols.col1.list.concat(col1.list)
         this.truingCols.col2.list = this.truingCols.col2.list.concat(col2.list)
         this.truingCols.col1.height += col1.height
         this.truingCols.col2.height += col2.height
         this.isLoadingData = false
         document.getElementById('render').click()
-
-        this.isLoadingData = false
       }
     }.bind(this)
-    image.src = this.truingList[index].imgKey
+    image.src = truingList[index].imgKey
   }
 
-  render(){
+  render() {
     this.isRender = !this.isRender
   }
 
   /**
    *  提交
    */
-  onFinish(){
-    this.truingService.finish(this.photoInfoId).then((info)=>{
+  onFinish() {
+    //还有未反馈的不允许提交
+    if (this.truingInfo.unconfirmNum > 0) {
+      return;
+    }
+    this.truingService.finish(this.photoInfoId).then((info) => {
       this.isShowSuccess = true
-      this.statistics.cusTruingStatus = info.cusTruingStatus,
-      this.statistics.truingVersionNum = info.truingVersionNum
+      this.truingInfo = info
       this.getTruingInfo()
     })
   }
@@ -315,17 +326,16 @@ export class TruingsComponent implements OnInit {
   /**
    * 关闭成功提示
    */
-  onCloseSuccess(){
+  onCloseSuccess() {
     this.isShowSuccess = false
   }
 
   /**
    * 关闭PC端提示信息
    */
-  onClosePcTip(){
+  onClosePcTip() {
     this.isShowPcGuide = false
   }
-
 
 
 }
