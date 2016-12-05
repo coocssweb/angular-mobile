@@ -305,7 +305,7 @@ export class TruingsComponent implements OnInit {
     if( this.statistics.unConfirmCount>0 ) {
       return;
     }
-    this.truingService.finish(this.photoInfoId).then((result)=>{
+    this.truingService.finish(this.photoInfoId).then((info)=>{
       this.isShowSuccess = true
       this.statistics.cusTruingStatus = info.cusTruingStatus,
       this.statistics.truingVersionNum = info.truingVersionNum
