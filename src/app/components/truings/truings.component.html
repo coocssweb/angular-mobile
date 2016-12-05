@@ -81,12 +81,12 @@
           <span class="icon-ok"></span>已确认全部精修
         </span>
         <span *ngIf="truingInfo.unconfirmNum === 0 && truingInfo.confirmModifyNum > 0">
-          <span class="icon-ok"></span>已确认所有反馈
+          <span class="icon-ok"></span>所有照片已反馈
         </span>
-        <!--<a href="javascript:;" *ngIf="statistics.totalCount>statistics.confirmCount" (click)="onFinish()" class="btn-next" [class.btn-next-active]="statistics.unConfirmCount===0" >
-          提交V{{statistics.truingVersionNum ? (statistics.truingVersionNum+ 1) : 1 }}版本
-        </a>-->
         <a href="javascript:;" *ngIf="truingInfo.totalCount>truingInfo.confirmPassNum" (click)="onFinish()" class="btn-next" [class.btn-next-active]="truingInfo.unconfirmNum===0" >
+          提交V{{truingInfo.truingVersionNum ? (truingInfo.truingVersionNum+ 1) : 1 }}版本
+        </a>
+        <a href="javascript:;" *ngIf="truingInfo.totalCount==truingInfo.confirmPassNum" (click)="onFinish()" class="btn-next" [class.btn-next-active]="truingInfo.unconfirmNum===0" >
           确认精修
         </a>
       </p>
