@@ -110,13 +110,14 @@ export class BaseService {
     let isWeixin = ua.indexOf("micromessenger") >= 0;
     if (error.status == 403 || (error.status == 419 && isWeixin)) {
       window.location.href = "#/forbidden"
+      return Promise.resolve("Sorry,You don't have permission.");
     }
     if (error.status == 419 && !isWeixin) {
       window.location.href = "#/login/qrCode"
+      return Promise.resolve("Please sweep the qr code.");
     }
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error'
-    console.error(errMsg)
     return Promise.reject(errMsg);
   }
 }
