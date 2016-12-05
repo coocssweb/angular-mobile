@@ -421,4 +421,14 @@ export class PhotosComponent implements OnInit {
     this.router.navigate(['/raw/'+this.photoInfoId+"/", 1])
   }
 
+  /**
+   * 反馈建议
+   */
+  onRemark(remarkObj) {
+    this.photoService.remark(this.photoInfoId, remarkObj.id, remarkObj.remark).then((result) => {
+      this.isShowSuccess = true
+      remarkObj.done()
+    })
+  }
+
 }

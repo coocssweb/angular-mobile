@@ -61,3 +61,70 @@
 .render{
   display: none;
 }
+
+
+.footer{
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  color: #FFFFFF;
+  font-size: 18px;
+  z-index: 100;
+  background-color: rgba(0,0,0, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.feedback-toolbar{
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.textarea{
+  display: block;
+  border: none;
+  background-color: #FFFFFF;
+  width: 100%;
+  resize: none;
+  box-sizing: border-box;
+  font-size: 16px;
+  height: 50px;
+  line-height: 20px;
+  overflow: hidden;
+  padding: 5px 10px;
+}
+
+.btn-submit,.btn-accept{
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  text-decoration: none;
+  width: 50%;
+  text-align: center;
+  color: #999999;
+  float: left;
+  box-sizing: border-box;
+}
+
+.btn-submit{
+  border-right: 1px solid #333333;
+}
+
+
+.active{
+  color: #FFFFFF;
+}
+
+
+.message{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  z-index: 10;
+  width: 90%;
+  text-align: center;
+  padding: 30px;
+  border-radius: 10px;
+  line-height: 20px;
+  box-sizing: border-box;
+  background-color: rgba(0,0,0,0.5);
+  transform: translate(-50%, -50%);
+}

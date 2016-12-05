@@ -62,4 +62,17 @@ export class PhotoService extends BaseService {
   getRawInfo(photoInfoId): Promise<any> {
     return this.get('/photoInfos/' + photoInfoId + '/actions/rawInfo')
   }
+
+  /**
+   * 标注
+   * @param photoInfoId
+   * @param remark
+   * @returns {Promise<any>}
+   */
+  remark(photoInfoId, id, remark){
+    let body = {
+      remark: remark
+    }
+    return this.put('/photoInfos/'+photoInfoId+'/photoRaws/'+id+'/actions/remark', body)
+  }
 }

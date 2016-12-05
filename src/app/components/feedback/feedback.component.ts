@@ -139,7 +139,8 @@ export class FeedbackComponent implements OnInit, OnDestroy{
   }
 
   remarkSuccess(){
-    this.message = ''
+    // this.message = ''
+    this.onNext()
   }
 
   /**

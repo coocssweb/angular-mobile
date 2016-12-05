@@ -119,6 +119,7 @@ table {
   -ms-animation: rotate linear 0.5s infinite;
   -o-animation: rotate linear 0.5s infinite;
   animation: rotate linear 0.5s infinite;
+  z-index: 100;
 }
 
 @keyframes rotate {

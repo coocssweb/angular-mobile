@@ -28,11 +28,5 @@
     </div>
   </div>
 </div>
-
-<div class="main-mask self-mask" *ngIf="isLoadingImage">
-  <span class="loading-text"></span>
-</div>
-
-
-
+<span *ngIf="isLoadingImage" class="loading-text"></span>
 <a href="javascript:;" id="render" class="render" (click)="render($event)">dom</a>

@@ -1,5 +1,8 @@
 <div class="viewer-box">
   <a href="javascript:;" class="btn-close" (click)="onClose()"></a>
+  <div class="message layout" *ngIf="photoList[currentIndex].remark">
+    {{photoList[currentIndex].remark}}
+  </div>
   <div class="viewer-content" >
       <img class="viewer-big-image"
            [ngStyle]=" isScale?imgStyle:{}"
@@ -8,10 +11,20 @@
            (load)="loadImage(photoList[currentIndex].imgKey.replace('-300','-800'))"
            src="{{imageUrl}}"/>
   </div>
-  <a href="javascript:;" (click)="onChoose()" *ngIf="isShowDelete" class="btn-choose">{{status === '' ? ( photoList[currentIndex].status == 1 ? '取消选择'  : '选择' ) : '删除'}}</a>
-</div>
+  <a href="javascript:;" (click)="onChoose()" *ngIf="isShowDelete && status === ''" class="btn-choose">{{ photoList[currentIndex].status == 1 ? '取消选择'  : '选择' }}</a>
 
-<div class="main-mask self-mask" [hidden]="!isLoadingImage">
-  <span class="loading-text"></span>
+
+  <div class="footer" *ngIf="status === '1' && isShowDelete">
+    <div class="footer-inner layout">
+      <div class="feedback-area">
+        <textarea class="textarea" [(ngModel)]="message"  placeholder="请填写修改意见，或者满意并确认"></textarea>
+      </div>
+      <div class="feedback-toolbar clearfix">
+        <a href="javascript:;" (click)="onRemark()" class="btn-submit active">提交建议</a>
+        <a href="javascript:;" (click)="onChoose()"  class="btn-accept active">删除</a>
+      </div>
+    </div>
+  </div>
 </div>
+<span *ngIf="isLoadingImage" class="loading-text"></span>
 <a href="javascript:;" id="render" class="render" (click)="render($event)">dom</a>

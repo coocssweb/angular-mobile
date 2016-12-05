@@ -28,6 +28,8 @@ export class ViewerComponent implements OnInit, OnDestroy{
   //选择事件
   @Output() choose = new EventEmitter()
 
+  @Output() remark = new EventEmitter()
+
   isScale = false
 
   isTouchStart = false
@@ -62,6 +64,8 @@ export class ViewerComponent implements OnInit, OnDestroy{
   isRender = false
 
   hasLoad = false
+
+  message = ''
 
   constructor(private logger: LoggerService) {
 
@@ -135,6 +139,15 @@ export class ViewerComponent implements OnInit, OnDestroy{
    */
   onChoose(){
     this.choose.emit(this.photoList[this.currentIndex].listIndex)
+  }
+
+  onRemark(){
+    this.remark.emit({id: this.photoList[this.currentIndex].id, message: this.message, done: this.remarkSuccess.bind(this)})
+  }
+
+  remarkSuccess(){
+    // this.message = ''
+    this.onNext()
   }
 
   onTouchStart(e){
