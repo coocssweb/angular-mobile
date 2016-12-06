@@ -43,6 +43,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (!photoInfoId || !targetPath) {
       alert("登录页面访问参数错误，请使用合法的登录地址访问")
     } else {
+      //需要先调用一次auth以便生成jsessionid cookie,否则img取图片时的session和auth的session会不一致
+      this.authService.authLogin();
       this.qrCodeUrl = `${DOMAIN}/login/qrCode?pid=${photoInfoId}`
       this.checkIntervalId = setInterval(() => {
         this.authService.authLogin().then(resp => {

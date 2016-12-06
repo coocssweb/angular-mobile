@@ -1,7 +1,6 @@
 import {Http} from "@angular/http";
 import {BaseService} from "./base.service";
 import {Injectable} from "@angular/core";
-import {DOMAIN} from "../constant/config";
 
 /**
  * 认证服务
