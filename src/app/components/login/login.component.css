@@ -160,3 +160,26 @@ section, article {
 .btn-link a:hover, .btn-link:hover {
   color: lighten #31b968
 }
+.dotted{
+  color: #bfbfbf;
+  margin: 0 5px;
+}
+.title{
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.login_button{
+  background-color: #59ac94;
+  width: 170px;
+}
+a:hover {text-decoration:underline;}
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}

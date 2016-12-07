@@ -5,12 +5,41 @@
         <article>
           <div class="wechat-login tab-box" id="wechat_login">
             <div class="text-center">
-              <div>微信扫描，安全登录</div>
-              <span class="span-box login-wechat-qr">
-                <img [src]="qrCodeUrl" id="img_QrCode" (error)="showErrImg()">
-              </span>
-              <div class="">
-                使用微信扫描二维码安全快速登录
+              <div *ngIf="loginWay==1">
+                <div > <span class="title">微信扫描，安全登录 </span></div>
+                <span class="span-box login-wechat-qr">
+                  <img [src]="qrCodeUrl" id="img_QrCode" (error)="showErrImg()">
+                </span>
+              </div>
+              <div *ngIf="loginWay==2">
+                <div>
+                  <span class="title">口令登录</span><br/>
+                </div>
+                <span class="span-box login-wechat-qr" style="border: 0px;">
+                   <span>推荐使用 <a  href="javascript:void (0);" (click)="changeLoginWay(1)" style="  color: #3481cf;">微信二维码安全登录</a></span>
+                    <div class="container" style="width: 200px;margin-top: 26px;">
+                       <div *ngIf="toShow" class="alert alert-danger">
+                          <span class="ng-binding">{{errMsg}}</span>
+                      </div>
+                      <form (ngSubmit)="loginByAccessPwd()" #pwdForm="ngForm">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="口令"
+                                 required
+                                 [(ngModel)]="accessPwd" name="accessPwd"
+                                 #pwd="ngModel" >
+                          <div [hidden]="pwd.valid || pwd.pristine"
+                               class="alert alert-danger">
+                             请输入口令
+                          </div>
+                        </div>
+
+                        <button type="submit" class="login_button btn btn-default" [disabled]="!pwdForm.form.valid">登录</button>
+                      </form>
+                  </div>
+                </span>
+              </div>
+              <div class="" >
+                <a href="javascript:void (0);" (click)="changeLoginWay(1)">微信二维码快速登录</a><span class="dotted">|</span> <a href="javascript:void (0);" (click)="changeLoginWay(2)">口令登录</a>
               </div>
             </div>
           </div>
