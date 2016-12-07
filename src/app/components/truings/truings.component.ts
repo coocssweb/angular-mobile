@@ -105,7 +105,7 @@ export class TruingsComponent implements OnInit {
   }
 
   /**
-   * 获取精修片列表
+   * 获取精修片初始化状态
    */
   getTruingInfo() {
     this.truingService.getTruingInfo(this.photoInfoId).then((info: any) => {
@@ -162,7 +162,7 @@ export class TruingsComponent implements OnInit {
       this.isPreview = false
       this.isPcPreview = false
       if (this.currentStatus > -1 && this.currentStatus != this.truingList[remarkObj.index].status) {
-        this.truingList.splice(remarkObj.index, remarkObj.index + 1)
+        this.truingList.splice(remarkObj.index, 1)
       } else {
         this.truingList[remarkObj.index].truings[0].remark = remarkObj.message
         remarkObj.done()
@@ -187,7 +187,7 @@ export class TruingsComponent implements OnInit {
       this.isPreview = false
       this.isPcPreview = false
       if (this.currentStatus > -1 && this.currentStatus != this.truingList[valueObj.index].status) {
-        this.truingList.splice(valueObj.index, valueObj.index + 1)
+        this.truingList.splice(valueObj.index, 1)
       } else {
         //回调函数
         valueObj.done()
@@ -319,7 +319,7 @@ export class TruingsComponent implements OnInit {
     this.truingService.finish(this.photoInfoId).then((info) => {
       this.isShowSuccess = true
       this.truingInfo = info
-      this.getTruingInfo()
+      this.onTabStatus(-1)
     })
   }
 
