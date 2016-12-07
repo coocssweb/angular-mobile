@@ -108,7 +108,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.qrCodeUrl = `${DOMAIN}/login/qrCode?pid=${photoInfoId}`
 
         this.authService.loginByAccessPwd(this.accessPwd,photoInfoId).then(resp => {
-          console.log("resp{}="+resp)
           if (resp.result) {
             setInterval(this.checkIntervalId)
             if (!targetPath.startsWith("#")) {
