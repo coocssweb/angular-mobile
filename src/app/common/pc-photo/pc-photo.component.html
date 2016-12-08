@@ -4,8 +4,7 @@
       <div class="pc-photo-box" (click)="onPreview(i)">
         <div class="pc-choose-mask" *ngIf="photo.status==1">
         </div>
-        <img  src="{{photo.imgKey}}"
-              class="pc-photo-image"/>
+        <img src="{{photo.imgKey}}" class="pc-photo-image"/>
       </div>
       <div class="pc-photo-info clearfix" *ngIf="type==='raw'">
         <span class="pc-photo-name">原片{{photo.imgIndex}}</span>

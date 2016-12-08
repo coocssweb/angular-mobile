@@ -11,13 +11,13 @@
           <span class="item-split"></span>
         </li>
         <li class="scene-item">
-          <a href="javascript:;" (click)="onTabStatus(1)" [class.current-scene]="currentStatus===1">已反馈
-            ({{truingInfo.confirmModifyNum}})</a>
+          <a href="javascript:;" (click)="onTabStatus(0)" [class.current-scene]="currentStatus===0">未反馈
+            ({{truingInfo.unconfirmNum}})</a>
           <span class="item-split"></span>
         </li>
         <li class="scene-item">
-          <a href="javascript:;" (click)="onTabStatus(0)" [class.current-scene]="currentStatus===0">未反馈
-            ({{truingInfo.unconfirmNum}})</a>
+          <a href="javascript:;" (click)="onTabStatus(1)" [class.current-scene]="currentStatus===1">已反馈
+            ({{truingInfo.confirmModifyNum}})</a>
           <span class="item-split"></span>
         </li>
         <li class="scene-item">

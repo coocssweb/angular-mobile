@@ -4,7 +4,7 @@
   <div class="viewer-content">
     <a href="javascript:;" class="btn-close" (click)="onClose()"></a>
     <img class="viewer-big-image" (load)="loadImage(truingList[currentIndex].truings[currentVersion].imgKey.replace('-300','-800'))"
-         src="{{truingList[currentIndex].imgKey.replace('-300','-800')}}"/>
+         src="{{truingList[currentIndex].truings[currentVersion].imgKey.replace('-300','-800')}}"/>
 
     <div class="footer">
       <div class="footer-inner">

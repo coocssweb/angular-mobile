@@ -258,6 +258,7 @@ export class FeedbackComponent implements OnInit, OnDestroy{
   onSelectVersion(index){
     this.isShowDrop = false
     this.currentVersion = index
+    this.imageUrl = this.truingList[this.currentIndex].truings[this.currentVersion].imgKey
   }
 
   render(){

@@ -116,7 +116,7 @@ export class PhotosComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.photoInfoId = +params['photoinfoid'];
       this.currentStatus = +params['status']? params['status'] : ''
-    })
+    });
 
     //缓存photoInfoId 和请求路径
     this.cacheService.setPhotoInfoId(this.photoInfoId);
@@ -130,7 +130,7 @@ export class PhotosComponent implements OnInit {
       this.isShowGuide = false
     }
 
-    this.getPhotos()
+    this.getPhotos();
     this.photoService.getRawInfo(this.photoInfoId).then((result)=>{
       Object.assign(this.rawInfo, result)
     })

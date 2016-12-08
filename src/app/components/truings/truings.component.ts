@@ -105,7 +105,7 @@ export class TruingsComponent implements OnInit {
   }
 
   /**
-   * 获取精修片列表
+   * 获取精修片初始化状态
    */
   getTruingInfo() {
     this.truingService.getTruingInfo(this.photoInfoId).then((info: any) => {
@@ -336,7 +336,7 @@ export class TruingsComponent implements OnInit {
     this.truingService.finish(this.photoInfoId).then((info) => {
       this.isShowSuccess = true
       this.truingInfo = info
-      this.getTruingInfo()
+      this.onTabStatus(-1)
     })
   }
 
