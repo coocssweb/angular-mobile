@@ -162,7 +162,13 @@ export class TruingsComponent implements OnInit {
       this.isPreview = false
       this.isPcPreview = false
       if (this.currentStatus > -1 && this.currentStatus != this.truingList[remarkObj.index].status) {
-        this.truingList.splice(remarkObj.index, remarkObj.index + 1)
+        if(remarkObj.isPc){
+          this.truingList.splice(this.previewIndex, 1)
+        }else{
+          let aimDom = document.getElementById('photo-item-'+remarkObj.id).parentNode
+          let aimParentDom = aimDom.parentNode
+          aimParentDom.removeChild( aimDom )
+        }
       } else {
         this.truingList[remarkObj.index].truings[0].remark = remarkObj.message
         remarkObj.done()
@@ -187,11 +193,22 @@ export class TruingsComponent implements OnInit {
       this.isPreview = false
       this.isPcPreview = false
       if (this.currentStatus > -1 && this.currentStatus != this.truingList[valueObj.index].status) {
-        this.truingList.splice(valueObj.index, valueObj.index + 1)
+
+        if(valueObj.isPc){
+          this.truingList.splice(this.previewIndex, 1)
+        }else{
+          let aimDom = document.getElementById('photo-item-'+valueObj.id).parentNode
+          let aimParentDom = aimDom.parentNode
+          aimParentDom.removeChild( aimDom )
+        }
       } else {
         //回调函数
         valueObj.done()
       }
+
+
+
+
     })
   }
 

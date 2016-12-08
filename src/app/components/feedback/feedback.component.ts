@@ -114,6 +114,7 @@ export class FeedbackComponent implements OnInit, OnDestroy{
     this.accept.emit({
       id: this.truingList[this.currentIndex].id,
       index: this.currentIndex,
+      isPc: false,
       done: this.acceptSuccess.bind(this)
     })
   }
@@ -134,6 +135,7 @@ export class FeedbackComponent implements OnInit, OnDestroy{
       id: this.truingList[this.currentIndex].id,
       message: this.message,
       index: this.currentIndex,
+      isPc: false,
       done: this.remarkSuccess.bind(this)
     })
   }
