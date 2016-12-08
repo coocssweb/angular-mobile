@@ -131,4 +131,14 @@
   操作成功
 </success>
 
+<confirm
+  *ngIf="isShowConfirm"
+  [title]="'确认提交?'"
+  [btnConfirm]="'我确认'"
+  [btnCancel]="'再考虑一下'"
+  (confirm)="onFinishConfirm($event)"
+  (cancel)="cancelFinish($event)">
+  确认提交吗？
+</confirm>
+
 <a href="javascript:;" id="render" class="render" (click)="render($event)">dom</a>

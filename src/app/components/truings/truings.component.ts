@@ -79,6 +79,8 @@ export class TruingsComponent implements OnInit {
 
   isRender = false
 
+  isShowConfirm = false
+
   /**
    * 构造函数
    * @param photoService
@@ -333,12 +335,22 @@ export class TruingsComponent implements OnInit {
     if (this.truingInfo.unconfirmNum > 0) {
       return;
     }
+    this.isShowConfirm = true
+  }
+
+  onFinishConfirm(){
     this.truingService.finish(this.photoInfoId).then((info) => {
       this.isShowSuccess = true
       this.truingInfo = info
       this.onTabStatus(-1)
     })
   }
+
+  cancelFinish(){
+    this.isShowConfirm = false
+  }
+
+
 
   /**
    * 关闭成功提示
