@@ -29,6 +29,10 @@ import {LoggerService} from "./services/logger.service";
 import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
 import {CacheService} from "./services/cache.service";
 
+
+import { OrderComponent } from './components/management/order/order.component'
+import { OrderDetailComponent } from './components/management/order/detail/order-detail.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +56,9 @@ import {CacheService} from "./services/cache.service";
     PhotoComponent,
     PCViewerComponent,
     LoginComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    OrderComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +70,9 @@ import {CacheService} from "./services/cache.service";
       {path: 'raw/:photoinfoid', component: PhotosComponent},
       {path: 'raw/:photoinfoid/:status', component: PhotosComponent},
       {path: 'truing/:photoinfoid', component: TruingsComponent},
-      {path: 'forbidden', component: ForbiddenComponent}
+      {path: 'forbidden', component: ForbiddenComponent},
+      {path: 'order', component: OrderComponent},
+      {path: 'order/detail', component: OrderDetailComponent}
     ]),
     RouterModule.forChild([])
   ],

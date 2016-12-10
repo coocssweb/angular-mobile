@@ -1,0 +1,75 @@
+.title{
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  border-top: 1px solid #EEEEEE;
+  border-bottom: 1px solid #EEEEEE;
+  font-weight: normal;
+  color: #909090;
+}
+.title-text{
+  font-size: 16px;
+  position: relative;
+}
+
+.icon-title{
+  position: absolute;
+  left: -18px;
+  top: 2px;
+  background-image: url(../../../../images/icon-order-title.png);
+  background-size: cover;
+  width: 12px;
+  height: 15px;
+}
+
+.order{
+  border-top: 1px solid #EEEEEE;
+  border-bottom: 1px solid #EEEEEE;
+  margin-top: 10px;
+  position: relative;
+  padding: 20px;
+  padding-bottom: 50px;
+}
+
+.status{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0px 20px;
+  height: 25px;
+  line-height: 25px;
+  color: #FFFFFF;
+  background-color: #59ac94;
+  border-radius: 15px;
+}
+
+.item{
+  height: 35px;
+  line-height: 35px;
+  font-size: 16px;
+}
+
+.item-type{
+  color: #909090;
+}
+
+.btn-detail{
+  border-top: 1px solid #EEEEEE;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #59ac94;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  left: 0px;
+}
+
+
+.toolbar{
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+
+}
