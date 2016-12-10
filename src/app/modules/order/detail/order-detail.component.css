@@ -16,7 +16,7 @@
   position: absolute;
   left: -18px;
   top: 2px;
-  background-image: url(../../../../../images/icon-order-title.png);
+  background-image: url(../../../../images/icon-order-title.png);
   background-size: cover;
   width: 12px;
   height: 15px;
@@ -102,7 +102,7 @@
   display: inline-block;
   height: 20px;
   width: 20px;
-  background-image: url(../../../../../images/icon-payed.png);
+  background-image: url(../../../../images/icon-payed.png);
   background-size: cover;
   margin-right: 10px;
   position: absolute;
@@ -159,10 +159,9 @@
   display: inline-block;
   height: 20px;
   width: 20px;
-  background-image: url(../../../../../images/icon-customer.png);
+  background-image: url(../../../../images/icon-customer.png);
   background-size: cover;
   position: absolute;
   top: 15px;
   left: 0px;
 }
-

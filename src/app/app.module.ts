@@ -30,8 +30,8 @@ import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
 import {CacheService} from "./services/cache.service";
 
 
-import { OrderComponent } from './components/management/order/order.component'
-import { OrderDetailComponent } from './components/management/order/detail/order-detail.component'
+import { MyOrdersComponent } from './modules/order/my-orders/my-orders.component'
+import { OrderDetailComponent } from './modules/order/detail/order-detail.component'
 import { PersonalComponent } from './components/management/personal/personal.component'
 import { ShopComponent } from './components/management/shop/shop.component'
 import { OpinionComponent } from './components/management/opinion/opinion.component'
@@ -60,7 +60,7 @@ import { OpinionComponent } from './components/management/opinion/opinion.compon
     PCViewerComponent,
     LoginComponent,
     ForbiddenComponent,
-    OrderComponent,
+    MyOrdersComponent,
     OrderDetailComponent,
     PersonalComponent,
     ShopComponent,
@@ -77,7 +77,7 @@ import { OpinionComponent } from './components/management/opinion/opinion.compon
       {path: 'raw/:photoinfoid/:status', component: PhotosComponent},
       {path: 'truing/:photoinfoid', component: TruingsComponent},
       {path: 'forbidden', component: ForbiddenComponent},
-      {path: 'order', component: OrderComponent},
+      {path: 'order', component: MyOrdersComponent},
       {path: 'order/detail', component: OrderDetailComponent},
       {path: 'personal', component: PersonalComponent},
       {path: 'shop', component: ShopComponent},
