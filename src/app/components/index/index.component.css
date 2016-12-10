@@ -4,6 +4,8 @@
 .header{
   height: 80px;
   position: relative;
+  border-bottom: 1px solid #E0E0E0;
+  background-color: #FFFFFF;
 }
 
 .nav{

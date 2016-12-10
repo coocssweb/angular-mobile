@@ -32,6 +32,9 @@ import {CacheService} from "./services/cache.service";
 
 import { OrderComponent } from './components/management/order/order.component'
 import { OrderDetailComponent } from './components/management/order/detail/order-detail.component'
+import { PersonalComponent } from './components/management/personal/personal.component'
+import { ShopComponent } from './components/management/shop/shop.component'
+import { OpinionComponent } from './components/management/opinion/opinion.component'
 
 @NgModule({
   declarations: [
@@ -58,7 +61,10 @@ import { OrderDetailComponent } from './components/management/order/detail/order
     LoginComponent,
     ForbiddenComponent,
     OrderComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    PersonalComponent,
+    ShopComponent,
+    OpinionComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +78,10 @@ import { OrderDetailComponent } from './components/management/order/detail/order
       {path: 'truing/:photoinfoid', component: TruingsComponent},
       {path: 'forbidden', component: ForbiddenComponent},
       {path: 'order', component: OrderComponent},
-      {path: 'order/detail', component: OrderDetailComponent}
+      {path: 'order/detail', component: OrderDetailComponent},
+      {path: 'personal', component: PersonalComponent},
+      {path: 'shop', component: ShopComponent},
+      {path: 'opinion', component: OpinionComponent}
     ]),
     RouterModule.forChild([])
   ],

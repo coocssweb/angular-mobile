@@ -1,0 +1,57 @@
+.shop{
+  border-top: 1px solid #E0E0E0;
+  border-bottom: 1px solid #E0E0E0;
+  padding: 55px 0px 20px 0px ;
+  margin-top: 10px;
+  position: relative;
+  background-color: #FFFFFF;
+}
+
+.shop-title{
+  border-left: 5px solid #59ac94;
+  color: #59ac94;
+  font-weight: bold;
+  padding-left: 20px;
+  font-size: 18px;
+  position: absolute;
+  left: 0px;
+  top: 20px;
+}
+
+.item{
+  position: relative;
+  padding-left: 60px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 18px;
+}
+
+.icon-email{
+  position: absolute;
+  width: 18px;
+  height: 12px;
+  background-image: url(../../../../images/icon-email.png);
+  background-size: cover;
+  left: 30px;
+  top: 12px;
+}
+
+.icon-telephone{
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background-image: url(../../../../images/icon-telephone.png);
+  background-size: cover;
+  left: 30px;
+  top: 10px;
+}
+
+.icon-location{
+  position: absolute;
+  width: 13px;
+  height: 18px;
+  background-image: url(../../../../images/icon-location.png);
+  background-size: cover;
+  left: 33px;
+  top: 10px;
+}

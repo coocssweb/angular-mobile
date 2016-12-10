@@ -1,11 +1,11 @@
 .title{
   text-align: center;
-  height: 40px;
-  line-height: 40px;
-  border-top: 1px solid #EEEEEE;
-  border-bottom: 1px solid #EEEEEE;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #E0E0E0;
   font-weight: normal;
   color: #909090;
+  background-color: #f2f4f4;
 }
 .title-text{
   font-size: 16px;
@@ -127,6 +127,7 @@
   text-align: center;
   font-size: 0px;
   margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .btn{
