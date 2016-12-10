@@ -57,7 +57,7 @@
 
 
 .steps{
-  margin-top: 20px;
+  margin: 20px 0px;
 }
 
 .step{
@@ -159,8 +159,11 @@
   height: 6px;
   display: inline-block;
 }
+.btn-open-up{
+  border-bottom: none;
+}
 
-.btn-open-icon-up{
+.btn-open-up .btn-open-icon{
   transform: rotate(180deg);
 }
 
@@ -226,3 +229,37 @@
   width: 18px;
   height: 18px;
 }
+
+.box-transparent{
+  border: none;
+  background-color: transparent;
+}
+
+.rated-item{
+  border: 1px solid #E0E0E0;
+  height: 40px;
+  line-height: 40px;
+  background-color: #FFFFFF;
+  position: relative;
+}
+
+.rated-key{
+  display: inline-block;
+  padding: 0px 10px;
+  color: #666666;
+}
+.rated-value{
+  display: inline-block;
+}
+.btn-rated{
+  background-color: #59ac94;
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  text-align: center;
+  color: #FFFFFF;
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 20px;
+}
+
