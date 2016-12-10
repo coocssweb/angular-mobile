@@ -35,6 +35,7 @@ import { OrderDetailComponent } from './modules/order/detail/order-detail.compon
 import { PersonalComponent } from './components/management/personal/personal.component'
 import { ShopComponent } from './components/management/shop/shop.component'
 import { OpinionComponent } from './components/management/opinion/opinion.component'
+import { ProgressComponent } from './components/management/progress/progress.component'
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { OpinionComponent } from './components/management/opinion/opinion.compon
     OrderDetailComponent,
     PersonalComponent,
     ShopComponent,
-    OpinionComponent
+    OpinionComponent,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,8 @@ import { OpinionComponent } from './components/management/opinion/opinion.compon
       {path: 'order/detail', component: OrderDetailComponent},
       {path: 'personal', component: PersonalComponent},
       {path: 'shop', component: ShopComponent},
-      {path: 'opinion', component: OpinionComponent}
+      {path: 'opinion', component: OpinionComponent},
+      {path: 'progress', component: ProgressComponent}
     ]),
     RouterModule.forChild([])
   ],

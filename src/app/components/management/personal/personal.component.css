@@ -1,60 +1,23 @@
-.form{
-  padding-bottom: 70px;
-}
-
-.form-item{
-  border-bottom: 1px solid #E0E0E0;
-  height: 55px;
-  line-height: 55px;
-  font-size: 16px;
-  background-color: #FFFFFF;
-}
-
-.form-key{
-  display: inline-block;
-  padding: 0px 10px 0px 20px;
-}
-
-.form-value{
-  display: inline-block;
-}
-
-.form-input{
-  border: none;
-  background-color: transparent;
-  display: block;
-  height: 40px;
-  font-size: 16px;
-}
-
-
-
-.toolbar{
+.title{
   text-align: center;
-  font-size: 0px;
-  position: absolute;
-  width: 100%;
-  bottom: 0px;
-  border-top: 1px solid #E0E0E0;
-  padding: 10px 0px;
-}
-
-.btn{
-  display: inline-block;
   height: 50px;
   line-height: 50px;
-  border: 1px solid #999;
-  width: 150px;
+  border-bottom: 1px solid #E0E0E0;
+  font-weight: normal;
+  color: #909090;
+  background-color: #f2f4f4;
+}
+.title-text{
   font-size: 16px;
+  position: relative;
 }
 
-.btn-cancel{
-  margin-left: 10px;
+.icon-title{
+  position: absolute;
+  left: -18px;
+  top: 2px;
+  background-image: url(../../../../images/icon-progress.png);
+  background-size: cover;
+  width: 15px;
+  height: 15px;
 }
-
-.btn-confirm{
-  background-color: #59ac94;
-  color: #FFFFFF;
-  border-color: #59ac94;
-}
-
