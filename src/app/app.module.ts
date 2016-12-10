@@ -1,7 +1,6 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
-import {RouterModule} from "@angular/router";
 import {AppComponent} from "./app.component";
 import {IndexComponent} from "./components/index/index.component";
 import {SceneFormComponent} from "./components/scene/scene-form.component";
@@ -23,16 +22,13 @@ import {PcFeedbackComponent} from "./components/pc-feedback/pc-feedback.componen
 import {PcPhotoComponent} from "./common/pc-photo/pc-photo.component";
 import {PhotoComponent} from "./common/photo/photo.component";
 import {HttpModule, JsonpModule} from "@angular/http";
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {LoginComponent} from "./components/login/login.component";
 import {LoggerService} from "./services/logger.service";
 import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
 import {CacheService} from "./services/cache.service";
-
-
-import { OrderComponent } from './components/management/order/order.component'
-import { OrderDetailComponent } from './components/management/order/detail/order-detail.component'
-
+import {AppRoutingModule} from "./app-routing.module";
+import {MyOrdersComponent} from "./modules/order/my-orders/my-orders.component";
+import {OrderDetailComponent} from  "./modules/order/detail/order-detail.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +53,7 @@ import { OrderDetailComponent } from './components/management/order/detail/order
     PCViewerComponent,
     LoginComponent,
     ForbiddenComponent,
-    OrderComponent,
+    MyOrdersComponent,
     OrderDetailComponent
   ],
   imports: [
@@ -65,27 +61,12 @@ import { OrderDetailComponent } from './components/management/order/detail/order
     FormsModule,
     HttpModule,
     JsonpModule,
-    RouterModule.forRoot([
-      {path: 'login/qrCode', component: LoginComponent},
-      {path: 'raw/:photoinfoid', component: PhotosComponent},
-      {path: 'raw/:photoinfoid/:status', component: PhotosComponent},
-      {path: 'truing/:photoinfoid', component: TruingsComponent},
-      {path: 'forbidden', component: ForbiddenComponent},
-      {path: 'order', component: OrderComponent},
-      {path: 'order/detail', component: OrderDetailComponent}
-    ]),
-    RouterModule.forChild([])
-  ],
-  exports: [
-    RouterModule
+    AppRoutingModule
   ],
   providers: [
-    {
-      provide: LocationStrategy, // 导航路径的策略设置
-      useClass: HashLocationStrategy // 使用'#'方式的策略
-    },
     CacheService,
-    LoggerService],
+    LoggerService
+  ],
   bootstrap: [AppComponent]
 })
 
