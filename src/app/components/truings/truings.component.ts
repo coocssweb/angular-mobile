@@ -340,7 +340,7 @@ export class TruingsComponent implements OnInit {
 
   onFinishConfirm(){
     this.truingService.finish(this.photoInfoId).then((info) => {
-      this.isShowSuccess = true
+      this.isShowConfirm = false
       this.truingInfo = info
       this.onTabStatus(-1)
     })
