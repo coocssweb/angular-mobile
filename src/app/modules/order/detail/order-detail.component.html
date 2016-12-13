@@ -13,11 +13,11 @@
   </div>
   <div class="form-item">
     <span class="form-key">拍摄日期:</span>
-    <span class="form-value">{{orderDetail.shootDateStr}}<!--2015年9月30日（星期五）--></span>
+    <span class="form-value" style="font-size: 14px;">{{orderDetail.shootDateStr}}<!--2015年9月30日（星期五）--></span>
   </div>
   <div class="form-item">
     <span class="form-key">拍摄门店:</span>
-    <span class="form-value">{{orderDetail.shopName}}</span>
+    <span class="form-value" >{{orderDetail.shopName}}</span>
   </div>
 </div>
 <div class="box">
@@ -52,7 +52,7 @@
   </div>
 </div>
 
-<div class="box" *ngFor="let product of productList;let i = index" >
+<div class="box" *ngFor="let product of orderDetail.products;let i = index" >
   <div class="form-item form-long-item">
     <div class="form-label">{{product.name}}</div>
     <span class="form-right-value">x{{product.productNum}}</span>
@@ -72,5 +72,5 @@
       <span class="icon-customer"></span>客服专员
     </div>
   </a>
-  <a href="javascript:;" class="btn btn-progress">服务进度 >></a>
+  <a href="javascript:;" class="btn btn-progress" (click)="goOrderFlow()">服务进度 >></a>
 </div>

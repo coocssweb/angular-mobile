@@ -10,6 +10,16 @@ import {TruingsComponent} from "./components/truings/truings.component";
 import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
 import {MyOrdersComponent} from "./modules/order/my-orders/my-orders.component";
 import {OrderDetailComponent} from  "./modules/order/detail/order-detail.component";
+import {OrderFlowComponent} from  "./modules/order/flow/order-flow.component";
+import {ShopComponent} from "./modules/shop/shop.component";
+import {AdviceComponent} from "./modules/advice/advice.component";
+import {UserInfoComponent} from "./modules/user-info/user-info.component";
+import {AppointmentComponent} from "./modules/appointment/appointment.component";
+
+// import { PersonalComponent } from './components/management/personal/personal.component'
+// import { ShopComponent } from './components/management/shop/shop.component'
+// import { OpinionComponent } from './components/management/opinion/opinion.component'
+
 const routes: Routes = [
   {path: 'login/qrCode', component: LoginComponent},
   {path: 'raw/:photoinfoid', component: PhotosComponent},
@@ -17,7 +27,12 @@ const routes: Routes = [
   {path: 'truing/:photoinfoid', component: TruingsComponent},
   {path: 'forbidden', component: ForbiddenComponent},
   {path: 'orders', component: MyOrdersComponent},
-  {path: 'orderDetail/:orderId', component: OrderDetailComponent},
+  {path: 'order-detail/:orderId', component: OrderDetailComponent},
+  {path: 'order-flow/:orderId', component: OrderFlowComponent},
+  {path: 'shops', component: ShopComponent},
+  {path: 'advice', component: AdviceComponent},
+  {path: 'user-info', component: UserInfoComponent},
+  {path: 'appoint', component: AppointmentComponent},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes), RouterModule.forChild([])

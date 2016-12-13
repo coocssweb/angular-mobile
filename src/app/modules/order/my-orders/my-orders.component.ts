@@ -41,12 +41,13 @@ export class MyOrdersComponent implements OnInit {
   getMyOrders(){
     this.ordersService.getMyOrders().then((resp:any) =>{
         this.myOrders = resp
-        console.log(this.myOrders)
     })
   }
 
-  getOrderDetail(orderId){
-    this.router.navigate(['/orderDetail', orderId]);
+  goOrderDetail(orderId){
+    this.router.navigate(['/order-detail', orderId]);
   }
-
+  goOrderFlow(orderId){
+    this.router.navigate(['/order-flow', orderId]);
+  }
 }

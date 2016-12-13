@@ -5,8 +5,6 @@ import {Component, OnInit} from "@angular/core";
 import {OrdersService} from "../shared/orders.service"
 import any = jasmine.any;
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {OrderDetail} from "./order-detail";
-import {OrderProduct} from "../shared/order-product";
 @Component({
   selector: 'order-detail',
   templateUrl: 'order-detail.component.html',
@@ -22,7 +20,6 @@ export class OrderDetailComponent implements OnInit {
 
   private series:any={}
 
-  private productList: any[]=[]
 
   /**
    * 构造函数
@@ -45,10 +42,11 @@ export class OrderDetailComponent implements OnInit {
 
   getOrderDetail(){
      this.ordersService.getOrderDetail(this.orderId).then((resp:any)=>{
-       this.orderDetail = resp
-       this.productList = this.orderDetail.products
+       Object.assign(this.orderDetail, resp)
        this.series = this.orderDetail.series
-       console.log(this.orderDetail)
      })
+  }
+  goOrderFlow(){
+    this.router.navigate(['/order-flow', this.orderId]);
   }
 }

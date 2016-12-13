@@ -1,0 +1,9 @@
+<textarea placeholder="请输入您的宝贵意见..." class="textarea" name="content" [(ngModel)]="content">
+</textarea>
+<tip
+  *ngIf="isShowTip"
+  (close)="onCloseTip()"
+  btnText = '确定'>
+  {{message}}
+</tip>
+<a href="javascript:;" class="btn-submit" (click)="addAdvice()">提交</a>

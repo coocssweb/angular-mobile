@@ -9,7 +9,8 @@
       <div class="item item-time">{{order.shootDateStr}}</div>
       <div class="item item-shop">{{order.brandName}}</div>
       <div class="item item-type">{{order.seriesName}}/{{order.shootType}}</div>
-      <a href="javascript:;" class="btn-detail" (click)="getOrderDetail(order.orderId)">查看订单详情</a>
+      <a href="javascript:;" class="btn-detail-left" (click)="goOrderDetail(order.orderId)">查看订单详情</a>
+      <a href="javascript:;" class="btn-detail-right" (click)="goOrderFlow(order.orderId)">查看服务进度</a>
     </div>
   </li>
   <!--<li class="order">-->

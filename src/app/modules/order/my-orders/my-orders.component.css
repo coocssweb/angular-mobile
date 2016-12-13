@@ -62,7 +62,7 @@
   color: #909090;
 }
 
-.btn-detail{
+.btn-detail-left{
   border-top: 1px solid #E0E0E0;
   display: block;
   height: 40px;
@@ -71,10 +71,23 @@
   color: #59ac94;
   position: absolute;
   bottom: 0px;
-  width: 100%;
+  width: 50%;
   left: 0px;
+  border-right: 1px solid #E0E0E0;
 }
 
+.btn-detail-right{
+  border-top: 1px solid #E0E0E0;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #59ac94;
+  position: absolute;
+  bottom: 0px;
+  width: 50%;
+  right: 0px;
+}
 
 .toolbar{
   position: absolute;

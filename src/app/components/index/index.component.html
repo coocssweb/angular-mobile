@@ -1,16 +1,48 @@
 <div class="main-layout" id="main-layout">
   <div class="header layout">
       <div class="nav">
-        <a href="javascript:;" class="nav-link"></a>
+        <a href="javascript:;" class="nav-link" (click)="toggleDirective()"></a>
+        <ul class="head-menu" *ngIf="showDirective">
+          <li>
+            <a href="#/appoint" (click)="toggleDirective()">
+              <i class="icon-yuyue iconfont"></i>在线预约
+            </a>
+          </li>
+          <li>
+            <a href="#/orders" (click)="toggleDirective()">
+              <i class="icon-order iconfont"></i>我的订单
+            </a>
+          </li>
+          <!--<li>-->
+            <!--<a href="progress.html?orderId=0">-->
+              <!--<i class="icon-chakanjindu iconfont"></i>进度查看-->
+            <!--</a>-->
+          <!--</li>-->
+          <li>
+            <a href="#/user-info" (click)="toggleDirective()">
+              <i class="icon-gerenziliao iconfont"></i>个人资料
+            </a>
+          </li>
+          <li>
+            <a href="#/shops" (click)="toggleDirective()">
+              <i class="icon-dizhi iconfont"></i>门店地址
+            </a>
+          </li>
+          <li>
+            <a href="#/advice" (click)="toggleDirective()">
+              <i class="icon-yijianfankui iconfont"></i>意见反馈
+            </a>
+          </li>
+        </ul>
       </div>
-      <div class="logo">
+    <div class="menu-mask" *ngIf="showDirective" (click)="toggleDirective()"></div>
+    <div class="logo">
         <img src="../../../images/title.png" class="logo-image"/>
-      </div>
-      <div class="dropdown">
-        <a href="javascript:;" class="drapdown-link"></a>
-      </div>
+    </div>
+    <div class="dropdown">
+      <a href="javascript:;" class="drapdown-link" ></a>
+    </div>
   </div>
-
   <div class="pc-header">
     <div class="pc-layout pc-header-inner">
       <img src="../../../images/pc/logo.png" class="pc-logo" />
@@ -18,3 +50,4 @@
   </div>
   <router-outlet></router-outlet>
 </div>
+

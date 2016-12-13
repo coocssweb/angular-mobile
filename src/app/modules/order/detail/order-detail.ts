@@ -17,7 +17,7 @@ export class OrderDetail {
   public shopId: number
   public shopName: string
   public series: Series
-  public products: OrderProduct[]
+  public products: OrderProduct[]=[]
   public cusState: number
   public cusStateName: string
   public actualPayment: number
@@ -27,8 +27,18 @@ export class OrderDetail {
 
   constructor(orderDetail) {
     this.id = orderDetail.id
+    this.orderNo = orderDetail.orderNo
     this.orderDate = orderDetail.orderDate
     this.shootDateStr = orderDetail.shootDateStr
-    this.orderNo = orderDetail.orderNo
+    this.shopId = orderDetail.shopId
+    this.shopName = orderDetail.shopName
+    this.series = orderDetail.series
+    this.products = orderDetail.products
+    this.cusState = orderDetail.cusState
+    this.cusStateName = orderDetail.cusStateName
+    this.actualPayment = orderDetail.actualPayment
+    this.downPayment = orderDetail.downPayment
+    this.shotType = orderDetail.shotType
+    this.serviceWorkerMobile = orderDetail.serviceWorkerMobile
   }
 }
