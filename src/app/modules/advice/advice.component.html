@@ -1,3 +1,6 @@
+<div  *ngIf="toShowErr"  class="form-item alert alert-danger">
+  <span class="ng-binding">{{errMsg}}</span>
+</div>
 <textarea placeholder="请输入您的宝贵意见..." class="textarea" name="content" [(ngModel)]="content">
 </textarea>
 <tip
@@ -6,4 +9,4 @@
   btnText = '确定'>
   {{message}}
 </tip>
-<a href="javascript:;" class="btn-submit" (click)="addAdvice()">提交</a>
+<button  class="btn-submit" [disabled]="isSubmit"  (click)="addAdvice()" >{{submitText}}</button>

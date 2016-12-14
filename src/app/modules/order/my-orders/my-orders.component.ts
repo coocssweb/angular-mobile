@@ -17,7 +17,8 @@ import {Router} from "@angular/router";
 export class MyOrdersComponent implements OnInit {
 
   private myOrders : Order[] = []
-
+  //是否正在加载数据
+  isLoadingData = false
   /**
    * 构造函数
    * @param rawService
@@ -39,8 +40,10 @@ export class MyOrdersComponent implements OnInit {
    * @returns {Promise<any>}
    */
   getMyOrders(){
+    this.isLoadingData = true
     this.ordersService.getMyOrders().then((resp:any) =>{
         this.myOrders = resp
+      this.isLoadingData = false
     })
   }
 
@@ -49,5 +52,12 @@ export class MyOrdersComponent implements OnInit {
   }
   goOrderFlow(orderId){
     this.router.navigate(['/order-flow', orderId]);
+  }
+  goPhotos(order){
+    if(order.cusStateName=="客户选片"){
+      this.router.navigate(['/raw', order.photoInfoId]);
+    }else if(order.cusStateName=="原片精修"){
+      this.router.navigate(['/truing', order.photoInfoId]);
+    }
   }
 }

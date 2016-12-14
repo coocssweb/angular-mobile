@@ -1,15 +1,15 @@
-<h2 class="title">
-  <span class="title-text"><span class="icon-title"></span>我的订单</span>
-</h2>
+<!--<h2 class="title">-->
+  <!--<span class="title-text"><span class="icon-title"></span>我的订单</span>-->
+<!--</h2>-->
 <ul  *ngFor="let order of myOrders;let i = index">
   <li class="order">
-    <span class="status">{{order.cusStateName}}</span>
-    <div class="items">
+    <span class="status" (click)="goPhotos(order)">{{order.cusStateName}}<i class="icon-go" *ngIf="order.cusStateName=='客户选片'||order.cusStateName=='原片精修'"></i></span>
+    <div class="items" (click)="goOrderDetail(order.orderId)">
       <div class="item item-name">{{order.customerName}}</div>
       <div class="item item-time">{{order.shootDateStr}}</div>
       <div class="item item-shop">{{order.brandName}}</div>
       <div class="item item-type">{{order.seriesName}}/{{order.shootType}}</div>
-      <a href="javascript:;" class="btn-detail-left" (click)="goOrderDetail(order.orderId)">查看订单详情</a>
+      <a href="javascript:;" class="btn-detail-left">查看订单详情</a>
       <a href="javascript:;" class="btn-detail-right" (click)="goOrderFlow(order.orderId)">查看服务进度</a>
     </div>
   </li>
@@ -25,3 +25,4 @@
   <!--</li>-->
 </ul>
 
+<loading *ngIf="isLoadingData"></loading>

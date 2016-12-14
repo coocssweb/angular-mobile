@@ -21,4 +21,31 @@
   background-color: #59ac94;
   font-size: 18px;
   margin-top: 20px;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+.btn-submit:disabled{
+  background-color: #aaa;
+}
+.form-item{
+  border-bottom: 1px solid #E0E0E0;
+  height: 55px;
+  line-height: 55px;
+  font-size: 16px;
+  background-color: #FFFFFF;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.alert {
+  text-align:center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.required{
+  color: red;
 }

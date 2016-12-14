@@ -19,7 +19,8 @@ export class OrderDetailComponent implements OnInit {
   private orderDetail:any = {}
 
   private series:any={}
-
+  //是否正在加载数据
+  isLoadingData = false
 
   /**
    * 构造函数
@@ -41,12 +42,21 @@ export class OrderDetailComponent implements OnInit {
   }
 
   getOrderDetail(){
+    this.isLoadingData = true
      this.ordersService.getOrderDetail(this.orderId).then((resp:any)=>{
        Object.assign(this.orderDetail, resp)
        this.series = this.orderDetail.series
+       this.isLoadingData = false
      })
   }
   goOrderFlow(){
     this.router.navigate(['/order-flow', this.orderId]);
+  }
+  goPhotos(){
+    if(this.orderDetail.cusStateName=="客户选片"){
+      this.router.navigate(['/raw', this.orderDetail.photoInfoId]);
+    }else if(this.orderDetail.cusStateName=="原片精修"){
+      this.router.navigate(['/truing', this.orderDetail.photoInfoId]);
+    }
   }
 }

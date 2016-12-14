@@ -20,6 +20,8 @@ export class OrderFlowComponent implements OnInit {
 
   private isShowTip: boolean = false
   private message:string
+  //是否正在加载数据
+  isLoadingData = false
   /**
    * 构造函数
    * @param rawService
@@ -40,6 +42,7 @@ export class OrderFlowComponent implements OnInit {
   }
 
   getOrderFlow(){
+    this.isLoadingData = true
     this.ordersService.getOrderFlow(this.orderId).then((resp:any)=>{
       this.orderFlow = resp
       this.orderFlow.flowNodes.forEach(flowNode => {
@@ -56,6 +59,7 @@ export class OrderFlowComponent implements OnInit {
         }
         flowNode.isEvaluated = isEvaluated
       });
+      this.isLoadingData = false
     })
   }
 
@@ -95,6 +99,7 @@ export class OrderFlowComponent implements OnInit {
     this.ordersService.saveEvaluate(this.orderId,params).then((resp:any)=>{
       this.message = "评价成功！"
       this.isShowTip = true
+      flowNode.evaluating = false
       flowNode.isEvaluated = true
       flowNode.evaluatedResult = true
     })
@@ -114,5 +119,15 @@ export class OrderFlowComponent implements OnInit {
   hideEvaluatedResult(flowNode){
     flowNode.evaluatedResult = false
     flowNode.evaluating = false
+  }
+  goPhotos(flowNode){
+    if(flowNode.status==1){
+      if(flowNode.name=="客户选片"){
+        this.router.navigate(['/raw', this.orderFlow.photoInfoId]);
+      }else if(flowNode.name=="原片精修"){
+        this.router.navigate(['/truing', this.orderFlow.photoInfoId]);
+      }
+    }
+    return
   }
 }

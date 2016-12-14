@@ -44,8 +44,9 @@
   height: 50px;
   line-height: 50px;
   border: 1px solid #999;
-  width: 150px;
+  width: 100%;
   font-size: 16px;
+  border-radius: 5px;
 }
 
 .btn-cancel{
@@ -70,4 +71,27 @@
 }
 .required{
   color: red;
+}
+.code-btn{
+  height: 55px;
+  line-height: 100%;
+  padding: .8rem 1rem;
+  border: 0;
+  box-sizing: border-box;
+  background: #59ac94;
+  color: #fff;
+  position: relative;
+  right: -130px;
+  top: -48px;
+}
+.code-btn:disabled{
+  background-color: #aaa;
+}
+.select{
+  width: 100%;
+  height: 46px;
+  padding: 6px 12px;
+  background-color: #fff;
+  border: 1px solid #c2cad8;
+  border-radius: 4px;
 }

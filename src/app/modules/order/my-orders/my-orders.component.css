@@ -95,3 +95,14 @@
   bottom: 0px;
 
 }
+.icon-go{
+  display: inline-block;
+  height: 20px;
+  width: 16px;
+  background-size: cover;
+  margin-right: 10px;
+  position: absolute;
+  top: 5px;
+  right: 0;
+  background-image: url(../../../../images/icon-go.png);
+}

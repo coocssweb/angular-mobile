@@ -35,6 +35,15 @@
   left: 30px;
   top: 12px;
 }
+.icon-mobile{
+  position: absolute;
+  width: 18px;
+  height: 25px;
+  background-image: url(../../../../images/icon-mobile.png);
+  background-size: cover;
+  left: 28px;
+  top: 5px;
+}
 
 .icon-telephone{
   position: absolute;

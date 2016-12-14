@@ -272,3 +272,26 @@
 .render{
   display: none;
 }
+
+.back{
+  float: left;
+  color: #59ac94;
+  font-size: .8rem;
+  margin-left: .5rem;
+  text-decoration: none;
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  background-color: white;
+}
+.icon-back{
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-size: cover;
+  margin-right: 10px;
+  position: absolute;
+  top: -3px;
+  right: 12px;
+  background-image: url(../../../images/icon-back.png);
+}

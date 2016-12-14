@@ -24,6 +24,8 @@ export class UserInfoComponent  implements OnInit{
   private errMsg: string
   private toShowErr:boolean = false
 
+  //是否正在加载数据
+  isLoadingData = false
   /**
    * 构造函数
    * @param rawService
@@ -41,8 +43,10 @@ export class UserInfoComponent  implements OnInit{
   }
 
   getUserInfo(){
+    this.isLoadingData = true
     this.userInfoService.getUserInfo().then((resp:any)=>{
       this.user = resp
+      this.isLoadingData = false
       this.orgMobile = this.user.mobile
     })
   }
@@ -63,6 +67,7 @@ export class UserInfoComponent  implements OnInit{
         console.log(resp)
         this.message = "保存成功！"
         this.isShowTip = true
+        this.codeInner = false
       })
     }else{
       setTimeout((resp:any)=>{
@@ -118,13 +123,13 @@ export class UserInfoComponent  implements OnInit{
   }
   getCode(){
     if(this.user.mobile.trim().length<1){
-      this.message = "手机号码不能为空"
-      this.isShowTip = true
-      return
+      this.errMsg = "手机号码不能为空"
+      this.toShowErr = true
+      return false
     }else if (!/^1[34578]\d{9}$/.test(this.user.mobile) || this.user.mobile.length != 11) {
-      this.message = "手机号码格式不正确"
-      this.isShowTip = true
-      return
+      this.errMsg = "手机号码格式不正确"
+      this.toShowErr = true
+      return false
     }
     this.settime(document.getElementById('getCode'))
     this.userInfoService.getCodeByMobile(this.user.mobile).then((resp:any)=>{
