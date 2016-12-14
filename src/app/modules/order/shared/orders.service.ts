@@ -22,8 +22,37 @@ export class OrdersService extends BaseService{
     return this.get(url)
   }
 
+  /**
+   * 获取订单详情
+   *
+   * @param orderId
+   * @returns {Promise<any>}
+   */
   getOrderDetail(orderId):Promise<any>{
     let url = "/orders/" + orderId
     return this.get(url)
+  }
+
+  /**
+   * 获取订单进度流程
+   *
+   * @param orderId
+   * @returns {Promise<any>}
+   */
+  getOrderFlow(orderId):Promise<any>{
+    let url = "/orders/" + orderId + "/flows"
+    return this.get(url)
+  }
+
+  /**
+   * 客户给订单流程中的工作人员进行评价
+   *
+   * @param orderId
+   * @returns {Promise<any>}
+   */
+  saveEvaluate(orderId,params):Promise<any>{
+    let url = "/orders/" + orderId + "/flows/evaluates"
+    let body = JSON.stringify(params)
+    return this.post(url,body)
   }
 }

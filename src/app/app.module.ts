@@ -1,7 +1,6 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
-import {RouterModule} from "@angular/router";
 import {AppComponent} from "./app.component";
 import {IndexComponent} from "./components/index/index.component";
 import {SceneFormComponent} from "./components/scene/scene-form.component";
@@ -23,20 +22,18 @@ import {PcFeedbackComponent} from "./components/pc-feedback/pc-feedback.componen
 import {PcPhotoComponent} from "./common/pc-photo/pc-photo.component";
 import {PhotoComponent} from "./common/photo/photo.component";
 import {HttpModule, JsonpModule} from "@angular/http";
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {LoginComponent} from "./components/login/login.component";
 import {LoggerService} from "./services/logger.service";
 import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
 import {CacheService} from "./services/cache.service";
-
-
-import { MyOrdersComponent } from './modules/order/my-orders/my-orders.component'
-import { OrderDetailComponent } from './modules/order/detail/order-detail.component'
-import { PersonalComponent } from './components/management/personal/personal.component'
-import { ShopComponent } from './components/management/shop/shop.component'
-import { OpinionComponent } from './components/management/opinion/opinion.component'
-import { ProgressComponent } from './components/management/progress/progress.component'
-
+import {AppRoutingModule} from "./app-routing.module";
+import {MyOrdersComponent} from "./modules/order/my-orders/my-orders.component";
+import {OrderDetailComponent} from  "./modules/order/detail/order-detail.component";
+import {OrderFlowComponent} from  "./modules/order/flow/order-flow.component";
+import {ShopComponent} from "./modules/shop/shop.component";
+import {AdviceComponent} from "./modules/advice/advice.component";
+import {UserInfoComponent} from "./modules/user-info/user-info.component";
+import {AppointmentComponent} from "./modules/appointment/appointment.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,41 +60,23 @@ import { ProgressComponent } from './components/management/progress/progress.com
     ForbiddenComponent,
     MyOrdersComponent,
     OrderDetailComponent,
-    PersonalComponent,
+    OrderFlowComponent,
     ShopComponent,
-    OpinionComponent,
-    ProgressComponent
+    AdviceComponent,
+    UserInfoComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     JsonpModule,
-    RouterModule.forRoot([
-      {path: 'login/qrCode', component: LoginComponent},
-      {path: 'raw/:photoinfoid', component: PhotosComponent},
-      {path: 'raw/:photoinfoid/:status', component: PhotosComponent},
-      {path: 'truing/:photoinfoid', component: TruingsComponent},
-      {path: 'forbidden', component: ForbiddenComponent},
-      {path: 'order', component: MyOrdersComponent},
-      {path: 'order/detail', component: OrderDetailComponent},
-      {path: 'personal', component: PersonalComponent},
-      {path: 'shop', component: ShopComponent},
-      {path: 'opinion', component: OpinionComponent},
-      {path: 'progress', component: ProgressComponent}
-    ]),
-    RouterModule.forChild([])
-  ],
-  exports: [
-    RouterModule
+    AppRoutingModule
   ],
   providers: [
-    {
-      provide: LocationStrategy, // 导航路径的策略设置
-      useClass: HashLocationStrategy // 使用'#'方式的策略
-    },
     CacheService,
-    LoggerService],
+    LoggerService
+  ],
   bootstrap: [AppComponent]
 })
 

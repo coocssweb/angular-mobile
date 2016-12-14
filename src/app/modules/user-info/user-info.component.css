@@ -1,0 +1,90 @@
+.form{
+  padding-bottom: 70px;
+}
+
+.form-item{
+  border-bottom: 1px solid #E0E0E0;
+  height: 55px;
+  line-height: 55px;
+  font-size: 16px;
+  background-color: #FFFFFF;
+}
+
+.form-key{
+  display: inline-block;
+  padding: 0px 10px 0px 20px;
+}
+
+.form-value{
+  display: inline-block;
+}
+
+.form-input{
+  border: none;
+  background-color: transparent;
+  display: block;
+  height: 40px;
+  font-size: 16px;
+}
+
+
+
+.toolbar{
+  text-align: center;
+  font-size: 0px;
+  /*position: absolute;*/
+  width: 100%;
+  bottom: 0px;
+  border-top: 1px solid #E0E0E0;
+  padding: 10px 0px;
+}
+
+.btn{
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  border: 1px solid #999;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.btn-cancel{
+  margin-left: 10px;
+}
+
+.btn-confirm{
+  background-color: #59ac94;
+  color: #FFFFFF;
+  border-color: #59ac94;
+}
+.code-btn{
+  height: 55px;
+  line-height: 100%;
+  padding: .8rem 1rem;
+  border: 0;
+  box-sizing: border-box;
+  background: #59ac94;
+  color: #fff;
+  position: relative;
+  right: -130px;
+  top: -48px;
+}
+.code-btn:disabled{
+  background-color: #aaa;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.alert {
+  text-align:center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.required{
+  color: red;
+}
+

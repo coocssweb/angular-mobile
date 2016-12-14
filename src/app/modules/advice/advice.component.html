@@ -1,0 +1,12 @@
+<div  *ngIf="toShowErr"  class="form-item alert alert-danger">
+  <span class="ng-binding">{{errMsg}}</span>
+</div>
+<textarea placeholder="请输入您的宝贵意见..." class="textarea" name="content" [(ngModel)]="content">
+</textarea>
+<tip
+  *ngIf="isShowTip"
+  (close)="onCloseTip()"
+  btnText = '确定'>
+  {{message}}
+</tip>
+<button  class="btn-submit" [disabled]="isSubmit"  (click)="addAdvice()" >{{submitText}}</button>

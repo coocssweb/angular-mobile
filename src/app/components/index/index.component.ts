@@ -4,6 +4,7 @@
  */
 import { Component, OnInit } from '@angular/core'
 
+
 @Component({
     selector: '<index></index>',
     templateUrl: 'index.component.html',
@@ -14,6 +15,10 @@ export class IndexComponent implements OnInit {
     currentTab: string = 'raw'
     photoInfoId: string
     isTransform = false
+
+    private showDirective : boolean= false
+
+
 
     ngOnInit(): void {
       let location = window.location.href
@@ -30,5 +35,10 @@ export class IndexComponent implements OnInit {
     onToggle(flag){
       this.isTransform =flag
     }
+
+    toggleDirective(){
+      this.showDirective =  !this.showDirective
+    }
+
 
 }

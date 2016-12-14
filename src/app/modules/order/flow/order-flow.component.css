@@ -35,7 +35,7 @@
   height: 30px;
   line-height: 30px;
   position: relative;
-  padding-left: 85px;
+  padding-left: 81px;
 }
 
 .info-key{
@@ -103,7 +103,6 @@
   color: #FFFFFF;
   border-radius: 50%;
 }
-
 .step-active .step-number{
   border-color: #91c5b6;
 }
@@ -127,11 +126,13 @@
   font-size: 14px;
   margin-top: 10px;
   margin-left: 15px;
+  position: relative;
 }
 
 .step-item{
   line-height: 30px;
   height: 30px;
+  width: 80%;
   position: relative;
 }
 
@@ -149,7 +150,6 @@
   height: 30px;
   line-height: 30px;
   display: block;
-  border-bottom: 1px solid #E0E0E0;
   text-align: center;
 }
 .btn-open-icon{
@@ -169,10 +169,13 @@
 
 .judge{
   margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #E0E0E0;
 }
 
 .judge-item{
   display: inline-block;
+  margin-right: 11px;
 }
 
 .judge-key{
@@ -210,6 +213,7 @@
 
 .btn-submit{
   display: block;
+  width: 100%;
   text-align: center;
   color: #FFFFFF;
   height: 40px;
@@ -217,12 +221,17 @@
   background-color: #59ac94;
   font-size: 16px;
   margin-top: 20px;
-}
+  border-radius: 5px;
 
+}
+.btn-submit:disabled{
+  background-color: #aaa;
+}
 .judge-active{
   position: absolute;
   right: 0px;
-  top: 0px;
+  top: 5px;
+  right: -53px;
 }
 
 .judge-active .star{
@@ -253,13 +262,58 @@
 }
 .btn-rated{
   background-color: #59ac94;
-  position: absolute;
-  right: 1px;
-  top: 1px;
   text-align: center;
   color: #FFFFFF;
   height: 40px;
   line-height: 40px;
   padding: 0px 20px;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  margin-top: -20px;
+  border-radius: .1rem;
+  /*background-color: #59ac94;*/
+  /*position: absolute;*/
+  /*right: 1px;*/
+  /*top: 1px;*/
+  /*text-align: center;*/
+  /*color: #FFFFFF;*/
+  /*height: 40px;*/
+  /*line-height: 40px;*/
+  /*padding: 0px 20px;*/
+
 }
 
+.back{
+  float: left;
+  color: #59ac94;
+  font-size: .8rem;
+  margin-left: .5rem;
+  text-decoration: none;
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  background-color: white;
+}
+.icon-back{
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-size: cover;
+  margin-right: 10px;
+  position: absolute;
+  top: -3px;
+  right: 12px;
+  background-image: url(../../../../images/icon-back.png);
+}
+.icon-go{
+  display: inline-block;
+  height: 20px;
+  width: 16px;
+  background-size: cover;
+  margin-right: 10px;
+  position: absolute;
+  top: -1px;
+  left: 84px;
+  background-image: url(../../../../images/icon-go.png);
+}

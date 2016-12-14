@@ -1,0 +1,84 @@
+<!--<h2 class="title">
+  <span class="title-text"><span class="icon-title"></span>查看进度</span>
+</h2>-->
+<loading *ngIf="isLoadingData"></loading>
+<a class="back"href="#/order-detail/{{orderId}}" style="color: #59ac94;"><i class="icon-back"></i>返回</a>
+<div class="order-info">
+  <div class="info-item">
+    <div class="info-key">订单编号:</div>
+    <div class="info-value">{{orderFlow.orderNo}}</div>
+  </div>
+  <div class="info-item">
+    <div class="info-key">下单时间:</div>
+    <div class="info-value">{{orderFlow.orderDate}}</div>
+  </div>
+  <div class="info-item">
+    <div class="info-key">拍摄时间:</div>
+    <div class="info-value">{{orderFlow.shootDateStr}}</div>
+  </div>
+</div>
+
+<div class="steps" *ngFor="let flow of orderFlow.flowNodes;let i = index">
+  <div class="step" [ngClass]="{'step-more':i!=0}">
+    <div class="step-title"  [ngClass]="{'step-active':flow.status==1}" (click)="goPhotos(flow)">
+      <div class="step-number" [ngClass]="{'step-active':flow.status!=0}">
+        <div class="inner-number">{{i+1}}</div>
+      </div>
+     {{flow.name}}<i class="icon-go" *ngIf="flow.status==1 &&(flow.name=='客户选片'||flow.name=='原片精修')"></i><span class="sub-title">{{flow.beginTime}} 至 {{flow.endTime}} </span>
+    </div>
+    <div class="step-box" *ngIf="flow.status!=0 && flow.workers.length>0"><!--[ngClass]="{'box-transparent':!flow.isEvaluated}"-->
+      <div class="step-item"  *ngFor="let worker of flow.workers;let j = index"><!--[ngClass]="{'step-item':flow.isEvaluated,'rated-item':!flow.isEvaluated}"-->
+        <div class="step-key"  >{{worker.roleName}}:</div><!-- [ngClass]="{'step-key':flow.isEvaluated,'rated-key':!flow.isEvaluated}"-->
+        <div class="step-value" >{{worker.workerName}}</div><!-- [ngClass]="{'step-value':flow.isEvaluated,'rated-value':!flow.isEvaluated}"-->
+        <!--<a href="javascript:;" class="btn-rated" *ngIf="flow.status ==2 && !flow.isEvaluated && !flow.evaluating " (click)="evaluating(flow)">评价</a>-->
+        <div class="judge-star judge-active" *ngIf="flow.evaluating">
+          <a href="javascript:;" class="star" [ngClass]="{'star-active':worker.serviceLevel >=1}" (click)="evaluateStar(flow,j,1)"></a>
+          <a href="javascript:;" class="star" [ngClass]="{'star-active':worker.serviceLevel >=2}" (click)="evaluateStar(flow,j,2)"></a>
+          <a href="javascript:;" class="star" [ngClass]="{'star-active':worker.serviceLevel >=3}" (click)="evaluateStar(flow,j,3)"></a>
+          <a href="javascript:;" class="star" [ngClass]="{'star-active':worker.serviceLevel >=4}" (click)="evaluateStar(flow,j,4)"></a>
+          <a href="javascript:;" class="star" [ngClass]="{'star-active':worker.serviceLevel >=5}" (click)="evaluateStar(flow,j,5)"></a>
+        </div>
+      </div>
+      <!--<div style="    position: relative;top: 50%;">-->
+      <a href="javascript:;" class="btn-rated" *ngIf="flow.status ==2 && !flow.isEvaluated && !flow.evaluating " (click)="evaluating(flow)">评价</a>
+      <!--</div>-->
+      <a href="javascript:;" class="btn-open" (click)="showEvaluatedResult(flow)" *ngIf="flow.status==2 &&flow.isEvaluated && !flow.evaluatedResult">
+        <span class="btn-open-icon"></span>
+      </a>
+      <div class="judge" *ngIf="flow.evaluatedResult">
+        <div class="judge-line">
+          <div class="judge-item" *ngFor="let worker of flow.workers;let i = index">
+            <div class="judge-key">{{worker.roleName}} :</div>
+            <div class="judge-star">
+              <a href="javascript:;" class="star" [ngClass]="{'star-active':worker.serviceLevel >=1}"></a>
+              <a href="javascript:;" class="star" [ngClass]="{'star-active':worker.serviceLevel >=2}"></a>
+              <a href="javascript:;" class="star" [ngClass]="{'star-active':worker.serviceLevel >=3}"></a>
+              <a href="javascript:;" class="star" [ngClass]="{'star-active':worker.serviceLevel >=4}"></a>
+              <a href="javascript:;" class="star" [ngClass]="{'star-active':worker.serviceLevel >=5}"></a>
+            </div>
+          </div>
+          <div class="judge-item" style="display: -webkit-box;margin-top: 3px;" >
+            <div class="judge-key">{{flow.workers[0].content}}</div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="flow.evaluating">
+        <textarea class="textarea" placeholder="我想说..." name="content" [(ngModel)]="flow.content"></textarea>
+        <button  class="btn-submit" type="button" [disabled]="!flow.submit" (click)="saveEvaluate(flow)">提交</button>
+      </div>
+        <a href="javascript:;" class="btn-open btn-open-up" (click)="hideEvaluatedResult(flow)" *ngIf="flow.evaluatedResult||flow.evaluating">
+          <span class="btn-open-icon"></span>
+        </a>
+    </div>
+  </div>
+
+  <tip
+    *ngIf="isShowTip"
+    (close)="onCloseTip()"
+    btnText = '确定'>
+    {{message}}
+  </tip>
+</div>
+
+
+

@@ -1,0 +1,84 @@
+<loading *ngIf="isLoadingData"></loading>
+<div class="form" style="padding-bottom: 0px; ">
+  <div  *ngIf="toShowErr"  class="form-item alert alert-danger">
+    <span class="ng-binding">{{errMsg}}</span>
+  </div>
+  <div class="form-item">
+    <div class="form-key"><span class="required">*</span>姓名</div>
+    <div class="form-value">
+      <input class="form-input" placeholder="请输入姓名" [(ngModel)]="user.name"/>
+    </div>
+  </div>
+
+  <div class="form-item">
+    <div class="form-key">性别</div>
+    <div class="form-value">
+        <label class="label-w3"><input type="radio" name="sex" [(ngModel)]="user.sex" [value]="1" >男</label>
+        <label class="label-w3"><input type="radio" name="sex" [(ngModel)]="user.sex" [value]="2">女</label>
+    </div>
+  </div>
+
+  <div class="form-item">
+    <div class="form-key"><span class="required">*</span>手机号码</div>
+    <div class="form-value">
+      <input class="form-input" placeholder="请输入手机号码" (blur)="mobileBlur()" [(ngModel)]="user.mobile" mobile required/>
+    </div>
+  </div>
+
+  <div class="form-item" *ngIf="codeInner">
+    <div class="form-key"><span class="required">*</span>验证码</div>
+    <div class="form-value" style=" position: absolute; height: 56px;">
+      <input class="form-input" style="padding-top: 8px;" placeholder="请输入验证码" [(ngModel)]="user.code" />
+      <button type="button" class="code-btn" id="getCode" (click)="getCode()">获取验证码</button>
+    </div>
+  </div>
+
+  <div class="form-item">
+    <div class="form-key"><span class="required">*</span>电子邮箱</div>
+    <div class="form-value">
+      <input class="form-input" placeholder="请输入电子邮箱" [(ngModel)]="user.email" />
+    </div>
+  </div>
+  <div class="form-item">
+    <div class="form-key">邮编</div>
+    <div class="form-value">
+      <input class="form-input" placeholder="请输入邮编" [(ngModel)]="user.zipCode" />
+    </div>
+  </div>
+  <div class="form-item">
+    <div class="form-key">省</div>
+    <div class="form-value">
+      <input class="form-input" placeholder="请输入省"   [(ngModel)]="user.province"  />
+    </div>
+  </div>
+  <div class="form-item">
+    <div class="form-key">市</div>
+    <div class="form-value">
+      <input class="form-input" placeholder="请输入市"   [(ngModel)]="user.city"   />
+    </div>
+  </div>
+  <div class="form-item">
+    <div class="form-key">区（县）</div>
+    <div class="form-value">
+      <input class="form-input" placeholder="请输入区"  [(ngModel)]="user.county"   />
+    </div>
+  </div>
+  <div class="form-item">
+    <div class="form-key">街道</div>
+    <div class="form-value">
+      <input class="form-input" placeholder="请输入街道" [(ngModel)]="user.address"/>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <a href="javascript:;" class="btn btn-confirm" (click)="updateUserInfo()">保存</a>
+    <!--<a href="javascript:;" class="btn btn-cancel">取消</a>-->
+  </div>
+  <tip
+    *ngIf="isShowTip"
+    (close)="onCloseTip()"
+    btnText = '确定'>
+    {{message}}
+  </tip>
+</div>
+
