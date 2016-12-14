@@ -76,24 +76,24 @@ export class ViewerComponent implements OnInit, OnDestroy{
    */
   ngOnInit():void {
     this.imageUrl = this.photoList[this.currentIndex].imgKey
-    let dom = (<HTMLElement>document.getElementById('html'))
-    dom.style.overflow = 'hidden'
-    dom.style.height = '100%'
-
-    let domBody = (<HTMLElement>document.getElementById('body'))
-    domBody.style.overflow = 'hidden'
-    domBody.style.height = '100%'
+    // let dom = (<HTMLElement>document.getElementById('html'))
+    // dom.style.overflow = 'hidden'
+    // dom.style.height = '100%'
+    //
+    // let domBody = (<HTMLElement>document.getElementById('body'))
+    // domBody.style.overflow = 'hidden'
+    // domBody.style.height = '100%'
 
   }
 
   ngOnDestroy() {
-    let dom = (<HTMLElement>document.getElementById('html'))
-    dom.style.overflow = 'auto'
-    dom.style.height = ''
-
-    let domBody = (<HTMLElement>document.getElementById('body'))
-    domBody.style.overflow = 'auto'
-    domBody.style.height = ''
+    // let dom = (<HTMLElement>document.getElementById('html'))
+    // dom.style.overflow = 'auto'
+    // dom.style.height = ''
+    //
+    // let domBody = (<HTMLElement>document.getElementById('body'))
+    // domBody.style.overflow = 'auto'
+    // domBody.style.height = ''
 
   }
 
@@ -146,7 +146,7 @@ export class ViewerComponent implements OnInit, OnDestroy{
   }
 
   remarkSuccess(){
-    // this.message = ''
+    this.message = ''
     this.onNext()
   }
 

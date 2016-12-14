@@ -10,10 +10,16 @@
         </div>
       </div>
       <div class="panel-footer dialog-bottom clearfix">
-        <a href="javascript:;" class="btn btn-primary btn-confirm"  (click)="onConfirm()">
+        <a href="javascript:;" class="btn btn-primary btn-confirm btn-mobile"  (click)="onConfirm()">
           <span class="glyphicon glyphicon-ok"></span>
           {{ btnConfirm ? btnConfirm : '确认' }}
         </a>
+
+        <a href="javascript:;" class="btn btn-primary btn-confirm btn-pc"  (click)="onConfirm('pc')">
+          <span class="glyphicon glyphicon-ok"></span>
+          {{ btnConfirm ? btnConfirm : '确认' }}
+        </a>
+
         <a href="javascript:;" class="btn btn-default btn-cancel"  (click)="onCancel()">
           <span class="glyphicon glyphicon-remove"></span>
           {{ btnCancel ? btnCancel : '取消' }}

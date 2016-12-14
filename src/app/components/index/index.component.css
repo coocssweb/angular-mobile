@@ -10,6 +10,10 @@
   transform: translate(250px, 0px);
 }
 
+.outlet{
+  height: 100%;
+  overflow-y: scroll;
+}
 
 
 

@@ -6,7 +6,7 @@ import {QINIU_DOMAIN} from "../../constant/config";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Page} from "../../common/pagination/page";
 import {CacheService} from "../../services/cache.service";
-
+import {ViewerComponent} from '../viewer/viewer.component'
 
 @Component({
   selector: 'photos',
@@ -18,6 +18,9 @@ import {CacheService} from "../../services/cache.service";
 export class PhotosComponent implements OnInit {
   @ViewChild(SceneFormComponent)
   sceneFormComponent: SceneFormComponent
+
+  @ViewChild(ViewerComponent)
+  ViewerComponent: ViewerComponent
   //排序项
   sort = {
     item: '',
@@ -315,7 +318,7 @@ export class PhotosComponent implements OnInit {
     if(this.currentStatus ==='1'){
       this.isShowConfirm = true
     } else {
-      this.deleteConfirm()
+      this.deleteConfirm('')
     }
   }
 
@@ -362,7 +365,7 @@ export class PhotosComponent implements OnInit {
     this.router.navigate(['/raw', this.photoInfoId])
   }
 
-  deleteConfirm(){
+  deleteConfirm(device){
 
     let index = this.photoIndex
 
@@ -387,8 +390,12 @@ export class PhotosComponent implements OnInit {
         }
 
         //从照片列表内一处内容
-        this.photoList.splice(index, 1)
 
+        if(device === "pc"){
+          this.photoList.splice(index, 1)
+        }else{
+          this.ViewerComponent.onNext()
+        }
 
 
         let aimDom = document.getElementById('photo-item-'+photo.id).parentNode

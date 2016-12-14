@@ -75,7 +75,9 @@
 .btn-cancel{
   margin-left: 15px;
 }
-
+.btn-mobile{
+  display: none;
+}
 
 @media screen and (max-width: 768px) {
   .dialog{
@@ -108,5 +110,11 @@
   .btn-cancel{
     float: right;
     border-right: 1px solid #efefef;
+  }
+  .btn-mobile{
+    display: block;
+  }
+  .btn-pc{
+    display: none;
   }
 }
