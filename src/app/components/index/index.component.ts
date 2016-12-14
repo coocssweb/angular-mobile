@@ -13,6 +13,7 @@ export class IndexComponent implements OnInit {
 
     currentTab: string = 'raw'
     photoInfoId: string
+    isTransform = false
 
     ngOnInit(): void {
       let location = window.location.href
@@ -24,6 +25,10 @@ export class IndexComponent implements OnInit {
             return
         }
         this.currentTab = tab
+    }
+
+    onToggle(flag){
+      this.isTransform =flag
     }
 
 }
