@@ -16,10 +16,6 @@ export class IndexComponent implements OnInit {
     photoInfoId: string
     isTransform = false
 
-    private showDirective : boolean= false
-
-
-
     ngOnInit(): void {
       let location = window.location.href
       this.photoInfoId = location.substring(location.lastIndexOf('/'),location.length)
@@ -33,12 +29,14 @@ export class IndexComponent implements OnInit {
     }
 
     onToggle(flag){
+      if(this.isTransform){
+        document.getElementById("body").style.overflow = "auto"
+      }else {
+        document.getElementById("body").style.overflow = "hidden"
+      }
       this.isTransform =flag
     }
 
-    toggleDirective(){
-      this.showDirective =  !this.showDirective
-    }
 
 
 }
