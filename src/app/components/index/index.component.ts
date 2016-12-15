@@ -3,22 +3,31 @@
  * @description :: 入口页面
  */
 import { Component, OnInit } from '@angular/core'
+import {CacheService} from "../../services/cache.service";
+import {UserInfoService} from "../../modules/user-info/user-info.service";
+import {isNull} from "util";
 
 
 @Component({
     selector: '<index></index>',
     templateUrl: 'index.component.html',
-    styleUrls: ['./index.component.css']
+    styleUrls: ['./index.component.css'],
+  providers:[UserInfoService]
 })
 export class IndexComponent implements OnInit {
 
     currentTab: string = 'raw'
     photoInfoId: string
     isTransform = false
+    user:any = {}
+
+  constructor(private userInfoService: UserInfoService,
+              private cacheService:CacheService){}
 
     ngOnInit(): void {
       let location = window.location.href
       this.photoInfoId = location.substring(location.lastIndexOf('/'),location.length)
+      this.initCustomer()
     }
 
     onTab(tab, flag){
@@ -37,6 +46,14 @@ export class IndexComponent implements OnInit {
       this.isTransform =flag
     }
 
-
-
+  initCustomer(){
+    if(isNull(this.cacheService.getCustomer())){
+        this.userInfoService.getUserInfo().then((resp:any)=>{
+          this.cacheService.setCustomer(resp)
+          this.user =  resp
+        })
+    }else {
+      this.user =  this.cacheService.getCustomer()
+    }
+  }
 }

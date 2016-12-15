@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import any = jasmine.any;
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {UserInfoService} from "./user-info.service";
+import {CacheService} from "../../services/cache.service";
+import {isNull} from "util";
 
 @Component({
   selector: 'personal',
@@ -31,6 +33,7 @@ export class UserInfoComponent  implements OnInit{
    * @param rawService
    */
   constructor(private userInfoService: UserInfoService,
+              private cacheService:CacheService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -44,11 +47,18 @@ export class UserInfoComponent  implements OnInit{
 
   getUserInfo(){
     this.isLoadingData = true
-    this.userInfoService.getUserInfo().then((resp:any)=>{
-      this.user = resp
+    if(isNull(this.cacheService.getCustomer())){
+      this.userInfoService.getUserInfo().then((resp:any)=>{
+        this.user = resp
+        this.isLoadingData = false
+        this.orgMobile = this.user.mobile
+        this.cacheService.setCustomer(this.user)
+      })
+    }else {
+      this.user = this.cacheService.getCustomer()
       this.isLoadingData = false
       this.orgMobile = this.user.mobile
-    })
+    }
   }
 
   mobileBlur(){

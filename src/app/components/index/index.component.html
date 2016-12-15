@@ -18,8 +18,8 @@
   <div class="mask" *ngIf="isTransform" (click)="onToggle(false)"></div>
   <div class="drawer">
     <div class="user-info">
-      <img class="user-face" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=870609829,3308433796&fm=116&gp=0.jpg" />
-      <p class="user-name">Forever</p>
+      <img class="user-face" src="{{user.headImgUrl}}" />
+      <p class="user-name">{{user.name}}</p>
     </div>
     <div class="menus">
       <a href="#/appoint" (click)="onToggle(false)" class="menu-item"><span class="icon-menu-reserve icon"></span>在线预约</a>
