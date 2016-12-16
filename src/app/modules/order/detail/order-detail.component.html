@@ -4,7 +4,7 @@
 <loading *ngIf="isLoadingData"></loading>
 <a class="back" href="#/orders" style="color: #59ac94;"><i class="icon-back"></i>返回</a>
 <div class="box">
-  <span class="status" (click)="goPhotos()">{{orderDetail.cusStateName}}<i class="icon-go" *ngIf="orderDetail.cusStateName=='客户选片'||orderDetail.cusStateName=='原片精修'"></i></span>
+  <span class="status" (click)="goPhotos()">{{orderDetail.cusStateName}}<i class="icon-go"  *ngIf="(orderDetail.cusStateName=='客户选片'&&orderDetail.cusRawStatus!=0)||(orderDetail.cusStateName=='原片精修'&&orderDetail.cusTruingStatus!=0)"></i></span>
   <div class="form-item">
     <span class="form-key">订单编号:</span>
     <span class="form-value">{{orderDetail.orderNo}}</span>

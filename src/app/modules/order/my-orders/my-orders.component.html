@@ -3,7 +3,7 @@
 <!--</h2>-->
 <ul  *ngFor="let order of myOrders;let i = index">
   <li class="order">
-    <span class="status" (click)="goPhotos(order)">{{order.cusStateName}}<i class="icon-go" *ngIf="order.cusStateName=='客户选片'||order.cusStateName=='原片精修'"></i></span>
+    <span class="status" (click)="goPhotos(order)">{{order.cusStateName}}<i class="icon-go" *ngIf="(order.cusStateName=='客户选片'&&order.cusRawStatus!=0)||(order.cusStateName=='原片精修'&&order.cusTruingStatus!=0)"></i></span>
     <div class="items" (click)="goOrderDetail(order.orderId)">
       <div class="item item-name">{{order.customerName}}</div>
       <div class="item item-time">{{order.shootDateStr}}</div>

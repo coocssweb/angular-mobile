@@ -54,10 +54,12 @@ export class MyOrdersComponent implements OnInit {
     this.router.navigate(['/order-flow', orderId]);
   }
   goPhotos(order){
-    if(order.cusStateName=="客户选片"){
+    if(order.cusStateName=="客户选片"&&order.cusRawStatus!=0){
       this.router.navigate(['/raw', order.photoInfoId]);
-    }else if(order.cusStateName=="原片精修"){
+    }else if(order.cusStateName=="原片精修"&&order.cusTruingStatus!=0){
       this.router.navigate(['/truing', order.photoInfoId]);
+    }else {
+      return
     }
   }
 }

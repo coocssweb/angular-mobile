@@ -121,13 +121,12 @@ export class OrderFlowComponent implements OnInit {
     flowNode.evaluating = false
   }
   goPhotos(flowNode){
-    if(flowNode.status==1){
-      if(flowNode.name=="客户选片"){
+      if(flowNode.name=="客户选片"&&this.orderFlow.cusRawStatus!=0){
         this.router.navigate(['/raw', this.orderFlow.photoInfoId]);
-      }else if(flowNode.name=="原片精修"){
+      }else if(flowNode.name=="原片精修"&&this.orderFlow.cusTruingStatus!=0){
         this.router.navigate(['/truing', this.orderFlow.photoInfoId]);
+      }else {
+        return
       }
-    }
-    return
   }
 }

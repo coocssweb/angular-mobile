@@ -24,7 +24,7 @@
       <div class="step-number" [ngClass]="{'step-active':flow.status!=0}">
         <div class="inner-number">{{i+1}}</div>
       </div>
-     {{flow.name}}<i class="icon-go" *ngIf="flow.status==1 &&(flow.name=='客户选片'||flow.name=='原片精修')"></i><span class="sub-title">{{flow.beginTime}} 至 {{flow.endTime}} </span>
+     {{flow.name}}<i class="icon-go" *ngIf="(flow.name=='客户选片'&&orderFlow.cusRawStatus!=0)||(flow.name=='原片精修'&&orderFlow.cusTruingStatus!=0)"></i><span class="sub-title">{{flow.beginTime}} 至 {{flow.endTime}} </span>
     </div>
     <div class="step-box" *ngIf="flow.status!=0 && flow.workers.length>0"><!--[ngClass]="{'box-transparent':!flow.isEvaluated}"-->
       <div class="step-item"  *ngFor="let worker of flow.workers;let j = index"><!--[ngClass]="{'step-item':flow.isEvaluated,'rated-item':!flow.isEvaluated}"-->
