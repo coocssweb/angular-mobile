@@ -3,21 +3,20 @@
  */
 import { Component,OnInit } from '@angular/core';
 import {AppointmentService} from "./appointment.service";
-import {UserInfoService} from "../user-info/user-info.service";
 import {isUndefined} from "util";
 import {Dictionary} from "../../dictionarys";
+import {isNull} from "util";
 @Component({
   selector: 'appoint',
   templateUrl: 'appointment.component.html',
   styleUrls: ['appointment.component.css'],
-  providers:[AppointmentService,UserInfoService]
+  providers:[AppointmentService]
 })
 export class AppointmentComponent implements OnInit {
 
   private errMsg: string
   private toShowErr:boolean = false
   private user:any = {}
-  private codeInner:boolean = false
   private isShowTip: boolean = false
   private message:string
   private shootTypes:Dictionary[] = []
@@ -27,8 +26,7 @@ export class AppointmentComponent implements OnInit {
    * 构造函数
    * @param rawService
    */
-  constructor(private appointmentService:AppointmentService,
-                private userInfoService:UserInfoService) {
+  constructor(private appointmentService:AppointmentService) {
   }
   /**
    * 初始化事件
@@ -62,29 +60,7 @@ export class AppointmentComponent implements OnInit {
     }
   }
 
-  mobileBlur(){
-    if(this.user.mobile){
-      this.codeInner = true
-    }else {
-      this.codeInner = false
-    }
-  }
-  getCode(){
-    if(isUndefined(this.user.mobile)||this.user.mobile.trim().length<1){
-      this.errMsg = "手机号码不能为空"
-      this.toShowErr = true
-      return false
-    }else if (!/^1[34578]\d{9}$/.test(this.user.mobile) || this.user.mobile.length != 11) {
-      this.errMsg = "手机号码格式不正确"
-      this.toShowErr = true
-      return false
-    }
-    this.settime(document.getElementById('getCode'))
-    this.userInfoService.getCodeByMobile(this.user.mobile).then((resp:any)=>{
-      console.log("获取验证码成功，reap[()}=>"+resp)
-      console.log(resp)
-    })
-  }
+
   onCloseTip(){
     this.isShowTip = false
   }
@@ -96,26 +72,14 @@ export class AppointmentComponent implements OnInit {
       return false
     }
     //手机验证
-    if(isUndefined(this.user.mobile)||this.user.mobile.trim().length<1){
+    if(isUndefined(this.user.mobile)||isNull(this.user.mobile)||this.user.mobile.trim().length<1){
       this.errMsg = "手机号码不能为空"
       this.toShowErr = true
       return false
-    }else if (!/^1[34578]\d{9}$/.test(this.user.mobile) || this.user.mobile.length != 11) {
+    }else if (!/^1[34578]\d{9}$/.test(this.user.mobile) || this.user.mobile.trim().length != 11) {
       this.errMsg = "手机号码格式不正确"
       this.toShowErr = true
       return false
-    }
-    //验证码非空验证
-    if (this.codeInner){
-      if (this.user.code.trim().length < 1) {
-        this.errMsg = "验证码不能为空"
-        this.toShowErr = true
-        return false
-      } else if (this.user.code.length != 6 || !/^\d+$/.test(this.user.code)) {
-        this.errMsg = "验证码错误"
-        this.toShowErr = true
-        return false
-      }
     }
     //邮箱验证
     if (isUndefined(this.user.email)||this.user.email.trim().length < 1) {
@@ -143,20 +107,20 @@ export class AppointmentComponent implements OnInit {
   }
 
   //获取验证倒计时
-  private  countdown:number = 60;
-  settime(obj) {
-    if (this.countdown == 0) {
-      obj.disabled = false
-      obj.innerHTML="获取验证码"
-      this.countdown = 60;
-      return;
-    } else {
-      obj.disabled = true
-      obj.innerHTML="重新发送(" + this.countdown + ")"
-      this.countdown--;
-    }
-    setTimeout((resp:any)=>{
-      this.settime(obj)
-    }, 1000)
-  }
+  // private  countdown:number = 60;
+  // settime(obj) {
+  //   if (this.countdown == 0) {
+  //     obj.disabled = false
+  //     obj.innerHTML="获取验证码"
+  //     this.countdown = 60;
+  //     return;
+  //   } else {
+  //     obj.disabled = true
+  //     obj.innerHTML="重新发送(" + this.countdown + ")"
+  //     this.countdown--;
+  //   }
+  //   setTimeout((resp:any)=>{
+  //     this.settime(obj)
+  //   }, 1000)
+  // }
 }

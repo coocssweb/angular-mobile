@@ -15,10 +15,7 @@ import {ShopComponent} from "./modules/shop/shop.component";
 import {AdviceComponent} from "./modules/advice/advice.component";
 import {UserInfoComponent} from "./modules/user-info/user-info.component";
 import {AppointmentComponent} from "./modules/appointment/appointment.component";
-
-// import { PersonalComponent } from './components/management/personal/personal.component'
-// import { ShopComponent } from './components/management/shop/shop.component'
-// import { OpinionComponent } from './components/management/opinion/opinion.component'
+import {BindingComponent} from "./modules/user-info/binding/binding.component";
 
 const routes: Routes = [
   {path: 'login/qrCode', component: LoginComponent},
@@ -26,6 +23,7 @@ const routes: Routes = [
   {path: 'raw/:photoinfoid/:status', component: PhotosComponent},
   {path: 'truing/:photoinfoid', component: TruingsComponent},
   {path: 'forbidden', component: ForbiddenComponent},
+  {path: 'binding', component: BindingComponent},
   {path: 'orders', component: MyOrdersComponent},
   {path: 'order-detail/:orderId', component: OrderDetailComponent},
   {path: 'order-flow/:orderId', component: OrderFlowComponent},

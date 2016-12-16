@@ -38,6 +38,20 @@ export class UserInfoService extends BaseService{
     return this.post(url,body)
   }
 
+
+
+  /**
+   * 更新用户信息
+   *
+   * @param orderId
+   * @param params
+   * @returns {Promise<any>}
+   */
+  bindingByMobile(params):Promise<any>{
+    let url = "/weixinfans/actions/bindingByMobile"
+    let body = JSON.stringify(params)
+    return this.post(url,body)
+  }
   /**
    * 获取验证码
    *

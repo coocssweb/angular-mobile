@@ -1,24 +1,21 @@
 import {Component, OnInit} from "@angular/core";
 import any = jasmine.any;
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {UserInfoService} from "./user-info.service";
-import {CacheService} from "../../services/cache.service";
+import {ActivatedRoute,  Router} from "@angular/router";
+import {UserInfoService} from "../user-info.service";
+import {isUndefined} from "util";
 import {isNull} from "util";
 
 @Component({
-  selector: 'personal',
-  templateUrl: 'user-info.component.html',
-  styleUrls: ['user-info.component.css'],
+  selector: 'binding',
+  templateUrl: 'binding.component.html',
+  styleUrls: ['binding.component.css'],
   providers:[UserInfoService]
 })
-export class UserInfoComponent  implements OnInit{
+export class BindingComponent  implements OnInit{
 
   private user:any = {}
 
   private codeInner:boolean = false
-
-  private orgMobile:number
-
 
   private isShowTip: boolean = false
   private message:string
@@ -26,14 +23,11 @@ export class UserInfoComponent  implements OnInit{
   private errMsg: string
   private toShowErr:boolean = false
 
-  //是否正在加载数据
-  isLoadingData = false
   /**
    * 构造函数
    * @param rawService
    */
   constructor(private userInfoService: UserInfoService,
-              private cacheService:CacheService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -42,27 +36,11 @@ export class UserInfoComponent  implements OnInit{
    * 初始化事件
    */
   ngOnInit(): void {
-    this.getUserInfo()
-  }
-
-  getUserInfo(){
-    this.isLoadingData = true
-    if(isNull(this.cacheService.getCustomer())){
-      this.userInfoService.getUserInfo().then((resp:any)=>{
-        this.user = resp
-        this.isLoadingData = false
-        this.orgMobile = this.user.mobile
-        this.cacheService.setCustomer(this.user)
-      })
-    }else {
-      this.user = this.cacheService.getCustomer()
-      this.isLoadingData = false
-      this.orgMobile = this.user.mobile
-    }
+    this.user.sex = 1
   }
 
   mobileBlur(){
-    if(this.orgMobile != this.user.mobile){
+    if(!(isUndefined(this.user.mobile)||isNull(this.user.mobile))){
       this.codeInner = true
     }else {
       this.codeInner = false
@@ -71,14 +49,14 @@ export class UserInfoComponent  implements OnInit{
 
   updateUserInfo(){
     if(this.validated()) {
-      this.userInfoService.updateUserInfo(this.user).then((resp: any) => {
+      this.user.email="@"//只是为了满足不为空，后台未使用此内容
+      this.userInfoService.bindingByMobile(this.user).then((resp: any) => {
         //保存成功。。。
         debugger
         console.log(resp)
-        this.message = "保存成功！"
+        this.message = resp.msg
         this.isShowTip = true
         this.codeInner = false
-        this.cacheService.updateCustomer(this.user)//同时更新缓存
       })
     }else{
       setTimeout((resp:any)=>{
@@ -89,13 +67,13 @@ export class UserInfoComponent  implements OnInit{
 
   validated(){
     //姓名验证
-    if (this.user.name.trim().length < 1) {
+    if (isUndefined(this.user.name)||this.user.name.trim().length < 1) {
       this.errMsg = "姓名不能为空"
       this.toShowErr = true
       return false
     }
     //手机验证
-    if(isNull(this.user.mobile)||this.user.mobile.trim().length<1){
+    if(isUndefined(this.user.mobile)||isNull(this.user.mobile)||this.user.mobile.trim().length<1){
       this.errMsg = "手机号码不能为空"
       this.toShowErr = true
       return false
@@ -106,7 +84,7 @@ export class UserInfoComponent  implements OnInit{
     }
     //验证码非空验证
     if (this.codeInner){
-      if (this.user.code.trim().length < 1) {
+      if (isUndefined(this.user.code)||this.user.code.trim().length < 1) {
         this.errMsg = "验证码不能为空"
         this.toShowErr = true
         return false
@@ -116,16 +94,6 @@ export class UserInfoComponent  implements OnInit{
         return false
       }
     }
-    //邮箱验证
-    if (this.user.email.trim().length < 1) {
-      this.errMsg = "邮箱不能为空"
-      this.toShowErr = true
-      return false
-    } else if (!/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(this.user.email)) {
-      this.errMsg = "邮箱格式不正确"
-      this.toShowErr = true
-      return false
-    }
     return true
   }
 
@@ -133,7 +101,7 @@ export class UserInfoComponent  implements OnInit{
     this.isShowTip = false
   }
   getCode(){
-    if(isNull(this.user.mobile)||this.user.mobile.trim().length<1){
+    if(isUndefined(this.user.mobile)||isNull(this.user.mobile)||this.user.mobile.trim().length<1){
       this.errMsg = "手机号码不能为空"
       this.toShowErr = true
       return false

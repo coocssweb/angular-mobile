@@ -44,6 +44,9 @@ export class IndexComponent implements OnInit {
         document.getElementById("body").style.overflow = "hidden"
       }
       this.isTransform =flag
+      if(this.isTransform&&window.location.href.endsWith("/user-info")){//在个人资料页面到此，个人资料可能已经改变，需从initCustomer
+        this.initCustomer()
+      }
     }
 
   initCustomer(){

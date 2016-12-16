@@ -97,6 +97,10 @@ export class CacheService implements OnInit {
     return this.get(CacheService.CUSTOMER_KEY)
   }
 
+  updateCustomer(customer){
+    window.sessionStorage.removeItem(CacheService.CUSTOMER_KEY)
+    this.add(CacheService.CUSTOMER_KEY, customer);
+  }
   setRawInfo(rawInfo) {
     this.add(CacheService.RAW_INFO_KEY, rawInfo)
   }
