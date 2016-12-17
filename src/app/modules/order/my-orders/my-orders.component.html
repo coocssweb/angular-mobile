@@ -21,7 +21,7 @@
             <a href="javascript:;" class="btn-detail" (click)="goOrderFlow(order.orderId)">查看服务进度</a>
           </div>
           <div class="btn-outer" (click)="goPhotos(order)" *ngIf="(order.cusStateName=='客户选片'&&order.cusRawStatus!=0)||(order.cusStateName=='原片精修'&&order.cusTruingStatus!=0)">
-            <a href="javascript:;" class="btn-detail" (click)="goOrderFlow(order.orderId)">查看服务进度</a>
+            <a href="javascript:;" class="btn-detail" (click)="goOrderFlow(order.orderId)">{{order.cusStateName}}</a>
           </div>
         </div>
       </div>
