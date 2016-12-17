@@ -5,11 +5,14 @@
   <ul  *ngFor="let order of myOrders;let i = index">
     <li class="order">
       <span class="status" (click)="goPhotos(order)">{{order.cusStateName}}</span>
+
       <div class="items" (click)="goOrderDetail(order.orderId)">
-        <div class="item item-name">{{order.customerName}}</div>
-        <div class="item item-time">{{order.shootDateStr}}</div>
-        <div class="item item-shop">{{order.brandName}}</div>
-        <div class="item item-type">{{order.seriesName}}/{{order.shootType}}</div>
+        <div class="items-info">
+          <div class="item item-name">{{order.customerName}}</div>
+          <div class="item item-time">{{order.shootDateStr}}</div>
+          <div class="item item-shop">{{order.brandName}}</div>
+          <div class="item item-type">{{order.seriesName}}/{{order.shootType}}</div>
+        </div>
         <div class="toolbar">
           <div class="btn-outer">
             <a href="javascript:;" class="btn-detail">查看订单详情</a>

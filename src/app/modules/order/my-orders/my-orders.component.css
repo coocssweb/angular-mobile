@@ -35,9 +35,10 @@
   border-bottom: 1px solid #E0E0E0;
   margin-top: 10px;
   position: relative;
-  padding: 20px;
-  padding-bottom: 60px;
   background-color: #FFFFFF;
+}
+.items-info{
+  padding: 20px;
 }
 
 .status{
@@ -65,10 +66,8 @@
 
 
 .toolbar{
-  position: absolute;
   border-top: 1px solid #E0E0E0;
-  width: 100%;
-  padding: 10px 0px;
+  padding-top: 10px;
   left: 0px;
   bottom: 0px;
   font-size: 0px;
@@ -81,7 +80,7 @@
   width: 50%;
   box-sizing: border-box;
   padding-left: 20px;
-
+  padding-bottom: 10px;
 }
 
 .btn-detail{

@@ -17,9 +17,6 @@ export class NgSelectComponent{
 
 
   onChange(value){
-    // if(value.key === this.value){
-    //   return
-    // }
     this.onSelect.emit(value)
   }
 
