@@ -16,22 +16,22 @@
     </div>
   </div>
   <div class="mask" *ngIf="isTransform" (click)="onToggle(false)"></div>
-  <div class="drawer">
-    <div class="user-info">
-      <img class="user-face" src="{{user.headImgUrl}}" />
-      <p class="user-name">{{user.name}}</p>
-    </div>
-    <div class="menus">
-      <a href="#/appoint" (click)="onToggle(false)" class="menu-item"><span class="icon-menu-reserve icon"></span>在线预约</a>
-      <a href="#/orders" (click)="onToggle(false)" class="menu-item"><span class="icon-menu-order icon"></span>我的订单</a>
-      <!--<a href="javascript:;" class="menu-item"><span class="icon-menu-progress icon"></span>进度查看</a>-->
-      <a href="#/user-info" (click)="onToggle(false)" class="menu-item"><span class="icon-menu-personal icon"></span>个人资料</a>
-      <a href="#/shops" (click)="onToggle(false)" class="menu-item"><span class="icon-menu-shop icon"></span>门店地址</a>
-      <a href="#/advice" (click)="onToggle(false)" class="menu-item"><span class="icon-menu-message icon"></span>意见反馈</a>
-    </div>
-  </div>
   <div class="outlet" id="outlet">
-  <router-outlet></router-outlet>
+    <div class="drawer">
+      <div class="user-info">
+        <img class="user-face" src="{{user.headImgUrl}}" />
+        <p class="user-name">{{user.name}}</p>
+      </div>
+      <div class="menus">
+        <a href="#/appoint" (click)="onToggle(false)" class="menu-item"><span class="icon-menu-reserve icon"></span>在线预约</a>
+        <a href="#/orders" (click)="onToggle(false)" class="menu-item"><span class="icon-menu-order icon"></span>我的订单</a>
+        <!--<a href="javascript:;" class="menu-item"><span class="icon-menu-progress icon"></span>进度查看</a>-->
+        <a href="#/user-info" (click)="onToggle(false)" class="menu-item"><span class="icon-menu-personal icon"></span>个人资料</a>
+        <a href="#/shops" (click)="onToggle(false)" class="menu-item"><span class="icon-menu-shop icon"></span>门店地址</a>
+        <a href="#/advice" (click)="onToggle(false)" class="menu-item"><span class="icon-menu-message icon"></span>意见反馈</a>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
  </div>
 </div>
 

@@ -3,77 +3,79 @@
 <!--</h2>-->
 <loading *ngIf="isLoadingData"></loading>
 <a class="back" href="#/orders" style="color: #59ac94;"><i class="icon-back"></i>返回</a>
-<div class="box">
-  <span class="status" (click)="goPhotos()">{{orderDetail.cusStateName}}<i class="icon-go"  *ngIf="(orderDetail.cusStateName=='客户选片'&&orderDetail.cusRawStatus!=0)||(orderDetail.cusStateName=='原片精修'&&orderDetail.cusTruingStatus!=0)"></i></span>
-  <div class="form-item">
-    <span class="form-key">订单编号:</span>
-    <span class="form-value">{{orderDetail.orderNo}}</span>
-  </div>
-  <div class="form-item">
-    <span class="form-key">下单时间:</span>
-    <span class="form-value">{{orderDetail.orderDate}}</span>
-  </div>
-  <div class="form-item">
-    <span class="form-key">拍摄日期:</span>
-    <span class="form-value" style="font-size: 14px;">{{orderDetail.shootDateStr}}<!--2015年9月30日（星期五）--></span>
-  </div>
-  <div class="form-item">
-    <span class="form-key">拍摄门店:</span>
-    <span class="form-value" >{{orderDetail.shopName}}</span>
-  </div>
-</div>
-<div class="box">
-  <div class="box-title">套餐信息</div>
-  <div class="form-item">
-    <span class="form-key">服务类型:</span>
-    <span class="form-value">{{series.name}}</span>
-  </div>
-  <div class="form-item  form-item-group">
-    <div class="inner-item">
-      <span class="form-key">原  片:</span>
-      <span class="form-value">{{series.origImgNum}}张</span>
+<div *ngIf="!isLoadingData">
+  <div class="box">
+    <span class="status" (click)="goPhotos()">{{orderDetail.cusStateName}}<i class="icon-go"  *ngIf="(orderDetail.cusStateName=='客户选片'&&orderDetail.cusRawStatus!=0)||(orderDetail.cusStateName=='原片精修'&&orderDetail.cusTruingStatus!=0)"></i></span>
+    <div class="form-item">
+      <span class="form-key">订单编号:</span>
+      <span class="form-value">{{orderDetail.orderNo}}</span>
     </div>
-    <div class="inner-item">
-      <span class="form-key">精修:</span>
-      <span class="form-value">{{series.truingImgNum}}张</span>
+    <div class="form-item">
+      <span class="form-key">下单时间:</span>
+      <span class="form-value">{{orderDetail.orderDate}}</span>
+    </div>
+    <div class="form-item">
+      <span class="form-key">拍摄日期:</span>
+      <span class="form-value" style="font-size: 14px;">{{orderDetail.shootDateStr}}<!--2015年9月30日（星期五）--></span>
+    </div>
+    <div class="form-item">
+      <span class="form-key">拍摄门店:</span>
+      <span class="form-value" >{{orderDetail.shopName}}</span>
     </div>
   </div>
-  <div class="form-item form-item-group">
-    <div class="inner-item">
-      <span class="form-key">造  型:</span>
-      <span class="form-value">{{series.modelling}}组</span>
+  <div class="box">
+    <div class="box-title">套餐信息</div>
+    <div class="form-item">
+      <span class="form-key">服务类型:</span>
+      <span class="form-value">{{series.name}}</span>
     </div>
-    <div class="inner-item">
-      <span class="form-key">场景:</span>
-      <span class="form-value">{{series.scene}}组</span>
+    <div class="form-item  form-item-group">
+      <div class="inner-item">
+        <span class="form-key">原  片:</span>
+        <span class="form-value">{{series.origImgNum}}张</span>
+      </div>
+      <div class="inner-item">
+        <span class="form-key">精修:</span>
+        <span class="form-value">{{series.truingImgNum}}张</span>
+      </div>
+    </div>
+    <div class="form-item form-item-group">
+      <div class="inner-item">
+        <span class="form-key">造  型:</span>
+        <span class="form-value">{{series.modelling}}组</span>
+      </div>
+      <div class="inner-item">
+        <span class="form-key">场景:</span>
+        <span class="form-value">{{series.scene}}组</span>
+      </div>
+    </div>
+    <div class="form-item">
+      <span class="form-key">服务时长:</span>
+      <span class="form-value">{{series.serviceTime}}</span>
     </div>
   </div>
-  <div class="form-item">
-    <span class="form-key">服务时长:</span>
-    <span class="form-value">{{series.serviceTime}}</span>
-  </div>
-</div>
 
-<div class="box" *ngFor="let product of orderDetail.products;let i = index" >
-  <div class="form-item form-long-item">
-    <div class="form-label">{{product.name}}</div>
-    <span class="form-right-value">x{{product.productNum}}</span>
-  </div>
-</div>
-
-<div class="box">
-  <div class="form-item form-item-group">
-    <div class="order-amount">订单金额：<span>￥{{orderDetail.actualPayment}}</span></div>
-    <div class="order-payed"><div class="order-payed-inner"><span class="icon-ok"></span>已付金额：<span>￥{{orderDetail.downPayment}}</span></div></div>
-  </div>
-</div>
-
-<div class="toolbar">
-  <a href="tel:{{orderDetail.serviceWorkerMobile}}" class="btn btn-telephone">
-    <div class="btn-inner">
-      <span class="icon-customer"></span>客服专员
+  <div class="box" *ngFor="let product of orderDetail.products;let i = index" >
+    <div class="form-item form-long-item">
+      <div class="form-label">{{product.name}}</div>
+      <span class="form-right-value">x{{product.productNum}}</span>
     </div>
-  </a>
-  <a href="javascript:;" class="btn btn-progress" (click)="goOrderFlow()">服务进度 >></a>
+  </div>
+
+  <div class="box">
+    <div class="form-item form-item-group">
+      <div class="order-amount">订单金额：<span>￥{{orderDetail.actualPayment}}</span></div>
+      <div class="order-payed"><div class="order-payed-inner"><span class="icon-ok"></span>已付金额：<span>￥{{orderDetail.downPayment}}</span></div></div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <a href="tel:{{orderDetail.serviceWorkerMobile}}" class="btn btn-telephone">
+      <div class="btn-inner">
+        <span class="icon-customer"></span>客服专员
+      </div>
+    </a>
+    <a href="javascript:;" class="btn btn-progress" (click)="goOrderFlow()">服务进度 >></a>
+  </div>
 </div>
 

@@ -95,3 +95,7 @@
   border: 1px solid #c2cad8;
   border-radius: 4px;
 }
+
+.form-value-none{
+  color: #999;
+}

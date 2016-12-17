@@ -7,6 +7,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Page} from "../../common/pagination/page";
 import {CacheService} from "../../services/cache.service";
 import {ViewerComponent} from '../viewer/viewer.component'
+import {PCViewerComponent} from '../pc-viewer/pc-viewer.component'
 
 @Component({
   selector: 'photos',
@@ -19,8 +20,12 @@ export class PhotosComponent implements OnInit {
   @ViewChild(SceneFormComponent)
   sceneFormComponent: SceneFormComponent
 
+  @ViewChild(PCViewerComponent)
+  pCViewerComponent: PCViewerComponent
+
   @ViewChild(ViewerComponent)
-  ViewerComponent: ViewerComponent
+  viewerComponent: ViewerComponent
+
   //排序项
   sort = {
     item: '',
@@ -393,8 +398,13 @@ export class PhotosComponent implements OnInit {
 
         if(device === "pc"){
           this.photoList.splice(index, 1)
-        }else{
-          this.ViewerComponent.onNext()
+
+          if(this.isPcPreview){
+            this.pCViewerComponent.onNext()
+          }
+
+        }else if(this.isPreview){
+          this.viewerComponent.onNext()
         }
 
 

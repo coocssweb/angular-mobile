@@ -43,8 +43,8 @@ export class ConfirmComponent implements OnInit, OnDestroy{
   }
 
   //确认事件
-  onConfirm(){
-    this.confirm.emit()
+  onConfirm(device){
+    this.confirm.emit(device)
   }
 
   //取消事件

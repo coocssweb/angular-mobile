@@ -37,21 +37,31 @@
     </div>
   </div>
   <div class="form-item">
-    <div class="form-key"><span class="required">*</span>预约时间{{user.shootDateStr}}</div>
+    <div class="form-key"><span class="required">*</span>预约时间</div>
     <div class="form-value">
+      <!--
       <input class="form-input" type="datetime-local" placeholder="请输入预约时间" [(ngModel)]="user.shootDateStr" />
-    </div>
-  </div>
-  <div class="form-item">
-    <div class="form-key"><span class="required">*</span>预约项目</div>
-    <div class="form-value">
-      <!--<input class="form-input" placeholder="请输入预约项目" [(ngModel)]="user.shootType" />-->
-      <select [(ngModel)]="user.shootType" class="select" >
-        <option [value]="shootType.key" *ngFor="let shootType of shootTypes">{{shootType.value}}</option>
-      </select>
+      -->
+      <input id="shootdate" type="text" readonly="" [(ngModel)]="user.shootDateStr" placeholder="点击选择日期" data-lcalendar="2016-05-11,2016-05-11" />
+
     </div>
   </div>
 
+  <!--<input class="form-input" placeholder="请输入预约项目" [(ngModel)]="user.shootType" />-->
+  <!--
+  <select [(ngModel)]="user.shootType" class="select" >
+    <option [value]="shootType.key" *ngFor="let shootType of shootTypes">{{shootType.value}}</option>
+  </select>
+  -->
+
+
+  <div class="form-item">
+    <div class="form-key"><span class="required">*</span>预约项目</div>
+    <div class="form-value" (click)="onOpenSelect()">
+      <span [class.form-value-none]="!user.shootType">{{(!user.shootType)?'--请选择--':shootType.value}}</span>
+    </div>
+  </div>
+  <ng-select *ngIf="isShowShootSelect" [options]="shootTypes" [value]="shootType" (onSelect)="onSelect($event)"></ng-select>
   <div class="toolbar">
     <a href="javascript:;" class="btn btn-confirm" (click)="addAppoint()">保存</a>
     <!--<a href="javascript:;" class="btn btn-cancel">取消</a>-->

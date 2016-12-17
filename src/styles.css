@@ -1,6 +1,7 @@
 html, body {
   background-color: #f2f4f4;
   height: 100%;
+  overflow: hidden;
 }
 
 .layout {
@@ -188,4 +189,7 @@ table {
   .layout{
     max-width: 1080px;
   }
+}
+a{
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

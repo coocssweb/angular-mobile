@@ -1,0 +1,8 @@
+<div class="mask" (click)="onChange(value)">
+
+</div>
+<ul class="list">
+  <li class="item" *ngFor="let option of options;let i=index; ">
+    <a href="javascript:;" class="item-link" [class.selected]="option.key === value.key" (click)="onChange(option)">{{option.value}}</a>
+  </li>
+</ul>

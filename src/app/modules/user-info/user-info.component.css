@@ -8,6 +8,7 @@
   line-height: 55px;
   font-size: 16px;
   background-color: #FFFFFF;
+  position: relative;
 }
 
 .form-key{
@@ -27,7 +28,32 @@
   font-size: 16px;
 }
 
+.form-key-code{
+  position: absolute;
+  width: 60px;
+  text-align: center;
+}
 
+.form-value-code{
+  display: block;
+  padding-left: 100px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.code-btn{
+  position: absolute;
+  right: 0px;
+  height: 55px;
+  line-height: 55px;
+  background: #59ac94;
+  color: #fff;
+  width: 90px;
+  text-align: center;
+  border: 0px;
+  top: 0px;
+}
 
 .toolbar{
   text-align: center;
@@ -58,18 +84,7 @@
   color: #FFFFFF;
   border-color: #59ac94;
 }
-.code-btn{
-  height: 55px;
-  line-height: 100%;
-  padding: .8rem 1rem;
-  border: 0;
-  box-sizing: border-box;
-  background: #59ac94;
-  color: #fff;
-  position: relative;
-  right: -130px;
-  top: -48px;
-}
+
 .code-btn:disabled{
   background-color: #aaa;
 }

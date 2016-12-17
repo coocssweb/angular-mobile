@@ -28,7 +28,7 @@
   border-bottom: 1px solid #E0E0E0;
   padding: 10px 20px;
   font-size: 16px;
-  margin-top: 10px;
+  margin: 10px 0px;
 }
 
 .info-item{
@@ -57,12 +57,21 @@
 
 
 .steps{
-  margin: 20px 0px;
 }
+
 
 .step{
   margin: 0px 10px 0px 20px;
+  padding: 20px 0px;
   border-left: 1px solid #E0E0E0;
+}
+
+.nopadding{
+  padding-top: 0px;
+}
+
+.steps:last-child .step{
+  padding-bottom: 0px;
 }
 
 .step-more{
@@ -285,14 +294,13 @@
 }
 
 .back{
-  float: left;
   color: #59ac94;
   font-size: .8rem;
   margin-left: .5rem;
   text-decoration: none;
-  position: absolute;
   top: 35px;
   right: 20px;
+  position: fixed;
   background-color: white;
 }
 .icon-back{

@@ -1,6 +1,5 @@
 .content{
   margin-top: 15px;
-  padding-bottom: 60px;
 }
 
 .flow-list{
@@ -275,14 +274,13 @@
 }
 
 .back{
-  float: left;
   color: #59ac94;
   font-size: .8rem;
   margin-left: .5rem;
   text-decoration: none;
-  position: absolute;
   top: 35px;
   right: 20px;
+  position: fixed;
   background-color: white;
 }
 .icon-back{

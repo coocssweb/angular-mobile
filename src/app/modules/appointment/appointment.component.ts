@@ -21,7 +21,8 @@ export class AppointmentComponent implements OnInit {
   private message:string
   private shootTypes:Dictionary[] = []
 
-
+  private isShowShootSelect: boolean = false
+  private shootType = {}
   /**
    * 构造函数
    * @param rawService
@@ -37,11 +38,20 @@ export class AppointmentComponent implements OnInit {
     this.shootTypes.push(new Dictionary(3,"孕妇照"))
     this.shootTypes.push(new Dictionary(4,"写真"))
     this.initUser()
+
+    var calendar = new LCalendar();
+    calendar.init({
+      'trigger': '#shootdate', //标签id
+      'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+      'minDate': '1900-1-1', //最小日期
+      'maxDate': new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
+    });
+
   }
 
   initUser(){
     this.user.sex = 1
-    this.user.shootType = 1
+    //this.user.shootType = 1
   }
 
   addAppoint(){
@@ -58,6 +68,16 @@ export class AppointmentComponent implements OnInit {
         this.toShowErr = false
       }, 3000)
     }
+  }
+
+  onOpenSelect(){
+    this.isShowShootSelect = true
+  }
+
+  onSelect(option){
+    this.isShowShootSelect = false
+    this.user.shootType = option.key
+    this.shootType =option
   }
 
 

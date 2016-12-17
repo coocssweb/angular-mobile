@@ -1,5 +1,5 @@
 <loading *ngIf="isLoadingData"></loading>
-<div class="form" style="padding-bottom: 0px; ">
+<div *ngIf="!isLoadingData" class="form" style="padding-bottom: 0px; ">
   <div  *ngIf="toShowErr"  class="form-item alert alert-danger">
     <span class="ng-binding">{{errMsg}}</span>
   </div>
@@ -26,8 +26,8 @@
   </div>
 
   <div class="form-item" *ngIf="codeInner">
-    <div class="form-key"><span class="required">*</span>验证码</div>
-    <div class="form-value" style=" position: absolute; height: 56px;">
+    <div class="form-key form-key-code"><span class="required">*</span>验证码</div>
+    <div class="form-value form-value-code">
       <input class="form-input" style="padding-top: 8px;" placeholder="请输入验证码" [(ngModel)]="user.code" />
       <button type="button" class="code-btn" id="getCode" (click)="getCode()">获取验证码</button>
     </div>

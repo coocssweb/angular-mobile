@@ -33,10 +33,10 @@
 .order{
   border-top: 1px solid #E0E0E0;
   border-bottom: 1px solid #E0E0E0;
-  margin-bottom: 10px;
+  margin-top: 10px;
   position: relative;
   padding: 20px;
-  padding-bottom: 50px;
+  padding-bottom: 60px;
   background-color: #FFFFFF;
 }
 
@@ -45,6 +45,7 @@
   top: 10px;
   right: 10px;
   padding: 0px 20px;
+  font-size: 14px;
   height: 30px;
   line-height: 30px;
   color: #FFFFFF;
@@ -62,47 +63,39 @@
   color: #909090;
 }
 
-.btn-detail-left{
-  border-top: 1px solid #E0E0E0;
-  display: block;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  color: #59ac94;
-  position: absolute;
-  bottom: 0px;
-  width: 50%;
-  left: 0px;
-  border-right: 1px solid #E0E0E0;
-}
-
-.btn-detail-right{
-  border-top: 1px solid #E0E0E0;
-  display: block;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  color: #59ac94;
-  position: absolute;
-  bottom: 0px;
-  width: 50%;
-  right: 0px;
-}
 
 .toolbar{
   position: absolute;
+  border-top: 1px solid #E0E0E0;
   width: 100%;
+  padding: 10px 0px;
+  left: 0px;
   bottom: 0px;
+  font-size: 0px;
+  box-sizing: border-box;
+  padding-right: 20px;
+}
+
+.btn-outer{
+  display: inline-block;
+  width: 50%;
+  box-sizing: border-box;
+  padding-left: 20px;
 
 }
-.icon-go{
+
+.btn-detail{
   display: inline-block;
-  height: 20px;
-  width: 16px;
-  background-size: cover;
-  margin-right: 10px;
-  position: absolute;
-  top: 5px;
-  right: 0;
-  background-image: url(../../../../images/icon-go.png);
+  border: 1px solid #bb9a76;
+  border-radius: 5px;
+  color: #bb9a76;
+  width: 100%;
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.btn-detail:hover{
+  background-color: #efefef;
 }

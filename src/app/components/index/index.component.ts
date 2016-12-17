@@ -38,11 +38,11 @@ export class IndexComponent implements OnInit {
     }
 
     onToggle(flag){
-      if(this.isTransform){
-        document.getElementById("body").style.overflow = "auto"
-      }else {
-        document.getElementById("body").style.overflow = "hidden"
-      }
+      // if(this.isTransform){
+      //   document.getElementById("body").style.overflow = "auto"
+      // }else {
+      //   document.getElementById("body").style.overflow = "hidden"
+      // }
       this.isTransform =flag
       if(this.isTransform&&window.location.href.endsWith("/user-info")){//在个人资料页面到此，个人资料可能已经改变，需从initCustomer
         this.initCustomer()
