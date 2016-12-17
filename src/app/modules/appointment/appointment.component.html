@@ -55,9 +55,9 @@
   -->
 
 
-  <div class="form-item">
+  <div class="form-item" (click)="onOpenSelect()">
     <div class="form-key"><span class="required">*</span>预约项目</div>
-    <div class="form-value" (click)="onOpenSelect()">
+    <div class="form-value" >
       <span [class.form-value-none]="!user.shootType">{{(!user.shootType)?'--请选择--':shootType.value}}</span>
     </div>
   </div>
