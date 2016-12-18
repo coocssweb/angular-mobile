@@ -47,7 +47,7 @@ export class OrderFlowComponent implements OnInit {
       this.orderFlow = resp
       this.orderFlow.flowNodes.forEach(flowNode => {
         let isEvaluated = true
-        if(flowNode.status == 2){
+        if(flowNode.status == 1){
           flowNode.workers.forEach(worker => {
             if(isUndefined(worker.serviceLevel)){
               isEvaluated = false

@@ -9,7 +9,7 @@
       <div class="items" >
         <div class="items-info" (click)="goOrderDetail(order.orderId)">
           <div class="item item-name">{{order.customerName}}</div>
-          <div class="item item-time">{{order.shootDateStr}}</div>
+          <div class="item item-time">{{order.shootDateStr?order.shootDateStr:"未排班"}}</div>
           <div class="item item-shop">{{order.brandName}}</div>
           <div class="item item-type">{{order.seriesName}}/{{order.shootType}}</div>
         </div>
