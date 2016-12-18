@@ -1,4 +1,4 @@
-<a class="back"href="#/order-detail/{{rawInfo.orderId}}" style="color: #59ac94;"><i class="icon-back"></i>返回</a>
+<a class="back"href="#/order-detail/{{rawInfo.orderId}}" style="color: #59ac94;"><i class="icon-back"></i></a>
 <div *ngIf="isShowPcGuide && rawInfo.cusRawStatus !==-1 && rawInfo.cusRawStatus !==2" class="pc-guide pc-layout">
   本订单标配可选片{{rawInfo.truingImgNum}}张,第一步建议您先粗选{{rawInfo.truingImgNum*2}}张左右,然后进行细选 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
 </div>

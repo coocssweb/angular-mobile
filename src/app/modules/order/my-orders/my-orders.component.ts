@@ -44,6 +44,7 @@ export class MyOrdersComponent implements OnInit {
     this.ordersService.getMyOrders().then((resp:any) =>{
         this.myOrders = resp
       this.isLoadingData = false
+      console.log(this.myOrders)
     })
   }
 
@@ -53,10 +54,10 @@ export class MyOrdersComponent implements OnInit {
   goOrderFlow(orderId){
     this.router.navigate(['/order-flow', orderId]);
   }
-  goPhotos(order){
-    if(order.cusStateName=="客户选片"&&order.cusRawStatus!=0){
+  goPhotos(order,to){
+    if(to==1&&order.cusRawStatus!=0){
       this.router.navigate(['/raw', order.photoInfoId]);
-    }else if(order.cusStateName=="原片精修"&&order.cusTruingStatus!=0){
+    }else if(to==2&&order.cusTruingStatus!=0){
       this.router.navigate(['/truing', order.photoInfoId]);
     }else {
       return

@@ -26,12 +26,13 @@
   </div>
 
   <div class="form-item" *ngIf="codeInner">
-    <div class="form-key"><span class="required">*</span>验证码</div>
-    <div class="form-value" style=" position: absolute; height: 56px;">
+    <div class="form-key form-key-code"><span class="required">*</span>验证码</div>
+    <div class="form-value form-value-code">
       <input class="form-input" style="padding-top: 8px;" placeholder="请输入验证码" [(ngModel)]="user.code" />
       <button type="button" class="code-btn" id="getCode" (click)="getCode()">获取验证码</button>
     </div>
   </div>
+
   <div class="toolbar">
     <a href="javascript:;" class="btn btn-confirm" (click)="updateUserInfo()">绑定</a>
     <!--<a href="javascript:;" class="btn btn-cancel">取消</a>-->

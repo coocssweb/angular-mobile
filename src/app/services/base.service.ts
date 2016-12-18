@@ -115,15 +115,15 @@ export class BaseService {
     let isWeixin = ua.indexOf("micromessenger") >= 0;
     if (error.status == 403 || (error.status == 419 && isWeixin)) {
       window.location.href = "#/forbidden"
-      return Promise.resolve("Sorry,You don't have permission.");
+      // return Promise.resolve("Sorry,You don't have permission.");
     }
     if (error.status == 419 && !isWeixin) {
       window.location.href = "#/login/qrCode"
-      return Promise.resolve("Please sweep the qr code.");
+      // return Promise.resolve("Please sweep the qr code.");
     }
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error'
-    return Promise.reject(errMsg);
+    return Promise.reject(error);
   }
 }
 

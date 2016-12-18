@@ -4,7 +4,7 @@
 import { Component,OnInit } from '@angular/core';
 import {AppointmentService} from "./appointment.service";
 import {isUndefined} from "util";
-import {Dictionary} from "../../dictionarys";
+import { _SHOOTTYPES} from "../../dictionarys";
 import {isNull} from "util";
 @Component({
   selector: 'appoint',
@@ -19,7 +19,7 @@ export class AppointmentComponent implements OnInit {
   private user:any = {}
   private isShowTip: boolean = false
   private message:string
-  private shootTypes:Dictionary[] = []
+  private shootTypes = _SHOOTTYPES
 
   private isShowShootSelect: boolean = false
   private shootType = {}
@@ -33,19 +33,15 @@ export class AppointmentComponent implements OnInit {
    * 初始化事件
    */
   ngOnInit(): void {
-    this.shootTypes.push(new Dictionary(1,"婚纱照"))
-    this.shootTypes.push(new Dictionary(2,"儿童照"))
-    this.shootTypes.push(new Dictionary(3,"孕妇照"))
-    this.shootTypes.push(new Dictionary(4,"写真"))
     this.initUser()
 
-    var calendar = new LCalendar();
-    calendar.init({
-      'trigger': '#shootdate', //标签id
-      'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-      'minDate': '1900-1-1', //最小日期
-      'maxDate': new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
-    });
+    // var calendar = new LCalendar();
+    // calendar.init({
+    //   'trigger': '#shootdate', //标签id
+    //   'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+    //   'minDate': '1900-1-1', //最小日期
+    //   'maxDate': new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
+    // });
 
   }
 
@@ -111,14 +107,14 @@ export class AppointmentComponent implements OnInit {
       this.toShowErr = true
       return false
     }
-    if (isUndefined(this.user.shootDateStr)||this.user.shootDateStr.trim().length < 1) {
-      this.errMsg = "预约时间不能为空"
-      this.toShowErr = true
-      return false
-    }else{
-      this.user.shootDate = Date.parse(this.user.shootDateStr)
-    }
-    if (isUndefined(this.user.shootType)||this.user.shootType.trim().length < 1) {
+    // if (isUndefined(this.user.shootDateStr)||this.user.shootDateStr.trim().length < 1) {
+    //   this.errMsg = "预约时间不能为空"
+    //   this.toShowErr = true
+    //   return false
+    // }else{
+    //   this.user.shootDate = Date.parse(this.user.shootDateStr)
+    // }
+    if (isUndefined(this.user.shootType)||this.user.shootType.length < 1) {
       this.errMsg = "预约项目不能为空"
       this.toShowErr = true
       return false

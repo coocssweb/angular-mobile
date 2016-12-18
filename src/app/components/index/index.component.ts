@@ -5,6 +5,7 @@
 import { Component, OnInit } from '@angular/core'
 import {CacheService} from "../../services/cache.service";
 import {UserInfoService} from "../../modules/user-info/user-info.service";
+import {Router} from "@angular/router";
 import {isNull} from "util";
 
 
@@ -22,7 +23,8 @@ export class IndexComponent implements OnInit {
     user:any = {}
 
   constructor(private userInfoService: UserInfoService,
-              private cacheService:CacheService){}
+              private cacheService:CacheService,
+              private router: Router){}
 
     ngOnInit(): void {
       let location = window.location.href
@@ -38,11 +40,6 @@ export class IndexComponent implements OnInit {
     }
 
     onToggle(flag){
-      // if(this.isTransform){
-      //   document.getElementById("body").style.overflow = "auto"
-      // }else {
-      //   document.getElementById("body").style.overflow = "hidden"
-      // }
       this.isTransform =flag
       if(this.isTransform&&window.location.href.endsWith("/user-info")){//在个人资料页面到此，个人资料可能已经改变，需从initCustomer
         this.initCustomer()
@@ -54,6 +51,9 @@ export class IndexComponent implements OnInit {
         this.userInfoService.getUserInfo().then((resp:any)=>{
           this.cacheService.setCustomer(resp)
           this.user =  resp
+        },(erroResp:any)=>{
+          console.log(erroResp)
+          this.router.navigate(['/error']);
         })
     }else {
       this.user =  this.cacheService.getCustomer()

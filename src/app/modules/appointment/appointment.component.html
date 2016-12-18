@@ -20,15 +20,15 @@
   <div class="form-item">
     <div class="form-key"><span class="required">*</span>手机号码</div>
     <div class="form-value">
-      <input class="form-input" placeholder="请输入手机号码"  [(ngModel)]="user.mobile"><!--(blur)="mobileBlur()"-->
+      <input class="form-input" placeholder="请输入手机号码"  [(ngModel)]="user.mobile" ><!--(blur)="mobileBlur()"-->
     </div>
   </div>
   <!--<div class="form-item" *ngIf="codeInner">-->
-    <!--<div class="form-key"><span class="required">*</span>验证码</div>-->
-    <!--<div class="form-value" style=" position: absolute; height: 56px;">-->
-      <!--<input class="form-input" style="padding-top: 8px;" placeholder="请输入验证码" [(ngModel)]="user.code" />-->
-      <!--<button type="button" class="code-btn" id="getCode" (click)="getCode()">获取验证码</button>-->
-    <!--</div>-->
+  <!--<div class="form-key"><span class="required">*</span>验证码</div>-->
+  <!--<div class="form-value" style=" position: absolute; height: 56px;">-->
+  <!--<input class="form-input" style="padding-top: 8px;" placeholder="请输入验证码" [(ngModel)]="user.code" />-->
+  <!--<button type="button" class="code-btn" id="getCode" (click)="getCode()">获取验证码</button>-->
+  <!--</div>-->
   <!--</div>-->
   <div class="form-item">
     <div class="form-key"><span class="required">*</span>电子邮箱</div>
@@ -36,16 +36,16 @@
       <input class="form-input" placeholder="请输入电子邮箱" [(ngModel)]="user.email" />
     </div>
   </div>
-  <div class="form-item">
-    <div class="form-key"><span class="required">*</span>预约时间</div>
-    <div class="form-value">
-      <!--
-      <input class="form-input" type="datetime-local" placeholder="请输入预约时间" [(ngModel)]="user.shootDateStr" />
-      -->
-      <input id="shootdate" type="text" readonly="" [(ngModel)]="user.shootDateStr" placeholder="点击选择日期" data-lcalendar="2016-05-11,2016-05-11" />
+  <!--<div class="form-item">-->
+    <!--<div class="form-key"><span class="required">*</span>预约时间</div>-->
+    <!--<div class="form-value">-->
+      <!--&lt;!&ndash;-->
+      <!--<input class="form-input" type="datetime-local" placeholder="请输入预约时间" [(ngModel)]="user.shootDateStr" />-->
+      <!--&ndash;&gt;-->
+      <!--<input id="shootdate" type="text" readonly="" [(ngModel)]="user.shootDateStr" placeholder="点击选择日期" data-lcalendar="2016-05-11,2016-05-11" />-->
 
-    </div>
-  </div>
+    <!--</div>-->
+  <!--</div>-->
 
   <!--<input class="form-input" placeholder="请输入预约项目" [(ngModel)]="user.shootType" />-->
   <!--
@@ -61,7 +61,7 @@
       <span [class.form-value-none]="!user.shootType">{{(!user.shootType)?'--请选择--':shootType.value}}</span>
     </div>
   </div>
-  <ng-select *ngIf="isShowShootSelect" [options]="shootTypes" [value]="shootType" (onSelect)="onSelect($event)"></ng-select>
+  <ng-select *ngIf="isShowShootSelect" [options]="shootTypes"   [value]="shootType" (onSelect)="onSelect($event)"></ng-select>
   <div class="toolbar">
     <a href="javascript:;" class="btn btn-confirm" (click)="addAppoint()">保存</a>
     <!--<a href="javascript:;" class="btn btn-cancel">取消</a>-->

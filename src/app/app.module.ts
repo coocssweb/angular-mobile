@@ -35,8 +35,8 @@ import {AdviceComponent} from "./modules/advice/advice.component";
 import {UserInfoComponent} from "./modules/user-info/user-info.component";
 import {AppointmentComponent} from "./modules/appointment/appointment.component";
 import {BindingComponent} from "./modules/user-info/binding/binding.component";
-import { NgSelectComponent } from './common/ng-select/ng-select.component'
-
+import {NgSelectComponent} from "./common/ng-select/ng-select.component";
+import {ErrorComponent} from "./common/error/error.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +69,8 @@ import { NgSelectComponent } from './common/ng-select/ng-select.component'
     UserInfoComponent,
     AppointmentComponent,
     BindingComponent,
-    NgSelectComponent
+    NgSelectComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

@@ -2,10 +2,10 @@
   <!--<span class="title-text"><span class="icon-title"></span>订单详细</span>-->
 <!--</h2>-->
 <loading *ngIf="isLoadingData"></loading>
-<a class="back" href="#/orders" style="color: #59ac94;"><i class="icon-back"></i>返回</a>
+<a class="back" href="#/orders" style="color: #59ac94;"><i class="icon-back"></i></a>
 <div *ngIf="!isLoadingData">
   <div class="box">
-    <span class="status" (click)="goPhotos()">{{orderDetail.cusStateName}}</span>
+    <span class="status" >{{orderDetail.cusStateName}}</span><!--(click)="goPhotos()"-->
     <div class="form-item">
       <span class="form-key">订单编号:</span>
       <span class="form-value">{{orderDetail.orderNo}}</span>
@@ -75,7 +75,7 @@
         <span class="icon-customer"></span>客服专员
       </div>
     </a>
-    <a href="javascript:;" class="btn btn-progress" (click)="goOrderFlow()">服务进度 >></a>
+    <!--<a href="javascript:;" class="btn btn-progress" (click)="goOrderFlow()">服务进度 >></a>-->
   </div>
 </div>
 
