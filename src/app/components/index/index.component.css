@@ -158,7 +158,7 @@
 }
 
 .pc-header{
-  height: 50px;
+  height: 75px;
   background-color: #1e1e1e;
 }
 
@@ -169,7 +169,7 @@
 
 .pc-logo{
   position: absolute;
-  top: 10px;
+  top: 20px;
   height: 30px;
 }
 

@@ -33,10 +33,12 @@ export class PaginationComponent implements OnInit {
 
   addScrollListener() {
     let _self = this
-    window.onscroll = function () {
-      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    //由于选片精修只在outlet中滚动，因此需要监听该element的事件
+    document.getElementById("outlet").onscroll = function () {
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       let windowHeight = window.innerHeight
-      if (scrollTop + windowHeight >= document.body.clientHeight && this.page.hasNextPage && !this.loadingData) {
+      // console.log(windowHeight + " " + document.body.clientHeight + " " + this.page.hasNextPage + " " + this.loadingData)
+      if (scrollTop + windowHeight + 10 >= document.body.clientHeight && this.page.hasNextPage && !this.loadingData) {
         //不能直接调用onLoadMore方法，直接调用页面无效果
         document.getElementById('loadMoreBtn').click()
       }
