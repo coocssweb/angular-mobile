@@ -4,7 +4,7 @@
         <a href="javascript:;" class="nav-link" (click)="onToggle(true)"></a>
       </div>
     <div class="logo">
-        <img src="../../../images/title.png" class="logo-image"/>
+        <img src="{{qinuDomain + blackLogo}}"class="logo-image"/>
     </div>
     <!--<div class="dropdown">-->
       <!--<a href="javascript:;" class="drapdown-link" ></a>-->
@@ -12,7 +12,7 @@
   </div>
   <div class="pc-header">
     <div class="pc-layout pc-header-inner">
-      <img src="../../../images/pc/logo.png" class="pc-logo" />
+      <img src="{{qinuDomain + brand.bannerLogo}}" class="pc-logo" />
     </div>
   </div>
   <div class="mask" *ngIf="isTransform" (click)="onToggle(false)"></div>

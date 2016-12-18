@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core'
 import {CacheService} from "../../services/cache.service";
 import {UserInfoService} from "../../modules/user-info/user-info.service";
 import {Router} from "@angular/router";
+import {QINIU_DOMAIN} from "../../constant/config";
 import {isNull} from "util";
 
 
@@ -21,6 +22,11 @@ export class IndexComponent implements OnInit {
     photoInfoId: string
     isTransform = false
     user:any = {}
+    brand:any={}
+    qinuDomain = QINIU_DOMAIN+"/"
+    blackLogo:any = ""//手机端头部图
+
+
 
   constructor(private userInfoService: UserInfoService,
               private cacheService:CacheService,
@@ -30,7 +36,9 @@ export class IndexComponent implements OnInit {
       let location = window.location.href
       this.photoInfoId = location.substring(location.lastIndexOf('/'),location.length)
       this.initCustomer()
+      this.initBrand()
     }
+
 
     onTab(tab, flag){
         if(!flag){
@@ -57,6 +65,23 @@ export class IndexComponent implements OnInit {
         })
     }else {
       this.user =  this.cacheService.getCustomer()
+    }
+  }
+  initBrand(){
+    if(isNull(this.cacheService.getBrand())){
+      this.userInfoService.getBrand().then((resp:any)=>{
+        this.cacheService.setBrand(resp)
+        this.brand =  resp
+        let logo = this.brand.bannerLogo
+        this.blackLogo = logo.substring(0,logo.lastIndexOf("."))+"_black"+logo.substring(logo.lastIndexOf("."))
+      },(erroResp:any)=>{
+        console.log(erroResp)
+        this.router.navigate(['/error']);
+      })
+    }else {
+      this.brand =  this.cacheService.getBrand()
+      let logo = this.brand.bannerLogo
+      this.blackLogo = logo.substring(0,logo.lastIndexOf("."))+"_black"+logo.substring(logo.lastIndexOf("."))
     }
   }
 }

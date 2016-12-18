@@ -44,7 +44,6 @@ export class MyOrdersComponent implements OnInit {
     this.ordersService.getMyOrders().then((resp:any) =>{
         this.myOrders = resp
       this.isLoadingData = false
-      console.log(this.myOrders)
     })
   }
 
