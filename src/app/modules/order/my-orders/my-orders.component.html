@@ -30,5 +30,8 @@
       </div>
     </li>
   </ul>
+  <ul  *ngIf="myOrders.length<=0">
+    <li class='no-data'><i class='icon-jinggao iconfont'></i><br/>您还没有相关订单</li>
+  </ul>
 </div>
 <loading *ngIf="isLoadingData"></loading>

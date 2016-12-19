@@ -98,3 +98,37 @@
 .btn-detail:hover{
   background-color: #efefef;
 }
+li.no-data{
+  background: none;
+  text-align: center;
+  border: none;
+  color: #888;
+  font-size: 1rem;
+  line-height: 3rem;
+  padding-top: 4rem;
+}
+li.no-data i{
+  font-size: 2.6rem;
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-jinggao {
+  position: absolute;
+  text-align: center;
+  background-image: url(../../../../images/icon-jinggao.png);
+  background-size: cover;
+  width: 41px;
+  height: 41px;
+  left: -20px;
+  margin-left: 50%;
+}
+.iconfont{
+  font-size: .8rem;
+}
