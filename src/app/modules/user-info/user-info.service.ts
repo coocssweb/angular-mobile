@@ -7,11 +7,12 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {BaseService} from "../../services/base.service";
+import {CacheService} from "../../services/cache.service";
 
 @Injectable()
 export class UserInfoService extends BaseService{
 
-  constructor(http: Http) {
+  constructor(http: Http, private cacheService: CacheService) {
     super(http)
   }
 
@@ -21,8 +22,16 @@ export class UserInfoService extends BaseService{
    * @returns {Promise<any>}
    */
   getUserInfo():Promise<any>{
-    let url = '/weixinfans'
-    return this.get(url)
+    let userInfo = this.cacheService.getCustomer()
+    if(userInfo){
+      return Promise.resolve(userInfo)
+    }else {
+      let userInfoPromise = this.get(`/weixinfans`);
+      userInfoPromise.then((userInfo: any) => {
+        this.cacheService.setCustomer(userInfo)
+      })
+      return userInfoPromise
+    }
   }
 
   /**

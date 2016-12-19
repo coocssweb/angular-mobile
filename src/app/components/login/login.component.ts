@@ -5,6 +5,7 @@ import {DOMAIN} from "../../constant/config";
 import {Router} from "@angular/router";
 import {LoggerService} from "../../services/logger.service";
 import {CacheService} from "../../services/cache.service";
+import {BrandService} from "../../services/brand.service";
 
 /**
  * 二维码登录页面 访问路径要为：/login/qrCode?pid=5&type=raw
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService,
               private cacheService: CacheService,
               private logger: LoggerService,
+              private brandService: BrandService,
               private router: Router) {
 
   }
@@ -46,6 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (!photoInfoId || !targetPath) {
       alert("登录页面访问参数错误，请使用合法的登录地址访问")
     } else {
+      this.brandService.getBrandByPid(photoInfoId)
       //需要先调用一次auth以便生成jsessionid cookie,否则img取图片时的session和auth的session会不一致
       this.authService.authLogin().then(resp => {
         this.qrCodeUrl = `${DOMAIN}/login/qrCode?pid=${photoInfoId}`
@@ -62,13 +65,11 @@ export class LoginComponent implements OnInit, OnDestroy {
                 }
               )
             }
-          },
-          1000
-        )
-        ;
+        }, 1000);
       });
     }
   }
+
 
   ngOnDestroy(): void {
     this.stopInterval()

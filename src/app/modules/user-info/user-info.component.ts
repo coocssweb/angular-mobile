@@ -46,19 +46,12 @@ export class UserInfoComponent  implements OnInit{
   }
 
   getUserInfo(){
-    this.isLoadingData = true
-    if(isNull(this.cacheService.getCustomer())){
+      this.isLoadingData = true
       this.userInfoService.getUserInfo().then((resp:any)=>{
         this.user = resp
         this.isLoadingData = false
         this.orgMobile = this.user.mobile
-        this.cacheService.setCustomer(this.user)
       })
-    }else {
-      this.user = this.cacheService.getCustomer()
-      this.isLoadingData = false
-      this.orgMobile = this.user.mobile
-    }
   }
 
   mobileBlur(){
@@ -73,8 +66,6 @@ export class UserInfoComponent  implements OnInit{
     if(this.validated()) {
       this.userInfoService.updateUserInfo(this.user).then((resp: any) => {
         //保存成功。。。
-        debugger
-        console.log(resp)
         this.message = "保存成功！"
         this.isShowTip = true
         this.codeInner = false
@@ -144,7 +135,7 @@ export class UserInfoComponent  implements OnInit{
     }
     this.settime(document.getElementById('getCode'))
     this.userInfoService.getCodeByMobile(this.user.mobile).then((resp:any)=>{
-     console.log("获取验证码成功，reap[()}=>"+resp)
+     console.log("获取验证码成功,reap[()}=>"+resp)
     })
   }
 

@@ -46,9 +46,21 @@ export class BrandService extends BaseService {
    * 获取原片场景列表
    * @returns {Promise<never|T>|Promise<never>|Observable<R>|Promise<R>|any}
    */
-  getBrandByPid(photoInfoId): Promise<Scene[]> {
+  getBrandByPid(photoInfoId): Promise<Brand> {
     // 设置到cacheService缓存中
-    return null
+    let brand = this.cacheService.getBrand()//正常不会有
+    if (brand) {
+      return Promise.resolve(brand)
+    } else {
+      let url = '/weixinfans/actions/getBrandByPid/'+photoInfoId
+      let brandPromise = this.get(url);
+      brandPromise.then((resp: any) => {
+        brand = new Brand(resp.id, resp.name, resp.bannerLogo)
+        this.brandChangeObserver.next(brand)
+        this.cacheService.setBrand(brand)
+      })
+      return brandPromise
+    }
   }
 
 }

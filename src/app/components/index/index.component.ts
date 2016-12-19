@@ -3,11 +3,9 @@
  * @description :: 入口页面
  */
 import {Component, OnInit} from "@angular/core";
-import {CacheService} from "../../services/cache.service";
 import {UserInfoService} from "../../modules/user-info/user-info.service";
 import {Router} from "@angular/router";
 import {QINIU_DOMAIN} from "../../constant/config";
-import {isNull} from "util";
 import {BrandService} from "../../services/brand.service";
 import {Brand} from "../../shared/brand/brand.model";
 
@@ -28,7 +26,6 @@ export class IndexComponent implements OnInit {
 
   constructor(private userInfoService: UserInfoService,
               private brandService: BrandService,
-              private cacheService: CacheService,
               private router: Router) {
   }
 
@@ -56,17 +53,12 @@ export class IndexComponent implements OnInit {
   }
 
   initCustomer() {
-    if (isNull(this.cacheService.getCustomer())) {
-      this.userInfoService.getUserInfo().then((resp: any) => {
-        this.cacheService.setCustomer(resp)
-        this.user = resp
-      }, (erroResp: any) => {
-        console.log(erroResp)
-        this.router.navigate(['/error']);
-      })
-    } else {
-      this.user = this.cacheService.getCustomer()
-    }
+    this.userInfoService.getUserInfo().then((resp: any) => {
+      this.user = resp
+    }, (erroResp: any) => {
+      console.log(erroResp)
+      this.router.navigate(['/error']);
+    })
   }
 
   initBrand() {
