@@ -63,13 +63,4 @@ export class UserInfoService extends BaseService{
     return this.get(url)
   }
 
-  /**
-   * 获取brand图标
-   *
-   * @returns {Promise<any>}
-   */
-  getBrand():Promise<any>{
-    let url = '/weixinfans/actions/getBrand'
-    return this.get(url)
-  }
 }

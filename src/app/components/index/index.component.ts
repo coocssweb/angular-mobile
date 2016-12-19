@@ -8,6 +8,8 @@ import {UserInfoService} from "../../modules/user-info/user-info.service";
 import {Router} from "@angular/router";
 import {QINIU_DOMAIN} from "../../constant/config";
 import {isNull} from "util";
+import {BrandService} from "../../services/brand.service";
+import {Brand} from "../../shared/brand/brand.model";
 
 
 @Component({
@@ -19,23 +21,24 @@ import {isNull} from "util";
 export class IndexComponent implements OnInit {
 
   currentTab: string = 'raw'
-  photoInfoId: string
   isTransform = false
   user: any = {}
-  brand: any = {}
+  brand: Brand = new Brand(0, "", "")
   qinuDomain = QINIU_DOMAIN + "/"
-  blackLogo: any = ""//手机端头部图
 
   constructor(private userInfoService: UserInfoService,
+              private brandService: BrandService,
               private cacheService: CacheService,
               private router: Router) {
   }
 
   ngOnInit(): void {
     let location = window.location.href
-    this.photoInfoId = location.substring(location.lastIndexOf('/'), location.length)
     this.initCustomer()
     this.initBrand()
+    this.brandService.brandChange.subscribe((brand) => {
+      this.brand = brand;
+    })
   }
 
   onTab(tab, flag) {
@@ -67,20 +70,11 @@ export class IndexComponent implements OnInit {
   }
 
   initBrand() {
-    if (isNull(this.cacheService.getBrand())) {
-      this.userInfoService.getBrand().then((resp: any) => {
-        this.cacheService.setBrand(resp)
-        this.brand = resp
-        let logo = this.brand.bannerLogo
-        this.blackLogo = logo.substring(0, logo.lastIndexOf(".")) + "_black" + logo.substring(logo.lastIndexOf("."))
-      }, (erroResp: any) => {
-        console.log(erroResp)
-        this.router.navigate(['/error']);
-      })
-    } else {
-      this.brand = this.cacheService.getBrand()
-      let logo = this.brand.bannerLogo
-      this.blackLogo = logo.substring(0, logo.lastIndexOf(".")) + "_black" + logo.substring(logo.lastIndexOf("."))
-    }
+    this.brandService.getBrand().then((brand: Brand) => {
+      this.brand = brand
+    }, (erroResp: any) => {
+      console.log(erroResp)
+      this.router.navigate(['/error']);
+    })
   }
 }

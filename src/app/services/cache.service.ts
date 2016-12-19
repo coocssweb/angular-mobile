@@ -1,16 +1,18 @@
 import {OnInit, Injectable} from "@angular/core";
+import {Brand} from "../shared/brand/brand.model";
 
 /**
  * 缓存服务  将ajax请求的一些状态数据存储到sessionStorage中，避免系统中频繁请求提升用户体验
  */
 @Injectable()
 export class CacheService implements OnInit {
+
   static PHOTO_INFO_ID_KEY: string = "PHOTO_INFO_ID"
   static BRAND_KEY: string = "BRAND"
   static CUSTOMER_KEY: string = "CUSTOMER"
   static RAW_INFO_KEY: string = "RAW_INFO"
   static TRUING_INFO_KEY: string = "TRUING_INFO"
-  static PREV_URL :string = "PREV_URL"
+  static PREV_URL: string = "PREV_URL"
 
   ngOnInit(): void {
     if (typeof window.localStorage == 'undefined') {
@@ -20,7 +22,7 @@ export class CacheService implements OnInit {
 
   private add(key, obj) {
     if (obj) {
-      if(typeof obj === 'object') {
+      if (typeof obj === 'object') {
         //storage中只能存储字符串，所以将json对象转换成字符串
         let objStr = JSON.stringify(obj)
         window.sessionStorage.setItem(key, objStr);
@@ -63,7 +65,7 @@ export class CacheService implements OnInit {
     return this.get(CacheService.PHOTO_INFO_ID_KEY)
   }
 
-  setBrand(brand) {
+  setBrand(brand: Brand) {
     this.add(CacheService.BRAND_KEY, brand)
   }
 
@@ -81,7 +83,7 @@ export class CacheService implements OnInit {
   /**
    * 获取品牌信息
    */
-  getBrand() {
+  getBrand(): Brand {
     return this.get(CacheService.BRAND_KEY)
   }
 
@@ -97,10 +99,11 @@ export class CacheService implements OnInit {
     return this.get(CacheService.CUSTOMER_KEY)
   }
 
-  updateCustomer(customer){
+  updateCustomer(customer) {
     window.sessionStorage.removeItem(CacheService.CUSTOMER_KEY)
     this.add(CacheService.CUSTOMER_KEY, customer);
   }
+
   setRawInfo(rawInfo) {
     this.add(CacheService.RAW_INFO_KEY, rawInfo)
   }

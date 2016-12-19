@@ -28,8 +28,8 @@ import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
 import {CacheService} from "./services/cache.service";
 import {AppRoutingModule} from "./app-routing.module";
 import {MyOrdersComponent} from "./modules/order/my-orders/my-orders.component";
-import {OrderDetailComponent} from  "./modules/order/detail/order-detail.component";
-import {OrderFlowComponent} from  "./modules/order/flow/order-flow.component";
+import {OrderDetailComponent} from "./modules/order/detail/order-detail.component";
+import {OrderFlowComponent} from "./modules/order/flow/order-flow.component";
 import {ShopComponent} from "./modules/shop/shop.component";
 import {AdviceComponent} from "./modules/advice/advice.component";
 import {UserInfoComponent} from "./modules/user-info/user-info.component";
@@ -37,6 +37,7 @@ import {AppointmentComponent} from "./modules/appointment/appointment.component"
 import {BindingComponent} from "./modules/user-info/binding/binding.component";
 import {NgSelectComponent} from "./common/ng-select/ng-select.component";
 import {ErrorComponent} from "./common/error/error.component";
+import {BrandService} from "./services/brand.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +82,8 @@ import {ErrorComponent} from "./common/error/error.component";
   ],
   providers: [
     CacheService,
-    LoggerService
+    LoggerService,
+    BrandService
   ],
   bootstrap: [AppComponent]
 })
