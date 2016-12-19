@@ -19,10 +19,10 @@ import {CacheService} from "../../services/cache.service";
 export class LoginComponent implements OnInit, OnDestroy {
   private qrCodeUrl: string
   private checkIntervalId
-  private loginWay:number = 1  //1 微信二维码 2 口令登录
+  private loginWay: number = 1  //1 微信二维码 2 口令登录
   private accessPwd: string
   private errMsg: string
-  private toShow:boolean = false
+  private toShow: boolean = false
 
   constructor(private authService: AuthService,
               private cacheService: CacheService,
@@ -47,21 +47,26 @@ export class LoginComponent implements OnInit, OnDestroy {
       alert("登录页面访问参数错误，请使用合法的登录地址访问")
     } else {
       //需要先调用一次auth以便生成jsessionid cookie,否则img取图片时的session和auth的session会不一致
-      this.authService.authLogin();
-      this.qrCodeUrl = `${DOMAIN}/login/qrCode?pid=${photoInfoId}`
-      if(this.loginWay==1){
+      this.authService.authLogin().then(resp => {
+        this.qrCodeUrl = `${DOMAIN}/login/qrCode?pid=${photoInfoId}`
         this.checkIntervalId = setInterval(() => {
-          this.authService.authLogin().then(resp => {
-            if (resp.result) {
-              clearInterval(this.checkIntervalId)
-              if (!targetPath.startsWith("#")) {
-                targetPath = `#${targetPath}`
-              }
-              window.location.href = targetPath
+            if (this.loginWay == 1) {
+              this.authService.authLogin().then(resp => {
+                  if (resp.result) {
+                    clearInterval(this.checkIntervalId)
+                    if (!targetPath.startsWith("#")) {
+                      targetPath = `#${targetPath}`
+                    }
+                    window.location.href = targetPath
+                  }
+                }
+              )
             }
-          })
-        }, 500);
-      }
+          },
+          1000
+        )
+        ;
+      });
     }
   }
 
@@ -80,13 +85,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  changeLoginWay(way){
+  changeLoginWay(way) {
     this.loginWay = way
     this.toShow = false
     this.accessPwd = null
   }
 
-  loginByAccessPwd(){
+  loginByAccessPwd() {
     let location = window.location.href
     let photoInfoId = StringUtils.getUrlQuery(location, "pid")
     if (!photoInfoId) {
@@ -102,24 +107,24 @@ export class LoginComponent implements OnInit, OnDestroy {
       alert("登录页面访问参数错误，请使用合法的登录地址访问")
     } else {
       if (!targetPath.startsWith("#")) {
-                targetPath = `#${targetPath}`
-              }
+        targetPath = `#${targetPath}`
+      }
       // this.authService.loginByAccessPwd(this.accessPwd,photoInfoId)
       this.qrCodeUrl = `${DOMAIN}/login/qrCode?pid=${photoInfoId}`
 
-        this.authService.loginByAccessPwd(this.accessPwd,photoInfoId).then(resp => {
-          if (resp.result) {
-            setInterval(this.checkIntervalId)
-            if (!targetPath.startsWith("#")) {
-              targetPath = `#${targetPath}`
-            }
-            this.logger.info("targetPath:"+targetPath)
-            window.location.href = targetPath
-          }else {
-            this.toShow = true;
-            this.errMsg = resp.msg;
+      this.authService.loginByAccessPwd(this.accessPwd, photoInfoId).then(resp => {
+        if (resp.result) {
+          setInterval(this.checkIntervalId)
+          if (!targetPath.startsWith("#")) {
+            targetPath = `#${targetPath}`
           }
-        })
+          this.logger.info("targetPath:" + targetPath)
+          window.location.href = targetPath
+        } else {
+          this.toShow = true;
+          this.errMsg = resp.msg;
+        }
+      })
     }
   }
 
