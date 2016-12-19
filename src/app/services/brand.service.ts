@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {BaseService} from "./base.service";
-import {Scene} from "../components/scene/scene";
 import {CacheService} from "./cache.service";
 import {Brand} from "../shared/brand/brand.model";
 import {Observer, Observable} from "rxjs";

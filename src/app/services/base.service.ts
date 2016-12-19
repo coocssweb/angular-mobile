@@ -121,6 +121,10 @@ export class BaseService {
       window.location.href = "#/login/qrCode"
       // return Promise.resolve("Please sweep the qr code.");
     }
+    let jsonResult = JSON.parse(error._body)
+    if(error.status == 400 &&jsonResult.errCode=="COM/WARN_NO_WEIXIN_FANS") {//不是微信浏览器
+      window.location.href = "#/error/" + 1
+    }
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error'
     return Promise.reject(error);

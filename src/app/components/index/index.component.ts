@@ -56,8 +56,7 @@ export class IndexComponent implements OnInit {
     this.userInfoService.getUserInfo().then((resp: any) => {
       this.user = resp
     }, (erroResp: any) => {
-      console.log(erroResp)
-      this.router.navigate(['/error']);
+        this.router.navigate(['/error',2]);
     })
   }
 
@@ -65,8 +64,7 @@ export class IndexComponent implements OnInit {
     this.brandService.getBrand().then((brand: Brand) => {
       this.brand = brand
     }, (erroResp: any) => {
-      console.log(erroResp)
-      this.router.navigate(['/error']);
+        this.router.navigate(['/error/',2]);
     })
   }
 }

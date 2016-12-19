@@ -20,7 +20,7 @@ import {ErrorComponent} from "./common/error/error.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'orders', pathMatch: 'full'},
-  {path: 'error',component: ErrorComponent},
+  {path: 'error/:msgType',component: ErrorComponent},
   {path: 'login/qrCode', component: LoginComponent},
   {path: 'raw/:photoinfoid', component: PhotosComponent},
   {path: 'raw/:photoinfoid/:status', component: PhotosComponent},
