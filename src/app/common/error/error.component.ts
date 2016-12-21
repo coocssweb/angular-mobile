@@ -14,6 +14,8 @@ export class ErrorComponent implements OnInit{
 
   msg:string="访问方式不正确"
 
+  errorInfo:string = ""
+
   /**
    * 构造函数
    * @param rawService
@@ -31,6 +33,7 @@ export class ErrorComponent implements OnInit{
         this.msg = "请使用微信浏览器访问"
       }
     });
+    this.errorInfo = window.sessionStorage.getItem("ERRORINFO")
   }
 
 }

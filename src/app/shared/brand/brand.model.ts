@@ -4,13 +4,12 @@
  */
 
 export class Brand {
-  constructor(public id: number,
-              public name: string,
-              public bannerLogo: string,) {
+  constructor(public bannerLogo: string) {
 
   }
 
+  //TODO 监听之才可直接使用
   public get blackBannerLogo() {
-    return this.bannerLogo.substring(0, this.bannerLogo.lastIndexOf(".")) + "_black" + this.bannerLogo.substring(this.bannerLogo.lastIndexOf("."))
+      return this.bannerLogo.substring(0, this.bannerLogo.lastIndexOf(".")) + "_black" + this.bannerLogo.substring(this.bannerLogo.lastIndexOf("."))
   }
 }

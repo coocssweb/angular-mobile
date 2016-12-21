@@ -33,7 +33,7 @@ export class BrandService extends BaseService {
       let url = '/weixinfans/actions/getBrand'
       let brandPromise = this.get(url);
       brandPromise.then((resp: any) => {
-        brand = new Brand(resp.id, resp.name, resp.bannerLogo)
+        brand = new Brand(resp.bannerLogo)
         this.brandChangeObserver.next(brand)
         this.cacheService.setBrand(brand)
       })
@@ -54,7 +54,7 @@ export class BrandService extends BaseService {
       let url = '/weixinfans/actions/getBrandByPid/'+photoInfoId
       let brandPromise = this.get(url);
       brandPromise.then((resp: any) => {
-        brand = new Brand(resp.id, resp.name, resp.bannerLogo)
+        brand = new Brand(resp.bannerLogo)
         this.brandChangeObserver.next(brand)
         this.cacheService.setBrand(brand)
       })

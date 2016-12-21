@@ -21,7 +21,7 @@ export class IndexComponent implements OnInit {
   currentTab: string = 'raw'
   isTransform = false
   user: any = {}
-  brand: Brand = new Brand(0, "", "")
+  brand: Brand = new Brand("")
   qinuDomain = QINIU_DOMAIN + "/"
 
   constructor(private userInfoService: UserInfoService,
@@ -56,15 +56,24 @@ export class IndexComponent implements OnInit {
     this.userInfoService.getUserInfo().then((resp: any) => {
       this.user = resp
     }, (erroResp: any) => {
+      console.log("获取用户信息出错：")
+      console.log(erroResp)
+      let jsonResult = JSON.parse(erroResp._body)
+      window.sessionStorage.setItem("ERRORINFO",jsonResult.msg)
         this.router.navigate(['/error',2]);
     })
   }
 
   initBrand() {
     this.brandService.getBrand().then((brand: Brand) => {
+      console.log(brand)
       this.brand = brand
     }, (erroResp: any) => {
-        this.router.navigate(['/error/',2]);
+      console.log("获取brand信息出错：")
+      console.log(erroResp)
+      let jsonResult = JSON.parse(erroResp._body)
+      window.sessionStorage.setItem("ERRORINFO",jsonResult.msg)
+      this.router.navigate(['/error/',2]);
     })
   }
 }

@@ -111,6 +111,8 @@ export class BaseService {
   }
 
   private handleError(error: Response | any) {
+    console.log("BaseService==>handleError错误：")
+    console.log(error)
     let ua = navigator.userAgent.toLowerCase();
     let isWeixin = ua.indexOf("micromessenger") >= 0;
     if (error.status == 403 || (error.status == 419 && isWeixin)) {
@@ -121,9 +123,11 @@ export class BaseService {
       window.location.href = "#/login/qrCode"
       // return Promise.resolve("Please sweep the qr code.");
     }
+    window.sessionStorage.removeItem("ERRORINFO")
     let jsonResult = JSON.parse(error._body)
     if(error.status == 400 &&jsonResult.errCode=="COM/WARN_NO_WEIXIN_FANS") {//不是微信浏览器
       window.location.href = "#/error/" + 1
+      window.sessionStorage.setItem("ERRORINFO",jsonResult.msg)
     }
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error'

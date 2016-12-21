@@ -45,12 +45,14 @@ export class MyOrdersComponent implements OnInit {
         this.myOrders = resp
       this.isLoadingData = false
     },(error:any)=>{
+      console.log("获取订单列表出错==>>：")
+      console.log(error)
       let jsonResult = JSON.parse(error._body)
-      if(jsonResult.errCode=="COM/WARN_NO_BINDING_CUSTOMER"){//未绑定，跳转到绑定页面
-        this.router.navigate(['/binding']);
-      }else {//其他，暂显示无订单   maybe other status。。。
+      // if(jsonResult.errCode=="COM/WARN_NO_BINDING_CUSTOMER"){//未绑定，跳转到绑定页面
+      //   this.router.navigate(['/binding']);
+      // }else {//其他，暂显示无订单   maybe other status。。。
         this.isLoadingData = false
-      }
+      // }
     })
   }
 

@@ -20,9 +20,11 @@
   line-height: 50px;
   background-color: #59ac94;
   font-size: 18px;
-  margin-top: 20px;
+
   border-radius: 5px;
-  width: 100%;
+  width: 97%;
+  margin: 20px auto;
+
   cursor: pointer;
 }
 .btn-submit:disabled{
