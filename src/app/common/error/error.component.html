@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="renderer" content="webkit">
-  <title>error</title>
-
-</head>
-
-<body>
-{{msg}}<span *ngIf="errorInfo">{{errorInfo}}</span>
-</body>
-
-</html>
+<div class="error">
+  <div class="error_icon_area">
+    <i class="icon-icon_info"></i>
+  </div>
+  <div class="error_text_area">
+    <h4 class="error_msg_title">{{msg}}<span *ngIf="errorInfo">{{errorInfo}}</span></h4>
+  </div>
+</div>

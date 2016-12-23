@@ -1,0 +1,27 @@
+.error{
+  padding-top: 36px;
+  text-align: center;
+}
+.error_icon_area{
+  margin-bottom: 30px;
+  height:90px;
+}
+.icon-icon_info {
+  position: absolute;
+  text-align: center;
+  background-image: url(../../../images/icon-error.png);
+  background-size: cover;
+  width: 88px;
+  height: 88px;
+  left: -44px;
+  margin-left: 50%;
+}
+.error_text_area{
+  margin-bottom: 25px;
+  padding: 0 20px;
+}
+.error_msg_title{
+  margin-bottom: 5px;
+  font-weight: 400;
+  font-size: 20px;
+}
