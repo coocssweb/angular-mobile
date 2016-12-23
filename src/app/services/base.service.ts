@@ -124,10 +124,12 @@ export class BaseService {
       // return Promise.resolve("Please sweep the qr code.");
     }
     window.sessionStorage.removeItem("ERRORINFO")
-    let jsonResult = JSON.parse(error._body)
-    if(error.status == 400 &&jsonResult.errCode=="COM/WARN_NO_WEIXIN_FANS") {//不是微信浏览器
-      window.location.href = "#/error/" + 1
-      window.sessionStorage.setItem("ERRORINFO",jsonResult.msg)
+    if(error._body!=""){
+      let jsonResult = JSON.parse(error._body)
+      if(error.status == 400 &&jsonResult.errCode=="COM/WARN_NO_WEIXIN_FANS") {//不是微信浏览器
+        window.location.href = "#/error/" + 1
+        window.sessionStorage.setItem("ERRORINFO",jsonResult.msg)
+      }
     }
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error'

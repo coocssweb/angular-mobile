@@ -50,7 +50,7 @@ export class OrderDetailComponent implements OnInit {
      })
   }
   goOrderFlow(){
-    this.router.navigate(['/order-flow', this.orderId]);
+    this.router.navigate(['/orders/'+this.orderId+'/flow', ]);
   }
   goPhotos(){
     if(this.orderDetail.cusStateName=="客户选片"&&this.orderDetail.cusRawStatus!=0){

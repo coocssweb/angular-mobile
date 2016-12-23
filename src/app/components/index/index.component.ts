@@ -56,10 +56,6 @@ export class IndexComponent implements OnInit {
     this.userInfoService.getUserInfo().then((resp: any) => {
       this.user = resp
     }, (erroResp: any) => {
-      console.log("获取用户信息出错：")
-      console.log(erroResp)
-      let jsonResult = JSON.parse(erroResp._body)
-      window.sessionStorage.setItem("ERRORINFO",jsonResult.msg)
         this.router.navigate(['/error',2]);
     })
   }
@@ -69,10 +65,6 @@ export class IndexComponent implements OnInit {
       console.log(brand)
       this.brand = brand
     }, (erroResp: any) => {
-      console.log("获取brand信息出错：")
-      console.log(erroResp)
-      let jsonResult = JSON.parse(erroResp._body)
-      window.sessionStorage.setItem("ERRORINFO",jsonResult.msg)
       this.router.navigate(['/error/',2]);
     })
   }

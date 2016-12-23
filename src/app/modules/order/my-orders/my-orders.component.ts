@@ -47,7 +47,7 @@ export class MyOrdersComponent implements OnInit {
     },(error:any)=>{
       console.log("获取订单列表出错==>>：")
       console.log(error)
-      let jsonResult = JSON.parse(error._body)
+      // let jsonResult = JSON.parse(error._body)
       // if(jsonResult.errCode=="COM/WARN_NO_BINDING_CUSTOMER"){//未绑定，跳转到绑定页面
       //   this.router.navigate(['/binding']);
       // }else {//其他，暂显示无订单   maybe other status。。。
@@ -57,10 +57,10 @@ export class MyOrdersComponent implements OnInit {
   }
 
   goOrderDetail(orderId){
-    this.router.navigate(['/order-detail', orderId]);
+    this.router.navigate(['/orders/'+orderId+'/detail']);
   }
   goOrderFlow(orderId){
-    this.router.navigate(['/order-flow', orderId]);
+    this.router.navigate(['/orders/'+orderId+'/flow', ]);
   }
   goPhotos(order,to){
     if(to==1&&order.cusRawStatus!=0){
