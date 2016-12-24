@@ -93,7 +93,7 @@
   width: 50%;
   font-size: 16px;
   box-sizing: border-box;
-  border-right: 1px solid #CCCCCC;
+  /*border-right: 1px solid #CCCCCC;*/
 }
 
 .order-amount span, .order-payed span{
@@ -137,7 +137,7 @@
   height: 50px;
   line-height: 50px;
   border: 1px solid #999;
-  width: 100%;
+  width: 97%;
   font-size: 16px;
   border-radius: 5px;
 }
