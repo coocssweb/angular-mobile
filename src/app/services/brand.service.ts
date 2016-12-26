@@ -36,6 +36,7 @@ export class BrandService extends BaseService {
         brand = new Brand(resp.bannerLogo)
         this.brandChangeObserver.next(brand)
         this.cacheService.setBrand(brand)
+        return brand;
       })
       return brandPromise
     }
@@ -57,6 +58,7 @@ export class BrandService extends BaseService {
         brand = new Brand(resp.bannerLogo)
         this.brandChangeObserver.next(brand)
         this.cacheService.setBrand(brand)
+        return brand;
       })
       return brandPromise
     }
