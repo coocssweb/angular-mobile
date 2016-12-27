@@ -55,8 +55,8 @@
     </div>
   </div>
 
-  <div class="box" *ngFor="let product of orderDetail.products;let i = index" >
-    <div class="form-item form-long-item">
+  <div class="box">
+    <div class="form-item form-long-item" *ngFor="let product of orderDetail.products;let i = index" >
       <div class="form-label">{{product.name}}</div>
       <span class="form-right-value">x{{product.productNum}}</span>
     </div>
@@ -65,7 +65,7 @@
   <div class="box">
     <div class="form-item form-item-group">
       <div class="order-amount">订单金额：<span>￥{{orderDetail.actualPayment}}</span></div>
-      <div class="order-payed"><div class="order-payed-inner"><span class="icon-ok"></span>已付金额：<span>￥{{orderDetail.downPayment}}</span></div></div>
+      <div class="order-payed"><div class="order-payed-inner"><span class="icon-ok" *ngIf="orderDetail.actualPayment === orderDetail.downPayment "></span>已付金额：<span>￥{{orderDetail.downPayment}}</span></div></div>
     </div>
   </div>
 
