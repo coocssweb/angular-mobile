@@ -34,7 +34,8 @@ export class IndexComponent implements OnInit {
     this.initCustomer()
     this.initBrand()
     this.brandService.brandChange.subscribe((brand) => {
-      this.brand = brand;
+      this.brand = brand
+      console.log(this.brand)
     })
   }
 
