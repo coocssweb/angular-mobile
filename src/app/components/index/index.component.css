@@ -17,6 +17,7 @@
   bottom: 0px;
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .drawer{
