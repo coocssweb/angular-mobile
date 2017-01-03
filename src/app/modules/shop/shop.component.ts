@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import {ShopService} from "./shop.service";
+import {Title} from "@angular/platform-browser";
 @Component({
   selector: 'shop',
   templateUrl: 'shop.component.html',
@@ -16,7 +17,8 @@ export class ShopComponent implements OnInit {
    * 构造函数
    * @param rawService
    */
-  constructor(private shopService:ShopService) {
+  constructor(private shopService:ShopService,private titleService:Title) {
+    this.titleService.setTitle("门店地址")
   }
 
   /**

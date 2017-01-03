@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import {AdviceService} from "./advice.service";
 import {isUndefined} from "util";
 import {isNull} from "util";
+import {Title} from "@angular/platform-browser";
 @Component({
   selector: 'opinion',
   templateUrl: 'advice.component.html',
@@ -22,7 +23,8 @@ export class AdviceComponent implements OnInit{
    * 构造函数
    * @param rawService
    */
-  constructor(private adviceService:AdviceService) {
+  constructor(private adviceService:AdviceService,private titleService:Title) {
+    this.titleService.setTitle("意见反馈")
   }
 
   /**

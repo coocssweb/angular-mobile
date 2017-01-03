@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {LoggerService} from "../../services/logger.service";
 import {CacheService} from "../../services/cache.service";
 import {BrandService} from "../../services/brand.service";
+import {Title} from "@angular/platform-browser";
 
 /**
  * 二维码登录页面 访问路径要为：/login/qrCode?pid=5&type=raw
@@ -25,12 +26,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   private errMsg: string
   private toShow: boolean = false
 
-  constructor(private authService: AuthService,
+  constructor(private authService: AuthService,private titleService:Title,
               private cacheService: CacheService,
               private logger: LoggerService,
               private brandService: BrandService,
               private router: Router) {
-
+    this.titleService.setTitle("登录")
   }
 
   ngOnInit(): void {

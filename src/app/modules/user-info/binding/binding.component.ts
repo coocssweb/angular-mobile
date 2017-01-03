@@ -4,6 +4,7 @@ import {ActivatedRoute,  Router} from "@angular/router";
 import {UserInfoService} from "../user-info.service";
 import {isUndefined} from "util";
 import {isNull} from "util";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'binding',
@@ -27,9 +28,10 @@ export class BindingComponent  implements OnInit{
    * 构造函数
    * @param rawService
    */
-  constructor(private userInfoService: UserInfoService,
+  constructor(private userInfoService: UserInfoService,private titleService:Title,
               private route: ActivatedRoute,
               private router: Router) {
+    this.titleService.setTitle("信息绑定")
   }
 
   /**
