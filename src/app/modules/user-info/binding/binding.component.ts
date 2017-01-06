@@ -59,6 +59,10 @@ export class BindingComponent  implements OnInit{
         this.message = resp.msg
         this.isShowTip = true
         this.codeInner = false
+      },(errorResp:any)=>{//
+        let jsonResult = JSON.parse(errorResp._body)
+        this.message = jsonResult.msg
+        this.isShowTip = true
       })
     }else{
       setTimeout((resp:any)=>{
