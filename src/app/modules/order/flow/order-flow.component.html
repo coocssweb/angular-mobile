@@ -73,12 +73,17 @@
       </div>
     </div>
 
-    <tip
+    <!--<tip-->
+      <!--*ngIf="isShowTip"-->
+      <!--(close)="onCloseTip()"-->
+      <!--btnText = '确定'>-->
+      <!--{{message}}-->
+    <!--</tip>-->
+    <success
       *ngIf="isShowTip"
       (close)="onCloseTip()"
-      btnText = '确定'>
-      {{message}}
-    </tip>
+    >{{message}}
+    </success>
   </div>
 </div>
 

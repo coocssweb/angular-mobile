@@ -14,6 +14,7 @@ import {Title} from "@angular/platform-browser";
 })
 export class BindingComponent  implements OnInit{
 
+  private oldMobile:string=""
   private user:any = {}
 
   private codeInner:boolean = false
@@ -38,23 +39,30 @@ export class BindingComponent  implements OnInit{
    * 初始化事件
    */
   ngOnInit(): void {
-    this.user.sex = 1
+    this.initUser()
+  }
+
+  initUser(){
+    this.userInfoService.getUserInfo().then((user)=>{
+     this.user = user
+      this.oldMobile = user.mobile
+    })
   }
 
   mobileBlur(){
-    if(!(isUndefined(this.user.mobile)||isNull(this.user.mobile))){
-      this.codeInner = true
+    if((!(isUndefined(this.user.mobile)||isNull(this.user.mobile)))&&(this.user.mobile != this.oldMobile)){
+        this.codeInner = true
     }else {
       this.codeInner = false
     }
   }
 
   updateUserInfo(){
+
     if(this.validated()) {
       this.user.email="@"//只是为了满足不为空，后台未使用此内容
       this.userInfoService.bindingByMobile(this.user).then((resp: any) => {
         //保存成功。。。
-        debugger
         console.log(resp)
         this.message = resp.msg
         this.isShowTip = true
@@ -72,6 +80,7 @@ export class BindingComponent  implements OnInit{
   }
 
   validated(){
+
     //姓名验证
     if (isUndefined(this.user.name)||this.user.name.trim().length < 1) {
       this.errMsg = "姓名不能为空"
@@ -86,6 +95,11 @@ export class BindingComponent  implements OnInit{
     }else if (!/^1[34578]\d{9}$/.test(this.user.mobile) || this.user.mobile.trim().length != 11) {
       this.errMsg = "手机号码格式不正确"
       this.toShowErr = true
+      return false
+    }
+    if(this.user.mobile == this.oldMobile){
+      this.message = "手机号已绑定当前账号"
+      this.isShowTip = true
       return false
     }
     //验证码非空验证
