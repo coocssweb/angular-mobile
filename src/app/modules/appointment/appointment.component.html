@@ -1,4 +1,4 @@
-<div class="form">
+<div class="form content-box">
   <div  *ngIf="toShowErr"  class="form-item alert alert-danger">
     <span class="ng-binding">{{errMsg}}</span>
   </div>
@@ -61,15 +61,16 @@
       <span [class.form-value-none]="!user.shootType">{{(!user.shootType)?'--请选择--':shootType.value}}</span>
     </div>
   </div>
-  <ng-select *ngIf="isShowShootSelect" [options]="shootTypes"   [value]="shootType" (onSelect)="onSelect($event)"></ng-select>
   <div class="toolbar">
     <a href="javascript:;" class="btn btn-confirm" (click)="addAppoint()">保存</a>
     <!--<a href="javascript:;" class="btn btn-cancel">取消</a>-->
   </div>
-  <tip
-    *ngIf="isShowTip"
-    (close)="onCloseTip()"
-    btnText = '确定'>
-    {{message}}
-  </tip>
+
 </div>
+<ng-select *ngIf="isShowShootSelect" [options]="shootTypes"   [value]="shootType" (onSelect)="onSelect($event)"></ng-select>
+<tip
+  *ngIf="isShowTip"
+  (close)="onCloseTip()"
+  btnText = '确定'>
+  {{message}}
+</tip>

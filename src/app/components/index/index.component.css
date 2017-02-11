@@ -188,10 +188,11 @@
 
   .outlet{
     height: calc(100% - 85px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
   }
+
+
 }
+
 .head-menu{
   width: 7rem;
   position: fixed;
