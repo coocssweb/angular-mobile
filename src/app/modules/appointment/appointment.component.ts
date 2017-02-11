@@ -6,6 +6,7 @@ import {AppointmentService} from "./appointment.service";
 import {isUndefined} from "util";
 import { _SHOOTTYPES} from "../../dictionarys";
 import {isNull} from "util";
+import {Title} from "@angular/platform-browser";
 @Component({
   selector: 'appoint',
   templateUrl: 'appointment.component.html',
@@ -27,7 +28,8 @@ export class AppointmentComponent implements OnInit {
    * 构造函数
    * @param rawService
    */
-  constructor(private appointmentService:AppointmentService) {
+  constructor(private appointmentService:AppointmentService,private titleSerivce:Title) {
+    this.titleSerivce.setTitle("在线预约");
   }
   /**
    * 初始化事件

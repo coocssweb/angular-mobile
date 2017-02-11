@@ -1,4 +1,4 @@
-<a class="back"href="#/orders" style="color: #59ac94;"><i class="icon-back"></i></a>
+<!--<a class="back"href="#/orders" style="color: #59ac94;"><i class="icon-back"></i></a>-->
 <div *ngIf="isShowPcGuide && rawInfo.cusRawStatus !==-1 && rawInfo.cusRawStatus !==2" class="pc-guide pc-layout">
   本订单标配可选片{{rawInfo.truingImgNum}}张,第一步建议您先粗选{{rawInfo.truingImgNum*2}}张左右,然后进行细选 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
 </div>
@@ -7,7 +7,7 @@
             [show]="currentStatus=='' && rawInfo.cusRawStatus!==2 && rawInfo.cusRawStatus !==-1 && rawInfo.cusRawStatus !== 0" [photoInfoId]="photoInfoId"
             (onTabSceneCb)="onTabSceneCb($event)">
 </scene-form>
-<div *ngIf="rawInfo.cusRawStatus!=0">
+<div *ngIf="rawInfo.cusRawStatus!=0" class="list-outer">
 
 <div class="scene-outer clearfix" *ngIf="rawInfo.cusRawStatus === 2">
   <div class="scene-inner clearfix" id="scene-inner">
@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<div class="pc-content pc-layout">
+<div class="pc-content pc-layout"  id="pc-list-content">
   <pcphoto
     [list]="photoList"
     [type]="'raw'"
@@ -34,7 +34,7 @@
   ></pcphoto>
 </div>
 
-<div class="content layout">
+<div class="content layout" [class.content-status]="currentStatus!==''" id="list-content">
   <div class="flow-list clearfix" >
     <div class="flow-list-col">
       <photo
@@ -123,12 +123,7 @@
            [list]="photoList"></pcviewer>
 
 
-<tip
-  *ngIf="isShowGuide && rawInfo.cusRawStatus !== 2"
-  (close)="onCloseTip()"
-  btnText = '我知道了'>
-  本订单标配可选片{{rawInfo.truingImgNum}}张, 第一步建议您初选{{rawInfo.truingImgNum*2}}张左右, 然后进行细选!
-</tip>
+
 
 <tip
   *ngIf="isShowTip"

@@ -2,7 +2,7 @@
   <!--<span class="title-text"><span class="icon-title"></span>订单详细</span>-->
 <!--</h2>-->
 <loading *ngIf="isLoadingData"></loading>
-<a class="back" href="#/orders" style="color: #59ac94;"><i class="icon-back"></i></a>
+<!--<a class="back" href="#/orders" style="color: #59ac94;"><i class="icon-back"></i></a>-->
 <div *ngIf="!isLoadingData">
   <div class="box">
     <span class="status" >{{orderDetail.cusStateName}}</span><!--(click)="goPhotos()"-->
@@ -31,21 +31,21 @@
     </div>
     <div class="form-item  form-item-group">
       <div class="inner-item">
-        <span class="form-key">原  片:</span>
+        <span class="form-key">原 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;片:</span>
         <span class="form-value">{{series.origImgNum}}张</span>
       </div>
       <div class="inner-item">
-        <span class="form-key">精修:</span>
+        <span class="form-key">精&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;修:</span>
         <span class="form-value">{{series.truingImgNum}}张</span>
       </div>
     </div>
     <div class="form-item form-item-group">
       <div class="inner-item">
-        <span class="form-key">造  型:</span>
+        <span class="form-key">造 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 型:</span>
         <span class="form-value">{{series.modelling}}组</span>
       </div>
       <div class="inner-item">
-        <span class="form-key">场景:</span>
+        <span class="form-key">场&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;景:</span>
         <span class="form-value">{{series.scene}}组</span>
       </div>
     </div>
@@ -55,8 +55,8 @@
     </div>
   </div>
 
-  <div class="box" *ngFor="let product of orderDetail.products;let i = index" >
-    <div class="form-item form-long-item">
+  <div class="box">
+    <div class="form-item form-long-item" *ngFor="let product of orderDetail.products;let i = index" >
       <div class="form-label">{{product.name}}</div>
       <span class="form-right-value">x{{product.productNum}}</span>
     </div>
@@ -65,7 +65,7 @@
   <div class="box">
     <div class="form-item form-item-group">
       <div class="order-amount">订单金额：<span>￥{{orderDetail.actualPayment}}</span></div>
-      <div class="order-payed"><div class="order-payed-inner"><span class="icon-ok"></span>已付金额：<span>￥{{orderDetail.downPayment}}</span></div></div>
+      <div class="order-payed"><div class="order-payed-inner"><span class="icon-ok" *ngIf="orderDetail.actualPayment === orderDetail.downPayment "></span>已付金额：<span>￥{{orderDetail.downPayment}}</span></div></div>
     </div>
   </div>
 

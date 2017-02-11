@@ -2,6 +2,7 @@ html, body {
   background-color: #f2f4f4;
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .layout {

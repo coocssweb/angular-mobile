@@ -31,11 +31,11 @@ export class BrandService extends BaseService {
       return Promise.resolve(brand)
     } else {
       let url = '/weixinfans/actions/getBrand'
-      let brandPromise = this.get(url);
-      brandPromise.then((resp: any) => {
+      let brandPromise = this.get(url).then((resp: any) => {
         brand = new Brand(resp.bannerLogo)
         this.brandChangeObserver.next(brand)
         this.cacheService.setBrand(brand)
+        return brand;
       })
       return brandPromise
     }
@@ -57,6 +57,7 @@ export class BrandService extends BaseService {
         brand = new Brand(resp.bannerLogo)
         this.brandChangeObserver.next(brand)
         this.cacheService.setBrand(brand)
+        return brand;
       })
       return brandPromise
     }

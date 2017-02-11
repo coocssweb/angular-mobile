@@ -4,6 +4,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {UserInfoService} from "./user-info.service";
 import {CacheService} from "../../services/cache.service";
 import {isNull} from "util";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'personal',
@@ -32,10 +33,11 @@ export class UserInfoComponent  implements OnInit{
    * 构造函数
    * @param rawService
    */
-  constructor(private userInfoService: UserInfoService,
+  constructor(private userInfoService: UserInfoService,private titleService:Title,
               private cacheService:CacheService,
               private route: ActivatedRoute,
               private router: Router) {
+    this.titleService.setTitle("个人资料")
   }
 
   /**

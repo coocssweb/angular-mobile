@@ -1,8 +1,8 @@
-<a class="back"href="#/orders" style="color: #59ac94;"><i class="icon-back"></i></a>
+<!--<a class="back"href="#/orders" style="color: #59ac94;"><i class="icon-back"></i></a>-->
 <div *ngIf="isShowPcGuide && totalCount>0 && truingInfo.cusTruingStatus !==3" class="pc-guide pc-layout">
   已确认的精修片,点击左下角的下载按钮既可以下载了 <a href="javascript:;" (click)="onClosePcTip()" class="btn-close-guide">我知道了</a>
 </div>
-<div *ngIf="truingInfo.cusTruingStatus!=0">
+<div *ngIf="truingInfo.cusTruingStatus!=0" class="list-outer">
   <div *ngIf="truingInfo.cusTruingStatus !==3" class="scene-outer clearfix">
     <div class="scene-inner clearfix" id="scene-inner">
       <ul class="scene-list clearfix">
@@ -47,7 +47,7 @@
     ></pcphoto>
 
   </div>
-  <div class="content">
+  <div class="content" id="list-content">
     <div class="flow-list clearfix">
       <div class="flow-list-col">
         <photo

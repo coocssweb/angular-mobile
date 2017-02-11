@@ -65,10 +65,6 @@ export class CacheService implements OnInit {
     return this.get(CacheService.PHOTO_INFO_ID_KEY)
   }
 
-  setBrand(brand: Brand) {
-    this.add(CacheService.BRAND_KEY, brand)
-  }
-
   /**
    * 获取跳转地址
    */
@@ -80,11 +76,19 @@ export class CacheService implements OnInit {
     this.add(CacheService.PREV_URL, prevUrl)
   }
 
+  setBrand(brand: Brand) {
+    this.add(CacheService.BRAND_KEY, brand)
+  }
+
   /**
    * 获取品牌信息
    */
   getBrand(): Brand {
-    return this.get(CacheService.BRAND_KEY)
+    let brandJson = this.get(CacheService.BRAND_KEY);
+    if (brandJson) {
+      return new Brand(brandJson.bannerLogo)
+    }
+    return null;
   }
 
   setCustomer(customer) {

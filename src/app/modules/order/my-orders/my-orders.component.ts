@@ -6,6 +6,7 @@ import {OrdersService} from "../shared/orders.service"
 import {Order} from "./order"
 import any = jasmine.any;
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'my-orders',
@@ -23,8 +24,9 @@ export class MyOrdersComponent implements OnInit {
    * 构造函数
    * @param rawService
    */
-  constructor(private ordersService: OrdersService,
+  constructor(private ordersService: OrdersService,private titleService:Title,
                 private router: Router) {
+    this.titleService.setTitle("我的订单");
   }
 
   /**

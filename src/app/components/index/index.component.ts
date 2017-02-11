@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 import {QINIU_DOMAIN} from "../../constant/config";
 import {BrandService} from "../../services/brand.service";
 import {Brand} from "../../shared/brand/brand.model";
+import {Title} from "@angular/platform-browser";
 
 
 @Component({
@@ -24,9 +25,10 @@ export class IndexComponent implements OnInit {
   brand: Brand = new Brand("")
   qinuDomain = QINIU_DOMAIN + "/"
 
-  constructor(private userInfoService: UserInfoService,
+  constructor(private userInfoService: UserInfoService,private titleService:Title,
               private brandService: BrandService,
               private router: Router) {
+    this.titleService.setTitle("首页")
   }
 
   ngOnInit(): void {
@@ -34,7 +36,8 @@ export class IndexComponent implements OnInit {
     this.initCustomer()
     this.initBrand()
     this.brandService.brandChange.subscribe((brand) => {
-      this.brand = brand;
+      this.brand = brand
+      console.log(this.brand)
     })
   }
 
