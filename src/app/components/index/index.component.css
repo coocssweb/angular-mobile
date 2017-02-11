@@ -187,7 +187,9 @@
   }
 
   .outlet{
-    height: calc(100% - 130px);
+    height: calc(100% - 85px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 .head-menu{
