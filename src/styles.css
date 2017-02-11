@@ -113,15 +113,17 @@ table {
   left: 50%;
   top: 50%;
   margin-left: -15px;
-  background-image: url(images/colorwheel-thin.svg);
+  background-image: url(images/reload.svg);
+
   display: block;
   height: 30px;
   width: 30px;
-  -webkit-animation: rotate linear 0.5s infinite;
-  -moz-animation: rotate linear 0.5s infinite;
-  -ms-animation: rotate linear 0.5s infinite;
-  -o-animation: rotate linear 0.5s infinite;
-  animation: rotate linear 0.5s infinite;
+  background-size: cover;
+  /*-webkit-animation: rotate linear 0.5s infinite;*/
+  /*-moz-animation: rotate linear 0.5s infinite;*/
+  /*-ms-animation: rotate linear 0.5s infinite;*/
+  /*-o-animation: rotate linear 0.5s infinite;*/
+  /*animation: rotate linear 0.5s infinite;*/
   z-index: 100;
 }
 
